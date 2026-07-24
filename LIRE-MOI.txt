@@ -1,4 +1,4 @@
-LE HALL DES POSSIBLES — V0.3 « LE HALL S'ÉVEILLE »
+LE HALL DES POSSIBLES — V0.3.1 « LE PREMIER BATTEMENT »
 
 À envoyer à la racine du dépôt GitHub :
 - index.html
@@ -6,14 +6,18 @@ LE HALL DES POSSIBLES — V0.3 « LE HALL S'ÉVEILLE »
 - script.js
 - hall-vivant.webp
 
-Cette version :
-- retire tous les textes explicatifs du Hall ;
-- retire les bulles visibles en permanence ;
-- affiche seulement quelques indications discrètes au survol sur ordinateur ;
-- anime la lumière du feu ;
-- ajoute de la vapeur aux tasses ;
-- donne une respiration légère au chien ;
-- adapte très doucement l'ambiance à l'heure réelle ;
-- conserve la porte de l'Atelier fermée.
+Cette pierre vivante conserve le Hall V0.3 et fait évoluer uniquement son foyer :
+- flammes moins régulières et plus organiques ;
+- souffle du feu variant doucement à des intervalles irréguliers ;
+- lit de braises qui respire ;
+- une braise isolée monte toutes les 15 à 40 secondes ;
+- la lueur du feu varie subtilement dans la pièce ;
+- une bûche semble se tasser toutes les 2 à 3 minutes ;
+- aucun son automatique ;
+- aucune bibliothèque externe ;
+- respect du réglage « réduire les animations » de l'appareil.
 
-Le Hall ne parle que lorsqu'on lui adresse la parole.
+Commit GitHub conseillé :
+V0.3.1 - Le Premier Battement
+
+✔ Pierre posée. Le Hall continue de grandir.

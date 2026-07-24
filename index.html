@@ -8,8 +8,8 @@
   <title>Le Hall des Possibles</title>
 
   <link rel="preload" href="hall-vivant.webp" as="image">
-  <link rel="stylesheet" href="style.css?v=0.3.0">
-  <script src="script.js?v=0.3.0" defer></script>
+  <link rel="stylesheet" href="style.css?v=0.3.1">
+  <script src="script.js?v=0.3.1" defer></script>
 </head>
 
 <body>
@@ -67,11 +67,16 @@
             draggable="false"
           >
 
-          <div class="ambiance ambiance--feu" aria-hidden="true">
-            <span></span><span></span><span></span>
+          <div class="ambiance ambiance--feu" id="feuVivant" aria-hidden="true">
+            <span class="flamme flamme--gauche"></span>
+            <span class="flamme flamme--centre"></span>
+            <span class="flamme flamme--droite"></span>
+            <span class="lit-braises"></span>
+            <span class="buche-vivante"></span>
+            <span class="braises-volantes" id="braisesVolantes"></span>
           </div>
 
-          <div class="ambiance ambiance--lueur" aria-hidden="true"></div>
+          <div class="ambiance ambiance--lueur" id="lueurFeu" aria-hidden="true"></div>
 
           <div class="ambiance ambiance--vapeur vapeur--gauche" aria-hidden="true">
             <i></i><i></i><i></i>
