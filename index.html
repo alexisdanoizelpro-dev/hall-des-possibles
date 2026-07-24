@@ -8,8 +8,8 @@
   <title>Le Hall des Possibles</title>
 
   <link rel="preload" href="hall-vivant.webp" as="image">
-  <link rel="stylesheet" href="style.css?v=0.3.1b">
-  <script src="script.js?v=0.3.1b" defer></script>
+  <link rel="stylesheet" href="style.css?v=0.4">
+  <script src="script.js?v=0.4" defer></script>
 </head>
 
 <body>
@@ -90,6 +90,44 @@
 
           <div class="chien-vivant" aria-hidden="true"></div>
 
+          <!-- V0.4 — Les traces d'une vie : des objets discrets, jamais imposés -->
+          <div class="objets-du-hall" aria-label="Objets et souvenirs du Hall">
+            <button class="objet objet--porte-manteau" type="button" data-souvenir="Un chapeau attend près de l'entrée. Rien ne dit depuis combien de temps." aria-label="Observer le porte-manteau"><i></i></button>
+            <button class="objet objet--malle" type="button" data-souvenir="Une malle en cuir, fermée. Elle semble avoir beaucoup voyagé." aria-label="Observer la malle en cuir"><i></i></button>
+            <span class="objet objet--couverture" aria-hidden="true"><i></i></span>
+
+            <span class="objet objet--panier-buches" aria-hidden="true"><i></i></span>
+            <span class="objet objet--outils-feu" aria-hidden="true"><i></i></span>
+
+            <button class="objet objet--globe" type="button" data-souvenir="Le monde entier tient ici, à portée d'une main curieuse." aria-label="Observer le globe terrestre"><i></i></button>
+            <span class="objet objet--loupe" aria-hidden="true"><i></i></span>
+            <button class="objet objet--carte" type="button" data-souvenir="Une carte roulée. Certaines routes ne sont peut-être pas encore tracées." aria-label="Observer la carte roulée"><i></i></button>
+
+            <span class="objet objet--theiere" aria-hidden="true"><i></i></span>
+            <span class="objet objet--cafetiere" aria-hidden="true"><i></i></span>
+            <button class="objet objet--biscuits" type="button" data-souvenir="Le pot n'est jamais tout à fait vide. Quelqu'un pense toujours au prochain visiteur." aria-label="Observer le pot à biscuits"><i></i></button>
+
+            <button class="objet objet--calendrier" type="button" data-souvenir="Quelques dates sont annotées à l'encre. Leur importance n'appartient qu'à ceux qui les reconnaissent." aria-label="Observer le calendrier mural"><i></i></button>
+            <span class="objet objet--plante" aria-hidden="true"><i></i></span>
+            <span class="objet objet--orchidee" aria-hidden="true"><i></i></span>
+            <button class="objet objet--myosotis" type="button" data-souvenir="De petites fleurs bleues. Ne m'oubliez pas, semblent-elles murmurer." aria-label="Observer les myosotis"><i></i></button>
+            <span class="objet objet--nichoir" aria-hidden="true"><i></i></span>
+
+            <span class="objet objet--laisse" aria-hidden="true"><i></i></span>
+            <span class="objet objet--balle" aria-hidden="true"><i></i></span>
+            <span class="objet objet--corde" aria-hidden="true"><i></i></span>
+            <span class="objet objet--serviette" aria-hidden="true"><i></i></span>
+            <button class="objet objet--photo-chien" type="button" data-souvenir="Une photographie du compagnon de l'Atelier lorsqu'il n'était encore qu'un chiot." aria-label="Observer la photographie du chien bébé"><i></i></button>
+
+            <button class="objet objet--boite-souvenirs" type="button" data-souvenir="Une boîte à souvenirs, soigneusement fermée. Tout souvenir n'a pas besoin d'être partagé." aria-label="Observer la boîte à souvenirs"><i></i></button>
+            <button class="objet objet--chaise-enfant" type="button" data-souvenir="Une petite chaise. Peut-être attend-elle un enfant. Peut-être rappelle-t-elle simplement qu'il faut savoir le rester." aria-label="Observer la chaise d'enfant"><i></i></button>
+
+            <button class="objet objet--billet" type="button" data-souvenir="Un ancien billet de train. Le voyage est terminé, mais quelque chose a mérité d'être conservé." aria-label="Observer le billet de train"><i></i></button>
+            <button class="objet objet--fleur-sechee" type="button" data-souvenir="Une fleur séchée dépasse d'un livre. Son histoire n'est écrite nulle part." aria-label="Observer la fleur séchée"><i></i></button>
+            <span class="objet objet--plume" aria-hidden="true"><i></i></span>
+            <button class="objet objet--enveloppe" id="enigmeDuJour" type="button" aria-label="Ouvrir l'enveloppe confiée par l'Atelier"><i></i><span>L'Atelier vous confie ceci,<br>si la curiosité vous appelle.</span></button>
+          </div>
+
           <button class="presence presence--livre" type="button" aria-label="Livre d'Or">
             <span>Livre d'Or</span>
           </button>
@@ -109,6 +147,22 @@
       </div>
 
       <div class="hall__voile" aria-hidden="true"></div>
+
+      <aside class="murmure" id="murmure" aria-live="polite" aria-hidden="true">
+        <button class="murmure__fermer" type="button" aria-label="Fermer">×</button>
+        <p id="murmureTexte"></p>
+      </aside>
+
+      <dialog class="lettre" id="lettreDuJour">
+        <button class="lettre__fermer" type="button" aria-label="Refermer l'enveloppe">×</button>
+        <p class="lettre__sceau">L'Atelier des Possibles</p>
+        <h2>Une pensée confiée au voyageur</h2>
+        <p>Je traverse les mondes sans jamais quitter ma place. On me consulte pour partir, mais je ne fais aucun pas. Qui suis-je&nbsp;?</p>
+        <details>
+          <summary>Soulever le coin de la lettre</summary>
+          <p>Une carte.</p>
+        </details>
+      </dialog>
     </section>
 
   </main>

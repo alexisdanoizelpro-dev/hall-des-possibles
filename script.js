@@ -1,6 +1,6 @@
 /* ==========================================================
-   LE HALL DES POSSIBLES — V0.3.1b
-   Le Premier Battement — correctif mobile et mouvement
+   LE HALL DES POSSIBLES — V0.4
+   Le Hall a une mémoire
    ========================================================== */
 
 (() => {
@@ -164,6 +164,50 @@
     if (image.complete) centrerPanorama();
     else image.addEventListener("load", centrerPanorama, { once: true });
   }
+
+
+  /* V0.4 — Les objets racontent sans imposer leur histoire. */
+  const murmure = document.querySelector("#murmure");
+  const murmureTexte = document.querySelector("#murmureTexte");
+  const fermerMurmure = document.querySelector(".murmure__fermer");
+  let minuterieMurmure = 0;
+
+  const montrerMurmure = (texte) => {
+    if (!murmure || !murmureTexte || !texte) return;
+    window.clearTimeout(minuterieMurmure);
+    murmureTexte.textContent = texte;
+    murmure.classList.add("is-visible");
+    murmure.setAttribute("aria-hidden", "false");
+    minuterieMurmure = window.setTimeout(() => {
+      murmure.classList.remove("is-visible");
+      murmure.setAttribute("aria-hidden", "true");
+    }, 6500);
+  };
+
+  document.querySelectorAll("[data-souvenir]").forEach((objet) => {
+    objet.addEventListener("click", () => montrerMurmure(objet.dataset.souvenir));
+  });
+
+  fermerMurmure?.addEventListener("click", () => {
+    window.clearTimeout(minuterieMurmure);
+    murmure?.classList.remove("is-visible");
+    murmure?.setAttribute("aria-hidden", "true");
+  });
+
+  const enigmeDuJour = document.querySelector("#enigmeDuJour");
+  const lettreDuJour = document.querySelector("#lettreDuJour");
+  const fermerLettre = document.querySelector(".lettre__fermer");
+
+  enigmeDuJour?.addEventListener("click", () => {
+    if (lettreDuJour?.showModal) lettreDuJour.showModal();
+    else lettreDuJour?.setAttribute("open", "");
+  });
+
+  fermerLettre?.addEventListener("click", () => lettreDuJour?.close());
+  lettreDuJour?.addEventListener("click", (event) => {
+    if (event.target === lettreDuJour) lettreDuJour.close();
+  });
+
 
   definirMoment();
   window.setInterval(definirMoment, 5 * 60 * 1000);

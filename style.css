@@ -1,6 +1,6 @@
 /* ==========================================================
-   LE HALL DES POSSIBLES — V0.3.1a
-   Le Premier Battement — correctif du feu
+   LE HALL DES POSSIBLES — V0.4
+   Le Hall a une mémoire
    ========================================================== */
 
 :root {
@@ -328,7 +328,7 @@ button { font: inherit; }
 
 .hall__scene {
   position: relative;
-  width: max(100vw, calc(100svh * 2));
+  width: max(118vw, calc(100svh * 2.38));
   height: 100svh;
   overflow: hidden;
 }
@@ -714,4 +714,122 @@ button { font: inherit; }
   .flamme--coeur { animation-duration: 1.25s !important; }
   .lit-braises { animation-duration: 2.3s !important; }
   .chien-vivant { animation-duration: 7s !important; }
+}
+
+
+/* ==========================================================
+   V0.4 — LE HALL A UNE MÉMOIRE
+   Les objets sont des traces, pas des explications.
+   ========================================================== */
+
+.objets-du-hall { position: absolute; inset: 0; z-index: 5; pointer-events: none; }
+.objet { position: absolute; display: block; padding: 0; border: 0; background: transparent; pointer-events: auto; cursor: pointer; filter: drop-shadow(0 5px 5px rgba(0,0,0,.5)); }
+.objet > i { position: absolute; inset: 0; display: block; }
+.objet:focus-visible { outline: 2px solid rgba(244,218,157,.9); outline-offset: 5px; border-radius: 8px; }
+.objet:hover { filter: brightness(1.12) drop-shadow(0 5px 7px rgba(0,0,0,.58)); }
+
+/* Entrée */
+.objet--porte-manteau { left: 1.1%; top: 35%; width: 4.4%; height: 42%; }
+.objet--porte-manteau i::before { content:""; position:absolute; left:45%; top:8%; width:10%; height:88%; border-radius:5px; background:linear-gradient(90deg,#2b170d,#6d4325 48%,#241208); }
+.objet--porte-manteau i::after { content:""; position:absolute; left:5%; top:4%; width:90%; height:35%; background:radial-gradient(ellipse at 58% 48%,#322318 0 30%,transparent 32%),linear-gradient(25deg,transparent 40%,#6b4426 42% 48%,transparent 50%),linear-gradient(-25deg,transparent 42%,#6b4426 44% 50%,transparent 52%); }
+.objet--malle { left: 5%; top: 78%; width: 10%; height: 11%; border-radius:8px 8px 4px 4px; background:linear-gradient(#5c3620,#2a160d); box-shadow:inset 0 0 0 2px #241209,inset 0 8px 10px rgba(255,255,255,.06); }
+.objet--malle::before,.objet--malle::after { content:""; position:absolute; top:0; bottom:0; width:7%; background:#1a100b; } .objet--malle::before{left:17%}.objet--malle::after{right:17%}
+.objet--malle i::after { content:""; position:absolute; left:43%; top:42%; width:14%; height:26%; border-radius:2px; background:#aa8240; }
+.objet--couverture { left:18.4%; top:55.2%; width:11.7%; height:19%; transform:rotate(-3deg); pointer-events:none; }
+.objet--couverture i { border-radius:45% 30% 42% 20%; background:repeating-linear-gradient(8deg,rgba(255,255,255,.04) 0 3px,transparent 3px 8px),linear-gradient(135deg,#7e6042,#3f2d22); box-shadow:inset 0 0 14px rgba(0,0,0,.35); opacity:.86; }
+
+/* Cheminée */
+.objet--panier-buches { left:35.5%; top:72%; width:7%; height:14%; pointer-events:none; }
+.objet--panier-buches i { border:3px solid #4d2d18; border-top:0; border-radius:0 0 45% 45%; background:repeating-linear-gradient(75deg,transparent 0 7px,rgba(78,46,25,.7) 8px 10px); }
+.objet--panier-buches i::before { content:""; position:absolute; left:12%; right:12%; top:-16%; height:45%; border:4px solid #5d3820; border-bottom:0; border-radius:50% 50% 0 0; }
+.objet--outils-feu { left:53.3%; top:58%; width:4%; height:28%; pointer-events:none; }
+.objet--outils-feu i { background:linear-gradient(90deg,transparent 18%,#2a211a 20% 24%,transparent 26% 49%,#2a211a 51% 55%,transparent 57% 78%,#2a211a 80% 84%,transparent 86%); }
+.objet--outils-feu i::after { content:""; position:absolute; left:5%; right:5%; bottom:0; height:8%; border-radius:50%; background:#201913; }
+
+/* Bibliothèque et table */
+.objet--globe { left:83.1%; top:31.4%; width:5.8%; height:12%; }
+.objet--globe i::before { content:""; position:absolute; left:16%; top:0; width:68%; aspect-ratio:1; border-radius:50%; background:radial-gradient(circle at 35% 30%,#78938d,#355850 55%,#213c38); box-shadow:inset -5px -5px 8px rgba(0,0,0,.45),0 0 0 2px #765833; }
+.objet--globe i::after { content:""; position:absolute; left:45%; top:62%; width:10%; height:34%; background:#785632; box-shadow:-14px 28px 0 -5px #785632,14px 28px 0 -5px #785632; }
+.objet--loupe { left:78.5%; top:61%; width:3.8%; height:8%; transform:rotate(24deg); pointer-events:none; }
+.objet--loupe i::before { content:""; position:absolute; left:0; top:0; width:52%; aspect-ratio:1; border:3px solid #ad8b53; border-radius:50%; background:rgba(190,220,216,.1); }
+.objet--loupe i::after { content:""; position:absolute; left:47%; top:46%; width:54%; height:12%; border-radius:4px; background:#6a4327; transform:rotate(38deg); transform-origin:left center; }
+.objet--carte { left:89.6%; top:48%; width:6.5%; height:7%; transform:rotate(-5deg); }
+.objet--carte i { border-radius:999px; background:linear-gradient(90deg,#6a4728,#d1b887 12% 88%,#684526); box-shadow:inset 0 0 7px rgba(73,42,18,.45); }
+.objet--theiere { left:61.4%; top:64.5%; width:5.2%; height:8.5%; pointer-events:none; }
+.objet--theiere i { border-radius:45% 48% 42% 46%; background:linear-gradient(145deg,#c7b99c,#716b5e); }
+.objet--theiere i::before { content:""; position:absolute; right:-38%; top:20%; width:55%; height:25%; border-radius:0 100% 30% 0; background:#928a78; transform:rotate(-15deg); }
+.objet--theiere i::after { content:""; position:absolute; left:-32%; top:12%; width:54%; height:66%; border:4px solid #8b8372; border-right:0; border-radius:60% 0 0 60%; }
+.objet--cafetiere { left:68%; top:63.5%; width:3.8%; height:10%; pointer-events:none; }
+.objet--cafetiere i { clip-path:polygon(18% 0,82% 0,100% 100%,0 100%); background:linear-gradient(90deg,#403a34,#9e9585 50%,#302d29); }
+.objet--biscuits { left:72.8%; top:64%; width:4%; height:8.5%; border-radius:12% 12% 28% 28%; background:linear-gradient(90deg,#8d6c48,#c5a875,#7d5a3c); }
+.objet--biscuits i::before { content:""; position:absolute; left:-5%; right:-5%; top:-9%; height:16%; border-radius:50%; background:#c2a36c; }
+
+/* Mur, fenêtres et nature */
+.objet--calendrier { left:14.2%; top:27%; width:7%; height:13%; background:#d8c8a5; transform:rotate(-1deg); box-shadow:0 2px 6px rgba(0,0,0,.5); }
+.objet--calendrier i { background:repeating-linear-gradient(0deg,transparent 0 16%,rgba(73,47,29,.25) 17% 18%),repeating-linear-gradient(90deg,transparent 0 24%,rgba(73,47,29,.18) 25% 26%); }
+.objet--calendrier::before { content:""; position:absolute; left:8%; right:8%; top:7%; height:10%; background:#70452b; }
+.objet--plante { left:28.8%; top:57%; width:5.5%; height:24%; pointer-events:none; }
+.objet--plante i::before { content:""; position:absolute; left:32%; right:32%; bottom:0; height:34%; background:#72503a; clip-path:polygon(10% 0,90% 0,74% 100%,26% 100%); }
+.objet--plante i::after { content:""; position:absolute; inset:0 0 22%; background:radial-gradient(ellipse at 50% 88%,#294d2d 0 18%,transparent 20%),radial-gradient(ellipse at 27% 66%,#345b38 0 17%,transparent 19%),radial-gradient(ellipse at 70% 61%,#24482b 0 18%,transparent 20%),radial-gradient(ellipse at 42% 34%,#3a633e 0 16%,transparent 18%); }
+.objet--orchidee { left:76.2%; top:51%; width:4.3%; height:14%; pointer-events:none; }
+.objet--orchidee i::before { content:""; position:absolute; left:38%; bottom:0; width:28%; height:32%; background:#66503c; clip-path:polygon(10% 0,90% 0,72% 100%,28% 100%); }
+.objet--orchidee i::after { content:""; position:absolute; inset:0 0 22%; background:radial-gradient(circle at 38% 35%,#e8d9d9 0 9%,transparent 10%),radial-gradient(circle at 63% 28%,#d6c0c9 0 10%,transparent 11%),radial-gradient(circle at 52% 52%,#ede2e0 0 10%,transparent 11%),linear-gradient(86deg,transparent 48%,#496044 49% 52%,transparent 53%); }
+.objet--myosotis { left:31.7%; top:68%; width:3.4%; height:8%; }
+.objet--myosotis i { background:radial-gradient(circle at 20% 35%,#7695ad 0 8%,#e6d677 9% 11%,transparent 12%),radial-gradient(circle at 58% 20%,#7b9db8 0 9%,#e6d677 10% 12%,transparent 13%),radial-gradient(circle at 76% 56%,#7899b4 0 9%,#e6d677 10% 12%,transparent 13%),linear-gradient(90deg,transparent 45%,#496344 47% 51%,transparent 53%); }
+.objet--nichoir { left:10%; top:9%; width:4.2%; height:8%; pointer-events:none; }
+.objet--nichoir i { background:#6d4327; clip-path:polygon(50% 0,100% 35%,88% 35%,88% 100%,12% 100%,12% 35%,0 35%); }
+.objet--nichoir i::after { content:""; position:absolute; left:39%; top:43%; width:22%; aspect-ratio:1; border-radius:50%; background:#160d08; }
+
+/* Le compagnon */
+.objet--laisse { left:57.2%; top:31%; width:2.2%; height:24%; pointer-events:none; }
+.objet--laisse i { border-left:3px solid #5f3b25; border-radius:50%; transform:rotate(3deg); }
+.objet--balle { left:34.3%; top:85.5%; width:2.2%; aspect-ratio:1; border-radius:50%; background:radial-gradient(circle at 35% 30%,#b88342,#64431f); pointer-events:none; }
+.objet--corde { left:56.2%; top:84%; width:4%; height:4%; transform:rotate(-12deg); pointer-events:none; }
+.objet--corde i { border:5px double #bda270; border-left:0; border-right:0; border-radius:50%; }
+.objet--serviette { left:58%; top:75%; width:5.2%; height:8%; transform:rotate(7deg); pointer-events:none; }
+.objet--serviette i { background:repeating-linear-gradient(90deg,#746b5c 0 5px,#837a69 6px 10px); opacity:.8; }
+.objet--photo-chien { left:80.6%; top:21%; width:4.2%; height:7%; transform:rotate(-2deg); background:#5e3b24; box-shadow:inset 0 0 0 3px #a88958,0 2px 4px rgba(0,0,0,.5); }
+.objet--photo-chien i { inset:12%; border-radius:50% 50% 44% 44%; background:radial-gradient(ellipse at 50% 62%,#8f6b48 0 28%,transparent 30%),linear-gradient(60deg,transparent 37%,#4a3323 39% 50%,transparent 52%),linear-gradient(-60deg,transparent 37%,#4a3323 39% 50%,transparent 52%),#b8a689; }
+
+/* Souvenirs */
+.objet--boite-souvenirs { left:91%; top:61%; width:5.6%; height:7%; border-radius:4px; background:linear-gradient(#815c38,#432918); box-shadow:inset 0 0 0 2px #2a180e; }
+.objet--boite-souvenirs i::after { content:""; position:absolute; left:44%; top:38%; width:12%; height:24%; background:#b08b4e; }
+.objet--chaise-enfant { left:15.3%; top:70%; width:4.2%; height:15%; }
+.objet--chaise-enfant i::before { content:""; position:absolute; left:12%; right:12%; top:22%; height:32%; border:4px solid #6f4528; background:#8b5a35; }
+.objet--chaise-enfant i::after { content:""; position:absolute; left:20%; right:20%; top:52%; bottom:0; border-left:4px solid #6b4327; border-right:4px solid #6b4327; transform:perspective(50px) rotateX(-4deg); }
+.objet--billet { left:66%; top:77%; width:4.6%; height:3%; transform:rotate(8deg); background:#c4b58d; }
+.objet--billet i { background:repeating-linear-gradient(90deg,transparent 0 11%,rgba(65,52,34,.2) 12% 13%); }
+.objet--fleur-sechee { left:87.4%; top:55%; width:2%; height:8%; transform:rotate(14deg); }
+.objet--fleur-sechee i { background:radial-gradient(circle at 48% 18%,#8f6950 0 13%,transparent 14%),linear-gradient(86deg,transparent 45%,#6d6041 47% 52%,transparent 54%); }
+.objet--plume { left:73.5%; top:73.3%; width:4%; height:6%; transform:rotate(-18deg); pointer-events:none; }
+.objet--plume i { clip-path:polygon(0 55%,78% 0,100% 5%,64% 43%,100% 28%,60% 57%,92% 51%,52% 70%,81% 71%,42% 82%,60% 93%,34% 87%,18% 100%); background:#b9ad94; }
+.objet--enveloppe { left:5.1%; top:58.5%; width:9.5%; height:7.5%; transform:rotate(-2deg); border-radius:2px; background:#d5c7a5; box-shadow:0 3px 8px rgba(0,0,0,.45); color:#3c2b1f; }
+.objet--enveloppe i { overflow:hidden; }
+.objet--enveloppe i::before { content:""; position:absolute; inset:0; clip-path:polygon(0 0,50% 61%,100% 0); background:#c0ae87; }
+.objet--enveloppe i::after { content:""; position:absolute; left:44%; top:43%; width:13%; aspect-ratio:1; border-radius:50%; background:#783d2c; box-shadow:inset 0 0 0 2px rgba(255,210,150,.2); }
+.objet--enveloppe span { position:absolute; left:50%; top:112%; width:260%; transform:translateX(-50%); font-size:clamp(.45rem,.62vw,.7rem); line-height:1.2; text-align:center; color:rgba(246,232,201,.92); text-shadow:0 2px 5px #000; opacity:0; transition:opacity .25s ease; }
+.objet--enveloppe:hover span,.objet--enveloppe:focus-visible span { opacity:1; }
+
+.murmure { position:fixed; z-index:20; left:50%; bottom:max(24px,env(safe-area-inset-bottom)); width:min(88vw,540px); padding:18px 48px 18px 20px; border:1px solid rgba(222,191,130,.35); border-radius:14px; transform:translate(-50%,22px); color:#f4ead5; background:rgba(24,15,9,.9); box-shadow:0 18px 55px rgba(0,0,0,.55); backdrop-filter:blur(12px); opacity:0; visibility:hidden; transition:.3s ease; }
+.murmure.is-visible { opacity:1; visibility:visible; transform:translate(-50%,0); }
+.murmure p { margin:0; line-height:1.55; }
+.murmure__fermer,.lettre__fermer { position:absolute; right:10px; top:8px; border:0; background:transparent; color:inherit; font-size:1.6rem; cursor:pointer; }
+
+.lettre { width:min(90vw,580px); padding:clamp(28px,6vw,54px); border:1px solid #9e8558; color:#3b2b1e; background:linear-gradient(135deg,#eadfbe,#cbb88c); box-shadow:0 24px 90px rgba(0,0,0,.75),inset 0 0 45px rgba(108,72,38,.15); font-family:Georgia,"Times New Roman",serif; }
+.lettre::backdrop { background:rgba(5,3,1,.72); backdrop-filter:blur(5px); }
+.lettre h2 { margin:.4em 0 .8em; font-size:clamp(1.4rem,5vw,2.1rem); font-weight:400; }
+.lettre p { line-height:1.7; }
+.lettre__sceau { margin:0; letter-spacing:.18em; text-transform:uppercase; font-size:.72rem; opacity:.65; }
+.lettre__fermer { color:#3b2b1e; }
+.lettre details { margin-top:1.5rem; border-top:1px solid rgba(70,45,25,.25); padding-top:1rem; }
+.lettre summary { cursor:pointer; font-style:italic; }
+
+@media (max-width:700px) {
+  .hall__scene { width:max(170vw,calc(100svh * 2.38)); }
+  .objet--enveloppe span { display:none; }
+  .murmure { font-size:.92rem; }
+}
+
+@media (hover:none) {
+  .objet:hover { filter:drop-shadow(0 5px 5px rgba(0,0,0,.5)); }
 }
