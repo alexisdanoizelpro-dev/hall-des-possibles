@@ -173,3 +173,17 @@ body {
     transition: transform 1.4s ease;
 
 }
+/* ==============================
+   Pierre V - Première ouverture
+   ============================== */
+
+.porte {
+    transform-origin: left center;
+    transition: transform 1.2s ease;
+}
+
+.porte.ouverte {
+    transform:
+        perspective(1200px)
+        rotateY(-70deg);
+}
