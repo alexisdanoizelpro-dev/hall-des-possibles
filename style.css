@@ -158,3 +158,18 @@ body {
     opacity: 1;
   }
 }
+.porte {
+
+    transform-origin: left center;
+
+}
+
+.porte.ouverte {
+
+    transform:
+        perspective(1200px)
+        rotateY(-70deg);
+
+    transition: transform 1.4s ease;
+
+}
