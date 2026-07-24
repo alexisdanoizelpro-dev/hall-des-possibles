@@ -1,6 +1,6 @@
 /* ==========================================================
-   LE HALL DES POSSIBLES — V0.2
-   Le Premier Pas
+   LE HALL DES POSSIBLES — V0.3
+   Le Hall s'éveille
    ========================================================== */
 
 (() => {
@@ -11,45 +11,37 @@
   const invitation = document.querySelector("#invitation");
   const hall = document.querySelector("#hall");
   const panorama = document.querySelector("#panorama");
-  const indication = document.querySelector("#indication");
 
-  if (!seuil || !porte || !hall || !panorama) {
-    return;
-  }
+  if (!seuil || !porte || !hall || !panorama) return;
 
   let ouvertureLancee = false;
-  let glissementEffectue = false;
 
-  const cacherIndication = () => {
-    if (!glissementEffectue && indication) {
-      glissementEffectue = true;
-      indication.classList.add("is-hidden");
-    }
+  const definirMoment = () => {
+    const heure = new Date().getHours();
+    let moment = "jour";
+
+    if (heure >= 6 && heure < 11) moment = "matin";
+    else if (heure >= 18 && heure < 22) moment = "soir";
+    else if (heure >= 22 || heure < 6) moment = "nuit";
+
+    hall.dataset.moment = moment;
   };
 
   const centrerPanorama = () => {
-    const positionCentrale =
-      Math.max(0, (panorama.scrollWidth - panorama.clientWidth) / 2);
-
-    panorama.scrollLeft = positionCentrale;
+    panorama.scrollLeft = Math.max(
+      0,
+      (panorama.scrollWidth - panorama.clientWidth) / 2
+    );
   };
 
   const ouvrirLeHall = () => {
-    if (ouvertureLancee) {
-      return;
-    }
-
+    if (ouvertureLancee) return;
     ouvertureLancee = true;
 
     porte.setAttribute("aria-expanded", "true");
-    porte.setAttribute(
-      "aria-label",
-      "La porte du Hall des Possibles est ouverte"
-    );
+    porte.setAttribute("aria-label", "La porte du Hall des Possibles est ouverte");
 
-    if (invitation) {
-      invitation.textContent = "La porte s'ouvre...";
-    }
+    if (invitation) invitation.textContent = "La porte s'ouvre...";
 
     seuil.classList.add("is-opening");
 
@@ -58,7 +50,6 @@
       seuil.classList.add("is-crossing");
       hall.classList.add("is-visible");
       hall.setAttribute("aria-hidden", "false");
-
       window.requestAnimationFrame(centrerPanorama);
     }, 1750);
 
@@ -69,21 +60,15 @@
   };
 
   porte.addEventListener("click", ouvrirLeHall);
-
   window.addEventListener("resize", centrerPanorama);
 
-  panorama.addEventListener("scroll", cacherIndication, { passive: true });
-  panorama.addEventListener("pointerdown", cacherIndication);
-
-  /* Glissement à la souris sur ordinateur */
+  /* Glissement souris */
   let glisse = false;
   let departX = 0;
   let departScroll = 0;
 
   panorama.addEventListener("pointerdown", (event) => {
-    if (event.pointerType === "touch") {
-      return;
-    }
+    if (event.pointerType === "touch") return;
 
     glisse = true;
     departX = event.clientX;
@@ -93,19 +78,12 @@
   });
 
   panorama.addEventListener("pointermove", (event) => {
-    if (!glisse) {
-      return;
-    }
-
-    const distance = event.clientX - departX;
-    panorama.scrollLeft = departScroll - distance;
+    if (!glisse) return;
+    panorama.scrollLeft = departScroll - (event.clientX - departX);
   });
 
   const terminerGlissement = (event) => {
-    if (!glisse) {
-      return;
-    }
-
+    if (!glisse) return;
     glisse = false;
     panorama.classList.remove("is-dragging");
 
@@ -117,28 +95,22 @@
   panorama.addEventListener("pointerup", terminerGlissement);
   panorama.addEventListener("pointercancel", terminerGlissement);
 
-  /* Navigation au clavier */
   panorama.addEventListener("keydown", (event) => {
-    const pas = Math.max(120, panorama.clientWidth * 0.22);
+    const pas = Math.max(120, panorama.clientWidth * .22);
 
     if (event.key === "ArrowLeft") {
       panorama.scrollBy({ left: -pas, behavior: "smooth" });
-      cacherIndication();
-    }
-
-    if (event.key === "ArrowRight") {
+    } else if (event.key === "ArrowRight") {
       panorama.scrollBy({ left: pas, behavior: "smooth" });
-      cacherIndication();
     }
   });
 
   const image = panorama.querySelector("img");
-
   if (image) {
-    if (image.complete) {
-      centrerPanorama();
-    } else {
-      image.addEventListener("load", centrerPanorama, { once: true });
-    }
+    if (image.complete) centrerPanorama();
+    else image.addEventListener("load", centrerPanorama, { once: true });
   }
+
+  definirMoment();
+  window.setInterval(definirMoment, 5 * 60 * 1000);
 })();

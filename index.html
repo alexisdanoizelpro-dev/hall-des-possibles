@@ -7,9 +7,9 @@
   <meta name="description" content="Franchissez le seuil du Hall des Possibles.">
   <title>Le Hall des Possibles</title>
 
-  <link rel="preload" href="hall-accueil.webp" as="image">
-  <link rel="stylesheet" href="style.css?v=0.2.0">
-  <script src="script.js?v=0.2.0" defer></script>
+  <link rel="preload" href="hall-vivant.webp" as="image">
+  <link rel="stylesheet" href="style.css?v=0.3.0">
+  <script src="script.js?v=0.3.0" defer></script>
 </head>
 
 <body>
@@ -20,7 +20,6 @@
 
       <header class="seuil__texte">
         <h1 class="seuil__titre">Le Hall des Possibles</h1>
-
         <p class="seuil__phrase">
           Chaque histoire commence par une porte qui s'ouvre...
           <span>Que se cache-t-il derrière la vôtre&nbsp;?</span>
@@ -56,24 +55,53 @@
       </div>
 
       <p class="seuil__invitation" id="invitation">Touchez la porte</p>
-      <p class="seuil__message" id="message" aria-live="polite">Le Hall vous accueille.</p>
     </section>
 
     <section class="hall" id="hall" aria-label="L'Aile de l'Accueil" aria-hidden="true">
       <div class="hall__panorama" id="panorama" tabindex="0">
-        <img
-          class="hall__image"
-          src="hall-accueil.webp"
-          alt="L'Aile de l'Accueil du Hall des Possibles, organisée autour d'une cheminée centrale."
-          draggable="false"
-        >
+        <div class="hall__scene" id="scene">
+          <img
+            class="hall__image"
+            src="hall-vivant.webp"
+            alt="L'Aile de l'Accueil du Hall des Possibles, autour d'une cheminée centrale."
+            draggable="false"
+          >
+
+          <div class="ambiance ambiance--feu" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+
+          <div class="ambiance ambiance--lueur" aria-hidden="true"></div>
+
+          <div class="ambiance ambiance--vapeur vapeur--gauche" aria-hidden="true">
+            <i></i><i></i><i></i>
+          </div>
+
+          <div class="ambiance ambiance--vapeur vapeur--droite" aria-hidden="true">
+            <i></i><i></i>
+          </div>
+
+          <div class="chien-vivant" aria-hidden="true"></div>
+
+          <button class="presence presence--livre" type="button" aria-label="Livre d'Or">
+            <span>Livre d'Or</span>
+          </button>
+
+          <button class="presence presence--atelier" type="button" aria-label="Porte de l'Atelier">
+            <span>L'Atelier demeure fermé</span>
+          </button>
+
+          <button class="presence presence--bibliotheque" type="button" aria-label="Bibliothèque">
+            <span>La bibliothèque veille</span>
+          </button>
+
+          <button class="presence presence--chien" type="button" aria-label="Compagnon de l'Atelier">
+            <span>Le compagnon de l'Atelier</span>
+          </button>
+        </div>
       </div>
 
       <div class="hall__voile" aria-hidden="true"></div>
-
-      <p class="hall__indication" id="indication">
-        Faites glisser votre regard pour explorer le Hall
-      </p>
     </section>
 
   </main>

@@ -1,11 +1,19 @@
-# Le Hall des Possibles — V0.2
+LE HALL DES POSSIBLES — V0.3 « LE HALL S'ÉVEILLE »
 
-Fichiers à placer à la racine du dépôt GitHub :
+À envoyer à la racine du dépôt GitHub :
+- index.html
+- style.css
+- script.js
+- hall-vivant.webp
 
-- `index.html`
-- `style.css`
-- `script.js`
-- `hall-accueil.webp`
+Cette version :
+- retire tous les textes explicatifs du Hall ;
+- retire les bulles visibles en permanence ;
+- affiche seulement quelques indications discrètes au survol sur ordinateur ;
+- anime la lumière du feu ;
+- ajoute de la vapeur aux tasses ;
+- donne une respiration légère au chien ;
+- adapte très doucement l'ambiance à l'heure réelle ;
+- conserve la porte de l'Atelier fermée.
 
-La porte s'ouvre, le Visiteur franchit la lumière, puis découvre l'Aile de l'Accueil.
-Sur téléphone, il peut faire glisser l'image horizontalement pour explorer le Hall.
+Le Hall ne parle que lorsqu'on lui adresse la parole.
