@@ -1,118 +1,144 @@
 /* ==========================================================
-   LE HALL DES POSSIBLES — V0.1
-   Ouverture du Seuil
+   LE HALL DES POSSIBLES — V0.2
+   Le Premier Pas
    ========================================================== */
 
 (() => {
   "use strict";
 
-  const seuil =
-    document.querySelector("#seuil");
+  const seuil = document.querySelector("#seuil");
+  const porte = document.querySelector("#porte");
+  const invitation = document.querySelector("#invitation");
+  const hall = document.querySelector("#hall");
+  const panorama = document.querySelector("#panorama");
+  const indication = document.querySelector("#indication");
 
-  const porte =
-    document.querySelector("#porte");
-
-  const invitation =
-    document.querySelector("#invitation");
-
-
-  /*
-   * Si un élément indispensable manque,
-   * le script s'arrête sans provoquer d'erreur.
-   */
-
-  if (!seuil || !porte) {
+  if (!seuil || !porte || !hall || !panorama) {
     return;
   }
 
-
-  /*
-   * Cette variable empêche le Visiteur
-   * de déclencher plusieurs ouvertures
-   * en touchant rapidement la porte.
-   */
-
   let ouvertureLancee = false;
+  let glissementEffectue = false;
 
+  const cacherIndication = () => {
+    if (!glissementEffectue && indication) {
+      glissementEffectue = true;
+      indication.classList.add("is-hidden");
+    }
+  };
 
-  /*
-   * Fonction principale :
-   * elle lance l'ouverture du Seuil.
-   */
+  const centrerPanorama = () => {
+    const positionCentrale =
+      Math.max(0, (panorama.scrollWidth - panorama.clientWidth) / 2);
+
+    panorama.scrollLeft = positionCentrale;
+  };
 
   const ouvrirLeHall = () => {
-
     if (ouvertureLancee) {
       return;
     }
 
     ouvertureLancee = true;
 
-
-    /*
-     * Mise à jour des informations
-     * destinées aux lecteurs d'écran.
-     */
-
-    porte.setAttribute(
-      "aria-expanded",
-      "true"
-    );
-
+    porte.setAttribute("aria-expanded", "true");
     porte.setAttribute(
       "aria-label",
       "La porte du Hall des Possibles est ouverte"
     );
 
-
-    /*
-     * La classe is-opening déclenche
-     * les animations écrites dans le CSS.
-     */
+    if (invitation) {
+      invitation.textContent = "La porte s'ouvre...";
+    }
 
     seuil.classList.add("is-opening");
 
+    window.setTimeout(() => {
+      seuil.classList.remove("is-opening");
+      seuil.classList.add("is-crossing");
+      hall.classList.add("is-visible");
+      hall.setAttribute("aria-hidden", "false");
 
-    /*
-     * Le texte change immédiatement,
-     * avant de disparaître avec l'animation.
-     */
-
-    if (invitation) {
-      invitation.textContent =
-        "La porte s'ouvre...";
-    }
-
-
-    /*
-     * Lorsque le mouvement de la porte
-     * est terminé, le Seuil passe dans
-     * son état définitivement ouvert.
-     */
+      window.requestAnimationFrame(centrerPanorama);
+    }, 1750);
 
     window.setTimeout(() => {
-
-      seuil.classList.remove(
-        "is-opening"
-      );
-
-      seuil.classList.add(
-        "is-open"
-      );
-
-    }, 1850);
-
+      seuil.classList.add("is-gone");
+      panorama.focus({ preventScroll: true });
+    }, 3000);
   };
 
+  porte.addEventListener("click", ouvrirLeHall);
 
-  /*
-   * Le Visiteur ouvre la porte
-   * en la touchant ou en cliquant dessus.
-   */
+  window.addEventListener("resize", centrerPanorama);
 
-  porte.addEventListener(
-    "click",
-    ouvrirLeHall
-  );
+  panorama.addEventListener("scroll", cacherIndication, { passive: true });
+  panorama.addEventListener("pointerdown", cacherIndication);
 
+  /* Glissement à la souris sur ordinateur */
+  let glisse = false;
+  let departX = 0;
+  let departScroll = 0;
+
+  panorama.addEventListener("pointerdown", (event) => {
+    if (event.pointerType === "touch") {
+      return;
+    }
+
+    glisse = true;
+    departX = event.clientX;
+    departScroll = panorama.scrollLeft;
+    panorama.classList.add("is-dragging");
+    panorama.setPointerCapture(event.pointerId);
+  });
+
+  panorama.addEventListener("pointermove", (event) => {
+    if (!glisse) {
+      return;
+    }
+
+    const distance = event.clientX - departX;
+    panorama.scrollLeft = departScroll - distance;
+  });
+
+  const terminerGlissement = (event) => {
+    if (!glisse) {
+      return;
+    }
+
+    glisse = false;
+    panorama.classList.remove("is-dragging");
+
+    if (panorama.hasPointerCapture(event.pointerId)) {
+      panorama.releasePointerCapture(event.pointerId);
+    }
+  };
+
+  panorama.addEventListener("pointerup", terminerGlissement);
+  panorama.addEventListener("pointercancel", terminerGlissement);
+
+  /* Navigation au clavier */
+  panorama.addEventListener("keydown", (event) => {
+    const pas = Math.max(120, panorama.clientWidth * 0.22);
+
+    if (event.key === "ArrowLeft") {
+      panorama.scrollBy({ left: -pas, behavior: "smooth" });
+      cacherIndication();
+    }
+
+    if (event.key === "ArrowRight") {
+      panorama.scrollBy({ left: pas, behavior: "smooth" });
+      cacherIndication();
+    }
+  });
+
+  const image = panorama.querySelector("img");
+
+  if (image) {
+    if (image.complete) {
+      centrerPanorama();
+    } else {
+      image.addEventListener("load", centrerPanorama, { once: true });
+    }
+  }
 })();

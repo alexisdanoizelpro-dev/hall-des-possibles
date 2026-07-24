@@ -1,0 +1,11 @@
+# Le Hall des Possibles — V0.2
+
+Fichiers à placer à la racine du dépôt GitHub :
+
+- `index.html`
+- `style.css`
+- `script.js`
+- `hall-accueil.webp`
+
+La porte s'ouvre, le Visiteur franchit la lumière, puis découvre l'Aile de l'Accueil.
+Sur téléphone, il peut faire glisser l'image horizontalement pour explorer le Hall.
