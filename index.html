@@ -2,46 +2,107 @@
 <html lang="fr">
 
 <head>
+  <meta charset="UTF-8">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
 
-    <title>Le Hall des Possibles</title>
+  <meta name="theme-color" content="#080b08">
 
-    <link rel="stylesheet" href="style.css?v=4">
+  <meta
+    name="description"
+    content="Franchissez le seuil du Hall des Possibles."
+  >
 
+  <title>Le Hall des Possibles</title>
+
+  <link rel="stylesheet" href="style.css?v=0.1.0">
+
+  <script src="script.js?v=0.1.0" defer></script>
 </head>
 
 <body>
 
-    <main class="seuil">
+  <!--
+    Chaque histoire commence par une porte qui s'ouvre.
+    Bienvenue dans le Hall des Possibles.
+  -->
 
-        <p class="seuil__phrase">
+  <main class="seuil" id="seuil">
 
-            Chaque histoire commence par une porte qui s'ouvre...
+    <div class="seuil__ambiance" aria-hidden="true"></div>
 
-            <br><br>
+    <header class="seuil__texte">
 
-            Que se cache-t-il derrière la vôtre ?
+      <h1 class="seuil__titre">
+        Le Hall des Possibles
+      </h1>
 
-        </p>
-<div class="lumiere-hall" aria-hidden="true"></div>
-        <button class="porte" aria-label="Ouvrir la porte du Hall des Possibles">
+      <p class="seuil__phrase">
+        Chaque histoire commence par une porte qui s'ouvre...
 
-            <span class="porte__poignee"></span>
+        <span>
+          Que se cache-t-il derrière la vôtre&nbsp;?
+        </span>
+      </p>
 
-            <span class="porte__lumiere"></span>
+    </header>
 
-        </button>
+    <div class="scene-porte">
 
-        <p class="seuil__invitation">
+      <div class="lueur-hall" aria-hidden="true"></div>
 
-            Touchez la porte
+      <div class="encadrement" aria-hidden="true">
+        <div class="encadrement__haut"></div>
+        <div class="encadrement__gauche"></div>
+        <div class="encadrement__droite"></div>
+      </div>
 
-        </p>
+      <button
+        class="porte"
+        id="porte"
+        type="button"
+        aria-label="Ouvrir la porte du Hall des Possibles"
+        aria-expanded="false"
+      >
 
-    </main>
-<scri<script src="script.js?v=4" defer></script>
+        <span
+          class="porte__panneau porte__panneau--haut"
+          aria-hidden="true"
+        ></span>
+
+        <span
+          class="porte__panneau porte__panneau--bas"
+          aria-hidden="true"
+        ></span>
+
+        <span class="porte__poignee" aria-hidden="true">
+          <span class="porte__plaque"></span>
+          <span class="porte__bouton"></span>
+        </span>
+
+        <span class="porte__lumiere" aria-hidden="true"></span>
+
+      </button>
+
+    </div>
+
+    <p class="seuil__invitation" id="invitation">
+      Touchez la porte
+    </p>
+
+    <p
+      class="seuil__message"
+      id="message"
+      aria-live="polite"
+    >
+      Le Hall vous attend.
+    </p>
+
+  </main>
+
 </body>
 
 </html>
