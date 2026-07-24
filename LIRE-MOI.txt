@@ -1,21 +1,8 @@
 LE HALL DES POSSIBLES — V0.4
-« Le Hall a une mémoire »
+Le Hall a une mémoire
 
-Cette version part de la V0.3.1b et conserve :
-- la porte d'entrée et sa traversée ;
-- le panorama horizontal ;
-- le feu vivant ;
-- la respiration du compagnon de l'Atelier ;
-- les variations discrètes selon l'heure réelle.
+Cette version agrandit réellement le Hall et intègre ses objets directement dans le décor.
 
-Nouveautés de la V0.4 :
-- panorama agrandi pour donner davantage d'espace au Hall ;
-- objets de vie et souvenirs intégrés avec discrétion ;
-- enveloppe de l'Atelier ouvrant l'Énigme du Jour ;
-- plusieurs objets observables, sans imposer une histoire officielle ;
-- meilleure densité narrative sans transformer le Hall en cabinet de curiosités ;
-- confort mobile et navigation au toucher conservés.
+Installation GitHub Pages : remplacez les fichiers de la version précédente par les cinq fichiers de cette archive, puis attendez une à deux minutes et rechargez la page sans cache.
 
-Pour tester : ouvrez simplement index.html dans un navigateur récent.
-Sur ordinateur : faites glisser le Hall à la souris ou utilisez les flèches.
-Sur téléphone : faites glisser horizontalement avec le doigt.
+Sur téléphone, faites glisser horizontalement pour parcourir le Hall. Touchez les zones et cartels du décor pour découvrir leurs premiers textes.
