@@ -187,3 +187,46 @@ body {
         perspective(1200px)
         rotateY(-70deg);
 }
+/* ==================================
+   Pierre VI - Lumière derrière la porte
+   ================================== */
+
+.lumiere-hall {
+  position: absolute;
+  z-index: 0;
+  width: min(68vw, 310px);
+  aspect-ratio: 2 / 3;
+  border-radius: 8px;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.65);
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255, 247, 207, 1) 0%,
+      rgba(255, 204, 112, 0.92) 30%,
+      rgba(211, 133, 49, 0.55) 58%,
+      transparent 76%
+    );
+  filter: blur(5px);
+  transition:
+    opacity 1.6s ease,
+    transform 2s ease,
+    filter 2s ease;
+}
+
+.porte {
+  z-index: 1;
+}
+
+.entree-ouverte .lumiere-hall {
+  opacity: 1;
+  transform: scale(1.65);
+  filter: blur(12px);
+}
+
+.entree-ouverte .seuil__phrase,
+.entree-ouverte .seuil__invitation {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
