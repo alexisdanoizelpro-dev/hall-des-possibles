@@ -1,6 +1,6 @@
 /* ==========================================================
-   LE HALL DES POSSIBLES — V0.3.1a
-   Le Premier Battement — correctif du feu
+   LE HALL DES POSSIBLES — V0.3.1b
+   Le Premier Battement — correctif mobile et mouvement
    ========================================================== */
 
 (() => {
@@ -50,6 +50,7 @@
       seuil.classList.add("is-crossing");
       hall.classList.add("is-visible");
       hall.setAttribute("aria-hidden", "false");
+      document.documentElement.classList.add("mouvement-actif");
       window.requestAnimationFrame(centrerPanorama);
       demarrerLeFeu();
     }, 1750);

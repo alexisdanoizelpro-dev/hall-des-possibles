@@ -1,14 +1,11 @@
-LE HALL DES POSSIBLES — V0.3.1a
-LE PREMIER BATTEMENT — CORRECTIF DU FEU
+LE HALL DES POSSIBLES — V0.3.1b
+LE PREMIER BATTEMENT — CORRECTIF MOUVEMENT MOBILE
 
-Cette version conserve le Hall existant et renforce uniquement la vie de la cheminée :
-- quatre flammes superposées, plus lisibles et irrégulières ;
-- lueur chaude plus perceptible dans la pièce ;
-- lit de braises vivant ;
-- première braise visible quelques secondes après l'entrée ;
-- braises suivantes à intervalles irréguliers ;
-- tassement très occasionnel des bûches ;
-- aucun son et aucune bibliothèque externe.
+Correction principale :
+- l'ancienne règle d'accessibilité stoppait toutes les animations sur certains téléphones Android ;
+- le feu reste maintenant animé même lorsque le téléphone signale « mouvement réduit » ;
+- les mouvements d'interface restent, eux, réduits ;
+- les flammes sont un peu plus nettes sans devenir plus imposantes.
 
-Déploiement GitHub : téléverser les cinq fichiers à la racine du dépôt et remplacer les anciens.
-Commit conseillé : V0.3.1a - Le Premier Battement, feu vivant
+Installation : téléverser les cinq fichiers à la racine du dépôt GitHub et remplacer les versions existantes.
+Commit conseillé : V0.3.1b - Le feu bouge enfin

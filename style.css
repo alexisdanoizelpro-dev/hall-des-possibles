@@ -387,6 +387,7 @@ button { font: inherit; }
   top: 44.2%;
   width: 9.4%;
   height: 20.5%;
+  isolation: isolate;
   z-index: 4;
   overflow: visible;
   filter: saturate(1.18) contrast(1.04);
@@ -400,7 +401,7 @@ button { font: inherit; }
   will-change: transform, opacity, filter;
   background:
     radial-gradient(ellipse at 50% 76%, rgba(255,255,213,.94) 0 10%, rgba(255,211,85,.88) 30%, rgba(255,105,18,.78) 62%, rgba(255,42,0,.18) 82%, transparent 100%);
-  filter: blur(.8px) drop-shadow(0 0 4px rgba(255,126,24,.7));
+  filter: blur(.45px) drop-shadow(0 0 5px rgba(255,126,24,.78));
   border-radius: 48% 52% 54% 46% / 72% 72% 28% 28%;
 }
 
@@ -685,11 +686,32 @@ button { font: inherit; }
   .presence::after { display: none; }
 }
 
+/*
+   Important : Android peut annoncer « mouvement réduit » lorsque l'option
+   système "Supprimer les animations" est active. L'ancienne règle coupait
+   alors aussi le feu. Nous réduisons désormais seulement les mouvements
+   d'interface ; les signes de vie du Hall restent lents et visibles.
+*/
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    scroll-behavior: auto !important;
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: .01ms !important;
+  html { scroll-behavior: auto !important; }
+
+  .seuil__ambiance,
+  .seuil__invitation {
+    animation: none !important;
   }
+
+  .porte,
+  .seuil,
+  .hall,
+  .hall__voile {
+    transition-duration: 180ms !important;
+  }
+
+  .ambiance--lueur { animation-duration: 4.8s !important; }
+  .flamme--gauche { animation-duration: 1.65s !important; }
+  .flamme--centre { animation-duration: 1.9s !important; }
+  .flamme--droite { animation-duration: 1.5s !important; }
+  .flamme--coeur { animation-duration: 1.25s !important; }
+  .lit-braises { animation-duration: 2.3s !important; }
+  .chien-vivant { animation-duration: 7s !important; }
 }
