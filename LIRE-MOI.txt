@@ -1,23 +1,14 @@
-LE HALL DES POSSIBLES — V0.3.1 « LE PREMIER BATTEMENT »
+LE HALL DES POSSIBLES — V0.3.1a
+LE PREMIER BATTEMENT — CORRECTIF DU FEU
 
-À envoyer à la racine du dépôt GitHub :
-- index.html
-- style.css
-- script.js
-- hall-vivant.webp
+Cette version conserve le Hall existant et renforce uniquement la vie de la cheminée :
+- quatre flammes superposées, plus lisibles et irrégulières ;
+- lueur chaude plus perceptible dans la pièce ;
+- lit de braises vivant ;
+- première braise visible quelques secondes après l'entrée ;
+- braises suivantes à intervalles irréguliers ;
+- tassement très occasionnel des bûches ;
+- aucun son et aucune bibliothèque externe.
 
-Cette pierre vivante conserve le Hall V0.3 et fait évoluer uniquement son foyer :
-- flammes moins régulières et plus organiques ;
-- souffle du feu variant doucement à des intervalles irréguliers ;
-- lit de braises qui respire ;
-- une braise isolée monte toutes les 15 à 40 secondes ;
-- la lueur du feu varie subtilement dans la pièce ;
-- une bûche semble se tasser toutes les 2 à 3 minutes ;
-- aucun son automatique ;
-- aucune bibliothèque externe ;
-- respect du réglage « réduire les animations » de l'appareil.
-
-Commit GitHub conseillé :
-V0.3.1 - Le Premier Battement
-
-✔ Pierre posée. Le Hall continue de grandir.
+Déploiement GitHub : téléverser les cinq fichiers à la racine du dépôt et remplacer les anciens.
+Commit conseillé : V0.3.1a - Le Premier Battement, feu vivant
