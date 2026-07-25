@@ -1,6 +1,6 @@
 /* ==========================================================
-   LE HALL DES POSSIBLES — V0.3.1a
-   Le Premier Battement — correctif du feu
+   LE HALL DES POSSIBLES — V0.5
+   Le Hall silencieux — exploration sans bulles interactives
    ========================================================== */
 
 :root {
@@ -291,7 +291,7 @@ button { font: inherit; }
 }
 
 /* =========================
-   LE HALL — V0.4
+   LE HALL — V0.5
    ========================= */
 .hall{position:absolute;inset:0;z-index:1;overflow:hidden;background:#090603;opacity:0;transform:scale(1.035);filter:brightness(2) blur(7px);transition:opacity 1300ms ease,transform 2200ms cubic-bezier(.2,.75,.3,1),filter 1800ms ease}
 .hall.is-visible{opacity:1;transform:scale(1);filter:brightness(1) blur(0)}
@@ -303,13 +303,6 @@ button { font: inherit; }
 .fire-glow{position:absolute;top:39%;width:11%;height:22%;pointer-events:none;border-radius:45%;background:radial-gradient(ellipse at 50% 65%,rgba(255,239,160,.78) 0 7%,rgba(255,151,35,.53) 18%,rgba(238,80,14,.18) 44%,transparent 72%);mix-blend-mode:screen;filter:blur(7px);animation:feu-v04 1.55s ease-in-out infinite alternate}
 .fire-glow--left{left:39.7%;animation-delay:-.65s}.fire-glow--right{left:50.8%;animation-duration:1.8s}
 .dog-breath{position:absolute;left:34.2%;top:50.5%;width:15.2%;height:18%;pointer-events:none;border-radius:50%;background:radial-gradient(ellipse,rgba(255,184,92,.08),transparent 68%);animation:chien-v04 5.8s ease-in-out infinite}
-.hotspot{position:absolute;border:0;background:transparent;cursor:pointer;border-radius:14px;touch-action:manipulation}
-.hotspot:focus-visible{outline:3px solid rgba(241,205,126,.95);outline-offset:3px;background:rgba(244,196,91,.08)}
-.hotspot:hover{background:radial-gradient(circle,rgba(255,215,130,.10),transparent 72%)}
-.hotspot--enigme{left:1.5%;top:87%;width:18%;height:9%}.hotspot--livre{left:5%;top:57%;width:25%;height:21%}.hotspot--idees{left:1%;top:31%;width:35%;height:23%}.hotspot--agenda{left:12%;top:14%;width:19%;height:20%}.hotspot--escalier{left:27%;top:9%;width:15%;height:22%}.hotspot--boite{left:20%;top:28%;width:15%;height:22%}.hotspot--chien{left:32%;top:47%;width:22%;height:21%}.hotspot--cafe{left:42%;top:59%;width:31%;height:25%}.hotspot--bibliotheque{left:59%;top:7%;width:23%;height:36%}.hotspot--atelier{left:84%;top:8%;width:14%;height:33%}.hotspot--canape{left:65%;top:35%;width:27%;height:30%}.hotspot--souvenirs{left:85%;top:50%;width:13%;height:23%}.hotspot--malle{left:76%;top:68%;width:18%;height:25%}.hotspot--contacts{left:88%;top:83%;width:11%;height:14%}
-.dialogue{position:fixed;inset:0;z-index:30;display:grid;place-items:center;padding:24px;background:rgba(4,3,2,.72);backdrop-filter:blur(5px);opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s step-end}.dialogue.is-open{opacity:1;visibility:visible;transition:opacity .25s ease}
-.dialogue__carte{position:relative;width:min(92vw,560px);max-height:min(78svh,660px);overflow:auto;padding:clamp(25px,5vw,42px);border:1px solid rgba(207,168,87,.72);border-radius:8px;background:linear-gradient(145deg,rgba(36,25,16,.98),rgba(13,10,7,.99));box-shadow:0 25px 90px rgba(0,0,0,.75),inset 0 0 45px rgba(166,111,39,.08);text-align:center}
-.dialogue__fermer{position:absolute;right:12px;top:9px;width:38px;height:38px;border:0;background:transparent;color:#e7d5ae;font-size:1.7rem;cursor:pointer}.dialogue__titre{margin:0 0 16px;color:#e1bd72;font-size:clamp(1.35rem,4vw,2rem);font-weight:400}.dialogue__texte{margin:0;color:#f2e6cf;font-size:clamp(1rem,3.4vw,1.18rem);line-height:1.7}.dialogue__texte em{color:#d8bd84}.dialogue__sceau{display:block;margin:22px auto 0;width:44px;height:44px;border:1px solid #b99045;border-radius:50%;line-height:42px;color:#d7b364;font-size:.9rem}
 .hall[data-moment="matin"]{filter:brightness(1.04) saturate(.98)}.hall[data-moment="jour"]{filter:brightness(1) saturate(1)}.hall[data-moment="soir"]{filter:brightness(.91) saturate(1.07) sepia(.05)}.hall[data-moment="nuit"]{filter:brightness(.74) saturate(.9) sepia(.08)}
 @keyframes feu-v04{0%{opacity:.48;transform:scale(.92,.96) translateY(1%)}45%{opacity:.9;transform:scale(1.04,1.08) translateY(-1%)}100%{opacity:.62;transform:scale(.98,1.02)}}
 @keyframes chien-v04{0%,100%{transform:scale(1)}50%{transform:scale(1.012,1.025) translateY(-.3%)}}

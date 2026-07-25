@@ -1,8 +1,15 @@
-LE HALL DES POSSIBLES — V0.4
-Le Hall a une mémoire
+LE HALL DES POSSIBLES — V0.5
+Le Hall silencieux
 
-Cette version agrandit réellement le Hall et intègre ses objets directement dans le décor.
+Cette version repart strictement de la V0.4 validée et conserve son image, son ambiance, sa porte d'entrée, son feu, la respiration du chien et son panorama.
 
-Installation GitHub Pages : remplacez les fichiers de la version précédente par les cinq fichiers de cette archive, puis attendez une à deux minutes et rechargez la page sans cache.
+Modifications techniques :
+- suppression de toutes les bulles et fenêtres interactives ajoutées par le code ;
+- suppression des zones cliquables temporaires ;
+- exploration du Hall rendue entièrement silencieuse ;
+- mise à jour des fichiers et du cache vers la version 0.5 ;
+- aucune nouvelle image et aucune reconstruction du Hall.
 
-Sur téléphone, faites glisser horizontalement pour parcourir le Hall. Touchez les zones et cartels du décor pour découvrir leurs premiers textes.
+Important : les cartels noirs visibles directement dans le décor font partie du fichier image hall-vivant.webp de la V0.4. Ils ne sont pas des éléments HTML. Pour les retirer proprement sans altérer l'âme du Hall, il faudra repartir d'une version propre de cette image avant l'ajout des cartels, ou effectuer une retouche localisée à partir du fichier source d'origine.
+
+Installation GitHub Pages : remplacez les cinq fichiers de la version précédente par ceux de cette archive, attendez une à deux minutes, puis rechargez la page sans cache.
