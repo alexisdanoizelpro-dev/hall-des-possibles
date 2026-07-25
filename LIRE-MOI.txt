@@ -1,15 +1,10 @@
 LE HALL DES POSSIBLES — V0.5
-Le Hall silencieux
+Le Hall se souvient et respire
 
-Cette version repart strictement de la V0.4 validée et conserve son image, son ambiance, sa porte d'entrée, son feu, la respiration du chien et son panorama.
+Évolutions principales :
+- Suppression définitive des bulles, cartouches et pictogrammes noirs.
+- Objets retravaillés pour se fondre dans le décor : porte-manteau, malle, couverture, nécessaire de cheminée, globe, carte, théière, cafetière, biscuits, calendrier, plantes, souvenirs et objets du chien.
+- Événements rares : tassement des bûches, braises, respiration et mouvement du chien, page tournée, lampe vacillante, pluie passagère, feuille derrière les fenêtres et frémissement de l'horloge à l'heure pleine.
+- Respect du réglage système « réduire les animations ».
 
-Modifications techniques :
-- suppression de toutes les bulles et fenêtres interactives ajoutées par le code ;
-- suppression des zones cliquables temporaires ;
-- exploration du Hall rendue entièrement silencieuse ;
-- mise à jour des fichiers et du cache vers la version 0.5 ;
-- aucune nouvelle image et aucune reconstruction du Hall.
-
-Important : les cartels noirs visibles directement dans le décor font partie du fichier image hall-vivant.webp de la V0.4. Ils ne sont pas des éléments HTML. Pour les retirer proprement sans altérer l'âme du Hall, il faudra repartir d'une version propre de cette image avant l'ajout des cartels, ou effectuer une retouche localisée à partir du fichier source d'origine.
-
-Installation GitHub Pages : remplacez les cinq fichiers de la version précédente par ceux de cette archive, attendez une à deux minutes, puis rechargez la page sans cache.
+Installation : remplacer les fichiers du dépôt GitHub par le contenu de cette archive, puis réactiver GitHub Pages pour tester.
