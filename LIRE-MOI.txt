@@ -1,10 +1,13 @@
 LE HALL DES POSSIBLES — V0.5
-Le Hall se souvient et respire
+Le Premier Regard
 
-Évolutions principales :
-- Suppression définitive des bulles, cartouches et pictogrammes noirs.
-- Objets retravaillés pour se fondre dans le décor : porte-manteau, malle, couverture, nécessaire de cheminée, globe, carte, théière, cafetière, biscuits, calendrier, plantes, souvenirs et objets du chien.
-- Événements rares : tassement des bûches, braises, respiration et mouvement du chien, page tournée, lampe vacillante, pluie passagère, feuille derrière les fenêtres et frémissement de l'horloge à l'heure pleine.
-- Respect du réglage système « réduire les animations ».
+Cette version travaille la manière dont le Hall accueille le Visiteur.
 
-Installation : remplacer les fichiers du dépôt GitHub par le contenu de cette archive, puis réactiver GitHub Pages pour tester.
+Évolutions :
+- Le Pupitre des Idées remplace la Table des Idées.
+- Les textes du pupitre sont réécrits.
+- Le regard est légèrement orienté vers la cheminée au premier affichage.
+- Le feu gagne en présence visuelle.
+- Un court instant contemplatif est laissé avant la prise de contrôle.
+
+Installation identique à V0.4.

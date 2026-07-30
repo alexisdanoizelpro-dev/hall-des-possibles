@@ -1,178 +1,22 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#080b08">
-  <meta name="description" content="Franchissez le seuil du Hall des Possibles.">
-  <title>Le Hall des Possibles</title>
-
-  <link rel="preload" href="hall-vivant.webp" as="image">
-  <link rel="stylesheet" href="style.css?v=0.5">
-  <script src="script.js?v=0.5" defer></script>
-</head>
-
-<body>
-  <main class="experience" id="experience">
-
-    <section class="seuil" id="seuil" aria-label="Le seuil du Hall des Possibles">
-      <div class="seuil__ambiance" aria-hidden="true"></div>
-
-      <header class="seuil__texte">
-        <h1 class="seuil__titre">Le Hall des Possibles</h1>
-        <p class="seuil__phrase">
-          Chaque histoire commence par une porte qui s'ouvre...
-          <span>Que se cache-t-il derrière la vôtre&nbsp;?</span>
-        </p>
-      </header>
-
-      <div class="scene-porte">
-        <div class="lueur-hall" aria-hidden="true"></div>
-
-        <div class="encadrement" aria-hidden="true">
-          <div class="encadrement__haut"></div>
-          <div class="encadrement__gauche"></div>
-          <div class="encadrement__droite"></div>
-        </div>
-
-        <button
-          class="porte"
-          id="porte"
-          type="button"
-          aria-label="Ouvrir la porte du Hall des Possibles"
-          aria-expanded="false"
-        >
-          <span class="porte__panneau porte__panneau--haut" aria-hidden="true"></span>
-          <span class="porte__panneau porte__panneau--bas" aria-hidden="true"></span>
-
-          <span class="porte__poignee" aria-hidden="true">
-            <span class="porte__plaque"></span>
-            <span class="porte__bouton"></span>
-          </span>
-
-          <span class="porte__lumiere" aria-hidden="true"></span>
-        </button>
-      </div>
-
-      <p class="seuil__invitation" id="invitation">Touchez la porte</p>
-    </section>
-
-    <section class="hall" id="hall" aria-label="L'Aile de l'Accueil" aria-hidden="true">
-      <div class="hall__panorama" id="panorama" tabindex="0">
-        <div class="hall__scene" id="scene">
-          <img
-            class="hall__image"
-            src="hall-vivant.webp"
-            alt="L'Aile de l'Accueil du Hall des Possibles, autour d'une cheminée centrale."
-            draggable="false"
-          >
-
-          <div class="ambiance ambiance--feu" id="feu" aria-hidden="true">
-            <span class="flamme flamme--gauche"></span>
-            <span class="flamme flamme--centre"></span>
-            <span class="flamme flamme--droite"></span>
-            <span class="flamme flamme--coeur"></span>
-            <span class="lit-braises"></span>
-            <span class="buche buche--gauche"></span>
-            <span class="buche buche--droite"></span>
-            <span class="braises" id="braises"></span>
-          </div>
-
-          <div class="ambiance ambiance--lueur" aria-hidden="true"></div>
-
-          <div class="ambiance ambiance--vapeur vapeur--gauche" aria-hidden="true">
-            <i></i><i></i><i></i>
-          </div>
-
-          <div class="ambiance ambiance--vapeur vapeur--droite" aria-hidden="true">
-            <i></i><i></i>
-          </div>
-
-          <div class="chien-vivant" id="chienVivant" aria-hidden="true"></div>
-
-          <!-- V0.5 — Le Hall vit même lorsque personne ne le regarde -->
-          <div class="pluie-fenetre pluie-fenetre--gauche" aria-hidden="true"></div>
-          <div class="pluie-fenetre pluie-fenetre--droite" aria-hidden="true"></div>
-          <div class="feuille-passante" id="feuillePassante" aria-hidden="true"></div>
-          <div class="lampe-vivante" id="lampeVivante" aria-hidden="true"></div>
-          <div class="livre-vivant" id="livreVivant" aria-hidden="true"><i></i></div>
-          <div class="horloge-vivante" id="horlogeVivante" aria-hidden="true"><i></i><b></b></div>
-
-          <!-- V0.5 — Les objets appartiennent désormais au décor -->
-          <div class="objets-du-hall" aria-label="Objets et souvenirs du Hall">
-            <button class="objet objet--porte-manteau" type="button" data-souvenir="Un chapeau attend près de l'entrée. Rien ne dit depuis combien de temps." aria-label="Observer le porte-manteau"><i></i></button>
-            <button class="objet objet--malle" type="button" data-souvenir="Une malle en cuir, fermée. Elle semble avoir beaucoup voyagé." aria-label="Observer la malle en cuir"><i></i></button>
-            <span class="objet objet--couverture" aria-hidden="true"><i></i></span>
-
-            <span class="objet objet--panier-buches" aria-hidden="true"><i></i></span>
-            <span class="objet objet--outils-feu" aria-hidden="true"><i></i></span>
-
-            <button class="objet objet--globe" type="button" data-souvenir="Le monde entier tient ici, à portée d'une main curieuse." aria-label="Observer le globe terrestre"><i></i></button>
-            <span class="objet objet--loupe" aria-hidden="true"><i></i></span>
-            <button class="objet objet--carte" type="button" data-souvenir="Une carte roulée. Certaines routes ne sont peut-être pas encore tracées." aria-label="Observer la carte roulée"><i></i></button>
-
-            <span class="objet objet--theiere" aria-hidden="true"><i></i></span>
-            <span class="objet objet--cafetiere" aria-hidden="true"><i></i></span>
-            <button class="objet objet--biscuits" type="button" data-souvenir="Le pot n'est jamais tout à fait vide. Quelqu'un pense toujours au prochain visiteur." aria-label="Observer le pot à biscuits"><i></i></button>
-
-            <button class="objet objet--calendrier" type="button" data-souvenir="Quelques dates sont annotées à l'encre. Leur importance n'appartient qu'à ceux qui les reconnaissent." aria-label="Observer le calendrier mural"><i></i></button>
-            <span class="objet objet--plante" aria-hidden="true"><i></i></span>
-            <span class="objet objet--orchidee" aria-hidden="true"><i></i></span>
-            <button class="objet objet--myosotis" type="button" data-souvenir="De petites fleurs bleues. Ne m'oubliez pas, semblent-elles murmurer." aria-label="Observer les myosotis"><i></i></button>
-            <span class="objet objet--nichoir" aria-hidden="true"><i></i></span>
-
-            <span class="objet objet--laisse" aria-hidden="true"><i></i></span>
-            <span class="objet objet--balle" aria-hidden="true"><i></i></span>
-            <span class="objet objet--corde" aria-hidden="true"><i></i></span>
-            <span class="objet objet--serviette" aria-hidden="true"><i></i></span>
-            <button class="objet objet--photo-chien" type="button" data-souvenir="Une photographie du compagnon de l'Atelier lorsqu'il n'était encore qu'un chiot." aria-label="Observer la photographie du chien bébé"><i></i></button>
-
-            <button class="objet objet--boite-souvenirs" type="button" data-souvenir="Une boîte à souvenirs, soigneusement fermée. Tout souvenir n'a pas besoin d'être partagé." aria-label="Observer la boîte à souvenirs"><i></i></button>
-            <button class="objet objet--chaise-enfant" type="button" data-souvenir="Une petite chaise. Peut-être attend-elle un enfant. Peut-être rappelle-t-elle simplement qu'il faut savoir le rester." aria-label="Observer la chaise d'enfant"><i></i></button>
-
-            <button class="objet objet--billet" type="button" data-souvenir="Un ancien billet de train. Le voyage est terminé, mais quelque chose a mérité d'être conservé." aria-label="Observer le billet de train"><i></i></button>
-            <button class="objet objet--fleur-sechee" type="button" data-souvenir="Une fleur séchée dépasse d'un livre. Son histoire n'est écrite nulle part." aria-label="Observer la fleur séchée"><i></i></button>
-            <span class="objet objet--plume" aria-hidden="true"><i></i></span>
-            <button class="objet objet--enveloppe" id="enigmeDuJour" type="button" aria-label="Ouvrir l'enveloppe confiée par l'Atelier"><i></i><span>L'Atelier vous confie ceci,<br>si la curiosité vous appelle.</span></button>
-          </div>
-
-          <button class="presence presence--livre" type="button" aria-label="Livre d'Or">
-            <span>Livre d'Or</span>
-          </button>
-
-          <button class="presence presence--atelier" type="button" aria-label="Porte de l'Atelier">
-            <span>L'Atelier demeure fermé</span>
-          </button>
-
-          <button class="presence presence--bibliotheque" type="button" aria-label="Bibliothèque">
-            <span>La bibliothèque veille</span>
-          </button>
-
-          <button class="presence presence--chien" type="button" aria-label="Compagnon de l'Atelier">
-            <span>Le compagnon de l'Atelier</span>
-          </button>
-        </div>
-      </div>
-
-      <div class="hall__voile" aria-hidden="true"></div>
-
-      <aside class="murmure" id="murmure" aria-live="polite" aria-hidden="true">
-        <button class="murmure__fermer" type="button" aria-label="Fermer">×</button>
-        <p id="murmureTexte"></p>
-      </aside>
-
-      <dialog class="lettre" id="lettreDuJour">
-        <button class="lettre__fermer" type="button" aria-label="Refermer l'enveloppe">×</button>
-        <p class="lettre__sceau">L'Atelier des Possibles</p>
-        <h2>Une pensée confiée au voyageur</h2>
-        <p>Je traverse les mondes sans jamais quitter ma place. On me consulte pour partir, mais je ne fais aucun pas. Qui suis-je&nbsp;?</p>
-        <details>
-          <summary>Soulever le coin de la lettre</summary>
-          <p>Une carte.</p>
-        </details>
-      </dialog>
-    </section>
-
-  </main>
-</body>
-</html>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"><meta name="theme-color" content="#080b08"><meta name="description" content="Franchissez le seuil du Hall des Possibles."><title>Le Hall des Possibles — V0.5</title><link rel="preload" href="hall-vivant.webp" as="image"><link rel="stylesheet" href="style.css?v=0.5"><script src="script.js?v=0.5" defer></script></head>
+<body><main class="experience" id="experience">
+<section class="seuil" id="seuil" aria-label="Le seuil du Hall des Possibles"><div class="seuil__ambiance" aria-hidden="true"></div><header class="seuil__texte"><h1 class="seuil__titre">Le Hall des Possibles</h1><p class="seuil__phrase">Chaque histoire commence par une porte qui s'ouvre...<span>Que se cache-t-il derrière la vôtre&nbsp;?</span></p></header><div class="scene-porte"><div class="lueur-hall" aria-hidden="true"></div><div class="encadrement" aria-hidden="true"><div class="encadrement__haut"></div><div class="encadrement__gauche"></div><div class="encadrement__droite"></div></div><button class="porte" id="porte" type="button" aria-label="Ouvrir la porte du Hall des Possibles" aria-expanded="false"><span class="porte__panneau porte__panneau--haut" aria-hidden="true"></span><span class="porte__panneau porte__panneau--bas" aria-hidden="true"></span><span class="porte__poignee" aria-hidden="true"><span class="porte__plaque"></span><span class="porte__bouton"></span></span><span class="porte__lumiere" aria-hidden="true"></span></button></div><p class="seuil__invitation" id="invitation">Touchez la porte</p></section>
+<section class="hall" id="hall" aria-label="Le Hall des Possibles" aria-hidden="true"><div class="hall__panorama" id="panorama" tabindex="0"><div class="hall__scene" id="scene"><img class="hall__image" src="hall-vivant.webp" alt="Le Hall des Possibles, vaste atelier chaleureux autour d'une cheminée double foyer." draggable="false"><div class="fire-glow fire-glow--left" aria-hidden="true"></div><div class="fire-glow fire-glow--right" aria-hidden="true"></div><div class="dog-breath" aria-hidden="true"></div>
+<button class="hotspot hotspot--enigme" data-title="L'Énigme du Moment" data-text="L’Atelier vous confie ceci, si la curiosité vous appelle.|Je nais sans bruit, je grandis quand on me partage, et je peux ouvrir des mondes sans posséder de clé. Qui suis-je ?" aria-label="Ouvrir l'Énigme du Jour"></button>
+<button class="hotspot hotspot--livre" data-title="Le Livre d'Or" data-text="Ce livre recueillera les traces laissées par les Visiteurs. Pour le moment, ses premières pages attendent encore leur histoire." aria-label="Observer le Livre d'Or"></button>
+<button class="hotspot hotspot--idees" data-title="Le Pupitre des Idées" data-text="Chaque idée mérite d'être entendue. Si vous souhaitez en confier une à l'Atelier, le pupitre est là pour l'accueillir." aria-label="Approcher la Table des Idées"></button>
+<button class="hotspot hotspot--agenda" data-title="L'Agenda" data-text="Certaines dates sont entourées à l'encre. D'autres portent seulement un mot, comme si l'Artisan savait déjà qu'elles compteraient." aria-label="Observer l'Agenda"></button>
+<button class="hotspot hotspot--escalier" data-title="L'Escalier" data-text="L'étage poursuit encore sa transformation. La barrière ne ferme pas un chemin : elle protège ce qui n'est pas encore prêt." aria-label="Observer l'Escalier"></button>
+<button class="hotspot hotspot--boite" data-title="La Boîte aux idées" data-text="Elle attend les demandes, les questions et les simples bonjours. Son petit drapeau se lèvera lorsqu'une nouvelle idée lui sera confiée." aria-label="Observer la Boîte aux idées"></button>
+<button class="hotspot hotspot--chien" data-title="Le Compagnon fidèle" data-text="Il dort près du feu, entouré de sa balle, de sa corde et de quelques souvenirs. Il semble connaître chaque recoin du Hall." aria-label="Observer le chien"></button>
+<button class="hotspot hotspot--cafe" data-title="Le Coin Thé & Café" data-text="La théière est encore tiède, le café n'est jamais bien loin et le pot à biscuits paraît légèrement moins rempli qu'hier." aria-label="Observer le Coin Thé et Café"></button>
+<button class="hotspot hotspot--bibliotheque" data-title="La Bibliothèque" data-text="Projets en cours, créations terminées, ouvrages anciens... La bibliothèque veille. Certains livres semblent n'avoir jamais été déplacés. D'autres, peut-être un peu trop souvent." aria-label="Observer la Bibliothèque"></button>
+<button class="hotspot hotspot--atelier" data-title="La Porte de l'Atelier" data-text="L'Artisan travaille ici. Cette porte reste fermée afin que chaque idée confiée au Hall puisse être façonnée avec discrétion." aria-label="Observer la Porte de l'Atelier"></button>
+<button class="hotspot hotspot--canape" data-title="Le Canapé des Idées" data-text="Une couverture, un coussin, une place libre près du feu. C'est ici que les idées cessent parfois d'être pressées et commencent simplement à respirer." aria-label="Observer le Canapé des Idées"></button>
+<button class="hotspot hotspot--souvenirs" data-title="Souvenirs" data-text="Une photographie du chien lorsqu'il était encore jeune, quelques fleurs et des objets qui ne racontent leur histoire à personne. Pourtant, chacun pourrait en imaginer une." aria-label="Observer les Souvenirs"></button>
+<button class="hotspot hotspot--malle" data-title="La Malle" data-text="Un billet de train, une carte roulée et peut-être d'autres voyages reposent quelque part dans cette malle. Elle demeure fermée, mais pas oubliée." aria-label="Observer la Malle"></button>
+<button class="hotspot hotspot--contacts" data-title="Contacts & Horaires" data-text="Cette porte permettra bientôt de contacter l'Atelier et de connaître le rythme de l'Artisan. Le Hall, lui, reste toujours prêt à accueillir une idée." aria-label="Ouvrir Contacts et Horaires"></button>
+</div></div><div class="hall__voile" aria-hidden="true"></div></section>
+<div class="dialogue" id="dialogue" role="dialog" aria-modal="true" aria-labelledby="dialogue-title" aria-hidden="true"><article class="dialogue__carte"><button class="dialogue__fermer" id="dialogue-close" type="button" aria-label="Fermer">×</button><h2 class="dialogue__titre" id="dialogue-title"></h2><p class="dialogue__texte" id="dialogue-text"></p><span class="dialogue__sceau" aria-hidden="true">AP</span></article></div>
+</main></body></html>
