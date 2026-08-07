@@ -1,6 +1,6 @@
 /* ==========================================================
-   LE HALL DES POSSIBLES — V0.5
-   Le Premier Battement — correctif du feu
+   LE HALL DES POSSIBLES — V0.6.1
+   Base du Hall + Table des Idées
    ========================================================== */
 
 :root {
@@ -310,13 +310,111 @@ button { font: inherit; }
 .dialogue{position:fixed;inset:0;z-index:30;display:grid;place-items:center;padding:24px;background:rgba(4,3,2,.72);backdrop-filter:blur(5px);opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s step-end}.dialogue.is-open{opacity:1;visibility:visible;transition:opacity .25s ease}
 .dialogue__carte{position:relative;width:min(92vw,560px);max-height:min(78svh,660px);overflow:auto;padding:clamp(25px,5vw,42px);border:1px solid rgba(207,168,87,.72);border-radius:8px;background:linear-gradient(145deg,rgba(36,25,16,.98),rgba(13,10,7,.99));box-shadow:0 25px 90px rgba(0,0,0,.75),inset 0 0 45px rgba(166,111,39,.08);text-align:center}
 .dialogue__fermer{position:absolute;right:12px;top:9px;width:38px;height:38px;border:0;background:transparent;color:#e7d5ae;font-size:1.7rem;cursor:pointer}.dialogue__titre{margin:0 0 16px;color:#e1bd72;font-size:clamp(1.35rem,4vw,2rem);font-weight:400}.dialogue__texte{margin:0;color:#f2e6cf;font-size:clamp(1rem,3.4vw,1.18rem);line-height:1.7}.dialogue__texte em{color:#d8bd84}.dialogue__sceau{display:block;margin:22px auto 0;width:44px;height:44px;border:1px solid #b99045;border-radius:50%;line-height:42px;color:#d7b364;font-size:.9rem}
-.hall{filter:brightness(1) saturate(1)}
+.hall[data-moment="matin"]{filter:brightness(1.04) saturate(.98)}.hall[data-moment="jour"]{filter:brightness(1) saturate(1)}.hall[data-moment="soir"]{filter:brightness(.91) saturate(1.07) sepia(.05)}.hall[data-moment="nuit"]{filter:brightness(.74) saturate(.9) sepia(.08)}
 @keyframes feu-v04{0%{opacity:.48;transform:scale(.92,.96) translateY(1%)}45%{opacity:.9;transform:scale(1.04,1.08) translateY(-1%)}100%{opacity:.62;transform:scale(.98,1.02)}}
 @keyframes chien-v04{0%,100%{transform:scale(1)}50%{transform:scale(1.012,1.025) translateY(-.3%)}}
 @keyframes respiration-lumiere{0%,100%{opacity:.45}50%{opacity:1}}@keyframes invitation{0%,100%{opacity:.52}50%{opacity:.88}}
 @media(max-height:650px){.seuil{gap:9px;padding-top:12px;padding-bottom:12px}.scene-porte{width:min(37vh,220px)}.seuil__phrase{font-size:clamp(1rem,3.8vh,1.35rem)}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}.seuil__ambiance,.seuil__invitation,.fire-glow,.dog-breath{animation:none!important}.porte,.seuil,.hall,.hall__voile,.dialogue{transition-duration:180ms!important}}
 
+/* ==========================================================
+   LE HALL DES POSSIBLES — V0.6.1
+   Table des Idées + identité du Seuil
+   ========================================================== */
 
-/* V0.5 Premier Regard */
-.fire-glow{filter:blur(18px) brightness(1.15)!important;opacity:.9!important;}
+/* Le Seuil ne connaît qu'un seul temps : celui qu'il faut. */
+.hall[data-moment="matin"],
+.hall[data-moment="jour"],
+.hall[data-moment="soir"],
+.hall[data-moment="nuit"] { filter: none; }
+
+.table-idees {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding: max(16px, env(safe-area-inset-top)) 16px max(16px, env(safe-area-inset-bottom));
+  background: rgba(4,3,2,.82);
+  backdrop-filter: blur(7px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .28s ease, visibility .28s step-end;
+}
+.table-idees.is-open { opacity: 1; visibility: visible; transition: opacity .28s ease; }
+.table-idees__carte {
+  position: relative;
+  width: min(94vw, 820px);
+  max-height: 91svh;
+  overflow: auto;
+  padding: clamp(26px, 5vw, 48px);
+  border: 1px solid rgba(207,168,87,.72);
+  border-radius: 10px;
+  background: linear-gradient(150deg, rgba(38,27,18,.99), rgba(14,10,7,.995));
+  box-shadow: 0 28px 100px rgba(0,0,0,.82), inset 0 0 60px rgba(166,111,39,.08);
+  scrollbar-width: thin;
+}
+.table-idees__fermer {
+  position: sticky;
+  float: right;
+  top: 0;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(16,11,7,.78);
+  color: #e7d5ae;
+  font-size: 1.7rem;
+  cursor: pointer;
+}
+.table-idees__entete { max-width: 680px; margin: 0 auto 30px; text-align: center; }
+.table-idees__entete h2 { margin: 10px 0 12px; color: #e1bd72; font-size: clamp(1.55rem, 5vw, 2.35rem); font-weight: 400; }
+.table-idees__entete p { margin: 0; color: #f0e2c8; line-height: 1.7; }
+.table-idees__sceau { display: grid; place-items: center; width: 48px; height: 48px; margin: 0 auto; border: 1px solid #b99045; border-radius: 50%; color: #d7b364; }
+.table-idees__form { display: grid; gap: 24px; }
+.table-idees fieldset { margin: 0; padding: 20px; border: 1px solid rgba(201,164,90,.35); border-radius: 8px; }
+.table-idees legend, .champ > span { color: #dfbf7d; line-height: 1.45; }
+.champ { display: grid; gap: 9px; }
+.champ input, .champ textarea, .champ-autre {
+  width: 100%;
+  border: 1px solid rgba(201,164,90,.35);
+  border-radius: 6px;
+  padding: 12px 13px;
+  color: #f5ead5;
+  background: rgba(7,6,4,.55);
+  font: inherit;
+}
+.champ textarea { resize: vertical; min-height: 92px; }
+.champ input:focus, .champ textarea:focus, .champ-autre:focus { outline: 2px solid rgba(225,189,114,.72); outline-offset: 2px; }
+.champ-autre { margin-top: 12px; }
+.choix { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+.choix label, .couleurs label { cursor: pointer; }
+.choix input, .couleurs input { position: absolute; opacity: 0; pointer-events: none; }
+.choix span {
+  display: inline-block;
+  padding: 9px 12px;
+  border: 1px solid rgba(201,164,90,.28);
+  border-radius: 999px;
+  color: #eadcc2;
+  background: rgba(255,255,255,.025);
+  transition: .18s ease;
+}
+.choix input:checked + span { border-color: #d5ae61; background: rgba(201,164,90,.16); color: #fff1cf; box-shadow: inset 0 0 16px rgba(201,164,90,.08); }
+.choix input:focus-visible + span, .couleurs input:focus-visible + span { outline: 2px solid #ead08e; outline-offset: 3px; }
+.couleurs { display: grid; grid-template-columns: repeat(auto-fit,minmax(78px,1fr)); gap: 10px; margin-top: 10px; }
+.pastille { display: grid; place-items: center; min-height: 54px; padding: 8px; border: 1px solid rgba(255,255,255,.13); border-radius: 7px; font-size: .82rem; background: rgba(255,255,255,.025); transition: .18s ease; }
+.couleurs input:checked + .pastille { border-color: #e2bd72; box-shadow: 0 0 0 2px rgba(226,189,114,.2), inset 0 0 18px rgba(255,255,255,.06); transform: translateY(-1px); }
+.pastille[data-couleur="rouge"]{box-shadow:inset 0 -4px #7f2929}.pastille[data-couleur="orange"]{box-shadow:inset 0 -4px #a15e28}.pastille[data-couleur="jaune"]{box-shadow:inset 0 -4px #b79a3b}.pastille[data-couleur="vert"]{box-shadow:inset 0 -4px #426f45}.pastille[data-couleur="bleu"]{box-shadow:inset 0 -4px #3f6284}.pastille[data-couleur="violet"]{box-shadow:inset 0 -4px #674f84}.pastille[data-couleur="rose"]{box-shadow:inset 0 -4px #936071}.pastille[data-couleur="noir"]{box-shadow:inset 0 -4px #050505}.pastille[data-couleur="blanc"]{box-shadow:inset 0 -4px #d6d0c2}
+.table-idees__actions { display: flex; justify-content: center; padding-top: 4px; }
+.bouton-seuil { border: 1px solid #b99045; border-radius: 999px; padding: 12px 20px; color: #f6e8cb; background: linear-gradient(180deg, rgba(112,75,31,.42), rgba(56,37,18,.58)); cursor: pointer; }
+.bouton-seuil:hover, .bouton-seuil:focus-visible { filter: brightness(1.12); outline: none; box-shadow: 0 0 0 3px rgba(225,189,114,.15); }
+.bouton-seuil:disabled { cursor: default; opacity: .66; }
+.table-idees__retour { min-height: 1.5em; margin: 0; text-align: center; color: #dbc186; line-height: 1.6; }
+
+@media (max-width: 620px) {
+  .table-idees__carte { padding: 22px 16px 28px; }
+  .table-idees fieldset { padding: 16px 12px; }
+  .choix { display: grid; grid-template-columns: 1fr 1fr; }
+  .choix span { display: block; text-align: center; }
+}
