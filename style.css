@@ -542,3 +542,14 @@ button { font: inherit; }
 @media (max-width:700px){
   .hotspot:hover{background:transparent}
 }
+
+
+/* V0.6.1 — deux manières d'approcher la Table */
+.table-idees__chemins{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:-8px auto 28px}
+.table-idees__chemin{border:1px solid rgba(185,144,69,.48);border-radius:999px;padding:10px 16px;background:rgba(21,15,10,.68);color:#d9c49c;cursor:pointer;transition:background .2s ease,border-color .2s ease,color .2s ease,transform .2s ease}
+.table-idees__chemin:hover,.table-idees__chemin:focus-visible{border-color:#caa45b;color:#f4e6ca;outline:none;transform:translateY(-1px)}
+.table-idees__chemin.is-active{border-color:#c9a45a;background:rgba(103,70,30,.38);color:#f4e6ca;box-shadow:inset 0 0 24px rgba(201,164,90,.07)}
+.bonjour-form{display:grid;gap:24px;max-width:690px;margin:0 auto}
+.bonjour-form[hidden]{display:none}
+.bonjour-form__intro{margin:0;text-align:center;color:#d8c8aa;line-height:1.7;font-style:italic}
+.seuil__invitation:empty{visibility:hidden;animation:none}

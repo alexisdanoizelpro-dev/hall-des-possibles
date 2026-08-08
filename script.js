@@ -14,6 +14,10 @@
   const tableIdeesClose = document.querySelector("#table-idees-close");
   const tableIdeesForm = document.querySelector("#table-idees-form");
   const tableIdeesRetour = document.querySelector("#table-idees-retour");
+  const cheminProjet = document.querySelector("#chemin-projet");
+  const cheminBonjour = document.querySelector("#chemin-bonjour");
+  const bonjourForm = document.querySelector("#bonjour-form");
+  const bonjourRetour = document.querySelector("#bonjour-retour");
   const mailFlag = document.querySelector("#mail-flag");
   const requeteBook = document.querySelector("#requete-book");
 
@@ -31,7 +35,7 @@
     ouvertureLancee = true;
     porte.setAttribute("aria-expanded", "true");
     porte.setAttribute("aria-label", "La porte du Hall des Possibles est ouverte");
-    if (invitation) invitation.textContent = "La porte s'ouvre...";
+    if (invitation) invitation.textContent = "";
     seuil.classList.add("is-opening");
 
     setTimeout(() => {
@@ -139,6 +143,42 @@
     else if (dialogue && dialogue.classList.contains("is-open")) closeDialog();
   });
 
+  const choisirChemin = mode => {
+    const projet = mode === "projet";
+    if (tableIdeesForm) tableIdeesForm.hidden = !projet;
+    if (bonjourForm) bonjourForm.hidden = projet;
+    if (cheminProjet) {
+      cheminProjet.classList.toggle("is-active", projet);
+      cheminProjet.setAttribute("aria-pressed", String(projet));
+    }
+    if (cheminBonjour) {
+      cheminBonjour.classList.toggle("is-active", !projet);
+      cheminBonjour.setAttribute("aria-pressed", String(!projet));
+    }
+    const cible = projet ? tableIdeesForm?.querySelector("textarea") : bonjourForm?.querySelector("textarea");
+    if (cible) requestAnimationFrame(() => cible.focus({ preventScroll: true }));
+  };
+
+  if (cheminProjet) cheminProjet.addEventListener("click", () => choisirChemin("projet"));
+  if (cheminBonjour) cheminBonjour.addEventListener("click", () => choisirChemin("bonjour"));
+
+  if (bonjourForm) {
+    bonjourForm.addEventListener("submit", e => {
+      e.preventDefault();
+      const texte = (new FormData(bonjourForm).get("bonjour") || "").toString().trim();
+      if (!texte) return;
+      bonjourForm.classList.add("is-confiee");
+      if (bonjourRetour) bonjourRetour.textContent = "Quelques mots suffisent parfois. Le Seuil les a entendus.";
+      const submit = bonjourForm.querySelector('button[type="submit"]');
+      if (submit) {
+        submit.disabled = true;
+        submit.textContent = "Mots confiés";
+      }
+      if (mailFlag) mailFlag.classList.add("is-raised");
+      try { sessionStorage.setItem("seuil-bonjour-confie", "1"); } catch (_) {}
+    });
+  }
+
   if (tableIdeesForm) {
     tableIdeesForm.addEventListener("submit", e => {
       e.preventDefault();
@@ -173,6 +213,12 @@
     if (sessionStorage.getItem("seuil-idee-confiee") === "1") {
       if (mailFlag) mailFlag.classList.add("is-raised");
       if (requeteBook) requeteBook.classList.add("is-visible");
+    }
+  } catch (_) {}
+
+  try {
+    if (sessionStorage.getItem("seuil-bonjour-confie") === "1") {
+      if (mailFlag) mailFlag.classList.add("is-raised");
     }
   } catch (_) {}
 
