@@ -14,6 +14,7 @@
   const tableIdeesClose = document.querySelector("#table-idees-close");
   const tableIdeesForm = document.querySelector("#table-idees-form");
   const tableIdeesRetour = document.querySelector("#table-idees-retour");
+  const scene = document.querySelector("#scene");
 
   if (!seuil || !porte || !hall || !panorama) return;
 
@@ -147,6 +148,9 @@
       // V0.6.1 : la Table fonctionne déjà comme expérience locale.
       // L'envoi réel sera branché ensuite sur la boîte aux lettres / messagerie.
       tableIdeesForm.classList.add("is-confiee");
+      if (scene) {
+        scene.classList.add("has-confided-idea");
+      }
       if (tableIdeesRetour) {
         tableIdeesRetour.textContent = "Merci d’avoir accordé votre confiance à l’Atelier. Votre idée a trouvé sa place au Seuil.";
       }
