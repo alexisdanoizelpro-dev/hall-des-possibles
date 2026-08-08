@@ -14,7 +14,8 @@
   const tableIdeesClose = document.querySelector("#table-idees-close");
   const tableIdeesForm = document.querySelector("#table-idees-form");
   const tableIdeesRetour = document.querySelector("#table-idees-retour");
-  const scene = document.querySelector("#scene");
+  const mailFlag = document.querySelector("#mail-flag");
+  const requeteBook = document.querySelector("#requete-book");
 
   if (!seuil || !porte || !hall || !panorama) return;
 
@@ -148,9 +149,6 @@
       // V0.6.1 : la Table fonctionne déjà comme expérience locale.
       // L'envoi réel sera branché ensuite sur la boîte aux lettres / messagerie.
       tableIdeesForm.classList.add("is-confiee");
-      if (scene) {
-        scene.classList.add("has-confided-idea");
-      }
       if (tableIdeesRetour) {
         tableIdeesRetour.textContent = "Merci d’avoir accordé votre confiance à l’Atelier. Votre idée a trouvé sa place au Seuil.";
       }
@@ -159,8 +157,37 @@
         submit.disabled = true;
         submit.textContent = "Idée confiée";
       }
+
+      // Le Hall accuse réception sans interrompre le Requêteur :
+      // le bras de la boîte se lève et un livre rejoint la bibliothèque.
+      if (mailFlag) mailFlag.classList.add("is-raised");
+      if (requeteBook) requeteBook.classList.add("is-visible");
+
+      // On conserve uniquement cette trace dans la session en cours.
+      try { sessionStorage.setItem("seuil-idee-confiee", "1"); } catch (_) {}
     });
   }
+
+  // Si la Table a déjà reçu une idée pendant cette visite, le Hall garde la trace.
+  try {
+    if (sessionStorage.getItem("seuil-idee-confiee") === "1") {
+      if (mailFlag) mailFlag.classList.add("is-raised");
+      if (requeteBook) requeteBook.classList.add("is-visible");
+    }
+  } catch (_) {}
+
+  // Le champ « Autre » ne s'invite que lorsqu'il est réellement utile.
+  const publicAutre = tableIdeesForm?.querySelector('[name="public_autre"]');
+  const publicRadios = tableIdeesForm?.querySelectorAll('[name="public"]');
+  const syncPublicAutre = () => {
+    if (!publicAutre || !publicRadios) return;
+    const autre = [...publicRadios].some(radio => radio.checked && radio.value === "Autre");
+    publicAutre.hidden = !autre;
+    publicAutre.disabled = !autre;
+    if (!autre) publicAutre.value = "";
+  };
+  if (publicRadios) publicRadios.forEach(radio => radio.addEventListener("change", syncPublicAutre));
+  syncPublicAutre();
 
   const image = panorama.querySelector("img");
   if (image) {

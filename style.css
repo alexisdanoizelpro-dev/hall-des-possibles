@@ -418,4 +418,127 @@ button { font: inherit; }
   .choix { display: grid; grid-template-columns: 1fr 1fr; }
   .choix span { display: block; text-align: center; }
 }
-\n\n/* --- V0.6.1 — Le Hall accuse réception --- */\n.mail-flag {\n  position: absolute;\n  left: 30.5%;\n  top: 31.5%;\n  width: 1.2%;\n  min-width: 7px;\n  height: 8.5%;\n  pointer-events: none;\n  opacity: 0;\n  transform-origin: 50% 100%;\n  transform: rotate(-72deg) translateY(10%);\n  border-radius: 6px 6px 2px 2px;\n  background: linear-gradient(90deg, #6b4324, #b98045 48%, #58351d);\n  box-shadow: 0 2px 8px rgba(0,0,0,.6);\n  transition: opacity .4s ease;\n}\n.mail-flag::before {\n  content: "";\n  position: absolute;\n  left: 42%;\n  bottom: -30%;\n  width: 20%;\n  height: 135%;\n  border-radius: 3px;\n  background: #5a351c;\n}\n\n.requete-book {\n  position: absolute;\n  left: 66.8%;\n  top: 31.2%;\n  width: 4.2%;\n  height: 9.5%;\n  min-width: 24px;\n  pointer-events: none;\n  display: grid;\n  place-items: center;\n  opacity: 0;\n  transform: translateY(-36%) rotate(-3deg) scale(.92);\n  border: 1px solid rgba(205,163,86,.72);\n  border-radius: 2px 5px 5px 2px;\n  background: linear-gradient(90deg,#2c1b12 0 13%,#684425 15% 84%,#3b2517 86%);\n  box-shadow: 4px 5px 10px rgba(0,0,0,.55), inset -2px 0 rgba(255,255,255,.05);\n  transition: opacity .5s ease;\n}\n.requete-book span {\n  writing-mode: vertical-rl;\n  transform: rotate(180deg);\n  max-height: 88%;\n  overflow: hidden;\n  color: rgba(238,215,170,.82);\n  font-size: clamp(5px,.5vw,9px);\n  letter-spacing: .04em;\n  white-space: nowrap;\n}\n\n.hall__scene.has-confided-idea .mail-flag {\n  opacity: 1;\n  animation: lever-drapeau 1.15s cubic-bezier(.2,.8,.24,1) both;\n}\n.hall__scene.has-confided-idea .requete-book {\n  opacity: 1;\n  animation: livre-arrive 1.45s cubic-bezier(.16,.82,.22,1) .35s both;\n}\n\n@keyframes lever-drapeau {\n  0% { opacity: 0; transform: rotate(-72deg) translateY(10%); }\n  35% { opacity: 1; }\n  75% { transform: rotate(8deg) translateY(0); }\n  100% { opacity: 1; transform: rotate(0deg) translateY(0); }\n}\n@keyframes livre-arrive {\n  0% { opacity: 0; transform: translateY(-65%) rotate(-8deg) scale(.86); }\n  62% { opacity: 1; transform: translateY(3%) rotate(2deg) scale(1.02); }\n  100% { opacity: 1; transform: translateY(0) rotate(-1deg) scale(1); }\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .hall__scene.has-confided-idea .mail-flag,\n  .hall__scene.has-confided-idea .requete-book { animation: none !important; opacity: 1; transform: none; }\n}\n
+
+/* V0.6.1 — Le Hall accuse réception d'une idée */
+.mail-flag {
+  position: absolute;
+  left: 30.6%;
+  top: 34.2%;
+  width: 1.15%;
+  min-width: 7px;
+  height: 7.5%;
+  pointer-events: none;
+  opacity: 0;
+  transform: rotate(58deg);
+  transform-origin: 50% 92%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #3d2918, #a47a3f 55%, #4b311b);
+  box-shadow: 0 2px 7px rgba(0,0,0,.65);
+  transition: transform 900ms cubic-bezier(.2,.8,.25,1.18), opacity 500ms ease;
+}
+.mail-flag::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 45%;
+  width: 330%;
+  aspect-ratio: 1.35;
+  border-radius: 2px;
+  background: linear-gradient(145deg, #8d342d, #54201d);
+  box-shadow: inset 0 0 0 1px rgba(255,225,170,.18), 0 2px 5px rgba(0,0,0,.5);
+}
+.mail-flag.is-raised {
+  opacity: .9;
+  transform: rotate(-8deg);
+}
+
+.requete-book {
+  position: absolute;
+  left: 70.1%;
+  top: 22.5%;
+  width: 2.7%;
+  min-width: 17px;
+  height: 14%;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-28%) rotate(2deg) scale(.82);
+  transform-origin: bottom center;
+  border-radius: 2px 3px 3px 2px;
+  background: linear-gradient(90deg, #25160f 0 18%, #6f3f28 20% 78%, #2c190f 80% 100%);
+  box-shadow: inset 1px 0 rgba(238,205,139,.22), 2px 4px 8px rgba(0,0,0,.6);
+  transition: opacity 600ms ease 300ms, transform 1200ms cubic-bezier(.18,.8,.24,1.1) 200ms;
+}
+.requete-book::before {
+  content: "AS";
+  position: absolute;
+  inset: 8% 0 auto;
+  text-align: center;
+  color: rgba(229,196,126,.72);
+  font-size: clamp(5px,.65vw,10px);
+  letter-spacing: .08em;
+}
+.requete-book span {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  width: 600%;
+  transform: translateX(-50%);
+  color: rgba(234,214,174,.75);
+  font-size: clamp(5px,.52vw,9px);
+  text-align: center;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 500ms ease 1.1s;
+}
+.requete-book.is-visible {
+  opacity: .92;
+  transform: translateY(0) rotate(2deg) scale(1);
+}
+.requete-book.is-visible span { opacity: .78; }
+
+.champ-autre[hidden] { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mail-flag, .requete-book, .requete-book span { transition: none !important; }
+}
+
+/* ==========================================================
+   V0.6.1 — RESTAURATION DE LA DERNIÈRE BASE VALIDÉE
+   Arche végétale + Atelier du Seuil + Table des Idées
+   ========================================================== */
+
+/* La scène restaurée a le ratio natif 3:2 (1536 × 1024). */
+.hall__scene{width:max(100vw,calc(100svh * 1.5));height:100svh}
+
+/* Hotspots recalés sur le Hall restauré. Aucun libellé visuel permanent. */
+.hotspot--arche{left:13.5%;top:10%;width:19%;height:38%}
+.hotspot--idees{left:0%;top:35%;width:20%;height:24%}
+.hotspot--livre{left:0%;top:57%;width:27%;height:25%}
+.hotspot--boite{left:21.5%;top:31%;width:14%;height:25%}
+.hotspot--escalier{left:28%;top:12%;width:15%;height:27%}
+.hotspot--chien{left:33%;top:48%;width:20%;height:19%}
+.hotspot--cafe{left:42%;top:63%;width:36%;height:28%}
+.hotspot--bibliotheque{left:65%;top:4%;width:27%;height:39%}
+.hotspot--atelier{left:91%;top:7%;width:9%;height:39%}
+.hotspot--canape{left:67%;top:36%;width:32%;height:34%}
+.hotspot--souvenirs{left:91%;top:60%;width:9%;height:20%}
+.hotspot--malle{left:82%;top:72%;width:18%;height:27%}
+.hotspot--contacts{display:none}
+.hotspot--agenda{display:none}
+
+/* Énigme du Moment : présence discrète, sans recréer les anciennes bulles. */
+.hotspot--enigme{left:53%;top:69%;width:12%;height:18%}
+
+/* Lueurs recalées sur les deux foyers de la scène restaurée. */
+.fire-glow{top:39%;width:10%;height:20%}
+.fire-glow--left{left:39.5%}
+.fire-glow--right{left:52.5%}
+.dog-breath{left:34%;top:49%;width:17%;height:18%}
+
+/* Réaction locale de la boîte aux idées recalée sur la boîte restaurée. */
+.mail-flag{left:31.3%;top:34%;height:7%}
+.requete-book{left:71%;top:18%;height:15%}
+
+@media (max-width:700px){
+  .hotspot:hover{background:transparent}
+}
