@@ -1,8 +1,15 @@
 (() => {
   "use strict";
 
-  // Interrupteurs silencieux du Hall. Pour masquer la Coupelle, passer à false.
-  const CONFIG_SEUIL = { coupelleDisponible: true };
+  // Configuration externe du Hall (config.js).
+  // Valeur de repli prudente si le fichier de configuration n’est pas chargé.
+  const CONFIG_SEUIL = window.CONFIG_SEUIL || {
+    coupelleDisponible: false,
+    enigme: {
+      introduction: "L’Atelier vous confie ceci, si la curiosité vous appelle.",
+      question: "Je nais sans bruit, je grandis quand on me partage, et je peux ouvrir des mondes sans posséder de clé. Qui suis-je ?"
+    }
+  };
 
   const seuil = document.querySelector("#seuil");
   const porte = document.querySelector("#porte");
@@ -28,6 +35,15 @@
   const coupelleClose = document.querySelector("#coupelle-close");
   const coupelleForm = document.querySelector("#coupelle-form");
   const coupelleRetour = document.querySelector("#coupelle-retour");
+  const enigmeHotspot = document.querySelector("#enigme-hotspot");
+
+  // L'Énigme du Moment vient de config.js.
+  if (enigmeHotspot) {
+    const enigme = CONFIG_SEUIL.enigme || {};
+    const introduction = enigme.introduction || "L’Atelier vous confie ceci, si la curiosité vous appelle.";
+    const question = enigme.question || "";
+    enigmeHotspot.dataset.text = [introduction, question].filter(Boolean).join("|");
+  }
 
   if (!seuil || !porte || !hall || !panorama) return;
 
