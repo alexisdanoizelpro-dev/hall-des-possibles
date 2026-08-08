@@ -1,6 +1,9 @@
 (() => {
   "use strict";
 
+  // Interrupteurs silencieux du Hall. Pour masquer la Coupelle, passer à false.
+  const CONFIG_SEUIL = { coupelleDisponible: true };
+
   const seuil = document.querySelector("#seuil");
   const porte = document.querySelector("#porte");
   const invitation = document.querySelector("#invitation");
@@ -20,6 +23,11 @@
   const bonjourRetour = document.querySelector("#bonjour-retour");
   const mailFlag = document.querySelector("#mail-flag");
   const requeteBook = document.querySelector("#requete-book");
+  const coupelleHotspot = document.querySelector("#coupelle-hotspot");
+  const coupelle = document.querySelector("#coupelle");
+  const coupelleClose = document.querySelector("#coupelle-close");
+  const coupelleForm = document.querySelector("#coupelle-form");
+  const coupelleRetour = document.querySelector("#coupelle-retour");
 
   if (!seuil || !porte || !hall || !panorama) return;
 
@@ -120,11 +128,37 @@
     if (lastFocus) lastFocus.focus();
   };
 
+  const openCoupelle = button => {
+    if (!CONFIG_SEUIL.coupelleDisponible || !coupelle || !coupelleClose) return;
+    lastFocus = button;
+    coupelle.classList.add("is-open");
+    coupelle.setAttribute("aria-hidden", "false");
+    coupelleClose.focus();
+  };
+
+  const closeCoupelle = () => {
+    if (!coupelle) return;
+    coupelle.classList.remove("is-open");
+    coupelle.setAttribute("aria-hidden", "true");
+    if (lastFocus) lastFocus.focus();
+  };
+
+  if (coupelleHotspot) {
+    coupelleHotspot.hidden = !CONFIG_SEUIL.coupelleDisponible;
+    coupelleHotspot.setAttribute("aria-hidden", String(!CONFIG_SEUIL.coupelleDisponible));
+  }
+
   document.querySelectorAll(".hotspot").forEach(button => {
     button.addEventListener("click", () => {
       if (button.dataset.action === "table-idees") openTableIdees(button);
+      else if (button.dataset.action === "coupelle") openCoupelle(button);
       else openDialog(button);
     });
+  });
+
+  if (coupelleClose) coupelleClose.addEventListener("click", closeCoupelle);
+  if (coupelle) coupelle.addEventListener("click", e => {
+    if (e.target === coupelle) closeCoupelle();
   });
 
   if (dialogueClose) dialogueClose.addEventListener("click", closeDialog);
@@ -139,7 +173,8 @@
 
   document.addEventListener("keydown", e => {
     if (e.key !== "Escape") return;
-    if (tableIdees && tableIdees.classList.contains("is-open")) closeTableIdees();
+    if (coupelle && coupelle.classList.contains("is-open")) closeCoupelle();
+    else if (tableIdees && tableIdees.classList.contains("is-open")) closeTableIdees();
     else if (dialogue && dialogue.classList.contains("is-open")) closeDialog();
   });
 
@@ -176,6 +211,22 @@
       }
       if (mailFlag) mailFlag.classList.add("is-raised");
       try { sessionStorage.setItem("seuil-bonjour-confie", "1"); } catch (_) {}
+    });
+  }
+
+  if (coupelleForm) {
+    coupelleForm.addEventListener("submit", e => {
+      e.preventDefault();
+      const question = (new FormData(coupelleForm).get("question") || "").toString().trim();
+      if (!question) return;
+      if (coupelleRetour) coupelleRetour.textContent = "La Coupelle garde ces mots pour l’Artisan. Rien d’autre ne vous est demandé.";
+      const submit = coupelleForm.querySelector('button[type="submit"]');
+      if (submit) {
+        submit.disabled = true;
+        submit.textContent = "Mots déposés";
+      }
+      // Une question ne devient jamais un projet : aucun livre n’apparaît.
+      try { sessionStorage.setItem("seuil-coupelle-confiee", "1"); } catch (_) {}
     });
   }
 

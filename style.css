@@ -553,3 +553,24 @@ button { font: inherit; }
 .bonjour-form[hidden]{display:none}
 .bonjour-form__intro{margin:0;text-align:center;color:#d8c8aa;line-height:1.7;font-style:italic}
 .seuil__invitation:empty{visibility:hidden;animation:none}
+
+
+/* ==========================================================
+   V0.6.1 — LA COUPELLE DE LAIT
+   Présence conditionnelle pour questions et inquiétudes.
+   ========================================================== */
+.hotspot--coupelle{left:48.5%;top:63.5%;width:7%;height:9%;border-radius:50%}
+.hotspot--coupelle[hidden]{display:none!important}
+.hotspot--coupelle:not([hidden])::after{content:"";position:absolute;left:50%;top:50%;width:42%;aspect-ratio:1.8;transform:translate(-50%,-50%);border:1px solid rgba(224,211,174,.25);border-radius:50%;background:radial-gradient(ellipse at 50% 36%,rgba(245,239,210,.2) 0 42%,rgba(124,94,54,.22) 45% 64%,transparent 66%);opacity:.28;transition:opacity .25s ease,filter .25s ease}
+.hotspot--coupelle:hover::after,.hotspot--coupelle:focus-visible::after{opacity:.72;filter:drop-shadow(0 0 7px rgba(235,216,164,.32))}
+
+.coupelle{position:fixed;inset:0;z-index:45;display:grid;place-items:center;padding:20px;background:rgba(4,3,2,.78);backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s step-end}
+.coupelle.is-open{opacity:1;visibility:visible;transition:opacity .25s ease}
+.coupelle__carte{position:relative;width:min(92vw,590px);max-height:86svh;overflow:auto;padding:clamp(27px,5vw,44px);border:1px solid rgba(190,171,124,.54);border-radius:14px;background:linear-gradient(150deg,rgba(31,27,20,.99),rgba(12,10,8,.995));box-shadow:0 28px 100px rgba(0,0,0,.82),inset 0 0 60px rgba(211,193,143,.04);text-align:center}
+.coupelle__fermer{position:absolute;right:12px;top:10px;width:40px;height:40px;border:0;border-radius:50%;background:transparent;color:#ddd0b4;font-size:1.7rem;cursor:pointer}
+.coupelle__symbole{display:grid;place-items:center;width:52px;height:34px;margin:0 auto 8px;border:1px solid rgba(206,190,147,.48);border-radius:50%;color:#d8c9a5;background:radial-gradient(ellipse,rgba(244,236,204,.12),transparent 70%);font-size:1.15rem}
+.coupelle h2{margin:10px 0 14px;color:#dfc789;font-size:clamp(1.45rem,5vw,2.1rem);font-weight:400}
+.coupelle__intro{max-width:490px;margin:0 auto 26px;color:#ddcfb3;line-height:1.7}
+.coupelle__form{display:grid;gap:20px;text-align:left}
+.coupelle__form .table-idees__actions,.coupelle__form .table-idees__retour{text-align:center}
+@media(prefers-reduced-motion:reduce){.coupelle,.hotspot--coupelle::after{transition:none!important}}

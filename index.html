@@ -10,6 +10,7 @@
 <button class="hotspot hotspot--escalier" data-title="L'Escalier" data-text="L'étage poursuit encore sa transformation. La barrière ne ferme pas un chemin : elle protège ce qui n'est pas encore prêt." aria-label="Observer l'Escalier"></button>
 <button class="hotspot hotspot--boite" data-title="La Boîte aux idées" data-text="Elle attend les demandes, les questions et les simples bonjours. Son petit drapeau se lèvera lorsqu'une nouvelle idée lui sera confiée." aria-label="Observer la Boîte aux idées"></button>
 <button class="hotspot hotspot--chien" data-title="Le Compagnon fidèle" data-text="Il dort près du feu, entouré de sa balle, de sa corde et de quelques souvenirs. Il semble connaître chaque recoin du Hall." aria-label="Observer le chien"></button>
+<button class="hotspot hotspot--coupelle" id="coupelle-hotspot" data-action="coupelle" aria-label="Observer la Coupelle de Lait" hidden></button>
 <button class="hotspot hotspot--cafe" data-title="Le Coin Thé & Café" data-text="La théière est encore tiède, le café n'est jamais bien loin et le pot à biscuits paraît légèrement moins rempli qu'hier." aria-label="Observer le Coin Thé et Café"></button>
 <button class="hotspot hotspot--bibliotheque" data-title="La Bibliothèque" data-text="Projets en cours, créations terminées, ouvrages anciens... La bibliothèque veille. Certains livres semblent n'avoir jamais été déplacés. D'autres, peut-être un peu trop souvent." aria-label="Observer la Bibliothèque"></button>
 <button class="hotspot hotspot--atelier" data-title="La Porte de l'Atelier" data-text="L'Artisan travaille ici. Cette porte reste fermée afin que chaque idée confiée au Hall puisse être façonnée avec discrétion." aria-label="Observer la Porte de l'Atelier"></button>
@@ -18,6 +19,20 @@
 <button class="hotspot hotspot--malle" data-title="La Malle" data-text="Un billet de train, une carte roulée et peut-être d'autres voyages reposent quelque part dans cette malle. Elle demeure fermée, mais pas oubliée." aria-label="Observer la Malle"></button>
 <button class="hotspot hotspot--contacts" data-title="Correspondance" data-text="Ici, le Visiteur pourra bientôt laisser un message à l’Atelier. Le Seuil ne promet pas une heure : l’Artisan répond dans le temps qu’il faut." aria-label="Ouvrir Contacts et Horaires"></button>
 </div></div><div class="hall__voile" aria-hidden="true"></div></section>
+<div class="coupelle" id="coupelle" role="dialog" aria-modal="true" aria-labelledby="coupelle-title" aria-hidden="true">
+  <article class="coupelle__carte">
+    <button class="coupelle__fermer" id="coupelle-close" type="button" aria-label="Fermer">×</button>
+    <span class="coupelle__symbole" aria-hidden="true">◡</span>
+    <h2 id="coupelle-title">La Coupelle de Lait</h2>
+    <p class="coupelle__intro">Si quelque chose vous questionne ou vous inquiète, vous pouvez le déposer ici. Il n’est pas nécessaire d’avoir un projet.</p>
+    <form id="coupelle-form" class="coupelle__form">
+      <label class="champ"><span>Que souhaitez-vous confier à l’Artisan&nbsp;?</span><textarea name="question" rows="5" required placeholder="Une question, une hésitation, quelques mots…"></textarea></label>
+      <div class="table-idees__actions"><button class="bouton-seuil" type="submit">Déposer ces mots</button></div>
+      <p class="table-idees__retour" id="coupelle-retour" role="status" aria-live="polite"></p>
+    </form>
+  </article>
+</div>
+
 <div class="dialogue" id="dialogue" role="dialog" aria-modal="true" aria-labelledby="dialogue-title" aria-hidden="true"><article class="dialogue__carte"><button class="dialogue__fermer" id="dialogue-close" type="button" aria-label="Fermer">×</button><h2 class="dialogue__titre" id="dialogue-title"></h2><p class="dialogue__texte" id="dialogue-text"></p><span class="dialogue__sceau" aria-hidden="true">AS</span></article></div>
 
 <div class="table-idees" id="table-idees" role="dialog" aria-modal="true" aria-labelledby="table-idees-title" aria-hidden="true">
