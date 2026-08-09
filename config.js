@@ -9,10 +9,11 @@ window.CONFIG_SEUIL = {
   // false = la Coupelle de Lait disparaît complètement
   coupelleDisponible: true,
 
-  // ÉNIGME DU MOMENT
-  // Modifiez simplement les deux textes ci-dessous pour changer l'énigme.
-  enigme: {
+  // PAROLE DU SEUIL
+  // Modifiez uniquement ces deux textes pour changer ce que contient
+  // l'enveloppe scellée, sans toucher au code du Hall.
+  paroleDuSeuil: {
     introduction: "L’Atelier vous confie ceci, si la curiosité vous appelle.",
-    question: "Je nais sans bruit, je grandis quand on me partage, et je peux ouvrir des mondes sans posséder de clé. Qui suis-je ?"
+    texte: "Je nais sans bruit, je grandis quand on me partage, et je peux ouvrir des mondes sans posséder de clé. Qui suis-je ?"
   }
 };

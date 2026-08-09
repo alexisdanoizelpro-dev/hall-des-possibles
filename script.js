@@ -5,9 +5,9 @@
   // Valeur de repli prudente si le fichier de configuration n’est pas chargé.
   const CONFIG_SEUIL = window.CONFIG_SEUIL || {
     coupelleDisponible: false,
-    enigme: {
+    paroleDuSeuil: {
       introduction: "L’Atelier vous confie ceci, si la curiosité vous appelle.",
-      question: "Je nais sans bruit, je grandis quand on me partage, et je peux ouvrir des mondes sans posséder de clé. Qui suis-je ?"
+      texte: ""
     }
   };
 
@@ -24,10 +24,6 @@
   const tableIdeesClose = document.querySelector("#table-idees-close");
   const tableIdeesForm = document.querySelector("#table-idees-form");
   const tableIdeesRetour = document.querySelector("#table-idees-retour");
-  const cheminProjet = document.querySelector("#chemin-projet");
-  const cheminBonjour = document.querySelector("#chemin-bonjour");
-  const bonjourForm = document.querySelector("#bonjour-form");
-  const bonjourRetour = document.querySelector("#bonjour-retour");
   const mailFlag = document.querySelector("#mail-flag");
   const requeteBook = document.querySelector("#requete-book");
   const coupelleHotspot = document.querySelector("#coupelle-hotspot");
@@ -35,14 +31,15 @@
   const coupelleClose = document.querySelector("#coupelle-close");
   const coupelleForm = document.querySelector("#coupelle-form");
   const coupelleRetour = document.querySelector("#coupelle-retour");
-  const enigmeHotspot = document.querySelector("#enigme-hotspot");
+  const paroleHotspot = document.querySelector("#parole-hotspot");
 
-  // L'Énigme du Moment vient de config.js.
-  if (enigmeHotspot) {
-    const enigme = CONFIG_SEUIL.enigme || {};
-    const introduction = enigme.introduction || "L’Atelier vous confie ceci, si la curiosité vous appelle.";
-    const question = enigme.question || "";
-    enigmeHotspot.dataset.text = [introduction, question].filter(Boolean).join("|");
+  // La Parole du Seuil vient entièrement de config.js.
+  // Son enveloppe reste dans le Hall ; seul son contenu change.
+  if (paroleHotspot) {
+    const parole = CONFIG_SEUIL.paroleDuSeuil || {};
+    const introduction = parole.introduction || "L’Atelier vous confie ceci, si la curiosité vous appelle.";
+    const texte = parole.texte || "";
+    paroleHotspot.dataset.text = [introduction, texte].filter(Boolean).join("|");
   }
 
   if (!seuil || !porte || !hall || !panorama) return;
@@ -194,42 +191,6 @@
     else if (dialogue && dialogue.classList.contains("is-open")) closeDialog();
   });
 
-  const choisirChemin = mode => {
-    const projet = mode === "projet";
-    if (tableIdeesForm) tableIdeesForm.hidden = !projet;
-    if (bonjourForm) bonjourForm.hidden = projet;
-    if (cheminProjet) {
-      cheminProjet.classList.toggle("is-active", projet);
-      cheminProjet.setAttribute("aria-pressed", String(projet));
-    }
-    if (cheminBonjour) {
-      cheminBonjour.classList.toggle("is-active", !projet);
-      cheminBonjour.setAttribute("aria-pressed", String(!projet));
-    }
-    const cible = projet ? tableIdeesForm?.querySelector("textarea") : bonjourForm?.querySelector("textarea");
-    if (cible) requestAnimationFrame(() => cible.focus({ preventScroll: true }));
-  };
-
-  if (cheminProjet) cheminProjet.addEventListener("click", () => choisirChemin("projet"));
-  if (cheminBonjour) cheminBonjour.addEventListener("click", () => choisirChemin("bonjour"));
-
-  if (bonjourForm) {
-    bonjourForm.addEventListener("submit", e => {
-      e.preventDefault();
-      const texte = (new FormData(bonjourForm).get("bonjour") || "").toString().trim();
-      if (!texte) return;
-      bonjourForm.classList.add("is-confiee");
-      if (bonjourRetour) bonjourRetour.textContent = "Quelques mots suffisent parfois. Le Seuil les a entendus.";
-      const submit = bonjourForm.querySelector('button[type="submit"]');
-      if (submit) {
-        submit.disabled = true;
-        submit.textContent = "Mots confiés";
-      }
-      if (mailFlag) mailFlag.classList.add("is-raised");
-      try { sessionStorage.setItem("seuil-bonjour-confie", "1"); } catch (_) {}
-    });
-  }
-
   if (coupelleForm) {
     coupelleForm.addEventListener("submit", e => {
       e.preventDefault();
@@ -283,11 +244,6 @@
     }
   } catch (_) {}
 
-  try {
-    if (sessionStorage.getItem("seuil-bonjour-confie") === "1") {
-      if (mailFlag) mailFlag.classList.add("is-raised");
-    }
-  } catch (_) {}
 
   // Le champ « Autre » ne s'invite que lorsqu'il est réellement utile.
   const publicAutre = tableIdeesForm?.querySelector('[name="public_autre"]');

@@ -527,7 +527,7 @@ button { font: inherit; }
 .hotspot--agenda{display:none}
 
 /* Énigme du Moment : présence discrète, sans recréer les anciennes bulles. */
-.hotspot--enigme{left:53%;top:69%;width:12%;height:18%}
+
 
 /* Lueurs recalées sur les deux foyers de la scène restaurée. */
 .fire-glow{top:39%;width:10%;height:20%}
@@ -543,16 +543,6 @@ button { font: inherit; }
   .hotspot:hover{background:transparent}
 }
 
-
-/* V0.6.1 — deux manières d'approcher la Table */
-.table-idees__chemins{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:-8px auto 28px}
-.table-idees__chemin{border:1px solid rgba(185,144,69,.48);border-radius:999px;padding:10px 16px;background:rgba(21,15,10,.68);color:#d9c49c;cursor:pointer;transition:background .2s ease,border-color .2s ease,color .2s ease,transform .2s ease}
-.table-idees__chemin:hover,.table-idees__chemin:focus-visible{border-color:#caa45b;color:#f4e6ca;outline:none;transform:translateY(-1px)}
-.table-idees__chemin.is-active{border-color:#c9a45a;background:rgba(103,70,30,.38);color:#f4e6ca;box-shadow:inset 0 0 24px rgba(201,164,90,.07)}
-.bonjour-form{display:grid;gap:24px;max-width:690px;margin:0 auto}
-.bonjour-form[hidden]{display:none}
-.bonjour-form__intro{margin:0;text-align:center;color:#d8c8aa;line-height:1.7;font-style:italic}
-.seuil__invitation:empty{visibility:hidden;animation:none}
 
 
 /* ==========================================================
@@ -575,31 +565,32 @@ button { font: inherit; }
 .coupelle__form .table-idees__actions,.coupelle__form .table-idees__retour{text-align:center}
 @media(prefers-reduced-motion:reduce){.coupelle,.hotspot--coupelle::after{transition:none!important}}
 
+
 /* ==========================================================
-   V0.6.1 — BULLES RETIRÉES + ENVELOPPE SCELLÉE
-   Modification visuelle uniquement.
+   V0.6.1 — CONSOLIDATION DÉFINITIVE
+   Table des Idées / Parole du Seuil / aucun cartouche de nommage
    ========================================================== */
 
-/* Aucune bulle de nommage ne doit plus pouvoir apparaître sur les objets du Hall. */
-.hotspot:not(.hotspot--enigme):not(.hotspot--coupelle)::before,
-.hotspot:not(.hotspot--enigme):not(.hotspot--coupelle)::after{
-  content:none!important;
-  display:none!important;
+/* Les hotspots restent interactifs mais ne génèrent plus aucun cartouche,
+   étiquette ou bulle de nommage. */
+.hotspot::before,
+.hotspot::after {
+  content: none !important;
+  display: none !important;
 }
-.hotspot:hover{background:transparent}
+.hotspot:hover { background: transparent; }
 
-/* L'Énigme du Moment n'est plus une zone invisible : elle prend la forme
-   de l'enveloppe confiée au Visiteur, fermée par le sceau AS. */
-.hotspot--enigme{
-  left:55.2%;
-  top:72.2%;
-  width:8.4%;
-  height:10.4%;
-  min-width:58px;
-  min-height:42px;
-  overflow:visible;
-  border:1px solid rgba(104,69,35,.72);
-  border-radius:3px;
+/* La Parole du Seuil : enveloppe ancienne, scellée AS. */
+.hotspot--parole {
+  left: 55.2%;
+  top: 72.2%;
+  width: 8.4%;
+  height: 10.4%;
+  min-width: 58px;
+  min-height: 42px;
+  overflow: visible;
+  border: 1px solid rgba(104,69,35,.72);
+  border-radius: 3px;
   background:
     linear-gradient(165deg,rgba(255,255,255,.16),transparent 31%),
     linear-gradient(145deg,#d8c39a 0%,#b99b69 58%,#8d6a3e 100%);
@@ -607,56 +598,56 @@ button { font: inherit; }
     0 7px 13px rgba(0,0,0,.52),
     inset 0 0 0 1px rgba(255,239,196,.18),
     inset 0 -10px 20px rgba(84,52,26,.13);
-  transform:rotate(-5deg);
-  transition:transform .24s ease,filter .24s ease,box-shadow .24s ease;
+  transform: rotate(-5deg);
+  transition: transform .24s ease, filter .24s ease, box-shadow .24s ease;
 }
-.hotspot--enigme::before{
-  content:"";
-  display:block;
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  clip-path:polygon(0 0,100% 0,50% 64%);
-  background:linear-gradient(160deg,#e2cfa8 0%,#b79562 76%,#8c673e 100%);
-  filter:drop-shadow(0 1px 0 rgba(80,48,23,.28));
+
+/* Réactive uniquement les deux éléments graphiques de l'enveloppe. */
+.hotspot--parole::before {
+  content: "" !important;
+  display: block !important;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  clip-path: polygon(0 0,100% 0,50% 64%);
+  background: linear-gradient(160deg,#e2cfa8 0%,#b79562 76%,#8c673e 100%);
+  filter: drop-shadow(0 1px 0 rgba(80,48,23,.28));
 }
-.hotspot--enigme::after{
-  content:"AS";
-  display:grid;
-  place-items:center;
-  position:absolute;
-  left:50%;
-  top:56%;
-  width:27%;
-  aspect-ratio:1;
-  transform:translate(-50%,-50%) rotate(5deg);
-  border:1px solid rgba(73,25,19,.8);
-  border-radius:50%;
+.hotspot--parole::after {
+  content: "AS" !important;
+  display: grid !important;
+  place-items: center;
+  position: absolute;
+  left: 50%;
+  top: 56%;
+  width: 27%;
+  aspect-ratio: 1;
+  transform: translate(-50%,-50%) rotate(5deg);
+  border: 1px solid rgba(73,25,19,.8);
+  border-radius: 50%;
   background:
     radial-gradient(circle at 36% 30%,#b85c49 0 9%,transparent 10%),
     radial-gradient(circle,#8e382e 0 58%,#61241f 60% 78%,#421815 80% 100%);
-  color:rgba(242,207,157,.86);
-  box-shadow:0 2px 5px rgba(0,0,0,.45),inset 0 0 0 2px rgba(219,144,103,.16);
-  font-size:clamp(6px,.7vw,11px);
-  font-weight:700;
-  letter-spacing:.04em;
-  text-shadow:0 1px 1px rgba(0,0,0,.45);
-  pointer-events:none;
+  color: rgba(242,207,157,.86);
+  box-shadow: 0 2px 5px rgba(0,0,0,.45), inset 0 0 0 2px rgba(219,144,103,.16);
+  font-size: clamp(6px,.7vw,11px);
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-shadow: 0 1px 1px rgba(0,0,0,.45);
+  pointer-events: none;
 }
-.hotspot--enigme:hover,
-.hotspot--enigme:focus-visible{
+.hotspot--parole:hover,
+.hotspot--parole:focus-visible {
   background:
     linear-gradient(165deg,rgba(255,255,255,.18),transparent 31%),
     linear-gradient(145deg,#d8c39a 0%,#b99b69 58%,#8d6a3e 100%);
-  filter:brightness(1.04);
-  transform:rotate(-4deg) translateY(-1px);
-  box-shadow:0 9px 17px rgba(0,0,0,.58),inset 0 0 0 1px rgba(255,239,196,.2);
+  filter: brightness(1.04);
+  transform: rotate(-4deg) translateY(-1px);
+  box-shadow: 0 9px 17px rgba(0,0,0,.58), inset 0 0 0 1px rgba(255,239,196,.2);
 }
-
 @media(max-width:700px){
-  .hotspot--enigme{min-width:48px;min-height:35px}
+  .hotspot--parole{min-width:48px;min-height:35px}
 }
-
 @media(prefers-reduced-motion:reduce){
-  .hotspot--enigme{transition:none!important}
+  .hotspot--parole{transition:none!important}
 }
