@@ -701,3 +701,15 @@ button { font: inherit; }
 .parole-reponse__champ textarea:focus{outline:2px solid rgba(225,189,114,.72);outline-offset:2px}
 .parole-reponse .bouton-seuil{justify-self:center}
 .parole-reponse__retour{min-height:1.4em;margin:0;text-align:center;color:#dbc186;line-height:1.55}
+
+
+/* ==========================================================
+   V0.6.1 — CORRECTIF BIBLIOTHÈQUE / PAROLE DU SEUIL
+   La zone des rayonnages ne doit jamais recouvrir l'enveloppe.
+   ========================================================== */
+.hotspot--bibliotheque{
+  left:65%;
+  top:21.5%;
+  width:26%;
+  height:21%;
+}
