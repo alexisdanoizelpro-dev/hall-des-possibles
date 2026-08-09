@@ -1070,3 +1070,82 @@ button { font: inherit; }
   .parole-feuille__invitation{gap:24px;padding:30px 24px}
   .parole-feuille__choix{flex-direction:column;align-items:center;gap:12px}
 }
+
+
+/* ==========================================================
+   V0.6.1 — PAROLE DU SEUIL
+   Mise en scène mobile affinée uniquement.
+   Le principe et la séquence restent inchangés.
+   ========================================================== */
+@media(max-width:700px){
+
+  .parole-geste__objet{
+    width:96vw;
+    height:78svh;
+  }
+
+  .parole-enveloppe{
+    width:min(76vw,320px);
+  }
+
+  .parole-geste.is-paper-out .parole-enveloppe{
+    opacity:1;
+    transform:translate(-50%,46%) scale(.96);
+  }
+
+  .parole-geste.is-inviting .parole-feuille{
+    width:min(82vw,350px);
+    height:min(42svh,350px);
+    transform:translate(-50%,-46%) scale(1);
+    overflow:hidden;
+    box-shadow:
+      0 10px 24px rgba(0,0,0,.24),
+      inset 0 0 28px rgba(100,71,36,.07);
+  }
+
+  .parole-feuille__invitation{
+    gap:22px;
+    padding:28px 26px 24px;
+  }
+
+  .parole-feuille__invitation-texte{
+    max-width:23ch;
+    font-size:clamp(1.06rem,4.8vw,1.34rem);
+    line-height:1.55;
+  }
+
+  .parole-feuille__choix{
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+  }
+
+  .parole-feuille__choix-bouton{
+    min-height:38px;
+    padding:7px 4px 5px;
+    font-size:.94rem;
+    line-height:1.25;
+  }
+
+  .parole-geste.is-unsealed .parole-enveloppe__sceau{
+    transform:translate(34px,42px) rotate(18deg) scale(.86);
+    opacity:.58;
+    filter:none;
+  }
+
+  .parole-geste.is-unfolded .parole-feuille{
+    width:min(91vw,480px);
+    height:min(72svh,590px);
+    transform:translate(-50%,-50%) scale(1);
+    overflow:auto;
+  }
+
+  .parole-geste.is-unfolded .parole-enveloppe{
+    opacity:.30;
+    transform:translate(-50%,78%) scale(.84);
+  }
+
+  .parole-feuille__contenu{
+    padding:30px 24px;
+  }
+}
