@@ -32,17 +32,24 @@
   const coupelleForm = document.querySelector("#coupelle-form");
   const coupelleRetour = document.querySelector("#coupelle-retour");
   const paroleHotspot = document.querySelector("#parole-hotspot");
+  const paroleGeste = document.querySelector("#parole-geste");
+  const paroleObjet = document.querySelector("#parole-objet");
+  const paroleFeuille = document.querySelector("#parole-feuille");
+  const paroleIntroduction = document.querySelector("#parole-introduction");
+  const paroleTexte = document.querySelector("#parole-texte");
   const paroleReponse = document.querySelector("#parole-reponse");
   const paroleRegard = document.querySelector("#parole-regard");
   const paroleReponseRetour = document.querySelector("#parole-reponse-retour");
 
   // La Parole du Seuil vient entièrement de config.js.
-  // Son enveloppe reste dans le Hall ; seul son contenu change.
+  // Son contenu est écrit sur la feuille elle-même, jamais dans une fenêtre.
   if (paroleHotspot) {
     const parole = CONFIG_SEUIL.paroleDuSeuil || {};
-    const introduction = parole.introduction || "L’Atelier vous confie ceci, si la curiosité vous appelle.";
-    const texte = parole.texte || "";
-    paroleHotspot.dataset.text = [introduction, texte].filter(Boolean).join("|");
+    if (paroleIntroduction) {
+      paroleIntroduction.textContent =
+        parole.introduction || "L’Atelier vous confie ceci, si la curiosité vous appelle.";
+    }
+    if (paroleTexte) paroleTexte.textContent = parole.texte || "";
   }
 
   if (!seuil || !porte || !hall || !panorama) return;
@@ -77,7 +84,10 @@
   };
 
   porte.addEventListener("click", ouvrirLeHall);
-  window.addEventListener("resize", centrerPanorama);
+  window.addEventListener("resize", () => {
+    centrerPanorama();
+    if (!paroleEnCours) placerOrigineParole();
+  });
 
   let glisse = false;
   let departX = 0;
@@ -100,31 +110,39 @@
     if (!glisse) return;
     glisse = false;
     panorama.classList.remove("is-dragging");
-    if (panorama.hasPointerCapture(e.pointerId)) panorama.releasePointerCapture(e.pointerId);
+    if (panorama.hasPointerCapture(e.pointerId)) {
+      panorama.releasePointerCapture(e.pointerId);
+    }
   };
 
   panorama.addEventListener("pointerup", finGlisse);
   panorama.addEventListener("pointercancel", finGlisse);
+
   panorama.addEventListener("keydown", e => {
     const pas = Math.max(120, panorama.clientWidth * .22);
-    if (e.key === "ArrowLeft") panorama.scrollBy({ left: -pas, behavior: "smooth" });
-    if (e.key === "ArrowRight") panorama.scrollBy({ left: pas, behavior: "smooth" });
+    if (e.key === "ArrowLeft") {
+      panorama.scrollBy({ left: -pas, behavior: "smooth" });
+    }
+    if (e.key === "ArrowRight") {
+      panorama.scrollBy({ left: pas, behavior: "smooth" });
+    }
   });
 
   const openDialog = button => {
     if (!dialogue || !dialogueTitle || !dialogueText || !dialogueClose) return;
+
     lastFocus = button;
+
     const titre = button.dataset.title || "";
     dialogueTitle.textContent = titre;
     dialogueTitle.hidden = !titre;
+
     const parts = (button.dataset.text || "").split("|");
-    dialogueText.innerHTML = parts.map((p, i) => i ? `<br><br><em>${p}</em>` : p).join("");
-    if (paroleReponse) {
-      const estParole = button.id === "parole-hotspot";
-      paroleReponse.hidden = !estParole;
-      if (paroleReponseRetour) paroleReponseRetour.textContent = "";
-      if (estParole && paroleRegard) paroleRegard.value = "";
-    }
+
+    dialogueText.innerHTML = parts
+      .map((p, i) => i ? `<br><br><em>${p}</em>` : p)
+      .join("");
+
     dialogue.classList.add("is-open");
     dialogue.setAttribute("aria-hidden", "false");
     dialogueClose.focus();
@@ -132,183 +150,664 @@
 
   const closeDialog = () => {
     if (!dialogue) return;
+
     dialogue.classList.remove("is-open");
     dialogue.setAttribute("aria-hidden", "true");
+
     if (lastFocus) lastFocus.focus();
+  };
+
+  let paroleEnCours = false;
+  let paroleRetourTimer = null;
+
+  const placerOrigineParole = () => {
+    if (!paroleHotspot || !paroleGeste) return;
+
+    const r = paroleHotspot.getBoundingClientRect();
+
+    const x =
+      (r.left + r.width / 2) -
+      window.innerWidth / 2;
+
+    const y =
+      (r.top + r.height / 2) -
+      window.innerHeight / 2;
+
+    paroleGeste.style.setProperty(
+      "--parole-origin-x",
+      `${x}px`
+    );
+
+    paroleGeste.style.setProperty(
+      "--parole-origin-y",
+      `${y}px`
+    );
+  };
+
+  const ouvrirParole = button => {
+    if (!paroleGeste || !paroleObjet || paroleEnCours) return;
+
+    paroleEnCours = true;
+    lastFocus = button;
+
+    if (paroleRetourTimer) {
+      clearTimeout(paroleRetourTimer);
+    }
+
+    placerOrigineParole();
+
+    if (paroleRegard) {
+      paroleRegard.value = "";
+    }
+
+    if (paroleReponseRetour) {
+      paroleReponseRetour.textContent = "";
+    }
+
+    paroleGeste.className = "parole-geste";
+    paroleGeste.setAttribute("aria-hidden", "false");
+
+    requestAnimationFrame(() => {
+      // L'enveloppe quitte son rayonnage.
+      paroleGeste.classList.add("is-present");
+
+      // Elle vient au centre du regard.
+      setTimeout(() => {
+        paroleGeste.classList.add("is-centered");
+      }, 80);
+
+      // Le sceau se détache.
+      setTimeout(() => {
+        paroleGeste.classList.add("is-unsealed");
+      }, 850);
+
+      // Le rabat s'ouvre.
+      setTimeout(() => {
+        paroleGeste.classList.add("is-opened");
+      }, 1250);
+
+      // La feuille sort de l'enveloppe.
+      setTimeout(() => {
+        paroleGeste.classList.add("is-paper-out");
+      }, 1700);
+
+      // La feuille se déplie.
+      setTimeout(() => {
+        paroleGeste.classList.add("is-unfolded");
+
+        if (paroleRegard) {
+          paroleRegard.focus({
+            preventScroll: true
+          });
+        }
+      }, 2250);
+    });
+  };
+
+  const terminerRetourParole = () => {
+    if (!paroleGeste) return;
+
+    paroleGeste.className = "parole-geste";
+    paroleGeste.setAttribute("aria-hidden", "true");
+
+    paroleEnCours = false;
+
+    if (lastFocus) {
+      lastFocus.focus({
+        preventScroll: true
+      });
+    }
+  };
+
+  const refermerParole = () => {
+    if (
+      !paroleGeste ||
+      !paroleEnCours ||
+      paroleGeste.classList.contains("is-returning")
+    ) {
+      return;
+    }
+
+    // Le papier redevient l'objet.
+    paroleGeste.classList.add("is-returning");
+    paroleGeste.classList.remove("is-unfolded");
+
+    // La feuille se replie.
+    setTimeout(() => {
+      paroleGeste.classList.remove("is-paper-out");
+    }, 500);
+
+    // Elle rentre dans l'enveloppe.
+    // Le rabat se referme.
+    setTimeout(() => {
+      paroleGeste.classList.remove("is-opened");
+    }, 900);
+
+    // L'enveloppe retourne vers la bibliothèque.
+    setTimeout(() => {
+      paroleGeste.classList.remove("is-unsealed");
+      paroleGeste.classList.remove("is-centered");
+    }, 1250);
+
+    setTimeout(() => {
+      paroleGeste.classList.remove("is-present");
+    }, 1850);
+
+    paroleRetourTimer =
+      setTimeout(
+        terminerRetourParole,
+        2200
+      );
   };
 
   const openTableIdees = button => {
     if (!tableIdees || !tableIdeesClose) return;
+
     lastFocus = button;
+
     tableIdees.classList.add("is-open");
     tableIdees.setAttribute("aria-hidden", "false");
+
     tableIdeesClose.focus();
   };
 
   const closeTableIdees = () => {
     if (!tableIdees) return;
+
     tableIdees.classList.remove("is-open");
     tableIdees.setAttribute("aria-hidden", "true");
+
     if (lastFocus) lastFocus.focus();
   };
 
   const openCoupelle = button => {
-    if (!CONFIG_SEUIL.coupelleDisponible || !coupelle || !coupelleClose) return;
+    if (
+      !CONFIG_SEUIL.coupelleDisponible ||
+      !coupelle ||
+      !coupelleClose
+    ) {
+      return;
+    }
+
     lastFocus = button;
+
     coupelle.classList.add("is-open");
     coupelle.setAttribute("aria-hidden", "false");
+
     coupelleClose.focus();
   };
 
   const closeCoupelle = () => {
     if (!coupelle) return;
+
     coupelle.classList.remove("is-open");
     coupelle.setAttribute("aria-hidden", "true");
+
     if (lastFocus) lastFocus.focus();
   };
 
   if (coupelleHotspot) {
-    coupelleHotspot.hidden = !CONFIG_SEUIL.coupelleDisponible;
-    coupelleHotspot.setAttribute("aria-hidden", String(!CONFIG_SEUIL.coupelleDisponible));
+    coupelleHotspot.hidden =
+      !CONFIG_SEUIL.coupelleDisponible;
+
+    coupelleHotspot.setAttribute(
+      "aria-hidden",
+      String(!CONFIG_SEUIL.coupelleDisponible)
+    );
   }
 
-  document.querySelectorAll(".hotspot").forEach(button => {
-    button.addEventListener("click", () => {
-      if (button.dataset.action === "table-idees") openTableIdees(button);
-      else if (button.dataset.action === "coupelle") openCoupelle(button);
-      else if (button.dataset.action === "silence") return;
-      else openDialog(button);
+  document
+    .querySelectorAll(".hotspot")
+    .forEach(button => {
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          if (button.id === "parole-hotspot") {
+            ouvrirParole(button);
+          }
+
+          else if (
+            button.dataset.action ===
+            "table-idees"
+          ) {
+            openTableIdees(button);
+          }
+
+          else if (
+            button.dataset.action ===
+            "coupelle"
+          ) {
+            openCoupelle(button);
+          }
+
+          else if (
+            button.dataset.action ===
+            "silence"
+          ) {
+            return;
+          }
+
+          else {
+            openDialog(button);
+          }
+        }
+      );
     });
-  });
 
-  if (coupelleClose) coupelleClose.addEventListener("click", closeCoupelle);
-  if (coupelle) coupelle.addEventListener("click", e => {
-    if (e.target === coupelle) closeCoupelle();
-  });
+  if (coupelleClose) {
+    coupelleClose.addEventListener(
+      "click",
+      closeCoupelle
+    );
+  }
 
-  if (dialogueClose) dialogueClose.addEventListener("click", closeDialog);
-  if (dialogue) dialogue.addEventListener("click", e => {
-    if (e.target === dialogue) closeDialog();
-  });
+  if (coupelle) {
+    coupelle.addEventListener(
+      "click",
+      e => {
+        if (e.target === coupelle) {
+          closeCoupelle();
+        }
+      }
+    );
+  }
 
-  if (tableIdeesClose) tableIdeesClose.addEventListener("click", closeTableIdees);
-  if (tableIdees) tableIdees.addEventListener("click", e => {
-    if (e.target === tableIdees) closeTableIdees();
-  });
+  if (dialogueClose) {
+    dialogueClose.addEventListener(
+      "click",
+      closeDialog
+    );
+  }
 
-  document.addEventListener("keydown", e => {
-    if (e.key !== "Escape") return;
-    if (coupelle && coupelle.classList.contains("is-open")) closeCoupelle();
-    else if (tableIdees && tableIdees.classList.contains("is-open")) closeTableIdees();
-    else if (dialogue && dialogue.classList.contains("is-open")) closeDialog();
-  });
+  if (dialogue) {
+    dialogue.addEventListener(
+      "click",
+      e => {
+        if (e.target === dialogue) {
+          closeDialog();
+        }
+      }
+    );
+  }
+
+  if (tableIdeesClose) {
+    tableIdeesClose.addEventListener(
+      "click",
+      closeTableIdees
+    );
+  }
+
+  if (tableIdees) {
+    tableIdees.addEventListener(
+      "click",
+      e => {
+        if (e.target === tableIdees) {
+          closeTableIdees();
+        }
+      }
+    );
+  }
+
+  document.addEventListener(
+    "keydown",
+    e => {
+
+      if (e.key !== "Escape") return;
+
+      if (paroleEnCours) {
+        refermerParole();
+      }
+
+      else if (
+        coupelle &&
+        coupelle.classList.contains("is-open")
+      ) {
+        closeCoupelle();
+      }
+
+      else if (
+        tableIdees &&
+        tableIdees.classList.contains("is-open")
+      ) {
+        closeTableIdees();
+      }
+
+      else if (
+        dialogue &&
+        dialogue.classList.contains("is-open")
+      ) {
+        closeDialog();
+      }
+    }
+  );
 
   if (coupelleForm) {
-    coupelleForm.addEventListener("submit", e => {
-      e.preventDefault();
-      const question = (new FormData(coupelleForm).get("question") || "").toString().trim();
-      if (!question) return;
-      if (coupelleRetour) coupelleRetour.textContent = "La Coupelle garde ces mots pour l’Artisan. Rien d’autre ne vous est demandé.";
-      const submit = coupelleForm.querySelector('button[type="submit"]');
-      if (submit) {
-        submit.disabled = true;
-        submit.textContent = "Mots déposés";
+
+    coupelleForm.addEventListener(
+      "submit",
+      e => {
+
+        e.preventDefault();
+
+        const question =
+          (
+            new FormData(coupelleForm)
+              .get("question") || ""
+          )
+            .toString()
+            .trim();
+
+        if (!question) return;
+
+        if (coupelleRetour) {
+          coupelleRetour.textContent =
+            "La Coupelle garde ces mots pour l’Artisan. Rien d’autre ne vous est demandé.";
+        }
+
+        const submit =
+          coupelleForm.querySelector(
+            'button[type="submit"]'
+          );
+
+        if (submit) {
+          submit.disabled = true;
+          submit.textContent =
+            "Mots déposés";
+        }
+
+        try {
+          sessionStorage.setItem(
+            "seuil-coupelle-confiee",
+            "1"
+          );
+        }
+        catch (_) {}
       }
-      // Une question ne devient jamais un projet : aucun livre n’apparaît.
-      try { sessionStorage.setItem("seuil-coupelle-confiee", "1"); } catch (_) {}
-    });
+    );
   }
 
   if (paroleReponse) {
-    paroleReponse.addEventListener("submit", async e => {
-      e.preventDefault();
-      const regard = (new FormData(paroleReponse).get("regard") || "").toString().trim();
-      if (!regard) return;
-      const parole = CONFIG_SEUIL.paroleDuSeuil || {};
-      const url = (parole.reponseUrl || "").toString().trim();
-      const submit = paroleReponse.querySelector('button[type="submit"]');
 
-      if (!url) {
-        try { sessionStorage.setItem("seuil-parole-regard", regard); } catch (_) {}
-        if (paroleReponseRetour) paroleReponseRetour.textContent = "Votre regard est écrit. Le Hall n’a encore aucun canal d’envoi configuré pour le transmettre hors de cette visite.";
-        return;
-      }
+    paroleReponse.addEventListener(
+      "submit",
+      async e => {
 
-      if (submit) { submit.disabled = true; submit.textContent = "Partage en cours…"; }
-      try {
-        const response = await fetch(url, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            type: "parole-du-seuil",
-            parole: parole.texte || "",
+        e.preventDefault();
+
+        const regard =
+          (
+            new FormData(paroleReponse)
+              .get("regard") || ""
+          )
+            .toString()
+            .trim();
+
+        if (
+          !regard ||
+          !paroleEnCours
+        ) {
+          return;
+        }
+
+        const parole =
+          CONFIG_SEUIL.paroleDuSeuil || {};
+
+        const url =
+          (
+            parole.reponseUrl || ""
+          )
+            .toString()
+            .trim();
+
+        const submit =
+          paroleReponse.querySelector(
+            'button[type="submit"]'
+          );
+
+        if (submit) {
+          submit.disabled = true;
+          submit.textContent =
+            "Le regard rejoint la feuille…";
+        }
+
+        let message =
+          "Votre regard reste confié à cette visite.";
+
+        try {
+          sessionStorage.setItem(
+            "seuil-parole-regard",
             regard
-          })
-        });
-        if (!response.ok) throw new Error("envoi-refuse");
-        if (paroleReponseRetour) paroleReponseRetour.textContent = "Votre regard a été confié au Seuil.";
-        if (submit) submit.textContent = "Regard partagé";
-      } catch (_) {
-        if (paroleReponseRetour) paroleReponseRetour.textContent = "Le regard est resté ici : le passage vers l’extérieur n’a pas répondu.";
-        if (submit) { submit.disabled = false; submit.textContent = "Partager mon regard"; }
+          );
+        }
+        catch (_) {}
+
+        if (url) {
+
+          try {
+
+            const response =
+              await fetch(
+                url,
+                {
+                  method: "POST",
+
+                  headers: {
+                    "Content-Type":
+                      "application/json"
+                  },
+
+                  body:
+                    JSON.stringify({
+                      type:
+                        "parole-du-seuil",
+
+                      parole:
+                        parole.texte || "",
+
+                      regard
+                    })
+                }
+              );
+
+            if (!response.ok) {
+              throw new Error(
+                "envoi-refuse"
+              );
+            }
+
+            message =
+              "Votre regard a été confié au Seuil.";
+          }
+
+          catch (_) {
+
+            message =
+              "Votre regard reste inscrit ici pour cette visite.";
+          }
+        }
+
+        if (paroleReponseRetour) {
+          paroleReponseRetour.textContent =
+            message;
+        }
+
+        // Pas de bouton « fermer » :
+        // le geste se termine de lui-même.
+        setTimeout(
+          refermerParole,
+          900
+        );
+
+        setTimeout(
+          () => {
+
+            if (submit) {
+              submit.disabled = false;
+              submit.textContent =
+                "Partager mon regard";
+            }
+          },
+          3300
+        );
       }
-    });
+    );
   }
 
   if (tableIdeesForm) {
-    tableIdeesForm.addEventListener("submit", e => {
-      e.preventDefault();
-      const data = new FormData(tableIdeesForm);
-      const projet = (data.get("projet") || "").toString().trim();
-      if (!projet) return;
 
-      // V0.6.1 : la Table fonctionne déjà comme expérience locale.
-      // L'envoi réel sera branché ensuite sur la boîte aux lettres / messagerie.
-      tableIdeesForm.classList.add("is-confiee");
-      if (tableIdeesRetour) {
-        tableIdeesRetour.textContent = "Merci d’avoir accordé votre confiance à l’Atelier. Votre idée a trouvé sa place au Seuil.";
+    tableIdeesForm.addEventListener(
+      "submit",
+      e => {
+
+        e.preventDefault();
+
+        const data =
+          new FormData(
+            tableIdeesForm
+          );
+
+        const projet =
+          (
+            data.get("projet") || ""
+          )
+            .toString()
+            .trim();
+
+        if (!projet) return;
+
+        tableIdeesForm.classList.add(
+          "is-confiee"
+        );
+
+        if (tableIdeesRetour) {
+          tableIdeesRetour.textContent =
+            "Merci d’avoir accordé votre confiance à l’Atelier. Votre idée a trouvé sa place au Seuil.";
+        }
+
+        const submit =
+          tableIdeesForm.querySelector(
+            'button[type="submit"]'
+          );
+
+        if (submit) {
+          submit.disabled = true;
+          submit.textContent =
+            "Idée confiée";
+        }
+
+        if (mailFlag) {
+          mailFlag.classList.add(
+            "is-raised"
+          );
+        }
+
+        if (requeteBook) {
+          requeteBook.classList.add(
+            "is-visible"
+          );
+        }
+
+        try {
+          sessionStorage.setItem(
+            "seuil-idee-confiee",
+            "1"
+          );
+        }
+        catch (_) {}
       }
-      const submit = tableIdeesForm.querySelector('button[type="submit"]');
-      if (submit) {
-        submit.disabled = true;
-        submit.textContent = "Idée confiée";
-      }
-
-      // Le Hall accuse réception sans interrompre le Requêteur :
-      // le bras de la boîte se lève et un livre rejoint la bibliothèque.
-      if (mailFlag) mailFlag.classList.add("is-raised");
-      if (requeteBook) requeteBook.classList.add("is-visible");
-
-      // On conserve uniquement cette trace dans la session en cours.
-      try { sessionStorage.setItem("seuil-idee-confiee", "1"); } catch (_) {}
-    });
+    );
   }
 
-  // Si la Table a déjà reçu une idée pendant cette visite, le Hall garde la trace.
   try {
-    if (sessionStorage.getItem("seuil-idee-confiee") === "1") {
-      if (mailFlag) mailFlag.classList.add("is-raised");
-      if (requeteBook) requeteBook.classList.add("is-visible");
+
+    if (
+      sessionStorage.getItem(
+        "seuil-idee-confiee"
+      ) === "1"
+    ) {
+
+      if (mailFlag) {
+        mailFlag.classList.add(
+          "is-raised"
+        );
+      }
+
+      if (requeteBook) {
+        requeteBook.classList.add(
+          "is-visible"
+        );
+      }
     }
-  } catch (_) {}
+  }
 
+  catch (_) {}
 
-  // Le champ « Autre » ne s'invite que lorsqu'il est réellement utile.
-  const publicAutre = tableIdeesForm?.querySelector('[name="public_autre"]');
-  const publicRadios = tableIdeesForm?.querySelectorAll('[name="public"]');
+  const publicAutre =
+    tableIdeesForm?.querySelector(
+      '[name="public_autre"]'
+    );
+
+  const publicRadios =
+    tableIdeesForm?.querySelectorAll(
+      '[name="public"]'
+    );
+
   const syncPublicAutre = () => {
-    if (!publicAutre || !publicRadios) return;
-    const autre = [...publicRadios].some(radio => radio.checked && radio.value === "Autre");
+
+    if (
+      !publicAutre ||
+      !publicRadios
+    ) {
+      return;
+    }
+
+    const autre =
+      [...publicRadios].some(
+        radio =>
+          radio.checked &&
+          radio.value === "Autre"
+      );
+
     publicAutre.hidden = !autre;
     publicAutre.disabled = !autre;
-    if (!autre) publicAutre.value = "";
+
+    if (!autre) {
+      publicAutre.value = "";
+    }
   };
-  if (publicRadios) publicRadios.forEach(radio => radio.addEventListener("change", syncPublicAutre));
+
+  if (publicRadios) {
+
+    publicRadios.forEach(
+      radio =>
+        radio.addEventListener(
+          "change",
+          syncPublicAutre
+        )
+    );
+  }
+
   syncPublicAutre();
 
-  const image = panorama.querySelector("img");
+  const image =
+    panorama.querySelector("img");
+
   if (image) {
-    if (image.complete) centrerPanorama();
-    else image.addEventListener("load", centrerPanorama, { once: true });
+
+    if (image.complete) {
+      centrerPanorama();
+    }
+
+    else {
+      image.addEventListener(
+        "load",
+        centrerPanorama,
+        {
+          once: true
+        }
+      );
+    }
   }
 })();
