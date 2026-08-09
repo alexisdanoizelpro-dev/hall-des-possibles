@@ -1458,3 +1458,10 @@ button { font: inherit; }
   user-select:none;
   pointer-events:none!important;
 }
+
+/* V0.6.1 — derniers détails de cohérence
+   Le nom d'ASMEP est désormais intégré au décor, jamais à l'interface. */
+.asme-plaque,
+.asme-carnet{
+  display:none!important;
+}
