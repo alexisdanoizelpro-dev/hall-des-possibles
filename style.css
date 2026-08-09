@@ -871,7 +871,7 @@ button { font: inherit; }
 }
 .parole-geste.is-paper-out .parole-feuille{
   opacity:1;
-  transform:translate(-50%,-58%) scale(.78,.34);
+  transform:translate(-50%,-54%) scale(.84,.46);
   z-index:3;
 }
 .parole-geste.is-unfolded .parole-feuille{
@@ -903,17 +903,15 @@ button { font: inherit; }
   min-height:100%;
   padding:clamp(28px,5vw,52px) clamp(24px,6vw,58px);
   opacity:0;
+  visibility:hidden;
   transform:translateY(12px);
-  transition:opacity .55s ease .18s,transform .55s ease .18s;
+  transition:opacity .55s ease .18s,transform .55s ease .18s,visibility .55s step-end;
 }
 .parole-geste.is-unfolded .parole-feuille__contenu{
   opacity:1;
+  visibility:visible;
   transform:none;
-}
-.parole-feuille__origine{
-  margin:0 0 24px;
-  color:#70583c;
-  font:italic clamp(.88rem,2.7vw,1.02rem)/1.6 Georgia,serif;
+  transition:opacity .55s ease .18s,transform .55s ease .18s,visibility 0s;
 }
 .parole-feuille__titre{
   margin:0 0 22px;
@@ -999,4 +997,76 @@ button { font: inherit; }
 @media(prefers-reduced-motion:reduce){
   .parole-geste *,
   .parole-geste{transition-duration:.18s!important}
+}
+
+
+/* ----------------------------------------------------------
+   Première lecture : l'invitation, et rien d'autre.
+   ---------------------------------------------------------- */
+.parole-feuille__invitation{
+  position:absolute;
+  inset:0;
+  z-index:12;
+  display:grid;
+  align-content:center;
+  justify-items:center;
+  gap:30px;
+  padding:clamp(30px,7vw,70px);
+  text-align:center;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(8px);
+  transition:opacity .5s ease,transform .5s ease,visibility .5s step-end;
+}
+.parole-geste.is-inviting .parole-feuille__invitation{
+  opacity:1;
+  visibility:visible;
+  transform:none;
+  transition:opacity .5s ease,transform .5s ease,visibility 0s;
+}
+.parole-geste.is-accepted .parole-feuille__invitation{
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(-8px);
+  transition:opacity .28s ease,transform .28s ease,visibility .28s step-end;
+}
+.parole-feuille__invitation-texte{
+  max-width:26ch;
+  margin:0;
+  color:#3b2b1d;
+  font:italic clamp(1.22rem,4.6vw,1.72rem)/1.62 Georgia,serif;
+  letter-spacing:.008em;
+  text-wrap:balance;
+}
+.parole-feuille__choix{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px 24px;
+  width:100%;
+}
+.parole-feuille__choix-bouton{
+  padding:7px 2px 5px;
+  border:0;
+  border-bottom:1px solid rgba(83,59,34,.30);
+  background:transparent;
+  color:#60452d;
+  font:italic clamp(.9rem,2.8vw,1rem)/1.35 Georgia,serif;
+  cursor:pointer;
+  transition:border-color .2s ease,color .2s ease,opacity .2s ease;
+}
+.parole-feuille__choix-bouton:hover,
+.parole-feuille__choix-bouton:focus-visible{
+  color:#382719;
+  border-bottom-color:rgba(56,39,25,.70);
+  outline:none;
+}
+.parole-feuille__choix-bouton--laisser{
+  color:#7a674f;
+  border-bottom-color:transparent;
+}
+
+@media(max-width:700px){
+  .parole-feuille__invitation{gap:24px;padding:30px 24px}
+  .parole-feuille__choix{flex-direction:column;align-items:center;gap:12px}
 }
