@@ -32,6 +32,9 @@
   const coupelleForm = document.querySelector("#coupelle-form");
   const coupelleRetour = document.querySelector("#coupelle-retour");
   const paroleHotspot = document.querySelector("#parole-hotspot");
+  const paroleReponse = document.querySelector("#parole-reponse");
+  const paroleRegard = document.querySelector("#parole-regard");
+  const paroleReponseRetour = document.querySelector("#parole-reponse-retour");
 
   // La Parole du Seuil vient entièrement de config.js.
   // Son enveloppe reste dans le Hall ; seul son contenu change.
@@ -116,6 +119,12 @@
     dialogueTitle.hidden = !titre;
     const parts = (button.dataset.text || "").split("|");
     dialogueText.innerHTML = parts.map((p, i) => i ? `<br><br><em>${p}</em>` : p).join("");
+    if (paroleReponse) {
+      const estParole = button.id === "parole-hotspot";
+      paroleReponse.hidden = !estParole;
+      if (paroleReponseRetour) paroleReponseRetour.textContent = "";
+      if (estParole && paroleRegard) paroleRegard.value = "";
+    }
     dialogue.classList.add("is-open");
     dialogue.setAttribute("aria-hidden", "false");
     dialogueClose.focus();
@@ -207,6 +216,42 @@
       }
       // Une question ne devient jamais un projet : aucun livre n’apparaît.
       try { sessionStorage.setItem("seuil-coupelle-confiee", "1"); } catch (_) {}
+    });
+  }
+
+  if (paroleReponse) {
+    paroleReponse.addEventListener("submit", async e => {
+      e.preventDefault();
+      const regard = (new FormData(paroleReponse).get("regard") || "").toString().trim();
+      if (!regard) return;
+      const parole = CONFIG_SEUIL.paroleDuSeuil || {};
+      const url = (parole.reponseUrl || "").toString().trim();
+      const submit = paroleReponse.querySelector('button[type="submit"]');
+
+      if (!url) {
+        try { sessionStorage.setItem("seuil-parole-regard", regard); } catch (_) {}
+        if (paroleReponseRetour) paroleReponseRetour.textContent = "Votre regard est écrit. Le Hall n’a encore aucun canal d’envoi configuré pour le transmettre hors de cette visite.";
+        return;
+      }
+
+      if (submit) { submit.disabled = true; submit.textContent = "Partage en cours…"; }
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            type: "parole-du-seuil",
+            parole: parole.texte || "",
+            regard
+          })
+        });
+        if (!response.ok) throw new Error("envoi-refuse");
+        if (paroleReponseRetour) paroleReponseRetour.textContent = "Votre regard a été confié au Seuil.";
+        if (submit) submit.textContent = "Regard partagé";
+      } catch (_) {
+        if (paroleReponseRetour) paroleReponseRetour.textContent = "Le regard est resté ici : le passage vers l’extérieur n’a pas répondu.";
+        if (submit) { submit.disabled = false; submit.textContent = "Partager mon regard"; }
+      }
     });
   }
 

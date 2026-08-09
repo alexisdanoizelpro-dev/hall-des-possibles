@@ -670,3 +670,34 @@ button { font: inherit; }
 @media(prefers-reduced-motion:reduce){
   .hotspot--parole{transition:none!important}
 }
+
+
+/* ==========================================================
+   V0.6.1 — PAROLE DU SEUIL DANS LA BIBLIOTHÈQUE
+   L'enveloppe fait désormais partie du décor lui-même.
+   ========================================================== */
+.hotspot--parole{
+  left:80.4%;
+  top:8.4%;
+  width:7.2%;
+  height:12.5%;
+  min-width:44px;
+  min-height:38px;
+  border:0;
+  border-radius:2px;
+  background:transparent!important;
+  box-shadow:none!important;
+  transform:none!important;
+  filter:none!important;
+}
+.hotspot--parole::before,.hotspot--parole::after{content:none!important;display:none!important}
+.hotspot--parole:hover{background:transparent!important}
+.hotspot--parole:focus-visible{outline:2px solid rgba(225,189,114,.62);outline-offset:3px;background:transparent!important}
+
+.parole-reponse{display:grid;gap:16px;margin:26px 0 2px;padding-top:22px;border-top:1px solid rgba(201,164,90,.24);text-align:left}
+.parole-reponse[hidden]{display:none!important}
+.parole-reponse__champ{display:grid;gap:9px;color:#dfc789;line-height:1.45}
+.parole-reponse__champ textarea{width:100%;min-height:108px;resize:vertical;padding:12px 13px;border:1px solid rgba(201,164,90,.35);border-radius:6px;background:rgba(7,6,4,.55);color:#f5ead5;font:inherit}
+.parole-reponse__champ textarea:focus{outline:2px solid rgba(225,189,114,.72);outline-offset:2px}
+.parole-reponse .bouton-seuil{justify-self:center}
+.parole-reponse__retour{min-height:1.4em;margin:0;text-align:center;color:#dbc186;line-height:1.55}
