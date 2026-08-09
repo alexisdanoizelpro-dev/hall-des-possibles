@@ -1149,3 +1149,263 @@ button { font: inherit; }
     padding:30px 24px;
   }
 }
+
+
+/* ==========================================================
+   V0.6.1 — ASMEP
+   Présence quotidienne, jamais interactive.
+   ========================================================== */
+
+.asme-presence{
+  position:absolute;
+  inset:0;
+  z-index:7;
+  pointer-events:none;
+}
+
+/* Plaque sobre, patinée, sur le rebord du panier */
+.asme-plaque{
+  position:absolute;
+  left:43.1%;
+  top:63.35%;
+  width:4.8%;
+  min-width:54px;
+  padding:.22em .35em .18em;
+  transform:rotate(-2deg);
+  border:1px solid rgba(58,37,19,.72);
+  border-radius:2px;
+  background:
+    linear-gradient(165deg,rgba(235,206,144,.25),transparent 30%),
+    linear-gradient(160deg,#83633d,#5d4328 62%,#3d2a19);
+  box-shadow:
+    0 2px 4px rgba(0,0,0,.30),
+    inset 0 0 0 1px rgba(205,166,100,.12);
+  color:rgba(222,191,135,.78);
+  font:700 clamp(6px,.64vw,10px)/1 Georgia,serif;
+  letter-spacing:.09em;
+  text-align:center;
+  text-shadow:0 1px 1px rgba(0,0,0,.55);
+  opacity:.78;
+}
+
+/* Carnet de santé rangé parmi les carnets d'une étagère basse */
+.asme-carnet{
+  position:absolute;
+  left:71.7%;
+  top:35.8%;
+  width:4.6%;
+  height:7.2%;
+  min-width:42px;
+  min-height:54px;
+  padding:.32em .22em;
+  transform:rotate(2deg);
+  border:1px solid rgba(54,37,23,.58);
+  border-radius:2px;
+  background:
+    linear-gradient(155deg,rgba(255,245,213,.15),transparent 38%),
+    linear-gradient(145deg,#7f664d,#514033);
+  box-shadow:0 2px 4px rgba(0,0,0,.26),inset 0 0 10px rgba(24,17,11,.18);
+  color:rgba(226,209,175,.68);
+  opacity:.78;
+  overflow:hidden;
+}
+.asme-carnet__titre,
+.asme-carnet__sous-titre{
+  display:block;
+  font-family:Georgia,serif;
+  text-align:center;
+}
+.asme-carnet__titre{
+  margin-top:.25em;
+  font-size:clamp(5px,.46vw,7px);
+  font-weight:700;
+  letter-spacing:.08em;
+}
+.asme-carnet__sous-titre{
+  margin-top:.5em;
+  font-size:clamp(3.5px,.32vw,5px);
+  line-height:1.15;
+  font-style:italic;
+}
+
+/* Laisse discrètement suspendue près de la porte de l'Atelier */
+.asme-laisse{
+  position:absolute;
+  left:94.2%;
+  top:23.4%;
+  width:.36%;
+  height:17%;
+  min-width:4px;
+  border-radius:999px;
+  background:linear-gradient(90deg,#2a1d15,#513522 45%,#241811);
+  box-shadow:0 1px 2px rgba(0,0,0,.34);
+  transform:rotate(3deg);
+  opacity:.62;
+}
+.asme-laisse::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:-7%;
+  width:210%;
+  aspect-ratio:1;
+  transform:translateX(-50%);
+  border:1px solid rgba(122,91,57,.52);
+  border-radius:50%;
+  box-shadow:inset 0 0 0 1px rgba(39,27,18,.45);
+}
+.asme-laisse::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:-2%;
+  width:280%;
+  height:20%;
+  transform:translateX(-50%);
+  border:2px solid rgba(59,38,24,.78);
+  border-top:0;
+  border-radius:0 0 50% 50%;
+}
+
+/* Légère marque d'usage autour de la gamelle déjà présente */
+.asme-trace-gamelle{
+  position:absolute;
+  left:52.1%;
+  top:59.7%;
+  width:5.8%;
+  height:3.2%;
+  border-radius:50%;
+  border-bottom:1px solid rgba(42,27,17,.20);
+  transform:rotate(-4deg);
+  opacity:.35;
+}
+
+/* Respiration : permanente, presque imperceptible */
+.asme-vie__poitrine{
+  position:absolute;
+  left:39.2%;
+  top:53.8%;
+  width:8.6%;
+  height:9.8%;
+  border-radius:50%;
+  background:radial-gradient(ellipse,rgba(96,59,27,.12),transparent 68%);
+  transform-origin:55% 65%;
+  animation:asme-respire 5.9s ease-in-out infinite;
+  mix-blend-mode:soft-light;
+}
+
+/* Oreille : micro-mouvement ponctuel */
+.asme-vie__oreille{
+  position:absolute;
+  left:36.9%;
+  top:54.0%;
+  width:1.55%;
+  height:3.8%;
+  transform-origin:50% 100%;
+  clip-path:polygon(50% 0,100% 100%,0 100%);
+  background:linear-gradient(130deg,rgba(30,20,14,.40),rgba(89,56,27,.12));
+  opacity:0;
+}
+
+/* Regard : deux reflets très brefs, sans chercher le Visiteur */
+.asme-vie__regard{
+  position:absolute;
+  left:37.55%;
+  top:57.95%;
+  width:2.0%;
+  height:.55%;
+  opacity:0;
+}
+.asme-vie__regard::before,
+.asme-vie__regard::after{
+  content:"";
+  position:absolute;
+  top:0;
+  width:3px;
+  height:2px;
+  border-radius:50%;
+  background:rgba(190,146,82,.60);
+  box-shadow:0 0 3px rgba(180,122,58,.30);
+}
+.asme-vie__regard::before{left:18%}
+.asme-vie__regard::after{right:14%}
+
+/* Soupir : un souffle très discret près du museau */
+.asme-vie__souffle{
+  position:absolute;
+  left:37.1%;
+  top:60.15%;
+  width:3.2%;
+  height:2.2%;
+  border-radius:50%;
+  background:radial-gradient(ellipse,rgba(221,203,171,.16),transparent 68%);
+  opacity:0;
+  filter:blur(2px);
+}
+
+.asme-presence.is-ear .asme-vie__oreille{
+  animation:asme-oreille 1.15s ease-in-out both;
+}
+.asme-presence.is-look .asme-vie__regard{
+  animation:asme-regard 4.2s ease-in-out both;
+}
+.asme-presence.is-sigh .asme-vie__souffle{
+  animation:asme-souffle 2.5s ease-out both;
+}
+.asme-presence.is-shift .asme-vie__poitrine{
+  animation:asme-position 3.2s ease-in-out both,asme-respire 5.9s ease-in-out infinite 3.2s;
+}
+
+@keyframes asme-respire{
+  0%,100%{transform:scale(1);opacity:.42}
+  50%{transform:scale(1.045,1.025);opacity:.62}
+}
+@keyframes asme-oreille{
+  0%,100%{transform:rotate(0deg);opacity:0}
+  18%{opacity:.42}
+  38%{transform:rotate(-9deg);opacity:.52}
+  58%{transform:rotate(5deg);opacity:.46}
+  82%{transform:rotate(0deg);opacity:.26}
+}
+@keyframes asme-regard{
+  0%,100%{opacity:0;transform:translateX(0)}
+  16%{opacity:.18}
+  36%{opacity:.48;transform:translateX(1px)}
+  65%{opacity:.38;transform:translateX(-1px)}
+  84%{opacity:.10}
+}
+@keyframes asme-souffle{
+  0%{opacity:0;transform:translate(0,0) scale(.65)}
+  20%{opacity:.20}
+  70%{opacity:.10;transform:translate(-7px,-4px) scale(1.25)}
+  100%{opacity:0;transform:translate(-11px,-7px) scale(1.45)}
+}
+@keyframes asme-position{
+  0%,100%{transform:translate(0,0) scale(1);opacity:.44}
+  28%{transform:translate(1px,-1px) scale(1.025);opacity:.58}
+  62%{transform:translate(-1px,0) scale(.99,1.02);opacity:.50}
+}
+
+@media(max-width:700px){
+  .asme-plaque{
+    min-width:34px;
+    font-size:5px;
+    padding:.18em .2em;
+  }
+  .asme-carnet{
+    min-width:28px;
+    min-height:38px;
+  }
+  .asme-carnet__titre{font-size:4px}
+  .asme-carnet__sous-titre{font-size:3px}
+  .asme-laisse{min-width:3px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .asme-vie__poitrine,
+  .asme-vie__oreille,
+  .asme-vie__regard,
+  .asme-vie__souffle{
+    animation:none!important;
+  }
+}
