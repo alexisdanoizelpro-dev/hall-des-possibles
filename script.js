@@ -111,7 +111,9 @@
   const openDialog = button => {
     if (!dialogue || !dialogueTitle || !dialogueText || !dialogueClose) return;
     lastFocus = button;
-    dialogueTitle.textContent = button.dataset.title || "Le Hall";
+    const titre = button.dataset.title || "";
+    dialogueTitle.textContent = titre;
+    dialogueTitle.hidden = !titre;
     const parts = (button.dataset.text || "").split("|");
     dialogueText.innerHTML = parts.map((p, i) => i ? `<br><br><em>${p}</em>` : p).join("");
     dialogue.classList.add("is-open");
@@ -165,6 +167,7 @@
     button.addEventListener("click", () => {
       if (button.dataset.action === "table-idees") openTableIdees(button);
       else if (button.dataset.action === "coupelle") openCoupelle(button);
+      else if (button.dataset.action === "silence") return;
       else openDialog(button);
     });
   });

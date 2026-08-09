@@ -580,73 +580,92 @@ button { font: inherit; }
 }
 .hotspot:hover { background: transparent; }
 
-/* La Parole du Seuil : enveloppe ancienne, scellée AS. */
+/* La Parole du Seuil : une véritable enveloppe de papier, laissée sur la table du Livre d’Or. */
 .hotspot--parole {
-  left: 55.2%;
-  top: 72.2%;
-  width: 8.4%;
-  height: 10.4%;
-  min-width: 58px;
-  min-height: 42px;
+  left: 26.4%;
+  top: 75.2%;
+  width: 9.2%;
+  height: 6.4%;
+  min-width: 74px;
+  min-height: 46px;
   overflow: visible;
-  border: 1px solid rgba(104,69,35,.72);
-  border-radius: 3px;
+  border: 0;
+  border-radius: 2px 3px 3px 2px;
   background:
-    linear-gradient(165deg,rgba(255,255,255,.16),transparent 31%),
-    linear-gradient(145deg,#d8c39a 0%,#b99b69 58%,#8d6a3e 100%);
+    repeating-linear-gradient(8deg, rgba(91,65,39,.028) 0 1px, transparent 1px 4px),
+    radial-gradient(ellipse at 28% 16%, rgba(255,249,224,.48), transparent 36%),
+    linear-gradient(165deg, #d8c5a0 0%, #c8ae7e 48%, #b28e5e 100%);
   box-shadow:
-    0 7px 13px rgba(0,0,0,.52),
-    inset 0 0 0 1px rgba(255,239,196,.18),
-    inset 0 -10px 20px rgba(84,52,26,.13);
-  transform: rotate(-5deg);
-  transition: transform .24s ease, filter .24s ease, box-shadow .24s ease;
+    0 3px 3px rgba(20,12,7,.34),
+    0 9px 13px rgba(20,12,7,.28),
+    inset 0 0 0 1px rgba(94,62,34,.28),
+    inset 7px 5px 15px rgba(255,247,215,.18),
+    inset -8px -6px 14px rgba(84,53,28,.12);
+  transform: rotate(7deg) skewX(-.6deg);
+  transform-origin: 50% 50%;
+  transition: transform .28s ease, filter .28s ease, box-shadow .28s ease;
 }
 
-/* Réactive uniquement les deux éléments graphiques de l'enveloppe. */
+/* Rabat : deux couches légèrement irrégulières pour éviter l'effet "icône". */
 .hotspot--parole::before {
   content: "" !important;
   display: block !important;
   position: absolute;
-  inset: 0;
+  inset: 1px 1px auto;
+  height: 69%;
   pointer-events: none;
-  clip-path: polygon(0 0,100% 0,50% 64%);
-  background: linear-gradient(160deg,#e2cfa8 0%,#b79562 76%,#8c673e 100%);
-  filter: drop-shadow(0 1px 0 rgba(80,48,23,.28));
+  clip-path: polygon(0 0,100% 0,52% 91%,48% 91%);
+  background:
+    repeating-linear-gradient(-7deg, rgba(73,49,28,.025) 0 1px, transparent 1px 5px),
+    linear-gradient(170deg,#e0cfac 0%,#c8aa77 71%,#a98050 100%);
+  filter: drop-shadow(0 1px 1px rgba(64,39,21,.32));
 }
+
+/* Sceau de cire petit, irrégulier et volontairement discret. */
 .hotspot--parole::after {
   content: "AS" !important;
   display: grid !important;
   place-items: center;
   position: absolute;
-  left: 50%;
-  top: 56%;
-  width: 27%;
+  left: 51%;
+  top: 57%;
+  width: 19%;
+  min-width: 15px;
   aspect-ratio: 1;
-  transform: translate(-50%,-50%) rotate(5deg);
-  border: 1px solid rgba(73,25,19,.8);
-  border-radius: 50%;
+  transform: translate(-50%,-50%) rotate(-5deg);
+  border: 0;
+  border-radius: 48% 52% 45% 55% / 53% 46% 54% 47%;
   background:
-    radial-gradient(circle at 36% 30%,#b85c49 0 9%,transparent 10%),
-    radial-gradient(circle,#8e382e 0 58%,#61241f 60% 78%,#421815 80% 100%);
-  color: rgba(242,207,157,.86);
-  box-shadow: 0 2px 5px rgba(0,0,0,.45), inset 0 0 0 2px rgba(219,144,103,.16);
-  font-size: clamp(6px,.7vw,11px);
+    radial-gradient(circle at 36% 28%, rgba(255,193,156,.28) 0 7%, transparent 8%),
+    radial-gradient(circle at 49% 46%, #8a342b 0 57%, #64251f 59% 78%, #451916 80% 100%);
+  color: rgba(226,185,136,.72);
+  box-shadow:
+    0 1px 2px rgba(0,0,0,.45),
+    inset 1px 1px 2px rgba(235,149,112,.16),
+    inset -2px -2px 3px rgba(52,13,11,.28);
+  font-size: clamp(5px,.52vw,8px);
   font-weight: 700;
-  letter-spacing: .04em;
+  letter-spacing: -.03em;
   text-shadow: 0 1px 1px rgba(0,0,0,.45);
   pointer-events: none;
 }
 .hotspot--parole:hover,
 .hotspot--parole:focus-visible {
   background:
-    linear-gradient(165deg,rgba(255,255,255,.18),transparent 31%),
-    linear-gradient(145deg,#d8c39a 0%,#b99b69 58%,#8d6a3e 100%);
-  filter: brightness(1.04);
-  transform: rotate(-4deg) translateY(-1px);
-  box-shadow: 0 9px 17px rgba(0,0,0,.58), inset 0 0 0 1px rgba(255,239,196,.2);
+    repeating-linear-gradient(8deg, rgba(91,65,39,.028) 0 1px, transparent 1px 4px),
+    radial-gradient(ellipse at 28% 16%, rgba(255,249,224,.52), transparent 36%),
+    linear-gradient(165deg, #d8c5a0 0%, #c8ae7e 48%, #b28e5e 100%);
+  filter: brightness(1.035);
+  transform: rotate(6.2deg) skewX(-.6deg) translateY(-1px);
+  box-shadow: 0 4px 4px rgba(20,12,7,.36),0 10px 15px rgba(20,12,7,.3),inset 0 0 0 1px rgba(94,62,34,.28);
 }
+
+/* Les réactions d'ambiance ne doivent jamais redevenir des cartouches de nommage. */
+.hotspot--murmure::before,
+.hotspot--murmure::after { content:none!important; display:none!important; }
+
 @media(max-width:700px){
-  .hotspot--parole{min-width:48px;min-height:35px}
+  .hotspot--parole{min-width:62px;min-height:39px}
 }
 @media(prefers-reduced-motion:reduce){
   .hotspot--parole{transition:none!important}
