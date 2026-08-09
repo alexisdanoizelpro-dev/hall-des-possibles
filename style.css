@@ -1409,3 +1409,52 @@ button { font: inherit; }
     animation:none!important;
   }
 }
+
+
+/* ==========================================================
+   V0.6.1 — ASMEP : nom découvert dans le décor
+   Aucun traitement d'interface, aucun appel visuel.
+   ========================================================== */
+
+.asme-plaque{
+  left:43.35%;
+  top:63.55%;
+  width:3.8%;
+  min-width:42px;
+  padding:.16em .22em .14em;
+  transform:rotate(-2.8deg);
+  border:1px solid rgba(67,43,23,.58);
+  border-radius:1px;
+  background:
+    linear-gradient(165deg,rgba(206,168,103,.10),transparent 40%),
+    linear-gradient(160deg,rgba(105,76,45,.78),rgba(65,45,28,.82));
+  box-shadow:
+    inset 0 0 0 1px rgba(192,151,88,.06),
+    0 1px 2px rgba(0,0,0,.18);
+  color:rgba(194,160,105,.58);
+  font:700 clamp(5px,.48vw,7px)/1 Georgia,serif;
+  letter-spacing:.07em;
+  text-shadow:
+    0 1px 0 rgba(24,15,9,.75),
+    0 -1px 0 rgba(215,180,118,.06);
+  opacity:.56;
+}
+
+.asme-carnet{
+  opacity:.56;
+}
+.asme-carnet__titre{
+  display:none!important;
+}
+.asme-carnet__sous-titre{
+  margin-top:1.3em;
+  font-size:clamp(3px,.27vw,4.4px);
+  color:rgba(220,202,170,.48);
+}
+
+.asme-presence,
+.asme-presence *{
+  cursor:default!important;
+  user-select:none;
+  pointer-events:none!important;
+}
