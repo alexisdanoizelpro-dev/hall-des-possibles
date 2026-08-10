@@ -1151,3 +1151,159 @@
     }
   }
 })();
+
+/* ==========================================================
+   V0.7 — LIVRE D'OR
+   Expérience physique : approche, ouverture, page, écriture, retour au Hall.
+   ========================================================== */
+(() => {
+  const hotspot = document.getElementById("livre-or-hotspot");
+  const experience = document.getElementById("livre-or-experience");
+  const livre = document.getElementById("livre-or");
+  const trace = document.getElementById("livre-or-trace");
+  const refermer = document.getElementById("livre-or-refermer");
+  const ecriture = document.getElementById("livre-or-ecriture");
+  const pageVisiteur = document.getElementById("livre-or-page-visiteur");
+
+  if (
+    !hotspot ||
+    !experience ||
+    !livre ||
+    !trace ||
+    !refermer ||
+    !ecriture
+  ) {
+    return;
+  }
+
+  let ouvert = false;
+  let fermetureTimer = null;
+
+  const ouvrirLivre = () => {
+    if (ouvert) return;
+
+    ouvert = true;
+
+    document.body.classList.add("livre-or-ouvert");
+
+    experience.classList.remove("is-closing");
+
+    experience.setAttribute(
+      "aria-hidden",
+      "false"
+    );
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        experience.classList.add(
+          "is-visible"
+        );
+      });
+    });
+  };
+
+  const commencerEcriture = () => {
+    livre.classList.add(
+      "is-writing"
+    );
+
+    if (pageVisiteur) {
+      pageVisiteur.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+    }
+
+    window.setTimeout(() => {
+      ecriture.focus({
+        preventScroll: true
+      });
+    }, 720);
+  };
+
+  const fermerLivre = () => {
+    if (!ouvert) return;
+
+    try {
+      const valeur =
+        ecriture.value.trim();
+
+      if (valeur) {
+        localStorage.setItem(
+          "seuil-livre-or-trace",
+          valeur
+        );
+      }
+    }
+
+    catch (_) {}
+
+    livre.classList.remove(
+      "is-writing"
+    );
+
+    if (pageVisiteur) {
+      pageVisiteur.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+    }
+
+    experience.classList.add(
+      "is-closing"
+    );
+
+    window.clearTimeout(
+      fermetureTimer
+    );
+
+    fermetureTimer =
+      window.setTimeout(() => {
+
+        experience.classList.remove(
+          "is-visible",
+          "is-closing"
+        );
+
+        experience.setAttribute(
+          "aria-hidden",
+          "true"
+        );
+
+        document.body.classList.remove(
+          "livre-or-ouvert"
+        );
+
+        ouvert = false;
+
+      }, 920);
+  };
+
+  hotspot.addEventListener(
+    "click",
+    ouvrirLivre
+  );
+
+  trace.addEventListener(
+    "click",
+    commencerEcriture
+  );
+
+  refermer.addEventListener(
+    "click",
+    fermerLivre
+  );
+
+  try {
+    const ancienne =
+      localStorage.getItem(
+        "seuil-livre-or-trace"
+      );
+
+    if (ancienne) {
+      ecriture.value = ancienne;
+    }
+  }
+
+  catch (_) {}
+})();
