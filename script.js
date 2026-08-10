@@ -1251,44 +1251,7 @@
     window.setTimeout(() => {
       livre.classList.add(
         "is-writing"
-      );
 
-      livre.classList.remove(
-        "is-turning"
-      );
-
-      if (visiteur) {
-        visiteur.setAttribute(
-          "aria-hidden",
-          "false"
-        );
-      }
-
-      if (prenom) {
-        prenom.focus({
-          preventScroll: true
-        });
-      } else {
-        ecriture.focus({
-          preventScroll: true
-        });
-      }
-
-    }, 790);
-  }
-
-  function fermerLivre() {
-    if (!ouvert) return;
-
-    livre.classList.remove(
-      "is-writing",
-      "is-turning",
-      "is-deposited",
-      "is-final-turn"
-    );
-
-    if (visiteur) {
-      visiteur.setAttribute(
 
         /* ==========================================================
    V0.7 — LIVRE D'OR / OBJET RÉEL — RETOUR À L'ESPRIT DU SEUIL
