@@ -1152,8 +1152,8 @@
   }
 })();
 
-   /* ==========================================================
-   V0.7 — LIVRE D'OR / OBJET RÉEL
+/* ==========================================================
+   V0.7 — LIVRE D'OR / OBJET RÉEL — VERSION SEUIL
    ========================================================== */
 (() => {
   const hotspot =
@@ -1168,25 +1168,32 @@
   const laisser =
     document.getElementById("livre-reel-laisser");
 
-  const refermer =
-    document.getElementById("livre-reel-refermer");
+  const prenom =
+    document.getElementById("livre-reel-prenom");
 
   const ecriture =
     document.getElementById("livre-reel-ecriture");
 
+  const deposer =
+    document.getElementById("livre-reel-deposer");
+
+  const plusTard =
+    document.getElementById("livre-reel-plus-tard");
+
+  const merci =
+    document.getElementById("livre-reel-merci");
+
   const visiteur =
     document.getElementById("livre-reel-visiteur");
-
-  const tourne =
-    document.getElementById("livre-reel-tourne");
 
   if (
     !hotspot ||
     !stage ||
     !livre ||
     !laisser ||
-    !refermer ||
-    !ecriture
+    !ecriture ||
+    !deposer ||
+    !plusTard
   ) {
     return;
   }
@@ -1198,6 +1205,13 @@
     if (ouvert) return;
 
     ouvert = true;
+
+    livre.classList.remove(
+      "is-writing",
+      "is-turning",
+      "is-deposited",
+      "is-final-turn"
+    );
 
     document.body.classList.add(
       "livre-reel-ouvert"
@@ -1250,33 +1264,27 @@
         );
       }
 
-      ecriture.focus({
-        preventScroll: true
-      });
+      if (prenom) {
+        prenom.focus({
+          preventScroll: true
+        });
+      } else {
+        ecriture.focus({
+          preventScroll: true
+        });
+      }
 
     }, 790);
   }
 
-  function fermer() {
+  function fermerLivre() {
     if (!ouvert) return;
-
-    try {
-      const texte =
-        ecriture.value.trim();
-
-      if (texte) {
-        localStorage.setItem(
-          "seuil-livre-or-trace",
-          texte
-        );
-      }
-    }
-
-    catch (_) {}
 
     livre.classList.remove(
       "is-writing",
-      "is-turning"
+      "is-turning",
+      "is-deposited",
+      "is-final-turn"
     );
 
     if (visiteur) {
@@ -1313,6 +1321,75 @@
     }, 980);
   }
 
+  function revenirPlusTard() {
+    // Aucun message.
+    // Le Livre accepte simplement ce choix.
+    fermerLivre();
+  }
+
+  function deposerTrace() {
+    const trace =
+      ecriture.value.trim();
+
+    const nom =
+      prenom
+        ? prenom.value.trim()
+        : "";
+
+    // Une page vide n'est pas une trace.
+    // Le Livre attend simplement.
+    if (!trace) {
+      ecriture.focus({
+        preventScroll: true
+      });
+
+      return;
+    }
+
+    try {
+      localStorage.setItem(
+        "seuil-livre-or-trace",
+        JSON.stringify({
+          prenom: nom,
+          trace: trace,
+          date: new Date().toISOString()
+        })
+      );
+    }
+
+    catch (_) {}
+
+    livre.classList.add(
+      "is-deposited"
+    );
+
+    deposer.disabled = true;
+    plusTard.disabled = true;
+
+    // Le Livre reste ouvert quelques instants
+    // avec le remerciement du Seuil.
+    clearTimeout(timer);
+
+    timer = setTimeout(() => {
+
+      livre.classList.add(
+        "is-final-turn"
+      );
+
+      // Une dernière page se tourne,
+      // puis le Livre se referme.
+      window.setTimeout(() => {
+
+        fermerLivre();
+
+        deposer.disabled = false;
+        plusTard.disabled = false;
+
+      }, 900);
+
+    }, 3000);
+  }
+
   hotspot.addEventListener(
     "click",
     ouvrir
@@ -1323,23 +1400,15 @@
     tournerPage
   );
 
-  refermer.addEventListener(
+  deposer.addEventListener(
     "click",
-    fermer
+    deposerTrace
   );
 
-  try {
-    const ancienne =
-      localStorage.getItem(
-        "seuil-livre-or-trace"
-      );
-
-    if (ancienne) {
-      ecriture.value = ancienne;
-    }
-  }
-
-  catch (_) {}
+  plusTard.addEventListener(
+    "click",
+    revenirPlusTard
+  );
 })();
 
-    
+        
