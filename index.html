@@ -1,67 +1,92 @@
 <!DOCTYPE html>
 <html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"><meta name="theme-color" content="#080b08"><meta name="description" content="Franchissez le seuil du Hall des Possibles."><title>Le Hall des Possibles — V0.6.1</title><link rel="preload" href="hall-vivant.webp" as="image"><link rel="stylesheet" href="style.css?v=0.7-livre-retour-seuil"><script src="config.js?v=0.6.1-consolidee" defer></script><!-- script.js externe temporairement désactivé : logique intégrée ci-dessous -->
 <style>
-/* V0.7 — sorties discrètes pendant la lecture */
+/* V0.7 — liberté de quitter à chaque étape */
 .parole-feuille__quitter{
   display:block;
-  margin:18px auto 0;
+  margin:30px auto 4px;
   padding:4px 2px;
   border:0;
-  border-bottom:1px solid rgba(83,59,34,.22);
+  border-bottom:1px solid rgba(83,59,34,.20);
   background:transparent;
   color:#6f583f;
-  font:italic .92rem Georgia,serif;
+  font-family:Georgia,"Times New Roman",serif;
+  font-style:italic;
+  font-size:.92rem;
   cursor:pointer;
 }
 .parole-feuille__quitter:hover,
 .parole-feuille__quitter:focus-visible{
   color:#3e2d20;
-  border-bottom-color:rgba(62,45,32,.60);
+  border-bottom-color:rgba(62,45,32,.58);
   outline:none;
 }
 
+/* Même famille manuscrite/ancienne que l'action principale du Livre. */
 .livre-reel__fermer-direct{
   position:absolute;
   left:50%;
-  top:93%;
+  top:auto;
+  bottom:1.3%;
   transform:translateX(-50%) rotate(-.7deg);
   border:0;
   padding:3px 4px;
   background:transparent;
-  color:rgba(52,37,27,.56);
-  font-family:Georgia,serif;
-  font-style:italic;
-  font-size:clamp(11px,1.05vw,16px);
+  color:rgba(52,37,27,.62);
+  font-family:inherit;
+  font-style:inherit;
+  font-size:inherit;
+  letter-spacing:inherit;
   cursor:pointer;
   z-index:12;
+  white-space:nowrap;
 }
 .livre-reel__fermer-direct::after{
   content:"";
   position:absolute;
-  left:50%;right:50%;bottom:0;
+  left:50%;
+  right:50%;
+  bottom:0;
   height:1px;
   background:currentColor;
   transition:left .22s ease,right .22s ease;
 }
 .livre-reel__fermer-direct:hover::after,
 .livre-reel__fermer-direct:focus-visible::after{
-  left:2px;right:2px;
+  left:2px;
+  right:2px;
 }
+
+/* Sur la première page, on sépare franchement les deux décisions. */
+.livre-reel__vue--artisan .livre-reel__laisser{
+  bottom:8.5%!important;
+}
+.livre-reel__vue--artisan .livre-reel__fermer-direct{
+  bottom:2.2%!important;
+  opacity:.78;
+}
+
+/* Sur la page du Visiteur, Revenir plus tard reste accessible
+   même après avoir commencé à écrire. */
 .livre-reel__fermer-direct--visiteur{
-  top:auto;
-  bottom:1.5%;
-  opacity:.72;
+  top:auto!important;
+  bottom:1.2%!important;
+  opacity:.74;
 }
 
 @media(max-width:700px){
-  .parole-feuille__quitter{font-size:.84rem;margin-top:14px}
-  .livre-reel__fermer-direct{
-    font-size:10px;
-    top:92%;
+  .parole-feuille__quitter{
+    margin-top:24px;
+    font-size:.84rem;
+  }
+  .livre-reel__vue--artisan .livre-reel__laisser{
+    bottom:9.5%!important;
+  }
+  .livre-reel__vue--artisan .livre-reel__fermer-direct{
+    bottom:2.3%!important;
   }
   .livre-reel__fermer-direct--visiteur{
-    top:auto;
-    bottom:0;
+    bottom:.8%!important;
   }
 }
 </style>
@@ -147,7 +172,7 @@
         <h2 id="parole-feuille-titre" class="parole-feuille__titre">La Parole du Seuil</h2>
         <p class="parole-feuille__texte" id="parole-texte"></p>
 
-        <button class="parole-feuille__quitter" id="parole-quitter" type="button">Refermer l’enveloppe</button>
+        <button class="parole-feuille__quitter" id="parole-quitter" type="button">La laisser pour une autre fois</button>
         <form class="parole-feuille__reponse" id="parole-reponse">
           <label for="parole-regard">Quel regard cette Parole fait-elle naître en vous&nbsp;?</label>
           <textarea id="parole-regard" name="regard" rows="4" required placeholder="Quelques mots suffisent…"></textarea>
@@ -247,7 +272,7 @@
         </label>
         <textarea class="livre-reel__ecriture" id="livre-reel-ecriture" name="trace" aria-label="Votre trace dans le Livre d’Or"></textarea>
 
-        <button class="livre-reel__fermer-direct livre-reel__fermer-direct--visiteur" id="livre-reel-fermer-direct-visiteur" type="button">Refermer le Livre</button>
+        <button class="livre-reel__fermer-direct livre-reel__fermer-direct--visiteur" id="livre-reel-fermer-direct-visiteur" type="button">Revenir plus tard</button>
         <div class="livre-reel__choix" id="livre-reel-choix">
           <button class="livre-reel__deposer" id="livre-reel-deposer" type="button">Déposer cette trace</button>
           <button class="livre-reel__plus-tard" id="livre-reel-plus-tard" type="button">Revenir plus tard</button>
@@ -1054,6 +1079,8 @@
     }, 2200);
   };
 
+  // Cette sortie reste volontairement disponible même si le Visiteur
+  // a déjà commencé à écrire : aucune trace n'est imposée.
   const fermerLivreLecture = (event) => {
     if (!livreStage || !livre) return;
     if (event) {
