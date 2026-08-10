@@ -387,6 +387,122 @@
 }
 </style>
 
+
+<style>
+/* ==========================================================
+   V0.6.1 — CORRECTIONS PRÉCISES : 3 POINTS UNIQUEMENT
+   ========================================================== */
+
+/* 1. TABLEAU — supprimer visuellement les 4 petits cadres de la montée
+   et les remplacer par UN SEUL tableau fourni, sans interaction. */
+.tableau-escalier-final{
+  left:36.5%!important;
+  top:8.9%!important;
+  width:5.1%!important;
+  aspect-ratio:.78!important;
+  padding:.28%!important;
+  transform:rotate(-1deg)!important;
+  opacity:.82!important;
+  pointer-events:none!important;
+  user-select:none!important;
+  z-index:5!important;
+  background:linear-gradient(135deg,#4b3120,#21150e 56%,#5d3d27)!important;
+  border:1px solid rgba(24,15,9,.82)!important;
+  box-shadow:
+    0 3px 7px rgba(0,0,0,.34),
+    inset 0 0 0 1px rgba(176,124,72,.14)!important;
+}
+
+/* Masque uniquement la zone des quatre anciens petits cadres, derrière le nouveau tableau. */
+.tableau-escalier-final::before{
+  content:"";
+  position:absolute;
+  left:-28%;
+  top:-17%;
+  width:156%;
+  height:137%;
+  z-index:-1;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 18% 24%, rgba(103,94,77,.20) 0 8%, transparent 9%),
+    radial-gradient(circle at 76% 68%, rgba(18,17,15,.18) 0 10%, transparent 11%),
+    linear-gradient(90deg, rgba(49,47,40,.97), rgba(58,55,46,.97) 52%, rgba(43,42,36,.97));
+  border-radius:2px;
+  box-shadow:inset 0 0 10px rgba(0,0,0,.28);
+}
+
+.tableau-escalier-final img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  display:block!important;
+  pointer-events:none!important;
+  user-select:none!important;
+}
+
+/* 2. LIVRE D'OR — deux actions distinctes, alignées, espacées, sans chevauchement. */
+#livre-reel-artisan{
+  position:relative!important;
+}
+
+#livre-reel-artisan .livre-reel__laisser,
+#livre-reel-artisan .livre-reel__fermer-direct{
+  position:absolute!important;
+  top:auto!important;
+  bottom:4.8%!important;
+  width:30%!important;
+  margin:0!important;
+  padding:.28em .45em!important;
+  transform:none!important;
+  white-space:nowrap!important;
+  text-align:center!important;
+  line-height:1.2!important;
+  z-index:20!important;
+}
+
+#livre-reel-artisan .livre-reel__laisser{
+  left:18%!important;
+}
+
+#livre-reel-artisan .livre-reel__fermer-direct{
+  left:52%!important;
+}
+
+/* Les deux actions gardent exactement le même esprit visuel. */
+#livre-reel-artisan .livre-reel__laisser,
+#livre-reel-artisan .livre-reel__fermer-direct{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  color:rgba(48,34,25,.76)!important;
+  font-family:inherit!important;
+  font-style:inherit!important;
+  cursor:pointer!important;
+}
+
+/* Mobile : on conserve deux actions lisibles et séparées. */
+@media(max-width:700px){
+  #livre-reel-artisan .livre-reel__laisser,
+  #livre-reel-artisan .livre-reel__fermer-direct{
+    bottom:4.2%!important;
+    width:32%!important;
+    font-size:clamp(10px,2.8vw,13px)!important;
+  }
+  #livre-reel-artisan .livre-reel__laisser{
+    left:15%!important;
+  }
+  #livre-reel-artisan .livre-reel__fermer-direct{
+    left:53%!important;
+  }
+
+  .tableau-escalier-final{
+    left:36.5%!important;
+    top:9.0%!important;
+    width:5.3%!important;
+  }
+}
+</style>
+
 </head>
 <body><main class="experience" id="experience">
 <section class="seuil" id="seuil" aria-label="Le seuil du Hall des Possibles"><div class="seuil__ambiance" aria-hidden="true"></div><header class="seuil__texte"><h1 class="seuil__titre">Le Hall des Possibles</h1><p class="seuil__phrase">Chaque histoire commence par une porte qui s'ouvre...<span>Que se cache-t-il derrière la vôtre&nbsp;?</span></p></header><div class="scene-porte"><div class="lueur-hall" aria-hidden="true"></div><div class="encadrement" aria-hidden="true"><div class="encadrement__haut"></div><div class="encadrement__gauche"></div><div class="encadrement__droite"></div></div><button class="porte" id="porte" type="button" aria-label="Ouvrir la porte du Hall des Possibles" aria-expanded="false"><span class="porte__panneau porte__panneau--haut" aria-hidden="true"></span><span class="porte__panneau porte__panneau--bas" aria-hidden="true"></span><span class="porte__poignee" aria-hidden="true"><span class="porte__plaque"></span><span class="porte__bouton"></span></span><span class="porte__lumiere" aria-hidden="true"></span></button></div><p class="seuil__invitation" id="invitation" aria-hidden="true"></p></section>
@@ -548,7 +664,7 @@
     <div class="livre-reel__vue livre-reel__vue--artisan" id="livre-reel-artisan">
       <img src="livre-or-premier-artisan.webp?v=0.7-objet-reel" alt="Livre d'Or ouvert sur la page du Premier Artisan">
       <button class="livre-reel__laisser" id="livre-reel-laisser" type="button">Laisser une trace</button>
-      <button class="livre-reel__fermer-direct" id="livre-reel-fermer-direct" type="button">Refermer le Livre</button>
+      <button class="livre-reel__fermer-direct" id="livre-reel-fermer-direct" type="button">Revenir plus tard</button>
     </div>
 
     <div class="livre-reel__tourne" id="livre-reel-tourne" aria-hidden="true"></div>
@@ -1550,6 +1666,44 @@
     attributes:true,
     attributeFilter:["aria-hidden"]
   });
+})();
+</script>
+
+
+<script>
+/* V0.6.1 — Livre d'Or : fermeture propre + réouverture immédiate. */
+(() => {
+  const hotspot = document.getElementById("livre-or-hotspot");
+  const stage = document.getElementById("livre-reel-stage");
+  const livre = document.getElementById("livre-reel");
+  const revenir = document.getElementById("livre-reel-fermer-direct");
+  const visiteur = document.getElementById("livre-reel-visiteur");
+
+  if (!hotspot || !stage || !livre || !revenir) return;
+
+  const normaliserLivreFerme = () => {
+    stage.classList.remove("is-visible","is-closing");
+    stage.setAttribute("aria-hidden","true");
+    livre.classList.remove(
+      "is-writing",
+      "is-turning",
+      "is-returning-page",
+      "is-deposited",
+      "is-final-turn"
+    );
+    if (visiteur) visiteur.setAttribute("aria-hidden","true");
+    document.body.classList.remove("livre-reel-ouvert");
+  };
+
+  revenir.addEventListener("click", () => {
+    window.setTimeout(normaliserLivreFerme, 1050);
+  }, false);
+
+  hotspot.addEventListener("click", () => {
+    if (stage.getAttribute("aria-hidden") === "true") {
+      stage.classList.remove("is-closing");
+    }
+  }, true);
 })();
 </script>
 
