@@ -1,5 +1,72 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"><meta name="theme-color" content="#080b08"><meta name="description" content="Franchissez le seuil du Hall des Possibles."><title>Le Hall des Possibles — V0.6.1</title><link rel="preload" href="hall-vivant.webp" as="image"><link rel="stylesheet" href="style.css?v=0.7-livre-retour-seuil"><script src="config.js?v=0.6.1-consolidee" defer></script><!-- script.js externe temporairement désactivé : logique intégrée ci-dessous --></head>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"><meta name="theme-color" content="#080b08"><meta name="description" content="Franchissez le seuil du Hall des Possibles."><title>Le Hall des Possibles — V0.6.1</title><link rel="preload" href="hall-vivant.webp" as="image"><link rel="stylesheet" href="style.css?v=0.7-livre-retour-seuil"><script src="config.js?v=0.6.1-consolidee" defer></script><!-- script.js externe temporairement désactivé : logique intégrée ci-dessous -->
+<style>
+/* V0.7 — sorties discrètes pendant la lecture */
+.parole-feuille__quitter{
+  display:block;
+  margin:18px auto 0;
+  padding:4px 2px;
+  border:0;
+  border-bottom:1px solid rgba(83,59,34,.22);
+  background:transparent;
+  color:#6f583f;
+  font:italic .92rem Georgia,serif;
+  cursor:pointer;
+}
+.parole-feuille__quitter:hover,
+.parole-feuille__quitter:focus-visible{
+  color:#3e2d20;
+  border-bottom-color:rgba(62,45,32,.60);
+  outline:none;
+}
+
+.livre-reel__fermer-direct{
+  position:absolute;
+  left:50%;
+  top:93%;
+  transform:translateX(-50%) rotate(-.7deg);
+  border:0;
+  padding:3px 4px;
+  background:transparent;
+  color:rgba(52,37,27,.56);
+  font-family:Georgia,serif;
+  font-style:italic;
+  font-size:clamp(11px,1.05vw,16px);
+  cursor:pointer;
+  z-index:12;
+}
+.livre-reel__fermer-direct::after{
+  content:"";
+  position:absolute;
+  left:50%;right:50%;bottom:0;
+  height:1px;
+  background:currentColor;
+  transition:left .22s ease,right .22s ease;
+}
+.livre-reel__fermer-direct:hover::after,
+.livre-reel__fermer-direct:focus-visible::after{
+  left:2px;right:2px;
+}
+.livre-reel__fermer-direct--visiteur{
+  top:auto;
+  bottom:1.5%;
+  opacity:.72;
+}
+
+@media(max-width:700px){
+  .parole-feuille__quitter{font-size:.84rem;margin-top:14px}
+  .livre-reel__fermer-direct{
+    font-size:10px;
+    top:92%;
+  }
+  .livre-reel__fermer-direct--visiteur{
+    top:auto;
+    bottom:0;
+  }
+}
+</style>
+
+</head>
 <body><main class="experience" id="experience">
 <section class="seuil" id="seuil" aria-label="Le seuil du Hall des Possibles"><div class="seuil__ambiance" aria-hidden="true"></div><header class="seuil__texte"><h1 class="seuil__titre">Le Hall des Possibles</h1><p class="seuil__phrase">Chaque histoire commence par une porte qui s'ouvre...<span>Que se cache-t-il derrière la vôtre&nbsp;?</span></p></header><div class="scene-porte"><div class="lueur-hall" aria-hidden="true"></div><div class="encadrement" aria-hidden="true"><div class="encadrement__haut"></div><div class="encadrement__gauche"></div><div class="encadrement__droite"></div></div><button class="porte" id="porte" type="button" aria-label="Ouvrir la porte du Hall des Possibles" aria-expanded="false"><span class="porte__panneau porte__panneau--haut" aria-hidden="true"></span><span class="porte__panneau porte__panneau--bas" aria-hidden="true"></span><span class="porte__poignee" aria-hidden="true"><span class="porte__plaque"></span><span class="porte__bouton"></span></span><span class="porte__lumiere" aria-hidden="true"></span></button></div><p class="seuil__invitation" id="invitation" aria-hidden="true"></p></section>
 <section class="hall" id="hall" aria-label="Le Hall des Possibles" aria-hidden="true"><div class="hall__panorama" id="panorama" tabindex="0"><div class="hall__scene" id="scene"><img class="hall__image" src="hall-vivant.webp?v=0.6.2-asme-independant" alt="Le Hall des Possibles, vaste atelier chaleureux de l’Atelier du Seuil, avec son arche végétale, sa cheminée double foyer et son compagnon fidèle." draggable="false"><div class="fire-glow fire-glow--left" aria-hidden="true"></div><div class="fire-glow fire-glow--right" aria-hidden="true"></div><div class="dog-breath" aria-hidden="true"></div>
@@ -80,6 +147,7 @@
         <h2 id="parole-feuille-titre" class="parole-feuille__titre">La Parole du Seuil</h2>
         <p class="parole-feuille__texte" id="parole-texte"></p>
 
+        <button class="parole-feuille__quitter" id="parole-quitter" type="button">Refermer l’enveloppe</button>
         <form class="parole-feuille__reponse" id="parole-reponse">
           <label for="parole-regard">Quel regard cette Parole fait-elle naître en vous&nbsp;?</label>
           <textarea id="parole-regard" name="regard" rows="4" required placeholder="Quelques mots suffisent…"></textarea>
@@ -156,6 +224,7 @@
     <div class="livre-reel__vue livre-reel__vue--artisan" id="livre-reel-artisan">
       <img src="livre-or-premier-artisan.webp?v=0.7-objet-reel" alt="Livre d'Or ouvert sur la page du Premier Artisan">
       <button class="livre-reel__laisser" id="livre-reel-laisser" type="button">Laisser une trace</button>
+      <button class="livre-reel__fermer-direct" id="livre-reel-fermer-direct" type="button">Refermer le Livre</button>
     </div>
 
     <div class="livre-reel__tourne" id="livre-reel-tourne" aria-hidden="true"></div>
@@ -178,6 +247,7 @@
         </label>
         <textarea class="livre-reel__ecriture" id="livre-reel-ecriture" name="trace" aria-label="Votre trace dans le Livre d’Or"></textarea>
 
+        <button class="livre-reel__fermer-direct livre-reel__fermer-direct--visiteur" id="livre-reel-fermer-direct-visiteur" type="button">Refermer le Livre</button>
         <div class="livre-reel__choix" id="livre-reel-choix">
           <button class="livre-reel__deposer" id="livre-reel-deposer" type="button">Déposer cette trace</button>
           <button class="livre-reel__plus-tard" id="livre-reel-plus-tard" type="button">Revenir plus tard</button>
@@ -947,5 +1017,113 @@
 })();
 </script>
 <!-- /V0.7 — CORRECTIF SORTIES LIVRE / PAROLE -->
+
+
+<!-- V0.7 — SORTIES PENDANT LECTURE -->
+<script>
+(() => {
+  "use strict";
+
+  const paroleQuitter = document.getElementById("parole-quitter");
+  const paroleGeste = document.getElementById("parole-geste");
+
+  const livreStage = document.getElementById("livre-reel-stage");
+  const livre = document.getElementById("livre-reel");
+  const livreVisiteur = document.getElementById("livre-reel-visiteur");
+  const fermerLivreArtisan = document.getElementById("livre-reel-fermer-direct");
+  const fermerLivreVisiteur = document.getElementById("livre-reel-fermer-direct-visiteur");
+
+  const fermerParoleLecture = (event) => {
+    if (!paroleGeste) return;
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+    }
+
+    paroleGeste.classList.add("is-returning");
+    paroleGeste.classList.remove("is-inviting","is-accepted","is-unfolded");
+
+    window.setTimeout(() => paroleGeste.classList.remove("is-paper-out"), 500);
+    window.setTimeout(() => paroleGeste.classList.remove("is-opened"), 900);
+    window.setTimeout(() => paroleGeste.classList.remove("is-unsealed","is-centered"), 1250);
+    window.setTimeout(() => paroleGeste.classList.remove("is-present"), 1850);
+    window.setTimeout(() => {
+      paroleGeste.className = "parole-geste";
+      paroleGeste.setAttribute("aria-hidden","true");
+    }, 2200);
+  };
+
+  const fermerLivreLecture = (event) => {
+    if (!livreStage || !livre) return;
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+    }
+
+    const enEcriture = livre.classList.contains("is-writing");
+
+    if (enEcriture) {
+      livre.classList.add("is-returning-page");
+
+      window.setTimeout(() => {
+        livre.classList.remove(
+          "is-writing",
+          "is-returning-page",
+          "is-turning",
+          "is-deposited",
+          "is-final-turn"
+        );
+
+        if (livreVisiteur) {
+          livreVisiteur.setAttribute("aria-hidden","true");
+        }
+
+        window.setTimeout(() => {
+          livreStage.classList.add("is-closing");
+
+          window.setTimeout(() => {
+            livreStage.classList.remove("is-visible","is-closing");
+            livreStage.setAttribute("aria-hidden","true");
+            document.body.classList.remove("livre-reel-ouvert");
+          }, 980);
+        }, 420);
+      }, 820);
+
+      return;
+    }
+
+    livre.classList.remove(
+      "is-writing",
+      "is-returning-page",
+      "is-turning",
+      "is-deposited",
+      "is-final-turn"
+    );
+
+    livreStage.classList.add("is-closing");
+
+    window.setTimeout(() => {
+      livreStage.classList.remove("is-visible","is-closing");
+      livreStage.setAttribute("aria-hidden","true");
+      document.body.classList.remove("livre-reel-ouvert");
+    }, 980);
+  };
+
+  if (paroleQuitter) {
+    paroleQuitter.addEventListener("click", fermerParoleLecture, true);
+  }
+
+  if (fermerLivreArtisan) {
+    fermerLivreArtisan.addEventListener("click", fermerLivreLecture, true);
+  }
+
+  if (fermerLivreVisiteur) {
+    fermerLivreVisiteur.addEventListener("click", fermerLivreLecture, true);
+  }
+})();
+</script>
+<!-- /V0.7 — SORTIES PENDANT LECTURE -->
 
 </body></html>
