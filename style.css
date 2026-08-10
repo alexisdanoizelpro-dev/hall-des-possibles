@@ -1738,3 +1738,126 @@ button { font: inherit; }
   cursor:default!important;
   user-select:none!important;
 }
+
+
+/* ==========================================================
+   V0.6.2 — ASMEP INDÉPENDANT DU DÉCOR
+   Le chien est désormais composé de vrais calques visuels.
+   ========================================================== */
+
+.asme-habitant{
+  position:absolute;
+  inset:0;
+  z-index:8;
+  pointer-events:none!important;
+}
+
+.asme-corps,
+.asme-tete{
+  position:absolute;
+  display:block;
+  max-width:none;
+  pointer-events:none;
+  user-select:none;
+  transform-origin:center center;
+  will-change:transform;
+}
+
+/* Position exacte dans la scène 1536x1024, exprimée en %. */
+.asme-corps{
+  left:33.5286%;
+  top:48.8281%;
+  width:18.5547%;
+  height:auto;
+  transform-origin:54% 66%;
+  animation:asme-respiration-reelle 7.4s ease-in-out infinite;
+}
+
+.asme-tete{
+  left:33.8542%;
+  top:49.8047%;
+  width:8.7891%;
+  height:auto;
+  transform-origin:58% 72%;
+}
+
+/* Les anciens faux effets du chien sont neutralisés. */
+.asme-vie__poitrine,
+.asme-vie__oreille,
+.asme-vie__regard,
+.asme-vie__souffle,
+.asme-ecusson{
+  display:none!important;
+}
+
+/* Respiration : le corps entier vit très légèrement. */
+@keyframes asme-respiration-reelle{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.007,1.012)}
+}
+
+/* Mouvements ponctuels. Ils concernent désormais ASMEP lui-même. */
+.asme-habitant.is-ear .asme-tete{
+  animation:asme-tete-oreille 1.3s ease-in-out both;
+}
+
+.asme-habitant.is-look .asme-tete{
+  animation:asme-tete-regard 4.4s ease-in-out both;
+}
+
+.asme-habitant.is-sigh .asme-corps{
+  animation:
+    asme-soupir-corps 2.8s ease-in-out both,
+    asme-respiration-reelle 7.4s ease-in-out infinite 2.8s;
+}
+
+.asme-habitant.is-shift .asme-corps{
+  animation:
+    asme-change-position-corps 3.6s ease-in-out both,
+    asme-respiration-reelle 7.4s ease-in-out infinite 3.6s;
+}
+.asme-habitant.is-shift .asme-tete{
+  animation:asme-change-position-tete 3.6s ease-in-out both;
+}
+
+@keyframes asme-tete-oreille{
+  0%,100%{transform:translate(0,0) rotate(0deg)}
+  28%{transform:translate(0,-1px) rotate(-1.2deg)}
+  52%{transform:translate(1px,-1px) rotate(.7deg)}
+}
+
+@keyframes asme-tete-regard{
+  0%,100%{transform:translate(0,0) rotate(0deg)}
+  18%{transform:translate(0,-2px) rotate(-1deg)}
+  42%,68%{transform:translate(4px,-5px) rotate(2.2deg)}
+  88%{transform:translate(1px,-1px) rotate(.4deg)}
+}
+
+@keyframes asme-soupir-corps{
+  0%,100%{transform:scale(1)}
+  28%{transform:scale(1.009,1.018)}
+  62%{transform:scale(.997,.991)}
+}
+
+@keyframes asme-change-position-corps{
+  0%,100%{transform:translate(0,0) scale(1)}
+  30%{transform:translate(2px,-1px) scale(1.006,.997)}
+  68%{transform:translate(-2px,1px) scale(.998,1.005)}
+}
+@keyframes asme-change-position-tete{
+  0%,100%{transform:translate(0,0) rotate(0deg)}
+  30%{transform:translate(3px,-3px) rotate(1.6deg)}
+  68%{transform:translate(-1px,1px) rotate(-.8deg)}
+}
+
+@media(max-width:700px){
+  .asme-corps{animation-duration:7.8s}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .asme-corps,
+  .asme-tete{
+    animation:none!important;
+    transform:none!important;
+  }
+}
