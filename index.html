@@ -91,10 +91,171 @@
 }
 </style>
 
+
+<style>
+/* ==========================================================
+   V0.7 — CORRECTIF MINIMAL : LISIBILITÉ + SORTIE
+   Aucun redesign. Aucun déplacement. Aucun nouveau contenu.
+   ========================================================== */
+
+/* 1) Lisibilité : on éclaircit uniquement la page visiteur et les champs. */
+.livre-reel__vue--visiteur{
+  background:transparent!important;
+  filter:none!important;
+}
+
+.livre-reel__page-ecriture{
+  background:rgba(236,216,170,.18)!important;
+  box-shadow:none!important;
+  color:#241a13!important;
+}
+
+.livre-reel__invitation-ecriture,
+.livre-reel__label,
+.livre-reel__prenom,
+.livre-reel__ecriture,
+.livre-reel__deposer,
+.livre-reel__plus-tard{
+  color:#241a13!important;
+  text-shadow:none!important;
+}
+
+.livre-reel__prenom,
+.livre-reel__ecriture{
+  background-color:rgba(248,234,196,.08)!important;
+  box-shadow:none!important;
+}
+
+.livre-reel__ecriture{
+  caret-color:#241a13!important;
+}
+
+/* Neutraliser toute bande sombre résiduelle sans toucher à la composition. */
+.livre-reel__choix{
+  background:transparent!important;
+  box-shadow:none!important;
+  filter:none!important;
+}
+
+/* 2) Sortie : Revenir plus tard reste visible et cliquable en permanence. */
+.livre-reel__plus-tard{
+  display:inline-block!important;
+  visibility:visible!important;
+  opacity:.78!important;
+  pointer-events:auto!important;
+  z-index:50!important;
+}
+
+/* Même importance visuelle pour les deux choix. */
+.livre-reel__deposer{
+  opacity:.78!important;
+}
+
+/* Le bouton de fermeture supplémentaire reste masqué :
+   on conserve uniquement les choix déjà prévus dans le Livre. */
+.livre-reel__fermer-direct--visiteur{
+  display:none!important;
+}
+</style>
+
+
+<style>
+/* ==========================================================
+   V0.7 — DERNIÈRES FINITIONS : UNIQUEMENT LES 3 POINTS VALIDÉS
+   ========================================================== */
+
+/* 1 — Retour de la Parole : aucun noir, aucune rupture de scène. */
+.parole-geste.is-returning{
+  background:transparent!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+.parole-geste.is-returning::before,
+.parole-geste.is-returning::after{
+  background:transparent!important;
+  box-shadow:none!important;
+}
+.parole-geste{
+  transition:background-color .45s ease, opacity .45s ease!important;
+}
+
+/* 2 — Tableau de l'escalier : pur décor, aucune interaction. */
+.tableau-escalier-final{
+  position:absolute;
+  left:14.2%;
+  top:17.8%;
+  width:5.1%;
+  aspect-ratio:.78;
+  z-index:3;
+  padding:.28%;
+  pointer-events:none!important;
+  user-select:none!important;
+  transform:rotate(-1.3deg);
+  background:linear-gradient(135deg,#4a301e,#22150e 55%,#604027);
+  border:1px solid rgba(25,15,9,.82);
+  box-shadow:0 3px 7px rgba(0,0,0,.34), inset 0 0 0 1px rgba(175,122,70,.14);
+  opacity:.82;
+  filter:brightness(.88) saturate(.82);
+}
+.tableau-escalier-final img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  pointer-events:none!important;
+  user-select:none!important;
+}
+
+/* 3 — ASMEP : ses traces appartiennent au Hall entier, pas à un "coin chien". */
+.asme-corde{
+  left:78.5%!important;
+  top:73.4%!important;
+  transform:rotate(-10deg)!important;
+  opacity:.34!important;
+}
+.asme-balle{
+  left:87.2%!important;
+  top:78.2%!important;
+  opacity:.40!important;
+}
+.asme-laisse{
+  left:7.4%!important;
+  top:31.0%!important;
+  opacity:.34!important;
+}
+.asme-carnet-sante{
+  left:72.0%!important;
+  top:38.0%!important;
+  opacity:.30!important;
+}
+.asme-croquettes{
+  left:91.0%!important;
+  top:56.0%!important;
+  opacity:.30!important;
+}
+.asme-trace-gamelle{
+  left:12.4%!important;
+  top:69.5%!important;
+  opacity:.38!important;
+}
+
+@media(max-width:700px){
+  .tableau-escalier-final{
+    left:14.1%;
+    top:18.0%;
+    width:5.3%;
+    opacity:.80;
+  }
+}
+</style>
+
 </head>
 <body><main class="experience" id="experience">
 <section class="seuil" id="seuil" aria-label="Le seuil du Hall des Possibles"><div class="seuil__ambiance" aria-hidden="true"></div><header class="seuil__texte"><h1 class="seuil__titre">Le Hall des Possibles</h1><p class="seuil__phrase">Chaque histoire commence par une porte qui s'ouvre...<span>Que se cache-t-il derrière la vôtre&nbsp;?</span></p></header><div class="scene-porte"><div class="lueur-hall" aria-hidden="true"></div><div class="encadrement" aria-hidden="true"><div class="encadrement__haut"></div><div class="encadrement__gauche"></div><div class="encadrement__droite"></div></div><button class="porte" id="porte" type="button" aria-label="Ouvrir la porte du Hall des Possibles" aria-expanded="false"><span class="porte__panneau porte__panneau--haut" aria-hidden="true"></span><span class="porte__panneau porte__panneau--bas" aria-hidden="true"></span><span class="porte__poignee" aria-hidden="true"><span class="porte__plaque"></span><span class="porte__bouton"></span></span><span class="porte__lumiere" aria-hidden="true"></span></button></div><p class="seuil__invitation" id="invitation" aria-hidden="true"></p></section>
 <section class="hall" id="hall" aria-label="Le Hall des Possibles" aria-hidden="true"><div class="hall__panorama" id="panorama" tabindex="0"><div class="hall__scene" id="scene"><img class="hall__image" src="hall-vivant.webp?v=0.6.2-asme-independant" alt="Le Hall des Possibles, vaste atelier chaleureux de l’Atelier du Seuil, avec son arche végétale, sa cheminée double foyer et son compagnon fidèle." draggable="false"><div class="fire-glow fire-glow--left" aria-hidden="true"></div><div class="fire-glow fire-glow--right" aria-hidden="true"></div><div class="dog-breath" aria-hidden="true"></div>
+<div class="tableau-escalier-final" aria-hidden="true">
+  <img src="tableau-escalier.webp?v=0.7-final" alt="" draggable="false">
+</div>
 <div class="asme-presence asme-habitant" id="asme-presence" aria-hidden="true">
   <img class="asme-corps" src="asmep-corps.png?v=0.6.2-habitant-reel" alt="" draggable="false">
   <img class="asme-tete" src="asmep-tete.png?v=0.6.2-habitant-reel" alt="" draggable="false">
@@ -1152,5 +1313,79 @@
 })();
 </script>
 <!-- /V0.7 — SORTIES PENDANT LECTURE -->
+
+
+<!-- V0.7 — SORTIE LIVRE : CORRECTIF MINIMAL -->
+<script>
+(() => {
+  "use strict";
+
+  const plusTard = document.getElementById("livre-reel-plus-tard");
+  const stage = document.getElementById("livre-reel-stage");
+  const livre = document.getElementById("livre-reel");
+  const visiteur = document.getElementById("livre-reel-visiteur");
+
+  if (!plusTard || !stage || !livre) return;
+
+  const revenirPlusTard = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+
+    // Aucune validation, aucun message.
+    // On revient simplement à la page précédente puis on referme le Livre.
+    livre.classList.add("is-returning-page");
+
+    window.setTimeout(() => {
+      livre.classList.remove(
+        "is-writing",
+        "is-returning-page",
+        "is-turning",
+        "is-deposited",
+        "is-final-turn"
+      );
+
+      if (visiteur) {
+        visiteur.setAttribute("aria-hidden", "true");
+      }
+
+      window.setTimeout(() => {
+        stage.classList.add("is-closing");
+
+        window.setTimeout(() => {
+          stage.classList.remove("is-visible", "is-closing");
+          stage.setAttribute("aria-hidden", "true");
+          document.body.classList.remove("livre-reel-ouvert");
+        }, 980);
+      }, 420);
+
+    }, 820);
+  };
+
+  plusTard.addEventListener("click", revenirPlusTard, true);
+})();
+</script>
+<!-- /V0.7 — SORTIE LIVRE : CORRECTIF MINIMAL -->
+
+
+<!-- V0.7 — SORTIE FLUIDE PAROLE : GARDE-FOU -->
+<script>
+(() => {
+  const quitter = document.getElementById("parole-quitter");
+  const geste = document.getElementById("parole-geste");
+  if (!quitter || !geste) return;
+
+  quitter.addEventListener("click", () => {
+    /* Le gestionnaire existant reste prioritaire.
+       Ce garde-fou garantit seulement que le Hall n'est jamais masqué au retour. */
+    window.setTimeout(() => {
+      if (geste.getAttribute("aria-hidden") === "true") {
+        geste.style.background = "transparent";
+        document.body.classList.remove("parole-ouverte");
+      }
+    }, 2250);
+  }, false);
+})();
+</script>
 
 </body></html>
