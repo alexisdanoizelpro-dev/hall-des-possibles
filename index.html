@@ -187,4 +187,85 @@
   </div>
 </section>
 
+
+<!-- V0.7 — PORTE SECOURS INDÉPENDANTE -->
+<script>
+(() => {
+  "use strict";
+
+  const initPorteSecours = () => {
+    const seuil = document.getElementById("seuil");
+    const porte = document.getElementById("porte");
+    const invitation = document.getElementById("invitation");
+    const hall = document.getElementById("hall");
+    const panorama = document.getElementById("panorama");
+
+    if (!seuil || !porte || !hall || !panorama) return;
+
+    let ouvertureSecoursLancee = false;
+
+    const centrerHallSecours = () => {
+      panorama.scrollLeft = Math.max(
+        0,
+        (panorama.scrollWidth - panorama.clientWidth) / 2
+      );
+    };
+
+    const ouvrirPorteSecours = (event) => {
+      if (ouvertureSecoursLancee) return;
+
+      // Cette ouverture devient prioritaire et indépendante de script.js.
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+
+      ouvertureSecoursLancee = true;
+
+      porte.setAttribute("aria-expanded", "true");
+      porte.setAttribute(
+        "aria-label",
+        "La porte du Hall des Possibles est ouverte"
+      );
+
+      if (invitation) {
+        invitation.textContent = "";
+      }
+
+      seuil.classList.add("is-opening");
+
+      window.setTimeout(() => {
+        seuil.classList.remove("is-opening");
+        seuil.classList.add("is-crossing");
+
+        hall.classList.add("is-visible");
+        hall.setAttribute("aria-hidden", "false");
+
+        window.requestAnimationFrame(centrerHallSecours);
+      }, 1750);
+
+      window.setTimeout(() => {
+        seuil.classList.add("is-gone");
+
+        try {
+          panorama.focus({ preventScroll: true });
+        } catch (_) {
+          panorama.focus();
+        }
+      }, 3000);
+    };
+
+    // Capture = la porte reste fonctionnelle même si un autre script
+    // ajoute plus tard un gestionnaire cassé ou contradictoire.
+    porte.addEventListener("click", ouvrirPorteSecours, true);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initPorteSecours, { once: true });
+  } else {
+    initPorteSecours();
+  }
+})();
+</script>
+<!-- /V0.7 — PORTE SECOURS INDÉPENDANTE -->
+
 </body></html>
