@@ -1466,7 +1466,82 @@
       ecriture.focus({
         preventScroll: true
       });
+/* ==========================================================
+   V0.7 — LIVRE D'OR / OBJET RÉEL — VERSION SEUIL
+   ========================================================== */
+(() => {
+  const hotspot = document.getElementById("livre-or-hotspot");
+  const stage = document.getElementById("livre-reel-stage");
+  const livre = document.getElementById("livre-reel");
+  const laisser = document.getElementById("livre-reel-laisser");
+  const prenom = document.getElementById("livre-reel-prenom");
+  const ecriture = document.getElementById("livre-reel-ecriture");
+  const deposer = document.getElementById("livre-reel-deposer");
+  const plusTard = document.getElementById("livre-reel-plus-tard");
+  const merci = document.getElementById("livre-reel-merci");
+  const visiteur = document.getElementById("livre-reel-visiteur");
 
+  if (!hotspot || !stage || !livre || !laisser || !ecriture || !deposer || !plusTard) return;
+
+  let ouvert = false;
+  let timer = null;
+
+  function ouvrir() {
+    if (ouvert) return;
+    ouvert = true;
+
+    livre.classList.remove("is-writing","is-turning","is-deposited","is-final-turn");
+    document.body.classList.add("livre-reel-ouvert");
+    stage.classList.remove("is-closing");
+    stage.setAttribute("aria-hidden","false");
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => stage.classList.add("is-visible"));
+    });
+  }
+
+  function tournerPage() {
+    if (livre.classList.contains("is-writing")) return;
+
+    livre.classList.add("is-turning");
+
+    window.setTimeout(() => {
+      livre.classList.add("is-writing");
+      livre.classList.remove("is-turning");
+      if (visiteur) visiteur.setAttribute("aria-hidden","false");
+      if (prenom) prenom.focus({preventScroll:true});
+      else ecriture.focus({preventScroll:true});
+    }, 790);
+  }
+
+  function fermerLivre() {
+    if (!ouvert) return;
+
+    livre.classList.remove("is-writing","is-turning","is-deposited","is-final-turn");
+    if (visiteur) visiteur.setAttribute("aria-hidden","true");
+    stage.classList.add("is-closing");
+
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      stage.classList.remove("is-visible","is-closing");
+      stage.setAttribute("aria-hidden","true");
+      document.body.classList.remove("livre-reel-ouvert");
+      ouvert = false;
+    }, 980);
+  }
+
+  function revenirPlusTard() {
+    // Aucun message, aucune relance : le Livre accepte simplement ce choix.
+    fermerLivre();
+  }
+
+  function deposerTrace() {
+    const trace = ecriture.value.trim();
+    const nom = prenom ? prenom.value.trim() : "";
+
+    // Une page vide n'est pas une trace : le Livre attend simplement.
+    if (!trace) {
+      ecriture.focus({preventScroll:true});
       return;
     }
 
@@ -1475,67 +1550,32 @@
         "seuil-livre-or-trace",
         JSON.stringify({
           prenom: nom,
-          trace: trace,
+          trace,
           date: new Date().toISOString()
         })
       );
-    }
+    } catch (_) {}
 
-    catch (_) {}
-
+    livre.classList.add("is-deposited");
     deposer.disabled = true;
     plusTard.disabled = true;
 
-    // Pas de fenêtre de confirmation :
-    // la page retourne simplement
-    // vers celle du Premier Artisan.
-    livre.classList.add(
-      "is-returning-page"
-    );
+    // Le Livre reste ouvert un instant avec son remerciement.
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      livre.classList.add("is-final-turn");
 
-    window.setTimeout(() => {
-
-      livre.classList.remove(
-        "is-writing",
-        "is-returning-page"
-      );
-
-      if (visiteur) {
-        visiteur.setAttribute(
-          "aria-hidden",
-          "true"
-        );
-      }
-
+      // Puis la dernière page finit de tourner avant le retour au Hall.
       window.setTimeout(() => {
-
-        fermerDepuisPageArtisan();
-
+        fermerLivre();
         deposer.disabled = false;
         plusTard.disabled = false;
-
-      }, 700);
-
-    }, 820);
+      }, 900);
+    }, 3000);
   }
 
-  hotspot.addEventListener(
-    "click",
-    ouvrir
-  );
-
-  laisser.addEventListener(
-    "click",
-    tournerVersPageVisiteur
-  );
-
-  deposer.addEventListener(
-    "click",
-    deposerTrace
-  );
-
-  plusTard.addEventListener(
-    "click",
-    revenirPlusTard
-  );
+  hotspot.addEventListener("click", ouvrir);
+  laisser.addEventListener("click", tournerPage);
+  deposer.addEventListener("click", deposerTrace);
+  plusTard.addEventListener("click", revenirPlusTard);
 })();
