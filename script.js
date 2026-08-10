@@ -1152,23 +1152,39 @@
   }
 })();
 
-   V0.7 — LIVRE D'OR
-   Expérience physique : approche, ouverture, page, écriture, retour au Hall.
+   /* ==========================================================
+   V0.7 — LIVRE D'OR / OBJET RÉEL
    ========================================================== */
 (() => {
-  const hotspot = document.getElementById("livre-or-hotspot");
-  const experience = document.getElementById("livre-or-experience");
-  const livre = document.getElementById("livre-or");
-  const trace = document.getElementById("livre-or-trace");
-  const refermer = document.getElementById("livre-or-refermer");
-  const ecriture = document.getElementById("livre-or-ecriture");
-  const pageVisiteur = document.getElementById("livre-or-page-visiteur");
+  const hotspot =
+    document.getElementById("livre-or-hotspot");
+
+  const stage =
+    document.getElementById("livre-reel-stage");
+
+  const livre =
+    document.getElementById("livre-reel");
+
+  const laisser =
+    document.getElementById("livre-reel-laisser");
+
+  const refermer =
+    document.getElementById("livre-reel-refermer");
+
+  const ecriture =
+    document.getElementById("livre-reel-ecriture");
+
+  const visiteur =
+    document.getElementById("livre-reel-visiteur");
+
+  const tourne =
+    document.getElementById("livre-reel-tourne");
 
   if (
     !hotspot ||
-    !experience ||
+    !stage ||
     !livre ||
-    !trace ||
+    !laisser ||
     !refermer ||
     !ecriture
   ) {
@@ -1176,61 +1192,82 @@
   }
 
   let ouvert = false;
-  let fermetureTimer = null;
+  let timer = null;
 
-  const ouvrirLivre = () => {
+  function ouvrir() {
     if (ouvert) return;
 
     ouvert = true;
 
-    document.body.classList.add("livre-or-ouvert");
+    document.body.classList.add(
+      "livre-reel-ouvert"
+    );
 
-    experience.classList.remove("is-closing");
+    stage.classList.remove(
+      "is-closing"
+    );
 
-    experience.setAttribute(
+    stage.setAttribute(
       "aria-hidden",
       "false"
     );
 
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        experience.classList.add(
+        stage.classList.add(
           "is-visible"
         );
       });
     });
-  };
+  }
 
-  const commencerEcriture = () => {
-    livre.classList.add(
-      "is-writing"
-    );
-
-    if (pageVisiteur) {
-      pageVisiteur.setAttribute(
-        "aria-hidden",
-        "false"
-      );
+  function tournerPage() {
+    if (
+      livre.classList.contains(
+        "is-writing"
+      )
+    ) {
+      return;
     }
 
+    livre.classList.add(
+      "is-turning"
+    );
+
     window.setTimeout(() => {
+      livre.classList.add(
+        "is-writing"
+      );
+
+      livre.classList.remove(
+        "is-turning"
+      );
+
+      if (visiteur) {
+        visiteur.setAttribute(
+          "aria-hidden",
+          "false"
+        );
+      }
+
       ecriture.focus({
         preventScroll: true
       });
-    }, 720);
-  };
 
-  const fermerLivre = () => {
+    }, 790);
+  }
+
+  function fermer() {
     if (!ouvert) return;
 
     try {
-      const valeur =
+      const texte =
         ecriture.value.trim();
 
-      if (valeur) {
+      if (texte) {
         localStorage.setItem(
           "seuil-livre-or-trace",
-          valeur
+          texte
         );
       }
     }
@@ -1238,59 +1275,57 @@
     catch (_) {}
 
     livre.classList.remove(
-      "is-writing"
+      "is-writing",
+      "is-turning"
     );
 
-    if (pageVisiteur) {
-      pageVisiteur.setAttribute(
+    if (visiteur) {
+      visiteur.setAttribute(
         "aria-hidden",
         "true"
       );
     }
 
-    experience.classList.add(
+    stage.classList.add(
       "is-closing"
     );
 
-    window.clearTimeout(
-      fermetureTimer
-    );
+    clearTimeout(timer);
 
-    fermetureTimer =
-      window.setTimeout(() => {
+    timer = setTimeout(() => {
 
-        experience.classList.remove(
-          "is-visible",
-          "is-closing"
-        );
+      stage.classList.remove(
+        "is-visible",
+        "is-closing"
+      );
 
-        experience.setAttribute(
-          "aria-hidden",
-          "true"
-        );
+      stage.setAttribute(
+        "aria-hidden",
+        "true"
+      );
 
-        document.body.classList.remove(
-          "livre-or-ouvert"
-        );
+      document.body.classList.remove(
+        "livre-reel-ouvert"
+      );
 
-        ouvert = false;
+      ouvert = false;
 
-      }, 920);
-  };
+    }, 980);
+  }
 
   hotspot.addEventListener(
     "click",
-    ouvrirLivre
+    ouvrir
   );
 
-  trace.addEventListener(
+  laisser.addEventListener(
     "click",
-    commencerEcriture
+    tournerPage
   );
 
   refermer.addEventListener(
     "click",
-    fermerLivre
+    fermer
   );
 
   try {
@@ -1306,3 +1341,5 @@
 
   catch (_) {}
 })();
+
+    
