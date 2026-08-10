@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"><meta name="theme-color" content="#080b08"><meta name="description" content="Franchissez le seuil du Hall des Possibles."><title>Le Hall des Possibles — V0.6.1</title><link rel="preload" href="hall-vivant.webp" as="image"><link rel="stylesheet" href="style.css?v=0.6.3-affichage-pc"><script src="config.js?v=0.6.1-consolidee" defer></script><script src="script.js?v=0.7-livre-version-seuil" defer></script></head>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"><meta name="theme-color" content="#080b08"><meta name="description" content="Franchissez le seuil du Hall des Possibles."><title>Le Hall des Possibles — V0.6.1</title><link rel="preload" href="hall-vivant.webp" as="image"><link rel="stylesheet" href="style.css?v=0.7-livre-retour-seuil"><script src="config.js?v=0.6.1-consolidee" defer></script><script src="script.js?v=0.7-livre-retour-seuil" defer></script></head>
 <body><main class="experience" id="experience">
 <section class="seuil" id="seuil" aria-label="Le seuil du Hall des Possibles"><div class="seuil__ambiance" aria-hidden="true"></div><header class="seuil__texte"><h1 class="seuil__titre">Le Hall des Possibles</h1><p class="seuil__phrase">Chaque histoire commence par une porte qui s'ouvre...<span>Que se cache-t-il derrière la vôtre&nbsp;?</span></p></header><div class="scene-porte"><div class="lueur-hall" aria-hidden="true"></div><div class="encadrement" aria-hidden="true"><div class="encadrement__haut"></div><div class="encadrement__gauche"></div><div class="encadrement__droite"></div></div><button class="porte" id="porte" type="button" aria-label="Ouvrir la porte du Hall des Possibles" aria-expanded="false"><span class="porte__panneau porte__panneau--haut" aria-hidden="true"></span><span class="porte__panneau porte__panneau--bas" aria-hidden="true"></span><span class="porte__poignee" aria-hidden="true"><span class="porte__plaque"></span><span class="porte__bouton"></span></span><span class="porte__lumiere" aria-hidden="true"></span></button></div><p class="seuil__invitation" id="invitation" aria-hidden="true"></p></section>
 <section class="hall" id="hall" aria-label="Le Hall des Possibles" aria-hidden="true"><div class="hall__panorama" id="panorama" tabindex="0"><div class="hall__scene" id="scene"><img class="hall__image" src="hall-vivant.webp?v=0.6.2-asme-independant" alt="Le Hall des Possibles, vaste atelier chaleureux de l’Atelier du Seuil, avec son arche végétale, sa cheminée double foyer et son compagnon fidèle." draggable="false"><div class="fire-glow fire-glow--left" aria-hidden="true"></div><div class="fire-glow fire-glow--right" aria-hidden="true"></div><div class="dog-breath" aria-hidden="true"></div>
@@ -165,7 +165,7 @@
 
       <div class="livre-reel__page-ecriture" id="livre-reel-page-ecriture">
         <p class="livre-reel__invitation-ecriture">
-          Si vous souhaitez laisser une trace de votre passage, cette page est désormais la vôtre.
+          À votre tour, si vous le souhaitez…
         </p>
 
         <label class="livre-reel__label livre-reel__label--prenom" for="livre-reel-prenom">
@@ -182,10 +182,6 @@
           <button class="livre-reel__deposer" id="livre-reel-deposer" type="button">Déposer cette trace</button>
           <button class="livre-reel__plus-tard" id="livre-reel-plus-tard" type="button">Revenir plus tard</button>
         </div>
-
-        <p class="livre-reel__merci" id="livre-reel-merci" aria-live="polite">
-          Le Seuil vous remercie d'avoir laissé une trace de votre passage.
-        </p>
       </div>
     </div>
   </div>

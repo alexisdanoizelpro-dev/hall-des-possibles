@@ -2307,3 +2307,122 @@ body.livre-reel-ouvert .hotspot{pointer-events:none!important}
     width:min(94vw, calc(100svh * 1.5));
   }
 }
+
+
+/* ==========================================================
+   V0.7 — LIVRE D'OR : RETOUR À L'ESPRIT DU SEUIL
+   Après « Laisser une trace », rien ne change sauf la page.
+   ========================================================== */
+
+/* Le changement de page ne doit jamais modifier la scène, la lumière ou le cadrage. */
+.livre-reel.is-writing,
+.livre-reel.is-returning-page{
+  filter:none!important;
+  transform:inherit;
+}
+
+/* Le stage reste exactement celui déjà ouvert : aucune transition de fond supplémentaire. */
+.livre-reel-stage.is-page-transition{
+  background:inherit!important;
+  opacity:1!important;
+}
+
+/* Les deux vues occupent exactement le même Livre. */
+.livre-reel__vue--artisan,
+.livre-reel__vue--visiteur{
+  position:absolute;
+  inset:0;
+  background:transparent!important;
+}
+
+/* La page visiteur apparaît uniquement à la fin du geste de page tournée. */
+.livre-reel__vue--visiteur{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:none!important;
+}
+.livre-reel.is-writing .livre-reel__vue--visiteur{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+}
+
+/* La première page reste le même objet jusqu'à la moitié de la rotation. */
+.livre-reel__vue--artisan{
+  opacity:1;
+  visibility:visible;
+}
+.livre-reel.is-writing .livre-reel__vue--artisan{
+  opacity:0;
+  visibility:hidden;
+}
+
+/* Une seule feuille physique traverse le Livre, sans panneau intermédiaire. */
+.livre-reel__tourne{
+  position:absolute;
+  left:25%;
+  top:6.5%;
+  width:58%;
+  height:87%;
+  opacity:0;
+  pointer-events:none;
+  transform-origin:95% 50%;
+  border-radius:3% 2% 2% 4%;
+  background:
+    repeating-linear-gradient(0deg,rgba(80,55,30,.018) 0 1px,transparent 1px 4px),
+    linear-gradient(100deg,#c9ad78,#e3ce9d 45%,#c4a56f);
+  box-shadow:
+    inset 15px 0 24px rgba(67,43,24,.16),
+    0 5px 14px rgba(0,0,0,.13);
+  z-index:8;
+}
+
+.livre-reel.is-turning .livre-reel__tourne{
+  opacity:1;
+  animation:livre-page-vers-visiteur .84s cubic-bezier(.34,.72,.16,1) forwards;
+}
+
+.livre-reel.is-returning-page .livre-reel__tourne{
+  opacity:1;
+  animation:livre-page-vers-artisan .84s cubic-bezier(.34,.72,.16,1) forwards;
+}
+
+@keyframes livre-page-vers-visiteur{
+  0%{transform:rotateY(0deg);filter:brightness(1)}
+  50%{transform:rotateY(-88deg);filter:brightness(.82)}
+  100%{transform:rotateY(-178deg);filter:brightness(.96)}
+}
+
+@keyframes livre-page-vers-artisan{
+  0%{transform:rotateY(-178deg);filter:brightness(.96)}
+  50%{transform:rotateY(-88deg);filter:brightness(.82)}
+  100%{transform:rotateY(0deg);filter:brightness(1)}
+}
+
+/* La page d'écriture appartient visuellement au papier du Livre. */
+.livre-reel__page-ecriture{
+  background:transparent!important;
+  box-shadow:none!important;
+}
+
+/* Champs sans aucune enveloppe d'interface. */
+.livre-reel__prenom,
+.livre-reel__ecriture{
+  background-color:transparent!important;
+  box-shadow:none!important;
+  border-radius:0!important;
+}
+
+/* Les deux choix restent de simples inscriptions au bas de la page. */
+.livre-reel__deposer,
+.livre-reel__plus-tard{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+
+/* Plus aucun message de confirmation superposé. */
+.livre-reel__merci{
+  display:none!important;
+}
