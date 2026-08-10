@@ -827,4 +827,125 @@
 
 </script>
 <!-- /V0.7 — LOGIQUE DU HALL INTÉGRÉE / SECOURS COMPLET -->
+
+<!-- V0.7 — CORRECTIF SORTIES LIVRE / PAROLE -->
+<script>
+(() => {
+  "use strict";
+
+  const paroleGeste = document.getElementById("parole-geste");
+  const paroleLaisser = document.getElementById("parole-laisser");
+
+  const livreStage = document.getElementById("livre-reel-stage");
+  const livre = document.getElementById("livre-reel");
+  const livrePlusTard = document.getElementById("livre-reel-plus-tard");
+  const livreVisiteur = document.getElementById("livre-reel-visiteur");
+
+  const fermerParoleSecurite = (event) => {
+    if (!paroleGeste) return;
+
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+    }
+
+    if (paroleGeste.getAttribute("aria-hidden") === "true") return;
+
+    paroleGeste.classList.add("is-returning");
+    paroleGeste.classList.remove("is-inviting", "is-accepted", "is-unfolded");
+
+    window.setTimeout(() => {
+      paroleGeste.classList.remove("is-paper-out");
+    }, 500);
+
+    window.setTimeout(() => {
+      paroleGeste.classList.remove("is-opened");
+    }, 900);
+
+    window.setTimeout(() => {
+      paroleGeste.classList.remove("is-unsealed", "is-centered");
+    }, 1250);
+
+    window.setTimeout(() => {
+      paroleGeste.classList.remove("is-present");
+    }, 1850);
+
+    window.setTimeout(() => {
+      paroleGeste.className = "parole-geste";
+      paroleGeste.setAttribute("aria-hidden", "true");
+    }, 2200);
+  };
+
+  const fermerLivreSecurite = (event) => {
+    if (!livreStage || !livre) return;
+
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+    }
+
+    if (livreStage.getAttribute("aria-hidden") === "true") return;
+
+    // Si le Visiteur est sur sa page, elle revient d'abord au Premier Artisan.
+    if (livre.classList.contains("is-writing")) {
+      livre.classList.add("is-returning-page");
+
+      window.setTimeout(() => {
+        livre.classList.remove(
+          "is-writing",
+          "is-returning-page",
+          "is-turning",
+          "is-deposited",
+          "is-final-turn"
+        );
+
+        if (livreVisiteur) {
+          livreVisiteur.setAttribute("aria-hidden", "true");
+        }
+
+        window.setTimeout(() => {
+          livreStage.classList.add("is-closing");
+
+          window.setTimeout(() => {
+            livreStage.classList.remove("is-visible", "is-closing");
+            livreStage.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("livre-reel-ouvert");
+          }, 980);
+        }, 520);
+      }, 820);
+
+      return;
+    }
+
+    // Sinon le Livre se referme directement.
+    livre.classList.remove(
+      "is-writing",
+      "is-returning-page",
+      "is-turning",
+      "is-deposited",
+      "is-final-turn"
+    );
+
+    livreStage.classList.add("is-closing");
+
+    window.setTimeout(() => {
+      livreStage.classList.remove("is-visible", "is-closing");
+      livreStage.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("livre-reel-ouvert");
+    }, 980);
+  };
+
+  if (paroleLaisser) {
+    paroleLaisser.addEventListener("click", fermerParoleSecurite, true);
+  }
+
+  if (livrePlusTard) {
+    livrePlusTard.addEventListener("click", fermerLivreSecurite, true);
+  }
+})();
+</script>
+<!-- /V0.7 — CORRECTIF SORTIES LIVRE / PAROLE -->
+
 </body></html>
