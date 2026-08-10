@@ -249,6 +249,144 @@
 }
 </style>
 
+
+<style>
+/* ==========================================================
+   STABILISATION — 4 CORRECTIONS UNIQUEMENT
+   ========================================================== */
+
+/* 1. LIVRE D'OR — feuille claire, lisible, sans effet de fenêtre sombre. */
+#livre-reel-stage{
+  overflow:hidden!important;
+}
+#livre-reel{
+  max-width:min(96vw, 1500px)!important;
+  max-height:94vh!important;
+}
+#livre-reel .livre-reel__vue{
+  max-width:100%!important;
+  max-height:94vh!important;
+}
+#livre-reel .livre-reel__vue > img{
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  max-height:94vh!important;
+  object-fit:contain!important;
+}
+#livre-reel .livre-reel__page-ecriture{
+  color:#21170f!important;
+  text-shadow:none!important;
+  background:rgba(238,215,164,.10)!important;
+}
+#livre-reel .livre-reel__invitation-ecriture,
+#livre-reel .livre-reel__label,
+#livre-reel .livre-reel__prenom,
+#livre-reel .livre-reel__ecriture,
+#livre-reel .livre-reel__deposer,
+#livre-reel .livre-reel__plus-tard{
+  color:#21170f!important;
+  text-shadow:none!important;
+}
+#livre-reel .livre-reel__prenom,
+#livre-reel .livre-reel__ecriture{
+  background:rgba(250,239,207,.18)!important;
+  border-color:rgba(70,46,27,.34)!important;
+}
+#livre-reel .livre-reel__choix{
+  background:transparent!important;
+  box-shadow:none!important;
+}
+
+/* 2. ORDINATEUR — toutes les expériences restent dans le viewport.
+   Mobile inchangé. */
+@media (min-width: 901px){
+  .parole-geste__objet,
+  .table-idees__carte,
+  .coupelle__carte,
+  .dialogue__carte{
+    max-width:min(94vw, 1180px)!important;
+    max-height:92vh!important;
+    box-sizing:border-box!important;
+  }
+  .table-idees,
+  .coupelle,
+  .dialogue,
+  .parole-geste,
+  #livre-reel-stage{
+    overflow:auto!important;
+    overscroll-behavior:contain;
+  }
+  .table-idees__carte,
+  .coupelle__carte,
+  .dialogue__carte{
+    margin:auto!important;
+  }
+}
+
+/* 3. ASMEP — mouvements infimes et autonomes. */
+#asme-presence .asme-corps{
+  transform-origin:50% 82%;
+  animation:asme-respire 5.8s ease-in-out infinite!important;
+}
+#asme-presence .asme-tete{
+  transform-origin:52% 72%;
+  animation:asme-cligne 9.7s ease-in-out infinite!important;
+}
+#asme-presence.is-ear .asme-tete{
+  animation:asme-oreille 1.25s ease-in-out 1!important;
+}
+#asme-presence.is-look .asme-tete{
+  animation:asme-regard 4.2s ease-in-out 1!important;
+}
+#asme-presence.is-sigh .asme-corps{
+  animation:asme-soupir 2.6s ease-in-out 1!important;
+}
+#asme-presence.is-shift{
+  animation:asme-position 3.3s ease-in-out 1!important;
+}
+@keyframes asme-respire{
+  0%,100%{transform:scaleY(1) translateY(0)}
+  50%{transform:scaleY(1.008) translateY(-.08%)}
+}
+@keyframes asme-cligne{
+  0%,46%,49%,100%{filter:none}
+  47%,48%{filter:brightness(.82)}
+}
+@keyframes asme-oreille{
+  0%,100%{transform:rotate(0)}
+  35%{transform:rotate(-.7deg)}
+  58%{transform:rotate(.35deg)}
+}
+@keyframes asme-regard{
+  0%,100%{transform:rotate(0) translate(0,0)}
+  32%,68%{transform:rotate(-1.1deg) translate(-.10%,-.12%)}
+}
+@keyframes asme-soupir{
+  0%,100%{transform:scaleY(1)}
+  45%{transform:scaleY(1.011)}
+  72%{transform:scaleY(.998)}
+}
+@keyframes asme-position{
+  0%,100%{transform:translate(0,0)}
+  45%,72%{transform:translate(.12%,-.05%)}
+}
+@media (prefers-reduced-motion:reduce){
+  #asme-presence .asme-corps,
+  #asme-presence .asme-tete,
+  #asme-presence{animation:none!important}
+}
+
+/* 4. TABLEAU — dans la montée de l'escalier, plus près de l'arche. */
+.tableau-escalier-final{
+  left:22.2%!important;
+  top:25.5%!important;
+  width:4.25%!important;
+  transform:rotate(-1deg)!important;
+  opacity:.76!important;
+}
+</style>
+
 </head>
 <body><main class="experience" id="experience">
 <section class="seuil" id="seuil" aria-label="Le seuil du Hall des Possibles"><div class="seuil__ambiance" aria-hidden="true"></div><header class="seuil__texte"><h1 class="seuil__titre">Le Hall des Possibles</h1><p class="seuil__phrase">Chaque histoire commence par une porte qui s'ouvre...<span>Que se cache-t-il derrière la vôtre&nbsp;?</span></p></header><div class="scene-porte"><div class="lueur-hall" aria-hidden="true"></div><div class="encadrement" aria-hidden="true"><div class="encadrement__haut"></div><div class="encadrement__gauche"></div><div class="encadrement__droite"></div></div><button class="porte" id="porte" type="button" aria-label="Ouvrir la porte du Hall des Possibles" aria-expanded="false"><span class="porte__panneau porte__panneau--haut" aria-hidden="true"></span><span class="porte__panneau porte__panneau--bas" aria-hidden="true"></span><span class="porte__poignee" aria-hidden="true"><span class="porte__plaque"></span><span class="porte__bouton"></span></span><span class="porte__lumiere" aria-hidden="true"></span></button></div><p class="seuil__invitation" id="invitation" aria-hidden="true"></p></section>
@@ -952,7 +1090,9 @@
   let timer = null;
 
   function ouvrir() {
-    if (ouvert) return;
+    /* Réouverture fiable : l'état réel du Livre est celui de la scène,
+       même après une fermeture déclenchée par un garde-fou de sortie. */
+    if (stage.getAttribute("aria-hidden") === "false" && stage.classList.contains("is-visible")) return;
     ouvert = true;
 
     livre.classList.remove(
@@ -1385,6 +1525,31 @@
       }
     }, 2250);
   }, false);
+})();
+</script>
+
+
+<script>
+/* Livre d'Or — synchronisation de fermeture/réouverture, sans nouvelle fonctionnalité. */
+(() => {
+  const stage = document.getElementById("livre-reel-stage");
+  const livre = document.getElementById("livre-reel");
+  const visiteur = document.getElementById("livre-reel-visiteur");
+  if (!stage || !livre) return;
+
+  const normaliserFerme = () => {
+    if (stage.getAttribute("aria-hidden") !== "true") return;
+    stage.classList.remove("is-visible","is-closing");
+    livre.classList.remove("is-writing","is-turning","is-returning-page","is-deposited","is-final-turn");
+    if (visiteur) visiteur.setAttribute("aria-hidden","true");
+    document.body.classList.remove("livre-reel-ouvert");
+    stage.style.pointerEvents = "";
+  };
+
+  new MutationObserver(normaliserFerme).observe(stage, {
+    attributes:true,
+    attributeFilter:["aria-hidden"]
+  });
 })();
 </script>
 
