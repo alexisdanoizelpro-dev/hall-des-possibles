@@ -1088,9 +1088,9 @@
     const programmerGesteAsme = () => {
 
       const attente =
-        14000 +
+        35000 +
         Math.random() *
-        28000;
+        60000;
 
       window.setTimeout(
         () => {
@@ -1125,9 +1125,9 @@
 
     window.setTimeout(
       programmerGesteAsme,
-      9000 +
+      20000 +
       Math.random() *
-      12000
+      30000
     );
   }
 
