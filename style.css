@@ -1864,231 +1864,157 @@ button { font: inherit; }
 
 
 /* ==========================================================
-   V0.7 — LIVRE D'OR
-   Un objet du Hall qui vient au regard, jamais une fenêtre de site.
+   V0.7 — LIVRE D'OR / OBJET RÉEL
+   L'illustration validée est le Livre. Aucun panneau HTML n'est dessiné.
    ========================================================== */
+body.livre-reel-ouvert{overflow:hidden}
 
-body.livre-or-ouvert{overflow:hidden}
-
-.livre-or-experience{
-  position:fixed;
-  inset:0;
-  z-index:120;
-  display:grid;
-  place-items:center;
-  pointer-events:none;
-  opacity:0;
+.livre-reel-stage{
+  position:fixed; inset:0; z-index:160;
+  opacity:0; pointer-events:none;
+  display:grid; place-items:center;
+  background:rgba(7,5,3,0);
+  transition:opacity .42s ease, background 1s ease;
   perspective:1800px;
-  background:rgba(12,8,5,0);
-  transition:opacity .35s ease, background .8s ease;
 }
-.livre-or-experience.is-visible{
-  pointer-events:auto;
-  opacity:1;
-  background:rgba(12,8,5,.34);
+.livre-reel-stage.is-visible{
+  opacity:1; pointer-events:auto;
+  background:rgba(7,5,3,.88);
 }
 
-.livre-or{
+.livre-reel{
   position:relative;
-  width:min(86vw,920px);
-  height:min(78vh,650px);
-  transform:translateY(14vh) scale(.22) rotateX(8deg);
-  transform-origin:50% 82%;
-  filter:drop-shadow(0 22px 35px rgba(0,0,0,.42));
-  transition:transform 1s cubic-bezier(.2,.72,.22,1);
+  width:min(100vw,1536px);
+  aspect-ratio:3/2;
+  max-height:100vh;
+  transform:scale(.28) translate(-58%,34%);
+  transform-origin:24% 78%;
+  transition:transform 1.05s cubic-bezier(.18,.76,.18,1),filter .8s ease;
+  filter:drop-shadow(0 24px 42px rgba(0,0,0,.48));
 }
-.livre-or-experience.is-visible .livre-or{
-  transform:translateY(0) scale(1) rotateX(0);
-}
-
-.livre-or__couverture{
-  position:absolute;
-  inset:0;
-  border-radius:14px 18px 18px 14px;
-  background:
-    radial-gradient(circle at 22% 18%,rgba(190,133,74,.10),transparent 23%),
-    repeating-linear-gradient(97deg,rgba(255,255,255,.018) 0 1px,transparent 1px 4px),
-    linear-gradient(135deg,#51301f,#2e1b13 58%,#21130e);
-  border:1px solid rgba(28,15,10,.85);
-  box-shadow:
-    inset 0 0 0 5px rgba(112,69,38,.18),
-    inset 0 0 35px rgba(0,0,0,.42);
-  transform-origin:4% 50%;
-  transition:transform .72s .28s cubic-bezier(.25,.75,.2,1);
-}
-.livre-or-experience.is-visible .livre-or__couverture{
-  transform:rotateY(-168deg);
-}
-.livre-or__titre{
-  position:absolute;
-  inset:0;
-  display:grid;
-  place-items:center;
-  font-family:Georgia,serif;
-  font-size:clamp(20px,3vw,38px);
-  letter-spacing:.08em;
-  color:rgba(197,151,90,.52);
-  text-shadow:0 1px 0 rgba(0,0,0,.7);
+.livre-reel-stage.is-visible .livre-reel{
+  transform:scale(1) translate(0,0);
 }
 
-.livre-or__pages{
-  position:absolute;
-  inset:2.5% 2.2% 2.8% 3.2%;
-  border-radius:7px 13px 13px 7px;
-  background:#d6c08f;
-  box-shadow:
-    0 5px 0 #a98c5e,
-    0 9px 0 #806543,
-    inset 0 0 32px rgba(83,55,28,.18);
+.livre-reel__vue{
+  position:absolute; inset:0;
   overflow:hidden;
 }
-
-.livre-or__feuille{
-  position:absolute;
-  inset:0;
-  transform-style:preserve-3d;
-  transform-origin:left center;
+.livre-reel__vue img{
+  width:100%; height:100%; display:block; object-fit:contain;
+  user-select:none; pointer-events:none;
 }
-.livre-or__papier{
-  position:absolute;
-  inset:0;
-  padding:clamp(38px,6vw,76px) clamp(34px,7vw,92px) clamp(28px,5vw,58px);
-  background:
-    radial-gradient(circle at 18% 24%,rgba(105,71,38,.055) 0 1px,transparent 2px),
-    radial-gradient(circle at 73% 68%,rgba(105,71,38,.045) 0 1px,transparent 2px),
-    repeating-linear-gradient(0deg,rgba(87,57,30,.018) 0 1px,transparent 1px 4px),
-    linear-gradient(100deg,#d7c18f,#ead9ad 42%,#e1cc9d 72%,#cbb17e);
-  box-shadow:inset 18px 0 24px rgba(81,53,28,.13), inset -9px 0 18px rgba(81,53,28,.08);
+.livre-reel__vue--visiteur{
+  opacity:0; pointer-events:none;
+  transition:opacity .22s ease .42s;
 }
+.livre-reel.is-writing .livre-reel__vue--artisan{opacity:0}
+.livre-reel.is-writing .livre-reel__vue--visiteur{opacity:1;pointer-events:auto}
 
-.livre-or__texte{
-  max-width:720px;
-  margin:4% auto 0;
-  color:#2d2119;
+.livre-reel__laisser,
+.livre-reel__refermer{
+  position:absolute;
+  border:0; background:transparent;
+  color:rgba(38,28,21,.76);
   font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;
-  font-size:clamp(17px,2.1vw,27px);
-  line-height:1.75;
-  transform:rotate(-.35deg);
-  text-shadow:0 .25px 0 rgba(0,0,0,.18);
-}
-.livre-or__laisser{
-  font-weight:800;
-  letter-spacing:.015em;
-  text-shadow:.35px .25px 0 #24170f;
-}
-.livre-or__tache{
-  position:absolute;
-  left:59%;
-  top:52%;
-  width:13px;height:9px;
-  border-radius:52% 48% 55% 45%;
-  background:rgba(39,28,22,.48);
-  box-shadow:6px 5px 0 -4px rgba(39,28,22,.38),-5px 7px 0 -4px rgba(39,28,22,.28);
-  transform:rotate(17deg);
-  filter:blur(.25px);
-}
-
-.livre-or__trace,
-.livre-or__refermer{
-  position:absolute;
-  left:50%;
-  bottom:7%;
-  transform:translateX(-50%);
-  border:0;
-  padding:4px 2px;
-  background:transparent;
-  color:rgba(55,38,27,.72);
-  font-family:Georgia,serif;
   font-style:italic;
-  font-size:clamp(14px,1.6vw,20px);
   cursor:pointer;
+  padding:3px 5px;
+  text-shadow:0 .3px 0 rgba(0,0,0,.18);
 }
-.livre-or__trace::after,
-.livre-or__refermer::after{
-  content:"";
+.livre-reel__laisser{
+  left:52%; top:89%;
+  transform:translateX(-50%) rotate(-1deg);
+  font-size:clamp(13px,1.35vw,20px);
+}
+.livre-reel__refermer{
+  left:51%; top:88%;
+  transform:translateX(-50%) rotate(-.8deg);
+  font-size:clamp(13px,1.25vw,19px);
+}
+.livre-reel__laisser::after,
+.livre-reel__refermer::after{
+  content:"";position:absolute;left:50%;right:50%;bottom:0;height:1px;
+  background:currentColor;transition:left .22s ease,right .22s ease;
+}
+.livre-reel__laisser:hover::after,.livre-reel__laisser:focus-visible::after,
+.livre-reel__refermer:hover::after,.livre-reel__refermer:focus-visible::after{left:3px;right:3px}
+
+.livre-reel__ecriture{
   position:absolute;
-  left:50%;right:50%;bottom:0;
-  height:1px;
-  background:currentColor;
-  transition:left .25s ease,right .25s ease;
-}
-.livre-or__trace:hover::after,
-.livre-or__trace:focus-visible::after,
-.livre-or__refermer:hover::after,
-.livre-or__refermer:focus-visible::after{
-  left:0;right:0;
-}
-
-.livre-or__feuille--visiteur{
-  opacity:0;
-  pointer-events:none;
-  transform:rotateY(7deg);
-  transition:opacity .18s .35s ease;
-}
-.livre-or.is-writing .livre-or__feuille--artisan{
-  animation:livre-tourne-page .72s cubic-bezier(.3,.72,.22,1) forwards;
-}
-.livre-or.is-writing .livre-or__feuille--visiteur{
-  opacity:1;
-  pointer-events:auto;
-}
-@keyframes livre-tourne-page{
-  0%{transform:rotateY(0)}
-  100%{transform:rotateY(-178deg)}
-}
-
-.livre-or__ecriture{
-  display:block;
-  width:100%;
-  height:76%;
-  resize:none;
-  border:0;
-  outline:0;
-  padding:0;
+  left:25.2%; top:13.5%;
+  width:52.5%; height:68%;
+  border:0; outline:0; resize:none;
+  padding:1.5% 2%;
   background:transparent;
-  color:#2c2119;
-  caret-color:#2c2119;
+  color:#241b15;
+  caret-color:#241b15;
   font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;
-  font-size:clamp(17px,2vw,25px);
-  line-height:1.75;
+  font-size:clamp(16px,2vw,30px);
+  line-height:1.72;
+  transform:rotate(-.25deg);
   overflow:auto;
 }
-.livre-or__ecriture::placeholder{color:rgba(62,45,32,.30)}
 
+/* Une feuille réelle traverse le livre pendant le changement de page. */
+.livre-reel__tourne{
+  position:absolute;
+  left:25%; top:6.5%;
+  width:58%; height:87%;
+  opacity:0; pointer-events:none;
+  transform-origin:95% 50%;
+  border-radius:3% 2% 2% 4%;
+  background:
+    repeating-linear-gradient(0deg,rgba(80,55,30,.018) 0 1px,transparent 1px 4px),
+    linear-gradient(100deg,#c9ad78,#e3ce9d 45%,#c4a56f);
+  box-shadow:inset 15px 0 24px rgba(67,43,24,.18),0 8px 22px rgba(0,0,0,.18);
+}
+.livre-reel.is-turning .livre-reel__tourne{
+  opacity:1;
+  animation:livre-reel-page .82s cubic-bezier(.34,.72,.16,1) forwards;
+}
+@keyframes livre-reel-page{
+  0%{transform:rotateY(0deg) skewY(0);filter:brightness(1)}
+  48%{transform:rotateY(-86deg) skewY(-1deg);filter:brightness(.76)}
+  100%{transform:rotateY(-178deg) skewY(0);filter:brightness(.94)}
+}
+
+/* La caméra s'approche du pupitre avant que le Livre prenne tout le regard. */
 .hall__scene{
-  transition:transform 1s cubic-bezier(.2,.72,.22,1),filter .7s ease;
-  transform-origin:24% 74%;
+  transition:transform 1s cubic-bezier(.18,.76,.18,1),filter .85s ease,opacity .85s ease;
+  transform-origin:18% 78%;
 }
-body.livre-or-ouvert .hall__scene{
-  transform:scale(1.16) translate(4%,-4%);
-  filter:brightness(.72);
+body.livre-reel-ouvert .hall__scene{
+  transform:scale(1.22) translate(7%,-6%);
+  filter:brightness(.58) blur(.7px);
+  opacity:.28;
 }
-body.livre-or-ouvert .hotspot,
-body.livre-or-ouvert .parole-stage,
-body.livre-or-ouvert .table-idees-stage,
-body.livre-or-ouvert .coupelle-stage{
-  pointer-events:none!important;
-}
+body.livre-reel-ouvert .hotspot{pointer-events:none!important}
 
-.livre-or-experience.is-closing{
-  background:rgba(12,8,5,0);
+.livre-reel-stage.is-closing{
+  background:rgba(7,5,3,0);
 }
-.livre-or-experience.is-closing .livre-or{
-  transform:translateY(14vh) scale(.22) rotateX(8deg);
-  transition-duration:.9s;
-}
-.livre-or-experience.is-closing .livre-or__couverture{
-  transform:rotateY(0deg);
-  transition-delay:0s;
+.livre-reel-stage.is-closing .livre-reel{
+  transform:scale(.28) translate(-58%,34%);
+  transition-duration:.95s;
 }
 
 @media(max-width:700px){
-  .livre-or{width:94vw;height:min(72vh,620px)}
-  .livre-or__papier{padding:42px 28px 34px}
-  .livre-or__texte{font-size:clamp(16px,4.6vw,21px);line-height:1.65;margin-top:2%}
-  .livre-or__tache{left:63%;top:56%}
-  body.livre-or-ouvert .hall__scene{transform:scale(1.10) translate(1%,-2%)}
+  .livre-reel{
+    width:153vw;
+    max-height:none;
+  }
+  .livre-reel__laisser{left:51%;top:88.5%;font-size:13px}
+  .livre-reel__refermer{font-size:13px}
+  .livre-reel__ecriture{
+    left:25.5%;top:14%;width:52%;height:66%;
+    font-size:clamp(15px,4.1vw,20px);
+  }
+  body.livre-reel-ouvert .hall__scene{
+    transform:scale(1.14) translate(3%,-3%);
+  }
 }
 @media(prefers-reduced-motion:reduce){
-  .livre-or,.livre-or__couverture,.livre-or__feuille,.hall__scene{transition-duration:.01ms!important;animation-duration:.01ms!important}
+  .livre-reel-stage,.livre-reel,.hall__scene{transition-duration:.01ms!important}
+  .livre-reel.is-turning .livre-reel__tourne{animation-duration:.01ms!important}
 }

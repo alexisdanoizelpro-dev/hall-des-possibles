@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"><meta name="theme-color" content="#080b08"><meta name="description" content="Franchissez le seuil du Hall des Possibles."><title>Le Hall des Possibles — V0.6.1</title><link rel="preload" href="hall-vivant.webp" as="image"><link rel="stylesheet" href="style.css?v=0.7-livre-or"><script src="config.js?v=0.6.1-consolidee" defer></script><script src="script.js?v=0.7-livre-or" defer></script></head>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"><meta name="theme-color" content="#080b08"><meta name="description" content="Franchissez le seuil du Hall des Possibles."><title>Le Hall des Possibles — V0.6.1</title><link rel="preload" href="hall-vivant.webp" as="image"><link rel="stylesheet" href="style.css?v=0.7-livre-objet-reel"><script src="config.js?v=0.6.1-consolidee" defer></script><script src="script.js?v=0.7-livre-objet-reel" defer></script></head>
 <body><main class="experience" id="experience">
 <section class="seuil" id="seuil" aria-label="Le seuil du Hall des Possibles"><div class="seuil__ambiance" aria-hidden="true"></div><header class="seuil__texte"><h1 class="seuil__titre">Le Hall des Possibles</h1><p class="seuil__phrase">Chaque histoire commence par une porte qui s'ouvre...<span>Que se cache-t-il derrière la vôtre&nbsp;?</span></p></header><div class="scene-porte"><div class="lueur-hall" aria-hidden="true"></div><div class="encadrement" aria-hidden="true"><div class="encadrement__haut"></div><div class="encadrement__gauche"></div><div class="encadrement__droite"></div></div><button class="porte" id="porte" type="button" aria-label="Ouvrir la porte du Hall des Possibles" aria-expanded="false"><span class="porte__panneau porte__panneau--haut" aria-hidden="true"></span><span class="porte__panneau porte__panneau--bas" aria-hidden="true"></span><span class="porte__poignee" aria-hidden="true"><span class="porte__plaque"></span><span class="porte__bouton"></span></span><span class="porte__lumiere" aria-hidden="true"></span></button></div><p class="seuil__invitation" id="invitation" aria-hidden="true"></p></section>
 <section class="hall" id="hall" aria-label="Le Hall des Possibles" aria-hidden="true"><div class="hall__panorama" id="panorama" tabindex="0"><div class="hall__scene" id="scene"><img class="hall__image" src="hall-vivant.webp?v=0.6.2-asme-independant" alt="Le Hall des Possibles, vaste atelier chaleureux de l’Atelier du Seuil, avec son arche végétale, sa cheminée double foyer et son compagnon fidèle." draggable="false"><div class="fire-glow fire-glow--left" aria-hidden="true"></div><div class="fire-glow fire-glow--right" aria-hidden="true"></div><div class="dog-breath" aria-hidden="true"></div>
@@ -150,30 +150,20 @@
 </article>
 </div>
 </main>
-<!-- V0.7 — Le Livre d'Or n'est pas une fenêtre : il s'approche du regard. -->
-<section class="livre-or-experience" id="livre-or-experience" aria-hidden="true">
-  <div class="livre-or" id="livre-or">
-    <div class="livre-or__couverture" aria-hidden="true">
-      <span class="livre-or__titre">Livre d’Or</span>
+<!-- V0.7 — Livre d'Or : l'objet réel validé devient l'expérience. -->
+<section class="livre-reel-stage" id="livre-reel-stage" aria-hidden="true">
+  <div class="livre-reel" id="livre-reel">
+    <div class="livre-reel__vue livre-reel__vue--artisan" id="livre-reel-artisan">
+      <img src="livre-or-premier-artisan.webp?v=0.7-objet-reel" alt="Livre d'Or ouvert sur la page du Premier Artisan">
+      <button class="livre-reel__laisser" id="livre-reel-laisser" type="button">Laisser une trace</button>
     </div>
 
-    <div class="livre-or__pages">
-      <article class="livre-or__feuille livre-or__feuille--artisan" id="livre-or-page-artisan">
-        <div class="livre-or__papier">
-          <p class="livre-or__texte">
-            Ça fait tellement longtemps que j’avance ici, je ne me vois pas comme Travailleur mais comme Chanceux, j’ai adoré donné vie aux idées et cela me fait quelque chose de <span class="livre-or__laisser">laisser</span> la place, mais je commence à comprendre cet endroit, et chacun y est à sa place ... Même moi, alors c’est dire...
-          </p>
-          <span class="livre-or__tache" aria-hidden="true"></span>
-          <button class="livre-or__trace" id="livre-or-trace" type="button">Laisser une trace</button>
-        </div>
-      </article>
+    <div class="livre-reel__tourne" id="livre-reel-tourne" aria-hidden="true"></div>
 
-      <article class="livre-or__feuille livre-or__feuille--visiteur" id="livre-or-page-visiteur" aria-hidden="true">
-        <div class="livre-or__papier">
-          <textarea id="livre-or-ecriture" class="livre-or__ecriture" aria-label="Écrire dans le Livre d’Or" placeholder="Votre trace…"></textarea>
-          <button class="livre-or__refermer" id="livre-or-refermer" type="button">Refermer le Livre</button>
-        </div>
-      </article>
+    <div class="livre-reel__vue livre-reel__vue--visiteur" id="livre-reel-visiteur" aria-hidden="true">
+      <img src="livre-or-page-visiteur.webp?v=0.7-objet-reel" alt="">
+      <textarea class="livre-reel__ecriture" id="livre-reel-ecriture" aria-label="Écrire dans le Livre d’Or" placeholder=""></textarea>
+      <button class="livre-reel__refermer" id="livre-reel-refermer" type="button">Refermer le Livre</button>
     </div>
   </div>
 </section>
