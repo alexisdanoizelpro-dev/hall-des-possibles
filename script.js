@@ -1289,6 +1289,135 @@
 
     if (visiteur) {
       visiteur.setAttribute(
+
+        /* ==========================================================
+   V0.7 — LIVRE D'OR / OBJET RÉEL — RETOUR À L'ESPRIT DU SEUIL
+   ========================================================== */
+(() => {
+  const hotspot = document.getElementById("livre-or-hotspot");
+  const stage = document.getElementById("livre-reel-stage");
+  const livre = document.getElementById("livre-reel");
+  const laisser = document.getElementById("livre-reel-laisser");
+  const prenom = document.getElementById("livre-reel-prenom");
+  const ecriture = document.getElementById("livre-reel-ecriture");
+  const deposer = document.getElementById("livre-reel-deposer");
+  const plusTard = document.getElementById("livre-reel-plus-tard");
+  const visiteur = document.getElementById("livre-reel-visiteur");
+
+  if (
+    !hotspot ||
+    !stage ||
+    !livre ||
+    !laisser ||
+    !ecriture ||
+    !deposer ||
+    !plusTard
+  ) {
+    return;
+  }
+
+  let ouvert = false;
+  let timer = null;
+
+  function ouvrir() {
+    if (ouvert) return;
+
+    ouvert = true;
+
+    livre.classList.remove(
+      "is-writing",
+      "is-turning",
+      "is-returning-page",
+      "is-deposited",
+      "is-final-turn"
+    );
+
+    if (visiteur) {
+      visiteur.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+    }
+
+    document.body.classList.add(
+      "livre-reel-ouvert"
+    );
+
+    stage.classList.remove(
+      "is-closing"
+    );
+
+    stage.setAttribute(
+      "aria-hidden",
+      "false"
+    );
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        stage.classList.add(
+          "is-visible"
+        );
+      });
+    });
+  }
+
+  function tournerVersPageVisiteur() {
+    if (
+      livre.classList.contains("is-writing") ||
+      livre.classList.contains("is-turning")
+    ) {
+      return;
+    }
+
+    livre.classList.add(
+      "is-turning"
+    );
+
+    window.setTimeout(() => {
+
+      livre.classList.add(
+        "is-writing"
+      );
+
+      livre.classList.remove(
+        "is-turning"
+      );
+
+      if (visiteur) {
+        visiteur.setAttribute(
+          "aria-hidden",
+          "false"
+        );
+      }
+
+      if (prenom) {
+        prenom.focus({
+          preventScroll: true
+        });
+      }
+
+      else {
+        ecriture.focus({
+          preventScroll: true
+        });
+      }
+
+    }, 820);
+  }
+
+  function fermerDepuisPageArtisan() {
+    if (!ouvert) return;
+
+    livre.classList.remove(
+      "is-writing",
+      "is-turning",
+      "is-returning-page",
+      "is-deposited",
+      "is-final-turn"
+    );
+
+    if (visiteur) {
+      visiteur.setAttribute(
         "aria-hidden",
         "true"
       );
@@ -1300,7 +1429,7 @@
 
     clearTimeout(timer);
 
-    timer = setTimeout(() => {
+    timer = window.setTimeout(() => {
 
       stage.classList.remove(
         "is-visible",
@@ -1322,9 +1451,43 @@
   }
 
   function revenirPlusTard() {
-    // Aucun message.
-    // Le Livre accepte simplement ce choix.
-    fermerLivre();
+    if (
+      !livre.classList.contains(
+        "is-writing"
+      )
+    ) {
+      fermerDepuisPageArtisan();
+      return;
+    }
+
+    // La page revient d'abord
+    // au Premier Artisan.
+    livre.classList.add(
+      "is-returning-page"
+    );
+
+    window.setTimeout(() => {
+
+      livre.classList.remove(
+        "is-writing",
+        "is-returning-page"
+      );
+
+      if (visiteur) {
+        visiteur.setAttribute(
+          "aria-hidden",
+          "true"
+        );
+      }
+
+      // Le Premier Artisan reste visible
+      // un bref instant avant la fermeture.
+      window.setTimeout(
+        fermerDepuisPageArtisan,
+        520
+      );
+
+    }, 820);
   }
 
   function deposerTrace() {
@@ -1336,8 +1499,6 @@
         ? prenom.value.trim()
         : "";
 
-    // Une page vide n'est pas une trace.
-    // Le Livre attend simplement.
     if (!trace) {
       ecriture.focus({
         preventScroll: true
@@ -1359,35 +1520,40 @@
 
     catch (_) {}
 
-    livre.classList.add(
-      "is-deposited"
-    );
-
     deposer.disabled = true;
     plusTard.disabled = true;
 
-    // Le Livre reste ouvert quelques instants
-    // avec le remerciement du Seuil.
-    clearTimeout(timer);
+    // Pas de fenêtre de confirmation :
+    // la page retourne simplement
+    // vers celle du Premier Artisan.
+    livre.classList.add(
+      "is-returning-page"
+    );
 
-    timer = setTimeout(() => {
+    window.setTimeout(() => {
 
-      livre.classList.add(
-        "is-final-turn"
+      livre.classList.remove(
+        "is-writing",
+        "is-returning-page"
       );
 
-      // Une dernière page se tourne,
-      // puis le Livre se referme.
+      if (visiteur) {
+        visiteur.setAttribute(
+          "aria-hidden",
+          "true"
+        );
+      }
+
       window.setTimeout(() => {
 
-        fermerLivre();
+        fermerDepuisPageArtisan();
 
         deposer.disabled = false;
         plusTard.disabled = false;
 
-      }, 900);
+      }, 700);
 
-    }, 3000);
+    }, 820);
   }
 
   hotspot.addEventListener(
@@ -1397,7 +1563,7 @@
 
   laisser.addEventListener(
     "click",
-    tournerPage
+    tournerVersPageVisiteur
   );
 
   deposer.addEventListener(
@@ -1410,5 +1576,3 @@
     revenirPlusTard
   );
 })();
-
-        
