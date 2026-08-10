@@ -1682,3 +1682,59 @@ button { font: inherit; }
   .asme-croquettes{min-width:19px}
   .asme-corde{min-height:4px}
 }
+
+
+/* ==========================================================
+   V0.6.2 — ASMEP EST UN HABITANT
+   Dernière passe : rien n'est présenté, tout semble simplement vécu.
+   ========================================================== */
+
+/* L'écusson devient une couture du panier, pas une plaque posée dessus. */
+.asme-ecusson{
+  left:43.72%;
+  top:63.18%;
+  width:2.55%;
+  min-width:28px;
+  padding:.12em .18em .10em;
+  border-color:rgba(38,23,14,.48);
+  border-radius:4px 3px 4px 3px;
+  background:
+    linear-gradient(150deg,rgba(129,83,49,.72),rgba(59,37,24,.82));
+  box-shadow:
+    inset 0 0 0 1px rgba(196,139,79,.035),
+    0 .5px 1px rgba(0,0,0,.14);
+  color:rgba(183,132,79,.43);
+  font-size:clamp(4px,.34vw,5.4px);
+  letter-spacing:.055em;
+  opacity:.58;
+}
+.asme-ecusson::before,
+.asme-ecusson::after{
+  width:1px;height:1px;
+  background:rgba(205,154,93,.24);
+}
+
+/* Les affaires existent dans la pièce, mais aucune ne réclame le regard. */
+.asme-balle{opacity:.46;filter:brightness(.82) saturate(.72)}
+.asme-corde{opacity:.34;filter:brightness(.78) saturate(.68)}
+.asme-laisse{opacity:.34}
+.asme-carnet-sante{opacity:.34}
+.asme-croquettes{opacity:.34}
+.asme-trace-gamelle{opacity:.15}
+
+/* La respiration reste le seul mouvement continu et demeure presque imperceptible. */
+.asme-vie__poitrine{
+  animation-duration:7.4s;
+  opacity:.34;
+}
+.asme-presence.is-ear .asme-vie__oreille{opacity:.38}
+.asme-presence.is-look .asme-vie__regard{opacity:.72}
+.asme-presence.is-sigh .asme-vie__souffle{opacity:.72}
+
+/* Rien dans la présence d'ASMEP ne peut devenir une interface. */
+.asme-presence,
+.asme-presence *{
+  pointer-events:none!important;
+  cursor:default!important;
+  user-select:none!important;
+}
