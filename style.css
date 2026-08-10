@@ -1861,3 +1861,174 @@ button { font: inherit; }
     transform:none!important;
   }
 }
+
+
+/* ==========================================================
+   V0.6.2 — ASMEP : UNE MAISON HABITÉE
+   On ne répartit plus "ses objets". On laisse apparaître les conséquences
+   ordinaires de plusieurs années de vie avec un berger allemand.
+   ========================================================== */
+
+/* Neutralisation définitive de l'ancienne logique "affaires du chien". */
+.asme-balle,
+.asme-corde,
+.asme-laisse,
+.asme-carnet-sante,
+.asme-croquettes,
+.asme-trace-gamelle{
+  display:none!important;
+}
+
+/*
+  La laisse est à la sortie parce que c'est là qu'on la prend.
+  Elle appartient visuellement à la porte, pas au panier.
+*/
+.asme-laisse-maison{
+  position:absolute;
+  left:94.35%;
+  top:25.8%;
+  width:.30%;
+  height:13.8%;
+  min-width:3px;
+  border-radius:999px;
+  background:linear-gradient(90deg,#2a1d15,#49301f 48%,#211610);
+  transform:rotate(2deg);
+  opacity:.34;
+  box-shadow:0 1px 2px rgba(0,0,0,.25);
+}
+.asme-laisse-maison::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:-5%;
+  width:260%;
+  height:18%;
+  transform:translateX(-50%);
+  border:2px solid rgba(60,40,25,.58);
+  border-top:0;
+  border-radius:0 0 50% 50%;
+}
+
+/*
+  Une vieille serviette près de la sortie : utile lorsque les pattes
+  reviennent mouillées. Elle n'est pas étiquetée ni mise en valeur.
+*/
+.asme-serviette-retour{
+  position:absolute;
+  left:91.5%;
+  top:43.8%;
+  width:3.9%;
+  height:5.4%;
+  transform:rotate(-4deg);
+  border-radius:1px 1px 3px 2px;
+  background:
+    linear-gradient(145deg,rgba(108,91,69,.68),rgba(65,54,42,.72));
+  box-shadow:0 2px 3px rgba(0,0,0,.18);
+  opacity:.28;
+}
+
+/*
+  Une seule balle visible : elle n'est pas rangée avec le chien,
+  elle a simplement fini sous le canapé.
+*/
+.asme-balle-oubliee{
+  position:absolute;
+  left:79.1%;
+  top:76.1%;
+  width:1.05%;
+  min-width:9px;
+  aspect-ratio:1;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 35% 28%,rgba(190,145,78,.20),transparent 22%),
+    radial-gradient(circle,#68442b 0 56%,#36251b 72%,#241912 100%);
+  box-shadow:0 1px 3px rgba(0,0,0,.32);
+  opacity:.43;
+}
+
+/*
+  Le carnet est avec les papiers de l'Artisan. Rien ne dit à distance
+  qu'il concerne ASMEP : c'est simplement un document rangé.
+*/
+.asme-carnet-range{
+  position:absolute;
+  left:72.2%;
+  top:36.1%;
+  width:2.0%;
+  height:5.8%;
+  min-width:18px;
+  transform:rotate(1deg);
+  border-radius:1px;
+  background:linear-gradient(90deg,#49382b 0 15%,#79634d 16% 100%);
+  box-shadow:1px 1px 2px rgba(0,0,0,.18);
+  opacity:.27;
+}
+
+/*
+  Traces qui ne sont même plus des possessions :
+  le passage répété vers son panier a légèrement travaillé le tapis.
+*/
+.asme-tapis-passage{
+  position:absolute;
+  left:46.7%;
+  top:72.0%;
+  width:11.8%;
+  height:2.4%;
+  border-radius:50%;
+  transform:rotate(-3deg);
+  background:radial-gradient(ellipse,rgba(55,38,25,.12),transparent 70%);
+  opacity:.34;
+  filter:blur(1px);
+}
+
+/*
+  Le canapé porte une très légère trace d'usage : une couverture n'est
+  jamais tout à fait remise de la même façon dans une maison avec un chien.
+*/
+.asme-couverture-usage{
+  position:absolute;
+  left:76.2%;
+  top:57.6%;
+  width:9.8%;
+  height:7.6%;
+  transform:rotate(1.5deg) skewX(-5deg);
+  border-radius:42% 28% 35% 18%;
+  border-bottom:1px solid rgba(92,69,48,.16);
+  background:linear-gradient(155deg,rgba(134,112,83,.055),transparent 62%);
+  opacity:.42;
+}
+
+/*
+  La gamelle reste près du lieu de repos déjà validé ; seule une marque
+  d'eau presque invisible raconte qu'elle sert réellement.
+*/
+.asme-trace-eau{
+  position:absolute;
+  left:52.1%;
+  top:59.8%;
+  width:5.4%;
+  height:2.7%;
+  border-radius:50%;
+  border-bottom:1px solid rgba(48,32,21,.14);
+  transform:rotate(-4deg);
+  opacity:.22;
+}
+
+/* Aucun de ces détails ne peut devenir une interface. */
+.asme-laisse-maison,
+.asme-serviette-retour,
+.asme-balle-oubliee,
+.asme-carnet-range,
+.asme-tapis-passage,
+.asme-couverture-usage,
+.asme-trace-eau{
+  pointer-events:none!important;
+  user-select:none!important;
+  cursor:default!important;
+}
+
+@media(max-width:700px){
+  .asme-balle-oubliee{min-width:6px}
+  .asme-carnet-range{min-width:12px}
+  .asme-laisse-maison{min-width:2px}
+}
