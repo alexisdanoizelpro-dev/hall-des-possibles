@@ -2230,3 +2230,80 @@ body.livre-reel-ouvert .hotspot{pointer-events:none!important}
     font-size:clamp(10px,2.8vw,13px);
   }
 }
+
+
+/* ==========================================================
+   V0.6.3 — AFFICHAGE PC
+   Desktop uniquement : montrer davantage du Hall sans recadrer l'image.
+   Le mobile reste inchangé.
+   ========================================================== */
+@media (min-width: 901px) and (pointer: fine){
+
+  .hall__panorama{
+    width:100vw;
+    height:100svh;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scrollbar-width:none;
+    overscroll-behavior-x:contain;
+    scroll-behavior:smooth;
+    cursor:grab;
+  }
+
+  .hall__panorama::-webkit-scrollbar{
+    display:none;
+  }
+
+  .hall__panorama.is-dragging{
+    cursor:grabbing;
+  }
+
+  /*
+    L'image 3:2 est affichée entière autant que possible.
+    On privilégie la hauteur du viewport, avec une légère réduction
+    pour laisser respirer les murs et les bords du Hall.
+  */
+  .hall__scene{
+    width:calc(100svh * 1.5);
+    height:100svh;
+    max-width:none;
+    flex:none;
+    margin:0 auto;
+    overflow:visible;
+  }
+
+  .hall__image{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    object-position:center center;
+  }
+
+  /*
+    Sur les écrans très larges, on garde une petite réserve horizontale :
+    le Hall est déjà lisible au premier regard, le déplacement sert seulement
+    à observer un peu plus précisément les extrémités.
+  */
+  @supports (width: min(100px, 100vw)){
+    .hall__scene{
+      width:min(calc(100svh * 1.5), 96vw);
+      height:auto;
+      aspect-ratio:3 / 2;
+      align-self:center;
+    }
+
+    .hall__image{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+    }
+  }
+}
+
+/* Écrans PC plus petits / portables : conserver la pièce entière sans zoom. */
+@media (min-width:901px) and (max-width:1366px) and (pointer:fine){
+  .hall__scene{
+    width:min(94vw, calc(100svh * 1.5));
+  }
+}
