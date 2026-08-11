@@ -1083,6 +1083,12 @@ class Habitant {
 
   }
 
+  tempsDepuisDerniereDecision() {
+
+  return Date.now() - this.dernierChangement;
+
+}
+
   augmenterBesoins() {
 
     this.besoins.repos += 1;
