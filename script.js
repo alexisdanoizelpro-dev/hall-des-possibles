@@ -1018,6 +1018,97 @@
 
   syncPublicAutre();
 
+
+// --------------------------------------------------------
+// Habitant
+// Base commune à tous les êtres vivants du Seuil.
+// --------------------------------------------------------
+
+class Habitant {
+
+  constructor(options = {}) {
+
+    this.nom = options.nom ?? "Habitant";
+
+    this.lieu = options.lieu ?? "hall";
+
+    this.activite = options.activite ?? "repos";
+
+    this.dernierChangement = Date.now();
+
+    this.besoins = {
+
+      repos: 0,
+
+      soif: 0,
+
+      sortir: 0,
+
+      surveillance: 0
+
+    };
+
+  }
+
+  // Le Hall n'impose jamais.
+  // Il offre simplement une possibilité.
+  offrirUnePossibilite() {
+
+    return {
+      changer: false,
+      raison: "continuer"
+    };
+
+  }
+
+  continuerJournee() {
+
+    this.dernierChangement = Date.now();
+
+  }
+
+  changerActivite(nouvelleActivite) {
+
+    this.activite = nouvelleActivite;
+
+    this.dernierChangement = Date.now();
+
+  }
+
+  changerLieu(nouveauLieu) {
+
+    this.lieu = nouveauLieu;
+
+    this.dernierChangement = Date.now();
+
+  }
+
+  augmenterBesoins() {
+
+    this.besoins.repos += 1;
+    this.besoins.soif += 1;
+    this.besoins.sortir += 1;
+    this.besoins.surveillance += 1;
+
+  }
+
+}
+
+
+// --------------------------------------------------------
+// Premier habitant du Hall.
+// --------------------------------------------------------
+
+const asme = new Habitant({
+
+  nom: "ASMEP",
+
+  lieu: "panier",
+
+  activite: "repos"
+
+});
+  
   // --------------------------------------------------------
   // ASMEP — présence autonome.
   // Aucun geste n'est déclenché par le Visiteur.
