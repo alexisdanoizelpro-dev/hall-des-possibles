@@ -1091,12 +1091,25 @@ class Habitant {
 
   augmenterBesoins() {
 
-    this.besoins.repos += 1;
-    this.besoins.soif += 1;
-    this.besoins.sortir += 1;
-    this.besoins.surveillance += 1;
+  this.besoins.repos = Math.min(
+    this.besoins.repos + 1,
+    100
+  );
 
-  }
+  this.besoins.soif = Math.min(
+    this.besoins.soif + 2,
+    100
+  );
+
+  this.besoins.sortir = Math.min(
+    this.besoins.sortir + 1,
+    100
+  );
+
+  this.besoins.surveillance = Math.min(
+    this.besoins.surveillance + 1,
+    100
+  );
 
 }
 
