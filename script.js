@@ -1236,16 +1236,28 @@ const asme = new Habitant({
         Math.random() *
         60000;
 
-      window.setTimeout(
-        () => {
+window.setTimeout(
+  () => {
 
-          if (document.hidden) {
-            programmerGesteAsme();
-            return;
-          }
+    if (document.hidden) {
+      programmerGesteAsme();
+      return;
+    }
 
-          const geste =
-            choisirGesteAsme();
+    const decision =
+      asme.offrirUnePossibilite();
+
+    if (!decision.changer) {
+
+      programmerGesteAsme();
+
+      return;
+
+    }
+
+    const geste =
+      choisirGesteAsme();
+      
 
           asmePresence.classList.add(
             geste.classe
