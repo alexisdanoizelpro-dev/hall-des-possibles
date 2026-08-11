@@ -1036,6 +1036,8 @@ class Habitant {
 
     this.dernierChangement = Date.now();
 
+    this.derniereDecision = "repos";
+
     this.besoins = {
 
       repos: 0,
@@ -1093,11 +1095,15 @@ class Habitant {
 
     this.dernierChangement = Date.now();
 
+    this.derniereDecision = "continuer";
+
   }
 
   changerActivite(nouvelleActivite) {
 
     this.activite = nouvelleActivite;
+
+    this.derniereDecision = nouvelleActivite;
 
     this.dernierChangement = Date.now();
 
