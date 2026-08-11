@@ -1054,12 +1054,40 @@ class Habitant {
   // Il offre simplement une possibilité.
   offrirUnePossibilite() {
 
+  this.augmenterBesoins();
+
+  if (
+    this.tempsDepuisDerniereDecision() <
+    240000
+  ) {
+
+    return {
+      changer: false,
+      raison: "temps"
+    };
+
+  }
+
+  const chance =
+    Math.random();
+
+  if (chance < 0.75) {
+
+    this.continuerJournee();
+
     return {
       changer: false,
       raison: "continuer"
     };
 
   }
+
+  return {
+    changer: true,
+    raison: "reflexion"
+  };
+
+}
 
   continuerJournee() {
 
