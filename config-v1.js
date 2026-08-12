@@ -138,3 +138,109 @@ const RegistreDuSeuil = {
         }
 
     },
+
+            /* ==========================================================
+       CHAPITRE IV
+       LES RENCONTRES
+
+       Les Rencontres permettent au Visiteur de laisser
+       une trace, une pensée ou une idée.
+
+       Chacune possède sa propre voix,
+       mais toutes partagent le même esprit.
+
+    ========================================================== */
+
+    Rencontres: {
+
+        LivreOr: {
+
+            Visible: true,
+
+            Ouvert: false
+
+        },
+
+
+
+        TableDesIdees: {
+
+            Visible: true,
+
+            Ouverte: false
+
+        },
+
+
+
+        CoupelleDeLait: {
+
+            Visible: false,
+
+            Disponible: false
+
+        }
+
+    },
+
+            /* ==========================================================
+       CHAPITRE V
+       LES DÉCOUVERTES
+
+       Les Découvertes accompagnent le Visiteur.
+       Elles ne cherchent jamais à convaincre.
+       Elles attendent simplement d'être rencontrées.
+
+    ========================================================== */
+
+    Découvertes: {
+
+        ParoleDuMoment: {
+
+            Visible: true,
+
+            Nom: "",
+
+            Texte: ""
+
+        },
+
+
+
+        EnigmeDuMoment: {
+
+            Visible: true,
+
+            Nom: "",
+
+            Texte: "",
+
+            Réponse: ""
+
+        },
+
+
+
+        RéflexionsDuSeuil: {
+
+            Visibles: []
+
+        },
+
+
+
+        LoisDuSeuil: {
+
+            Visibles: []
+
+        },
+
+
+
+        Archives: {
+
+            Disponibles: []
+
+        }
+
+    },
