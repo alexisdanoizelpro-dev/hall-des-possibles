@@ -244,3 +244,132 @@ const RegistreDuSeuil = {
         }
 
     },
+
+
+            /* ==========================================================
+       CHAPITRE VI
+       L'AMBIANCE
+
+       L'Ambiance ne cherche jamais à attirer l'attention.
+       Elle accompagne simplement le Visiteur.
+
+       Elle est discrète.
+       Mais lorsqu'elle disparaît...
+       Le Hall n'est plus tout à fait le même.
+
+    ========================================================== */
+
+    Ambiance: {
+
+        Musique: {
+
+            Visible: true,
+
+            LectureAutomatique: true,
+
+            Volume: 30
+
+        },
+
+
+
+        Cheminée: {
+
+            Visible: true,
+
+            Animée: true
+
+        },
+
+
+
+        Lumière: {
+
+            Visible: true
+
+        }
+
+    },
+
+            /* ==========================================================
+       CHAPITRE VII
+       LES PORTES
+
+       Les Portes ne forcent jamais le passage.
+
+       Elles attendent simplement que le Visiteur
+       choisisse de les pousser.
+
+    ========================================================== */
+
+    Portes: {
+
+        Hall: {
+
+            Visible: true,
+
+            Ouverte: true
+
+        },
+
+
+
+        Jardin: {
+
+            Visible: true,
+
+            Ouverte: false
+
+        },
+
+
+
+        Vestibule: {
+
+            Visible: false,
+
+            Ouverte: false
+
+        },
+
+
+
+        Atelier: {
+
+            Visible: true,
+
+            Ouverte: false
+
+        }
+
+    },
+
+            /* ==========================================================
+       CHAPITRE VIII
+       LE TEMPS
+
+       Le Seuil ne connaît qu'un seul temps :
+       celui qu'il faut.
+
+       Certaines choses évoluent avec le temps.
+       D'autres demeurent.
+
+    ========================================================== */
+
+    Temps: {
+
+        Date: "",
+
+        Saison: "",
+
+        ParoleDuMoment: "",
+
+        EnigmeDuMoment: "",
+
+        DernièreMiseAJour: ""
+
+    }
+
+};
+ 
+window.RegistreDuSeuil = RegistreDuSeuil;
