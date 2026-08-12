@@ -1,21 +1,43 @@
 // ==========================================================
-// LE HALL DES POSSIBLES — V0.6.1
-// Configuration simple du Hall
+// LE HALL DES POSSIBLES — ÉDITION FONDATRICE
+// Configuration de l'Artisan
+//
+// Ce fichier est le seul que l'Artisan modifie régulièrement.
+// Il ne contient que des éléments de configuration.
+// Toute la logique du Hall appartient à script.js.
 // ==========================================================
 
 window.CONFIG_SEUIL = {
+
+  // ========================================================
   // COUPELLE DE LAIT
-  // true  = la Coupelle de Lait est disponible
-  // false = la Coupelle de Lait disparaît complètement
+  // true  : visible
+  // false : totalement absente du Hall
+  // ========================================================
+
   coupelleDisponible: true,
 
-  // PAROLE DU SEUIL
-  // Modifiez uniquement ces deux textes pour changer ce que contient
-  // l'enveloppe scellée, sans toucher au code du Hall.
+
+
+  // ========================================================
+  // PAROLE DU MOMENT
+  // Seul ce contenu change.
+  // L'animation et le fonctionnement restent dans script.js.
+  // ========================================================
+
   paroleDuSeuil: {
-    // Facultatif : URL de réception des réponses. Laisser vide tant qu’aucun service n’est branché.
+
+    // URL de réception des réponses.
+    // Laisser vide tant qu'aucun service n'est connecté.
+
     reponseUrl: "",
-    introduction: "L’Atelier vous confie ceci, si la curiosité vous appelle.",
-    texte: "Je nais sans bruit, je grandis quand on me partage, et je peux ouvrir des mondes sans posséder de clé. Qui suis-je ?"
+
+    introduction:
+      "L’Atelier vous confie ceci, si la curiosité vous appelle.",
+
+    texte:
+      "Je nais sans bruit, je grandis quand on me partage, et je peux ouvrir des mondes sans posséder de clé. Qui suis-je ?"
+
   }
+
 };
