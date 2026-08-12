@@ -343,33 +343,5 @@ const RegistreDuSeuil = {
         }
 
     },
-
-            /* ==========================================================
-       CHAPITRE VIII
-       LE TEMPS
-
-       Le Seuil ne connaît qu'un seul temps :
-       celui qu'il faut.
-
-       Certaines choses évoluent avec le temps.
-       D'autres demeurent.
-
-    ========================================================== */
-
-    Temps: {
-
-        Date: "",
-
-        Saison: "",
-
-        ParoleDuMoment: "",
-
-        EnigmeDuMoment: "",
-
-        DernièreMiseAJour: ""
-
-    }
-
-};
  
 window.RegistreDuSeuil = RegistreDuSeuil;
