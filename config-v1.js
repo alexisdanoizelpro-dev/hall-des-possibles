@@ -17,26 +17,124 @@ L'essentiel est suffisant.
 
 const RegistreDuSeuil = {
 
-    Hall: {},
+        /* ==========================================================
+       CHAPITRE I
+       LE HALL
 
-    Habitants: {},
+       Le Hall est le cœur du Seuil.
+       Tout le reste prend vie autour de lui.
+    ========================================================== */
 
-    Objets: {},
+    Hall: {
 
-    Paroles: {},
+        Nom: "Le Hall des Possibles",
 
-    Énigmes: {},
+        Image: "assets/hall/hall-versionfondatrice.png",
 
-    Archives: {},
+        Visible: false
 
-    Ambiance: {},
+    },
 
-    Portes: {},
+        /* ==========================================================
+       CHAPITRE II
+       LES HABITANTS
 
-    Interactions: {},
+       Chaque habitant possède sa propre personnalité.
+       Le Hall ne leur impose jamais d'être présents.
+    ========================================================== */
 
-    Temps: {}
+    Habitants: {
 
-};
+        ASMEP: {
 
-window.RegistreDuSeuil = RegistreDuSeuil;
+            Nom: "ASMEP",
+
+            Présent: true,
+
+            Visible: true,
+
+            Dort: true,
+
+            PeutAllerAuJardin: true,
+
+            PeutEntrerAuVestibule: false
+
+        }
+
+    },
+
+        /* ==========================================================
+       CHAPITRE III
+       LES OBJETS
+
+       Les objets racontent la vie du Hall.
+       Ils peuvent évoluer, apparaître, disparaître
+       ou simplement changer de place.
+
+       Le Hall demeure.
+       Les objets vivent.
+    ========================================================== */
+
+    Objets: {
+
+        Tableau: {
+
+            Visible: true,
+
+            Image: "",
+
+            Position: ""
+
+        },
+
+
+
+        Balle: {
+
+            Visible: true,
+
+            Position: ""
+
+        },
+
+
+
+        Laisse: {
+
+            Visible: true,
+
+            Position: ""
+
+        },
+
+
+
+        Corde: {
+
+            Visible: true,
+
+            Position: ""
+
+        },
+
+
+
+        Panier: {
+
+            Visible: true,
+
+            Position: ""
+
+        },
+
+
+
+        Gamelle: {
+
+            Visible: true,
+
+            Position: ""
+
+        }
+
+    },
