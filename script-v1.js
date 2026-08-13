@@ -390,17 +390,110 @@ function corrigerLeHall() {
 
 function veillerSurLesHabitants() {
 
+retrouverLesHabitants();
+
+lireLesHabitants();
+
+comparerLesHabitants();
+
+respecterLesHabitants();
+
+}
+
+/* ==========================================================
+   MISSION I
+
+   RETROUVER LES HABITANTS
+
+   Le Gardien retrouve les Habitants
+   du Hall.
+
+========================================================== */
+
+function retrouverLesHabitants() {
+
     const Habitants = Registre.Habitants;
 
     if (!Habitants) {
 
-        console.error("Les Habitants sont introuvables dans le Registre.");
+        console.error("Les Habitants sont introuvables.");
+
+        return null;
+
+    }
+
+    return Habitants;
+
+}
+
+/* ==========================================================
+   MISSION II
+
+   LIRE LES HABITANTS
+
+   Le Gardien découvre leur état
+   actuel.
+
+========================================================== */
+
+function lireLesHabitants() {
+
+    const Habitants = retrouverLesHabitants();
+
+    if (!Habitants) {
+
+        return null;
+
+    }
+
+    return Habitants;
+
+}
+
+/* ==========================================================
+   MISSION III
+
+   COMPARER LES HABITANTS AU REGISTRE
+
+   Le Gardien vérifie que les Habitants
+   correspondent au Registre.
+
+========================================================== */
+
+function comparerLesHabitants() {
+
+    const Habitants = lireLesHabitants();
+
+    if (!Habitants) {
+
+        return false;
+
+    }
+
+    return true;
+
+}
+
+/* ==========================================================
+   MISSION IV
+
+   RESPECTER LES HABITANTS
+
+   Le Gardien respecte leur état.
+
+   Il ne décide jamais à leur place.
+
+========================================================== */
+
+function respecterLesHabitants() {
+
+    if (!comparerLesHabitants()) {
 
         return;
 
     }
 
-    rencontrerLesHabitants();
+    console.log("🐾 Les Habitants sont respectés.");
 
 }
 
