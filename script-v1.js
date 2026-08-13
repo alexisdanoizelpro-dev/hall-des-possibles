@@ -509,15 +509,111 @@ function respecterLesHabitants() {
 
 function veillerSurLAmbiance() {
 
+retrouverLAmbiance();
+
+lireLAmbiance();
+
+comparerLAmbiance();
+
+respecterLAmbiance();
+   
+}
+
+/* ==========================================================
+   MISSION I
+
+   RETROUVER L'AMBIANCE
+
+   Le Gardien retrouve l'Ambiance
+   du Hall.
+
+========================================================== */
+
+function retrouverLAmbiance() {
+
     const Ambiance = Registre.Ambiance;
 
     if (!Ambiance) {
 
-        console.error("L'Ambiance est introuvable dans le Registre.");
+        console.error("L'Ambiance est introuvable.");
+
+        return null;
+
+    }
+
+    return Ambiance;
+
+}
+
+/* ==========================================================
+   MISSION II
+
+   LIRE L'AMBIANCE
+
+   Le Gardien découvre son état
+   actuel.
+
+========================================================== */
+
+function lireLAmbiance() {
+
+    const Ambiance = retrouverLAmbiance();
+
+    if (!Ambiance) {
+
+        return null;
+
+    }
+
+    return Ambiance;
+
+}
+
+/* ==========================================================
+   MISSION III
+
+   COMPARER L'AMBIANCE AU REGISTRE
+
+   Le Gardien vérifie que l'Ambiance
+   correspond au Registre.
+
+========================================================== */
+
+function comparerLAmbiance() {
+
+    const Ambiance = lireLAmbiance();
+
+    if (!Ambiance) {
+
+        return false;
+
+    }
+
+    return true;
+
+}
+
+/* ==========================================================
+   MISSION IV
+
+   RESPECTER L'AMBIANCE
+
+   Le Gardien respecte l'Ambiance.
+
+   Il ne cherche jamais à attirer
+   l'attention sur elle.
+
+========================================================== */
+
+function respecterLAmbiance() {
+
+    if (!comparerLAmbiance()) {
 
         return;
 
     }
+
+    console.log("🔥 L'Ambiance est respectée.");
 
 }
 
@@ -533,18 +629,111 @@ function veillerSurLAmbiance() {
 
 function veillerSurLesObjets() {
 
+retrouverLesObjets();
+
+lireLesObjets();
+
+comparerLesObjets();
+
+replacerLesObjets();
+   
+}
+
+/* ==========================================================
+   MISSION I
+
+   RETROUVER LES OBJETS
+
+   Le Gardien retrouve les Objets
+   du Hall.
+
+========================================================== */
+
+function retrouverLesObjets() {
+
     const Objets = Registre.Objets;
 
     if (!Objets) {
 
-        console.error("Les Objets sont introuvables dans le Registre.");
+        console.error("Les Objets sont introuvables.");
+
+        return null;
+
+    }
+
+    return Objets;
+
+}
+
+/* ==========================================================
+   MISSION II
+
+   LIRE LES OBJETS
+
+   Le Gardien découvre leur état
+   actuel.
+
+========================================================== */
+
+function lireLesObjets() {
+
+    const Objets = retrouverLesObjets();
+
+    if (!Objets) {
+
+        return null;
+
+    }
+
+    return Objets;
+
+}
+
+/* ==========================================================
+   MISSION III
+
+   COMPARER LES OBJETS AU REGISTRE
+
+   Le Gardien vérifie que les Objets
+   correspondent au Registre.
+
+========================================================== */
+
+function comparerLesObjets() {
+
+    const Objets = lireLesObjets();
+
+    if (!Objets) {
+
+        return false;
+
+    }
+
+    return true;
+
+}
+
+/* ==========================================================
+   MISSION IV
+
+   REPLACER LES OBJETS SI NÉCESSAIRE
+
+   Le Gardien replace les Objets
+   uniquement lorsque cela est nécessaire.
+
+========================================================== */
+
+function replacerLesObjets() {
+
+    if (!comparerLesObjets()) {
 
         return;
 
     }
 
-}
+    console.log("🪑 Les Objets sont à leur place.");
 
+}
 /* ==========================================================
    ACTION V
 
@@ -557,15 +746,112 @@ function veillerSurLesObjets() {
 
 function veillerSurLesPortes() {
 
+retrouverLesPortes();
+
+lireLesPortes();
+
+comparerLesPortes();
+
+respecterLesPortes();
+   
+}
+
+/* ==========================================================
+   MISSION I
+
+   RETROUVER LES PORTES
+
+   Le Gardien retrouve les Portes
+   du Hall.
+
+========================================================== */
+
+function retrouverLesPortes() {
+
     const Portes = Registre.Portes;
 
     if (!Portes) {
 
-        console.error("Les Portes sont introuvables dans le Registre.");
+        console.error("Les Portes sont introuvables.");
+
+        return null;
+
+    }
+
+    return Portes;
+
+}
+
+/* ==========================================================
+   MISSION II
+
+   LIRE LES PORTES
+
+   Le Gardien découvre leur état
+   actuel.
+
+========================================================== */
+
+function lireLesPortes() {
+
+    const Portes = retrouverLesPortes();
+
+    if (!Portes) {
+
+        return null;
+
+    }
+
+    return Portes;
+
+}
+
+/* ==========================================================
+   MISSION III
+
+   COMPARER LES PORTES AU REGISTRE
+
+   Le Gardien vérifie que les Portes
+   correspondent au Registre.
+
+========================================================== */
+
+function comparerLesPortes() {
+
+    const Portes = lireLesPortes();
+
+    if (!Portes) {
+
+        return false;
+
+    }
+
+    return true;
+
+}
+
+/* ==========================================================
+   MISSION IV
+
+   RESPECTER LES PORTES
+
+   Le Gardien respecte l'état
+   de chaque Porte.
+
+   Il n'en ouvre ni n'en ferme
+   aucune de sa propre initiative.
+
+========================================================== */
+
+function respecterLesPortes() {
+
+    if (!comparerLesPortes()) {
 
         return;
 
     }
+
+    console.log("🚪 Les Portes sont respectées.");
 
 }
 
@@ -581,15 +867,111 @@ function veillerSurLesPortes() {
 
 function veillerSurLesRencontres() {
 
+   retrouverLesRencontres();
+
+lireLesRencontres();
+
+comparerLesRencontres();
+
+préparerLesRencontres();
+
+}
+
+/* ==========================================================
+   MISSION I
+
+   RETROUVER LES RENCONTRES
+
+   Le Gardien retrouve les Rencontres
+   du Hall.
+
+========================================================== */
+
+function retrouverLesRencontres() {
+
     const Rencontres = Registre.Rencontres;
 
     if (!Rencontres) {
 
-        console.error("Les Rencontres sont introuvables dans le Registre.");
+        console.error("Les Rencontres sont introuvables.");
+
+        return null;
+
+    }
+
+    return Rencontres;
+
+}
+
+/* ==========================================================
+   MISSION II
+
+   LIRE LES RENCONTRES
+
+   Le Gardien découvre leur état
+   actuel.
+
+========================================================== */
+
+function lireLesRencontres() {
+
+    const Rencontres = retrouverLesRencontres();
+
+    if (!Rencontres) {
+
+        return null;
+
+    }
+
+    return Rencontres;
+
+}
+
+/* ==========================================================
+   MISSION III
+
+   COMPARER LES RENCONTRES AU REGISTRE
+
+   Le Gardien vérifie que les Rencontres
+   correspondent au Registre.
+
+========================================================== */
+
+function comparerLesRencontres() {
+
+    const Rencontres = lireLesRencontres();
+
+    if (!Rencontres) {
+
+        return false;
+
+    }
+
+    return true;
+
+}
+
+/* ==========================================================
+   MISSION IV
+
+   PRÉPARER LES RENCONTRES
+
+   Le Gardien prépare les Rencontres.
+
+   Il veille simplement à ce que
+   tout soit prêt pour le Visiteur.
+
+========================================================== */
+
+function préparerLesRencontres() {
+
+    if (!comparerLesRencontres()) {
 
         return;
 
     }
+
+    console.log("🤝 Les Rencontres sont prêtes.");
 
 }
 
@@ -605,15 +987,111 @@ function veillerSurLesRencontres() {
 
 function veillerSurLesDécouvertes() {
 
+    retrouverLesDécouvertes();
+
+    lireLesDécouvertes();
+
+    comparerLesDécouvertes();
+
+    présenterLesDécouvertes();
+
+}
+
+    
+/* ==========================================================
+   MISSION I
+
+   RETROUVER LES DÉCOUVERTES
+
+   Le Gardien retrouve les Découvertes
+   du Hall.
+
+========================================================== */
+
+function retrouverLesDécouvertes() {
+
     const Découvertes = Registre.Découvertes;
 
     if (!Découvertes) {
 
-        console.error("Les Découvertes sont introuvables dans le Registre.");
+        console.error("Les Découvertes sont introuvables.");
+
+        return null;
+
+    }
+
+    return Découvertes;
+
+}
+
+/* ==========================================================
+   MISSION II
+
+   LIRE LES DÉCOUVERTES
+
+   Le Gardien découvre leur état
+   actuel.
+
+========================================================== */
+
+function lireLesDécouvertes() {
+
+    const Découvertes = retrouverLesDécouvertes();
+
+    if (!Découvertes) {
+
+        return null;
+
+    }
+
+    return Découvertes;
+
+}
+
+/* ==========================================================
+   MISSION III
+
+   COMPARER LES DÉCOUVERTES AU REGISTRE
+
+   Le Gardien vérifie que les Découvertes
+   correspondent au Registre.
+
+========================================================== */
+
+function comparerLesDécouvertes() {
+
+    const Découvertes = lireLesDécouvertes();
+
+    if (!Découvertes) {
+
+        return false;
+
+    }
+
+    return true;
+
+}
+
+/* ==========================================================
+   MISSION IV
+
+   PRÉSENTER LES DÉCOUVERTES
+
+   Le Gardien présente les Découvertes.
+
+   Il ne les impose jamais.
+
+========================================================== */
+
+function présenterLesDécouvertes() {
+
+    if (!comparerLesDécouvertes()) {
 
         return;
 
     }
+
+    console.log("📖 Les Découvertes sont prêtes à être rencontrées.");
 
 }
 
