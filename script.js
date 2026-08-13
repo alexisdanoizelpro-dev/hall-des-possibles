@@ -55,7 +55,7 @@ ouvrirLeRegistre();
 
 ========================================================== */
 
-function lireLeHall() {
+function lireLeChapitreHall() {
 
     const Hall = Registre.Hall;
 
@@ -151,7 +151,7 @@ function réveillerLeGardien() {
 
     ouvrirLeRegistre();
 
-    lireLeHall();
+    lireLeChapitreHall();
 
     observerLeHall();
 
