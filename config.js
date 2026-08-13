@@ -29,7 +29,7 @@ const RegistreDuSeuil = {
 
         Nom: "Le Hall des Possibles",
 
-        Image: "assets/hall/hall-versionfondatrice.png",
+        Image: "hall-versionfondatrice.png",
 
         Visible: false
 
