@@ -262,11 +262,11 @@ function veillerSurLeHall() {
 
     }
 
-    observerLeHall();
+    observerLeChapitreHall();
 
     if (Hall.Visible) {
 
-        accueillirLeHall();
+        accueillirLeChapitreHall();
 
     }
 
