@@ -240,6 +240,184 @@ function reconnaîtreLesObjets() {
 
 }
 
+/* ==========================================================
+   ACTION I
 
+   VEILLER SUR LE HALL
+
+   Le Gardien veille à ce que le Hall
+   reste fidèle au Registre.
+
+========================================================== */
+
+function veillerSurLeHall() {
+
+    const Hall = Registre.Hall;
+
+    if (!Hall) {
+
+        console.error("Le Hall est introuvable dans le Registre.");
+
+        return;
+
+    }
+
+    observerLeHall();
+
+    if (Hall.Visible) {
+
+        accueillirLeHall();
+
+    }
+
+}
+
+/* ==========================================================
+   ACTION II
+
+   VEILLER SUR LES HABITANTS
+
+   Le Gardien veille sur les Habitants.
+
+   Il respecte leur présence.
+   Il ne décide jamais à leur place.
+
+========================================================== */
+
+function veillerSurLesHabitants() {
+
+    const Habitants = Registre.Habitants;
+
+    if (!Habitants) {
+
+        console.error("Les Habitants sont introuvables dans le Registre.");
+
+        return;
+
+    }
+
+    rencontrerLesHabitants();
+
+}
+
+/* ==========================================================
+   ACTION III
+
+   VEILLER SUR L'AMBIANCE
+
+   Le Gardien veille à ce que l'Ambiance
+   reste fidèle au Registre.
+
+========================================================== */
+
+function veillerSurLAmbiance() {
+
+    const Ambiance = Registre.Ambiance;
+
+    if (!Ambiance) {
+
+        console.error("L'Ambiance est introuvable dans le Registre.");
+
+        return;
+
+    }
+
+}
+
+/* ==========================================================
+   ACTION IV
+
+   VEILLER SUR LES OBJETS
+
+   Le Gardien veille à ce que les Objets
+   restent fidèles au Registre.
+
+========================================================== */
+
+function veillerSurLesObjets() {
+
+    const Objets = Registre.Objets;
+
+    if (!Objets) {
+
+        console.error("Les Objets sont introuvables dans le Registre.");
+
+        return;
+
+    }
+
+}
+
+/* ==========================================================
+   ACTION V
+
+   VEILLER SUR LES PORTES
+
+   Le Gardien veille à ce que les Portes
+   restent fidèles au Registre.
+
+========================================================== */
+
+function veillerSurLesPortes() {
+
+    const Portes = Registre.Portes;
+
+    if (!Portes) {
+
+        console.error("Les Portes sont introuvables dans le Registre.");
+
+        return;
+
+    }
+
+}
+
+/* ==========================================================
+   ACTION VI
+
+   VEILLER SUR LES RENCONTRES
+
+   Le Gardien veille à ce que les Rencontres
+   restent fidèles au Registre.
+
+========================================================== */
+
+function veillerSurLesRencontres() {
+
+    const Rencontres = Registre.Rencontres;
+
+    if (!Rencontres) {
+
+        console.error("Les Rencontres sont introuvables dans le Registre.");
+
+        return;
+
+    }
+
+}
+
+/* ==========================================================
+   ACTION VII
+
+   VEILLER SUR LES DÉCOUVERTES
+
+   Le Gardien veille à ce que les Découvertes
+   restent fidèles au Registre.
+
+========================================================== */
+
+function veillerSurLesDécouvertes() {
+
+    const Découvertes = Registre.Découvertes;
+
+    if (!Découvertes) {
+
+        console.error("Les Découvertes sont introuvables dans le Registre.");
+
+        return;
+
+    }
+
+}
 
 réveillerLeGardien();
