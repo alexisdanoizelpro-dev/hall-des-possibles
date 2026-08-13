@@ -103,7 +103,7 @@ function observerLeChapitreHall() {
 
 ========================================================== */
 
-function accueillirLeHall() {
+function accueillirLeChapitreHall() {
 
     const Hall = Registre.Hall;
 
@@ -131,7 +131,7 @@ function accueillirLeHall() {
 
 function donnerVieAuHall() {
 
-    accueillirLeHall();
+    accueillirLeChapitreHall();
 
 }
 
@@ -344,7 +344,7 @@ function comparerLeHall() {
 
     }
 
-    if (Hall.visible !== Registre.Salle.Visible) {
+    if (Hall.visible !== Registre.Hall.Visible) {
 
         return false;
 
@@ -366,17 +366,17 @@ function comparerLeHall() {
 
 function corrigerLeHall() {
 
-    if (comparerLeHall()) {
+    const Hall = retrouverLeHall();
+
+    if (!Hall) {
 
         return;
 
     }
 
-    const Hall = retrouverLeHall();
+    Hall.hidden = !Registre.Hall.Visible;
 
-Hall.hidden = !Registre.Hall.Visible;
-
-       }
+}
 
 /* ==========================================================
    ACTION II
