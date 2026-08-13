@@ -273,6 +273,110 @@ function veillerSurLeHall() {
 }
 
 /* ==========================================================
+   MISSION I
+
+   RETROUVER LE HALL
+
+   Le Gardien retrouve le Hall.
+
+========================================================== */
+
+function retrouverLeHall() {
+
+    const Hall = document.getElementById("salle");
+
+    if (!Hall) {
+
+        console.error("Le Hall est introuvable.");
+
+        return null;
+
+    }
+
+    return Hall;
+
+}
+
+/* ==========================================================
+   MISSION II
+
+   LIRE LE HALL
+
+   Le Gardien découvre l'état actuel du Hall.
+
+========================================================== */
+
+function lireLeHall() {
+
+    const Hall = retrouverLeHall();
+
+    if (!Hall) {
+
+        return null;
+
+    }
+
+    return {
+
+        visible : Hall.hidden === false
+
+    };
+
+}
+
+/* ==========================================================
+   MISSION III
+
+   COMPARER LE HALL AU REGISTRE
+
+   Le Gardien compare le Hall
+   avec le Registre.
+
+========================================================== */
+
+function comparerLeHall() {
+
+    const Hall = lireLeHall();
+
+    if (!Hall) {
+
+        return false;
+
+    }
+
+    if (Hall.visible !== Registre.Salle.Visible) {
+
+        return false;
+
+    }
+
+    return true;
+
+}
+
+/* ==========================================================
+   MISSION IV
+
+   CORRIGER LE HALL SI NÉCESSAIRE
+
+   Le Gardien agit uniquement
+   lorsqu'une différence est constatée.
+
+========================================================== */
+
+function corrigerLeHall() {
+
+    if (comparerLeHall()) {
+
+        return;
+
+    }
+
+    console.log("🏛️ Le Hall est mis en conformité avec le Registre.");
+
+}
+
+/* ==========================================================
    ACTION II
 
    VEILLER SUR LES HABITANTS
