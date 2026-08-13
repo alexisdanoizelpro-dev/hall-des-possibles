@@ -372,9 +372,11 @@ function corrigerLeHall() {
 
     }
 
-    console.log("🏛️ Le Hall est mis en conformité avec le Registre.");
+    const Hall = retrouverLeHall();
 
-}
+Hall.hidden = !Registre.Hall.Visible;
+
+       }
 
 /* ==========================================================
    ACTION II
@@ -1096,3 +1098,17 @@ function présenterLesDécouvertes() {
 }
 
 réveillerLeGardien();
+
+veillerSurLeHall();
+
+veillerSurLesHabitants();
+
+veillerSurLAmbiance();
+
+veillerSurLesObjets();
+
+veillerSurLesPortes();
+
+veillerSurLesRencontres();
+
+veillerSurLesDécouvertes();
