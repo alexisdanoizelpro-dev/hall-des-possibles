@@ -283,7 +283,7 @@ function veillerSurLeHall() {
 
 function retrouverLeHall() {
 
-    const Hall = document.getElementById("salle");
+    const Hall = document.getElementById("hall");
 
     if (!Hall) {
 
