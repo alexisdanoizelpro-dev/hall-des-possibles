@@ -42,3 +42,31 @@ function ouvrirLeRegistre() {
     console.log("📖 Le Registre est ouvert.");
 
 }
+
+ouvrirLeRegistre();
+
+/* ==========================================================
+   LEÇON III
+
+   LIRE LE HALL
+
+   Le Gardien découvre le premier chapitre
+   du Registre.
+
+========================================================== */
+
+function lireLeHall() {
+
+    const Hall = Registre.Hall;
+
+    if (!Hall) {
+
+        console.error("Le chapitre 'Hall' est introuvable.");
+
+        return;
+
+    }
+
+    console.log("🏛️ Le Hall est lu.");
+
+}
