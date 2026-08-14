@@ -67,8 +67,14 @@ function ouvrirPupitre(){
 
     const fond = document.createElement("div");
 
-    fond.id = "fenetre-seuil";
+fond.id = "fenetre-seuil";
 
-    document.body.appendChild(fond);
+const registre = document.createElement("div");
+
+registre.id = "registre-seuil";
+
+fond.appendChild(registre);
+
+document.body.appendChild(fond);
 
 }
