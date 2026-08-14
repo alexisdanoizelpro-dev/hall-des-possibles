@@ -1136,5 +1136,40 @@ ASMEP.style.left = "50%";
 ASMEP.style.top = "65%";
 ASMEP.style.width = "120px";
 ASMEP.style.transform = "translate(-50%, -50%)";
+
+const Pupitre = document.createElement("button");
+
+Pupitre.id = "pupitre-idees";
+
+Pupitre.textContent = "📖 Pupitre des Idées";
+
+Pupitre.style.position = "absolute";
+Pupitre.style.left = "32%";
+Pupitre.style.top = "63%";
+Pupitre.style.padding = "12px 18px";
+Pupitre.style.cursor = "pointer";
+Pupitre.style.zIndex = "100";
+
+Hall.appendChild(Pupitre);
+
+Pupitre.addEventListener("click", ouvrirPupitre);
+
+ function ouvrirPupitre() {
+
+    alert(
+`Bienvenue au Pupitre des Idées.
+
+Ici, les idées sont accueillies sans jugement.
+
+Certaines deviendront peut-être une expérience.
+
+D'autres resteront simplement un souvenir de votre passage.
+
+Les deux ont leur place ici.
+
+Prenez le temps qu'il vous faut.`
+    );
+
+}               
    
 }
