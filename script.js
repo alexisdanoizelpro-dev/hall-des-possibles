@@ -35,3 +35,40 @@ if (!hallOverlay) {
 
     console.log("🐾 ASMEP veille sur le Hall.");
 }
+
+/* ==========================================================
+   PIERRE N°3
+   LE PUPITRE
+   ========================================================== */
+
+const zonePupitre = document.createElement("div");
+
+zonePupitre.id = "zone-pupitre";
+
+zonePupitre.className = "hall-element";
+
+zonePupitre.style.position = "absolute";
+zonePupitre.style.left = "8%";
+zonePupitre.style.top = "53%";
+zonePupitre.style.width = "16%";
+zonePupitre.style.height = "28%";
+
+zonePupitre.style.cursor = "pointer";
+
+hallOverlay.appendChild(zonePupitre);
+
+zonePupitre.addEventListener("click", ouvrirPupitre);
+
+function ouvrirPupitre(){
+
+    if(document.getElementById("fenetre-seuil")){
+        return;
+    }
+
+    const fond = document.createElement("div");
+
+    fond.id = "fenetre-seuil";
+
+    document.body.appendChild(fond);
+
+}
