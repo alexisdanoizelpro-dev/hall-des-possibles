@@ -153,49 +153,85 @@ dialog{
 
 #registre-seuil{
 
-    width:min(90vw,700px);
+    width:min(92vw,760px);
 
-    max-height:85vh;
+    max-height:88vh;
 
-    overflow:auto;
+    overflow-y:auto;
 
-    background:#efe5c9;
+    background:
+        linear-gradient(
+            to bottom,
+            #f6eed8,
+            #ede1bf
+        );
 
-    border:8px solid #6b4a27;
+    border:12px solid #5c4124;
 
-    border-radius:8px;
+    border-radius:6px;
 
-    box-shadow:0 0 40px rgba(0,0,0,.65);
+    box-shadow:
+        0 0 80px rgba(0,0,0,.70),
+        inset 0 0 25px rgba(0,0,0,.10);
 
-    padding:40px;
+    padding:55px;
+
+    color:#2c2015;
 
     font-family:Georgia,serif;
 
-    color:#2d2117;
-
-    line-height:1.8;
+    line-height:1.9;
 }
 
 #registre-seuil h2{
 
     text-align:center;
 
-    margin-bottom:30px;
+    font-size:34px;
+
+    margin-bottom:40px;
+
+    color:#50341d;
+
+}
+
+#registre-seuil p{
+
+    margin-bottom:22px;
+
+    text-align:justify;
+
 }
 
 #ouvrir-registre{
 
-    margin-top:30px;
-
     display:block;
 
-    margin-left:auto;
+    margin:45px auto 0;
 
-    margin-right:auto;
+    padding:14px 34px;
 
-    padding:12px 30px;
+    background:#6a4929;
+
+    color:#f5edd8;
+
+    border:none;
+
+    border-radius:4px;
+
+    cursor:pointer;
 
     font-size:18px;
 
-    cursor:pointer;
+    transition:.25s;
+}
+
+#ouvrir-registre:hover{
+
+    background:#81552f;
+
+    transform:scale(1.03);
+
+}
+
 }
