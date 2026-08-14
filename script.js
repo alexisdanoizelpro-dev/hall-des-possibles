@@ -1196,7 +1196,7 @@ Ouvrir le Registre
 
     document.body.appendChild(Fond);
 
-    const bouton = document.getElementById("ouvrir-registre");
+    const bouton = Fond.querySelector("#ouvrir-registre");
 
 bouton.addEventListener("click", () => {
     console.log("Le Registre continue...");
