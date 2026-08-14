@@ -1121,4 +1121,16 @@ function bâtirLeHall() {
 
     console.log("🏛️ Le Bâtisseur entre dans le Hall.");
 
+   const Hall = document.getElementById("hall");
+
+const ASMEP = document.createElement("div");
+
+ASMEP.id = "asmep";
+
+ASMEP.textContent = "🐕";
+
+Hall.appendChild(ASMEP);
+
+console.log("🐕 ASMEP est entré dans le Hall.");
+
 }
