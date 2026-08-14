@@ -72,3 +72,21 @@ body{
     z-index:1000;
 
 }
+
+#registre-seuil{
+
+    width:min(92vw,760px);
+
+    height:min(80vh,700px);
+
+    margin:auto;
+
+    background:#efe5c8;
+
+    border:10px solid #5d4125;
+
+    border-radius:6px;
+
+    box-shadow:0 0 40px rgba(0,0,0,.60);
+
+}
