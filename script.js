@@ -17,6 +17,8 @@ L'essentiel est suffisant.
 
 "use strict";
 
+console.enregistrer("🔥 script.js démarre");
+
 const Registre = window.RegistreDuSeuil;
 
 /* ==========================================================
