@@ -1137,37 +1137,55 @@ ASMEP.style.top = "65%";
 ASMEP.style.width = "120px";
 ASMEP.style.transform = "translate(-50%, -50%)";
 
-const Pupitre = document.createElement("button");
+const ZonePupitre = document.createElement("div");
 
-Pupitre.id = "pupitre-idees";
+ZonePupitre.id = "zone-pupitre";
 
-Pupitre.textContent = "📖 Pupitre des Idées";
+ZonePupitre.style.position = "absolute";
+ZonePupitre.style.left = "7%";
+ZonePupitre.style.top = "54%";
+ZonePupitre.style.width = "18%";
+ZonePupitre.style.height = "32%";
 
-Pupitre.style.position = "absolute";
-Pupitre.style.left = "32%";
-Pupitre.style.top = "63%";
-Pupitre.style.padding = "12px 18px";
-Pupitre.style.cursor = "pointer";
-Pupitre.style.zIndex = "100";
+ZonePupitre.style.cursor = "pointer";
 
-Hall.appendChild(Pupitre);
+ZonePupitre.style.background = "transparent";
 
-Pupitre.addEventListener("click", ouvrirPupitre);
+Hall.appendChild(ZonePupitre);
+
+ZonePupitre.addEventListener("click", ouvrirPupitre);
 
  function ouvrirPupitre() {
 
-    alert(
-`Bienvenue au Pupitre des Idées.
+    const Fenetre = document.createElement("div");
 
+Fenetre.id = "fenetre-seuil";
+
+Fenetre.innerHTML = `
+<h2>Bienvenue au Pupitre des Idées</h2>
+
+<p>
 Ici, les idées sont accueillies sans jugement.
+</p>
 
+<p>
 Certaines deviendront peut-être une expérience.
+</p>
 
+<p>
 D'autres resteront simplement un souvenir de votre passage.
+</p>
 
+<p>
 Les deux ont leur place ici.
+</p>
 
-Prenez le temps qu'il vous faut.`
+<p><strong>Prenez le temps qu'il vous faut.</strong></p>
+
+<button id="commencer">Commencer</button>
+`;
+
+document.body.appendChild(Fenetre);
     );
 
 }               
