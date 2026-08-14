@@ -343,5 +343,7 @@ const RegistreDuSeuil = {
         }
 
     },
+
+        };
  
 window.RegistreDuSeuil = RegistreDuSeuil;
