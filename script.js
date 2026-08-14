@@ -1155,15 +1155,18 @@ Hall.appendChild(ZonePupitre);
 
 ZonePupitre.addEventListener("click", ouvrirPupitre);
 
- function ouvrirPupitre() {
+ function ouvrirPupitre(){
 
-    console.log("📖 Pupitre ouvert");
+    if(document.getElementById("fenetre-seuil")){
+        return;
+    }
 
-    const Fenetre = document.createElement("div");
+    const Fond=document.createElement("div");
+    Fond.id="fenetre-seuil";
 
-Fenetre.id = "fenetre-seuil";
+    Fond.innerHTML=`
+<div id="registre-seuil">
 
-Fenetre.innerHTML = `
 <h2>Bienvenue au Pupitre des Idées</h2>
 
 <p>
@@ -1175,7 +1178,7 @@ Certaines deviendront peut-être une expérience.
 </p>
 
 <p>
-D'autres resteront simplement un souvenir de votre passage.
+D'autres resteront simplement un souvenir précieux.
 </p>
 
 <p>
@@ -1184,11 +1187,21 @@ Les deux ont leur place ici.
 
 <p><strong>Prenez le temps qu'il vous faut.</strong></p>
 
-<button id="commencer">Commencer</button>
+<button id="ouvrir-registre">
+Ouvrir le Registre
+</button>
+
+</div>
 `;
 
-document.body.appendChild(Fenetre);
+    document.body.appendChild(Fond);
 
-}               
-   
+    Fond.addEventListener("click",(e)=>{
+
+        if(e.target===Fond){
+            Fond.remove();
+        }
+
+    });
+
 }
