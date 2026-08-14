@@ -73,6 +73,19 @@ const registre = document.createElement("div");
 
 registre.id = "registre-seuil";
 
+  const titre = document.createElement("h2");
+
+titre.textContent = "Le Registre des Idées";
+
+const texte = document.createElement("p");
+
+texte.textContent =
+"Ici, chaque idée mérite d'être entendue. Prenez le temps qu'il vous faut avant de tourner cette première page.";
+
+registre.appendChild(titre);
+
+registre.appendChild(texte); 
+
 fond.appendChild(registre);
 
 document.body.appendChild(fond);
