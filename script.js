@@ -1123,12 +1123,10 @@ function bâtirLeHall() {
 
    const Hall = document.getElementById("hall");
 
-const ASMEP = document.createElement("div");
+const ASMEP = document.createElement("img");
 
 ASMEP.id = "asmep";
-
-ASMEP.src = "asmep-corps.png";
-
+ASMEP.src = "asmep1408.jpg";
 ASMEP.alt = "ASMEP";
 
 Hall.appendChild(ASMEP);
@@ -1138,7 +1136,5 @@ ASMEP.style.left = "50%";
 ASMEP.style.top = "65%";
 ASMEP.style.width = "120px";
 ASMEP.style.transform = "translate(-50%, -50%)";
-
-console.log("🐕 ASMEP est entré dans le Hall.");
-
+   
 }
