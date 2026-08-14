@@ -1126,7 +1126,7 @@ function bâtirLeHall() {
 const ASMEP = document.createElement("img");
 
 ASMEP.id = "asmep";
-ASMEP.src = "asmep1408.jpg";
+ASMEP.src = "asmep1408.png";
 ASMEP.alt = "ASMEP";
 
 Hall.appendChild(ASMEP);
