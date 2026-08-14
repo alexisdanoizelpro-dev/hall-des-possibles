@@ -86,6 +86,14 @@ registre.appendChild(titre);
 
 registre.appendChild(texte); 
 
+ const bouton = document.createElement("button");
+
+bouton.id = "ouvrir-registre";
+
+bouton.textContent = "Ouvrir le Registre";
+
+registre.appendChild(bouton);  
+
 fond.appendChild(registre);
 
 document.body.appendChild(fond);
