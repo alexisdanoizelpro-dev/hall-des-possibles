@@ -1188,7 +1188,6 @@ Les deux ont leur place ici.
 `;
 
 document.body.appendChild(Fenetre);
-    );
 
 }               
    
