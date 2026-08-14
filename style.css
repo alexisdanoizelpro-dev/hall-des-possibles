@@ -67,6 +67,10 @@ body{
 
     inset:0;
 
+   display:flex;
+justify-content:center;
+align-items:center;
+
     background:rgba(0,0,0,.70);
 
     z-index:1000;
@@ -80,6 +84,8 @@ body{
     height:min(80vh,700px);
 
     margin:auto;
+
+    padding:40px;
 
     background:#efe5c8;
 
