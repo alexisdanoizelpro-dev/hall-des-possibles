@@ -1196,13 +1196,11 @@ Ouvrir le Registre
 
     document.body.appendChild(Fond);
 
-    Fond.addEventListener("click",(e)=>{
+    const bouton = document.getElementById("ouvrir-registre");
 
-        if(e.target===Fond){
-            Fond.remove();
-        }
-
-    });
+bouton.addEventListener("click", () => {
+    console.log("Le Registre continue...");
+});
 
 }
 
