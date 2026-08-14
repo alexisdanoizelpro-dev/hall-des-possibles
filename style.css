@@ -51,3 +51,12 @@ body{
     position:absolute;
     pointer-events:auto;
 }
+
+#asmep{
+
+    position:absolute;
+
+    user-select:none;
+
+    -webkit-user-drag:none;
+}
