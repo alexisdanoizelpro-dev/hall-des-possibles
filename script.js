@@ -1119,6 +1119,6 @@ bâtirLeHall();
 
 function bâtirLeHall() {
 
-    console.enregistrer("🏛️ Le Bâtisseur entre dans le Hall.");
+    console.log("🏛️ Le Bâtisseur entre dans le Hall.");
 
 }
