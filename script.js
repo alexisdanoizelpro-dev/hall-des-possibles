@@ -1157,6 +1157,8 @@ ZonePupitre.addEventListener("click", ouvrirPupitre);
 
  function ouvrirPupitre() {
 
+    console.log("📖 Pupitre ouvert");
+
     const Fenetre = document.createElement("div");
 
 Fenetre.id = "fenetre-seuil";
