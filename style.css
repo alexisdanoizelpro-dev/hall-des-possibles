@@ -90,3 +90,23 @@ body{
     box-shadow:0 0 40px rgba(0,0,0,.60);
 
 }
+
+#registre-seuil h2{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+    color:#4b321c;
+
+}
+
+#registre-seuil p{
+
+    line-height:1.8;
+
+    text-align:justify;
+
+    color:#2d2116;
+
+}
