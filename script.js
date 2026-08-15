@@ -261,3 +261,15 @@ function ouvrirLivreOr(){
     document.body.appendChild(fond);
 
 }
+
+const boutonPorte = document.getElementById("ouvrir-hall");
+
+if(boutonPorte){
+
+    boutonPorte.addEventListener("click", () => {
+
+        document.getElementById("porte-seuil").remove();
+
+    });
+
+}
