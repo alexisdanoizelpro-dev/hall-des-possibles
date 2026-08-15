@@ -90,7 +90,7 @@ registre.appendChild(texte);
 
 bouton.id = "ouvrir-registre";
 
-bouton.textContent = "Ouvrir le Registre";
+bouton.textContent = "Commencer";
 
  bouton.addEventListener("click", ouvrirRegistre);  
 
@@ -110,31 +110,8 @@ function ouvrirRegistre(){
 
     const titre = document.createElement("h2");
 
-    titre.textContent = "Commençons.";
-
-    const texte = document.createElement("p");
-
-    texte.textContent =
-    "Les quelques questions qui suivent permettront à l'Artisan de mieux comprendre votre idée. Il n'existe pas de bonne ou de mauvaise réponse. Prenez simplement le temps qu'il vous faut.";
+    titre.textContent = "Votre idée";
 
     registre.appendChild(titre);
-
-    registre.appendChild(texte);
-
-   const question = document.createElement("p");
-
-question.textContent =
-"Décrivez votre idée en quelques mots.";
-
-const champ = document.createElement("textarea");
-
-champ.rows = 8;
-
-champ.placeholder =
-"Écrivez ici ce que vous imaginez...";
-
-registre.appendChild(question);
-
-registre.appendChild(champ);
 
 }
