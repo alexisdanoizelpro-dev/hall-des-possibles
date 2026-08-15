@@ -166,3 +166,31 @@ align-items:center;
     box-sizing:border-box;
 
 }
+
+#livre-or{
+
+    width:min(92vw,900px);
+
+    max-height:90vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+#livre-or img{
+
+    width:100%;
+
+    height:auto;
+
+    display:block;
+
+    border-radius:6px;
+
+    box-shadow:0 0 40px rgba(0,0,0,.60);
+
+}
