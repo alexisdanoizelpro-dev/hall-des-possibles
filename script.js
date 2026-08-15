@@ -90,8 +90,6 @@ registre.appendChild(texte);
 
 bouton.id = "ouvrir-registre";
 
-   bouton.addEventListener("click", ouvrirDernierePage);
-
 bouton.textContent = "Commencer";
 
  bouton.addEventListener("click", ouvrirRegistre);  
@@ -125,8 +123,6 @@ retour.addEventListener("click", () => {
     const titre = document.createElement("h2");
 
 registre.appendChild(retour);
-
-registre.appendChild(titre);
    
     titre.textContent = "Votre idée";
 
@@ -159,6 +155,8 @@ registre.appendChild(titre);
     bouton.textContent = "Juste... Avant de partir";
 
     bouton.id = "ouvrir-registre";
+
+   bouton.addEventListener("click", ouvrirDernierePage);
 
     registre.appendChild(bouton);
 
@@ -201,6 +199,8 @@ retour.addEventListener("click", () => {
     document.getElementById("fenetre-seuil").remove();
 
 });
+
+   registre.appendChild(retour);
 
     const titre = document.createElement("h2");
 
