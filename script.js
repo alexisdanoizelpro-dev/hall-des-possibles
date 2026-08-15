@@ -92,10 +92,33 @@ bouton.id = "ouvrir-registre";
 
 bouton.textContent = "Ouvrir le Registre";
 
+ bouton.addEventListener("click", ouvrirRegistre);  
+
 registre.appendChild(bouton);  
 
 fond.appendChild(registre);
 
 document.body.appendChild(fond);
+
+}
+
+function ouvrirRegistre(){
+
+    const registre = document.getElementById("registre-seuil");
+
+    registre.innerHTML = "";
+
+    const titre = document.createElement("h2");
+
+    titre.textContent = "Commençons.";
+
+    const texte = document.createElement("p");
+
+    texte.textContent =
+    "Les quelques questions qui suivent permettront à l'Artisan de mieux comprendre votre idée. Il n'existe pas de bonne ou de mauvaise réponse. Prenez simplement le temps qu'il vous faut.";
+
+    registre.appendChild(titre);
+
+    registre.appendChild(texte);
 
 }
