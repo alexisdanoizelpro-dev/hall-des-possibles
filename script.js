@@ -123,6 +123,11 @@ retour.addEventListener("click", () => {
 });
 
     const titre = document.createElement("h2");
+
+registre.appendChild(retour);
+
+registre.appendChild(titre);
+   
     titre.textContent = "Votre idée";
 
     registre.appendChild(titre);
