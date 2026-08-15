@@ -220,3 +220,39 @@ align-items:center;
     text-decoration:underline;
 
 }
+
+#porte-seuil{
+
+    position:fixed;
+
+    inset:0;
+
+    background:#000;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:5000;
+
+}
+
+#ouvrir-hall{
+
+    padding:18px 34px;
+
+    background:#6a4929;
+
+    color:#f6eed8;
+
+    border:none;
+
+    border-radius:6px;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+}
