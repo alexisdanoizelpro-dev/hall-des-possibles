@@ -121,4 +121,20 @@ function ouvrirRegistre(){
 
     registre.appendChild(texte);
 
+   const question = document.createElement("p");
+
+question.textContent =
+"Décrivez votre idée en quelques mots.";
+
+const champ = document.createElement("textarea");
+
+champ.rows = 8;
+
+champ.placeholder =
+"Écrivez ici ce que vous imaginez...";
+
+registre.appendChild(question);
+
+registre.appendChild(champ);
+
 }
