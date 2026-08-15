@@ -87,6 +87,8 @@ align-items:center;
 
     padding:40px;
 
+    overflow-y:auto;
+
     background:#efe5c8;
 
     border:10px solid #5d4125;
