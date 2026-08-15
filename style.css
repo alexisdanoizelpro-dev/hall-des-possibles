@@ -194,3 +194,29 @@ align-items:center;
     box-shadow:0 0 40px rgba(0,0,0,.60);
 
 }
+
+.retour-hall{
+
+    background:none;
+
+    border:none;
+
+    color:#6a4929;
+
+    font-size:15px;
+
+    font-style:italic;
+
+    cursor:pointer;
+
+    margin-bottom:20px;
+
+    padding:0;
+
+}
+
+.retour-hall:hover{
+
+    text-decoration:underline;
+
+}
