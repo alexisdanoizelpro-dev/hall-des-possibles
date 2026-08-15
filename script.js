@@ -109,9 +109,58 @@ function ouvrirRegistre(){
     registre.innerHTML = "";
 
     const titre = document.createElement("h2");
-
     titre.textContent = "Votre idée";
 
     registre.appendChild(titre);
+
+    const texte = document.createElement("p");
+    texte.textContent =
+    "Prenez le temps qu'il vous faut. Plus vous me parlerez de votre idée, plus je pourrai lui donner une forme fidèle à vos envies.";
+
+    registre.appendChild(texte);
+
+    registre.appendChild(creerQuestion("À qui s'adresse ce projet ?"));
+
+    registre.appendChild(creerQuestion("Qu'attendez-vous de cette expérience ?"));
+
+    registre.appendChild(creerQuestion("Quelle couleur vous vient spontanément à l'esprit en pensant à cette personne ?"));
+
+    registre.appendChild(creerQuestion("Quelles formes de jeux vous parlent le plus ?"));
+
+    registre.appendChild(creerQuestion("Parlez-moi un peu plus de cette personne ou de ce groupe."));
+
+    registre.appendChild(creerQuestion("Y a-t-il une date importante pour ce projet ?"));
+
+    registre.appendChild(creerQuestion("Y a-t-il quelque chose que je dois respecter ?"));
+
+    registre.appendChild(creerQuestion("Décrivez votre projet."));
+
+    const bouton = document.createElement("button");
+
+    bouton.textContent = "Juste... Avant de partir";
+
+    bouton.id = "ouvrir-registre";
+
+    registre.appendChild(bouton);
+
+}
+
+function creerQuestion(question){
+
+    const bloc = document.createElement("div");
+
+    const texte = document.createElement("p");
+
+    texte.textContent = question;
+
+    const champ = document.createElement("textarea");
+
+    champ.rows = 5;
+
+    bloc.appendChild(texte);
+
+    bloc.appendChild(champ);
+
+    return bloc;
 
 }
