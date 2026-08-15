@@ -204,3 +204,31 @@ function ouvrirDernierePage(){
     registre.appendChild(bouton);
 
 }
+
+function ouvrirLivreOr(){
+
+    if(document.getElementById("fenetre-seuil")){
+        return;
+    }
+
+    const fond = document.createElement("div");
+
+    fond.id = "fenetre-seuil";
+
+    const livre = document.createElement("div");
+
+    livre.id = "livre-or";
+
+    const page = document.createElement("img");
+
+    page.src = "livre-or-premier-artisan.webp";
+
+    page.alt = "Le Premier Artisan";
+
+    livre.appendChild(page);
+
+    fond.appendChild(livre);
+
+    document.body.appendChild(fond);
+
+}
