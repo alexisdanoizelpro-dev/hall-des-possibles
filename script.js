@@ -110,6 +110,18 @@ function ouvrirRegistre(){
 
     registre.innerHTML = "";
 
+   const retour = document.createElement("button");
+
+retour.className = "retour-hall";
+
+retour.textContent = "J'ai encore besoin de temps.";
+
+retour.addEventListener("click", () => {
+
+    document.getElementById("fenetre-seuil").remove();
+
+});
+
     const titre = document.createElement("h2");
     titre.textContent = "Votre idée";
 
@@ -172,6 +184,18 @@ function ouvrirDernierePage(){
     const registre = document.getElementById("registre-seuil");
 
     registre.innerHTML = "";
+
+   const retour = document.createElement("button");
+
+retour.className = "retour-hall";
+
+retour.textContent = "J'ai encore besoin de temps.";
+
+retour.addEventListener("click", () => {
+
+    document.getElementById("fenetre-seuil").remove();
+
+});
 
     const titre = document.createElement("h2");
 
