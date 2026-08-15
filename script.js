@@ -90,6 +90,8 @@ registre.appendChild(texte);
 
 bouton.id = "ouvrir-registre";
 
+   bouton.addEventListener("click", ouvrirDernierePage);
+
 bouton.textContent = "Commencer";
 
  bouton.addEventListener("click", ouvrirRegistre);  
@@ -162,5 +164,43 @@ function creerQuestion(question){
     bloc.appendChild(champ);
 
     return bloc;
+
+}
+
+function ouvrirDernierePage(){
+
+    const registre = document.getElementById("registre-seuil");
+
+    registre.innerHTML = "";
+
+    const titre = document.createElement("h2");
+
+    titre.textContent = "Juste... Avant de partir";
+
+    registre.appendChild(titre);
+
+    const texte = document.createElement("p");
+
+    texte.textContent =
+    "Une dernière chose. Y a-t-il quelque chose que je dois laisser à l'extérieur de votre expérience ?";
+
+    registre.appendChild(texte);
+
+    const champ = document.createElement("textarea");
+
+    champ.rows = 6;
+
+    champ.placeholder =
+    "Vous pouvez me parler ici de tout ce qui ne doit pas apparaître...";
+
+    registre.appendChild(champ);
+
+    const bouton = document.createElement("button");
+
+    bouton.id = "ouvrir-registre";
+
+    bouton.textContent = "Soumettre mon idée";
+
+    registre.appendChild(bouton);
 
 }
