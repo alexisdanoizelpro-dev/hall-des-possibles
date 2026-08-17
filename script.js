@@ -273,3 +273,22 @@ if(boutonPorte){
     });
 
 }
+
+/* ==========================================================
+   PIERRE N°11
+   FRANCHIR LE SEUIL
+   ========================================================== */
+
+const seuil = document.getElementById("seuil");
+
+const poignee = document.createElement("div");
+
+poignee.id = "poignee-seuil";
+
+seuil.appendChild(poignee);
+
+poignee.addEventListener("click", () => {
+
+    seuil.style.display = "none";
+
+});
