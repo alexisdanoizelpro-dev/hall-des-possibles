@@ -240,3 +240,24 @@ align-items:center;
     z-index:5000;
 
 }
+
+#poignee-seuil{
+
+    position:absolute;
+
+    width:60px;
+
+    height:110px;
+
+    cursor:pointer;
+
+    left:50%;
+
+    top:52%;
+
+    transform:translate(-50%,-50%);
+
+    /* TEMPORAIRE : pour régler la position */
+    background:rgba(255,0,0,.25);
+
+}
