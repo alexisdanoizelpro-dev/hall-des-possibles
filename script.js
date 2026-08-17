@@ -281,14 +281,12 @@ if(boutonPorte){
 
 const seuil = document.getElementById("seuil");
 
-const poignee = document.createElement("div");
+seuil.addEventListener("click", entrerDansLeHall);
 
-poignee.id = "poignee-seuil";
-
-seuil.appendChild(poignee);
-
-poignee.addEventListener("click", () => {
+function entrerDansLeHall(){
 
     seuil.style.display = "none";
+
+}
 
 });
