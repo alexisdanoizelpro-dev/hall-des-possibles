@@ -227,15 +227,15 @@ align-items:center;
 
     inset:0;
 
-    background-image:url("porte-seuil-allée.png");
+    background:#000;
 
-    background-repeat:no-repeat;
+    display:flex;
 
-    background-position:center;
+    justify-content:center;
 
-    background-size:contain;
+    align-items:center;
 
-    background-color:#000;
+    overflow:hidden;
 
     z-index:5000;
 
