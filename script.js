@@ -268,17 +268,6 @@ retour.addEventListener("click", () => {
 
 }
 
-
-const boutonPorte = document.getElementById("ouvrir-hall");
-
-if(boutonPorte){
-
-    boutonPorte.addEventListener("click", () => {
-
-        document.getElementById("porte-seuil").remove();
-
-    });
-
 function ouvrirLivreOr(){
 
     if(document.getElementById("fenetre-seuil")){
