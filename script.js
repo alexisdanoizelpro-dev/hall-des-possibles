@@ -74,9 +74,9 @@ zoneLivre.style.left = "46%";
 
 zoneLivre.style.top = "54%";
 
-zoneLivre.style.width = "100%";
+zoneLivre.style.width = "22%";
 
-zoneLivre.style.height = "100%";
+zoneLivre.style.height = "9%";
 
 zoneLivre.style.cursor = "pointer";
 
