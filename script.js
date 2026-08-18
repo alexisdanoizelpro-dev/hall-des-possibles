@@ -285,6 +285,12 @@ seuil.addEventListener("click", entrerDansLeHall);
 
 function entrerDansLeHall(){
 
-    seuil.style.display = "none";
+    seuil.style.backgroundImage = "url('porte-seuil-ouverte.png')";
+
+    setTimeout(() => {
+
+        seuil.style.display = "none";
+
+    }, 300);
 
 }
