@@ -59,6 +59,31 @@ hallOverlay.appendChild(zonePupitre);
 
 zonePupitre.addEventListener("click", ouvrirPupitre);
 
+/* ==========================================================
+   PIERRE N°12
+   LE LIVRE D'OR
+   ========================================================== */
+
+const zoneLivre = document.createElement("div");
+
+zoneLivre.className = "hall-element";
+
+zoneLivre.style.position = "absolute";
+
+zoneLivre.style.left = "19%";
+
+zoneLivre.style.top = "58%";
+
+zoneLivre.style.width = "7%";
+
+zoneLivre.style.height = "9%";
+
+zoneLivre.style.cursor = "pointer";
+
+hallOverlay.appendChild(zoneLivre);
+
+zoneLivre.addEventListener("click", ouvrirLivreOr);
+
 function ouvrirPupitre(){
 
     if(document.getElementById("fenetre-seuil")){
