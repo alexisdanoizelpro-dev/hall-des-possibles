@@ -258,3 +258,21 @@ align-items:center;
     transform:translate(-50%,-50%);
 
 }
+
+#seuil{
+
+    transition:
+        opacity .45s ease,
+        transform .45s ease;
+
+    transform-origin:center center;
+
+}
+
+#seuil.ouverture{
+
+    transform:scale(1.08);
+
+    opacity:0;
+
+}
