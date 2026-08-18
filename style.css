@@ -25,26 +25,48 @@ body{
     background:#000;
 }
 
-#hall-image{
+#hall-scene{
+
     position:absolute;
+
     inset:0;
 
-    width:100%;
-    height:100%;
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+#hall-image{
+
+    display:block;
+
+    max-width:100%;
+
+    max-height:100%;
 
     object-fit:contain;
-    object-position:center;
 
     user-select:none;
+
     -webkit-user-drag:none;
+
     pointer-events:none;
+
 }
 
 #hall-overlay{
+
     position:absolute;
-    inset:0;
+
+    width:100%;
+
+    height:100%;
 
     pointer-events:none;
+
 }
 
 .hall-element{
