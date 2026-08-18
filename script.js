@@ -87,8 +87,6 @@ hallOverlay.appendChild(zoneLivre);
 
 zoneLivre.addEventListener("click", () => {
 
-    alert("Le Livre est bien cliqué");
-
     ouvrirLivreOr();
 
 });
