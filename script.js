@@ -82,7 +82,14 @@ zoneLivre.style.cursor = "pointer";
 
 hallOverlay.appendChild(zoneLivre);
 
-zoneLivre.addEventListener("click", ouvrirLivreOr);
+
+zoneLivre.addEventListener("click", () => {
+
+    alert("Le Livre est bien cliqué");
+
+    ouvrirLivreOr();
+
+});
 
 function ouvrirPupitre(){
 
