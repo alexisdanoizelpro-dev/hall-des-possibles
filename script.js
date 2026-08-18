@@ -288,5 +288,3 @@ function entrerDansLeHall(){
     seuil.style.display = "none";
 
 }
-
-});
