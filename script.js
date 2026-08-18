@@ -268,33 +268,6 @@ retour.addEventListener("click", () => {
 
 }
 
-function ouvrirLivreOr(){
-
-    if(document.getElementById("fenetre-seuil")){
-        return;
-    }
-
-    const fond = document.createElement("div");
-
-    fond.id = "fenetre-seuil";
-
-    const livre = document.createElement("div");
-
-    livre.id = "livre-or";
-
-    const page = document.createElement("img");
-
-    page.src = "livre-or-premier-artisan.webp";
-
-    page.alt = "Le Premier Artisan";
-
-    livre.appendChild(page);
-
-    fond.appendChild(livre);
-
-    document.body.appendChild(fond);
-
-}
 
 const boutonPorte = document.getElementById("ouvrir-hall");
 
@@ -306,8 +279,156 @@ if(boutonPorte){
 
     });
 
+function ouvrirLivreOr(){
+
+    if(document.getElementById("fenetre-seuil")){
+        return;
+    }
+
+    const fond = document.createElement("div");
+    fond.id = "fenetre-seuil";
+
+    const livre = document.createElement("div");
+    livre.id = "registre-seuil";
+
+    // ==========================
+    // Bouton retour
+    // ==========================
+
+    const retour = document.createElement("button");
+
+    retour.className = "retour-hall";
+
+    retour.textContent = "J'ai encore besoin de réfléchir.";
+
+    retour.addEventListener("click", () => {
+
+        fond.remove();
+
+    });
+
+    livre.appendChild(retour);
+
+    // ==========================
+    // Première page
+    // ==========================
+
+    const page = document.createElement("img");
+
+    page.src = "livre-or-premier-artisan.webp";
+
+    page.alt = "Le Premier Artisan";
+
+    page.style.width = "100%";
+
+    livre.appendChild(page);
+
+    const bouton = document.createElement("button");
+
+    bouton.id = "ouvrir-registre";
+
+    bouton.textContent = "Laisser ma Trace";
+
+    bouton.addEventListener("click", pageTrace);
+
+    livre.appendChild(bouton);
+
+    fond.appendChild(livre);
+
+    document.body.appendChild(fond);
+
 }
 
+function pageTrace(){
+
+    const livre = document.getElementById("registre-seuil");
+
+    livre.innerHTML = "";
+
+    const retour = document.createElement("button");
+
+    retour.className = "retour-hall";
+
+    retour.textContent = "J'ai encore besoin de réfléchir.";
+
+    retour.addEventListener("click", () => {
+
+        document.getElementById("fenetre-seuil").remove();
+
+    });
+
+    livre.appendChild(retour);
+
+    const titre = document.createElement("h2");
+
+    titre.textContent = "Laisser ma Trace";
+
+    livre.appendChild(titre);
+
+    const texte = document.createElement("p");
+
+    texte.textContent =
+    "Chaque passage laisse une trace. Si vous souhaitez laisser la vôtre, cette page vous appartient.";
+
+    livre.appendChild(texte);
+
+    const nom = document.createElement("input");
+
+    nom.type = "text";
+
+    nom.placeholder = "Votre nom (facultatif)";
+
+    nom.style.width = "100%";
+
+    nom.style.marginTop = "20px";
+
+    nom.style.padding = "12px";
+
+    livre.appendChild(nom);
+
+    const message = document.createElement("textarea");
+
+    message.rows = 8;
+
+    message.placeholder = "Votre Trace...";
+
+    livre.appendChild(message);
+
+    const bouton = document.createElement("button");
+
+    bouton.id = "ouvrir-registre";
+
+    bouton.textContent = "Laisser ma Trace";
+
+    bouton.addEventListener("click", () => {
+
+        livre.innerHTML = "";
+
+        const titre = document.createElement("h2");
+
+        titre.textContent = "Ta Trace est gravée.";
+
+        livre.appendChild(titre);
+
+        const texte = document.createElement("p");
+
+        texte.textContent =
+        "Le Seuil s'en souviendra .";
+
+        livre.appendChild(texte);
+
+        setTimeout(() => {
+
+            document.getElementById("fenetre-seuil").remove();
+
+        },1800);
+
+    });
+
+    livre.appendChild(bouton);
+
+}
+   
 /* ==========================================================
    PIERRE N°11
    FRANCHIR LE SEUIL
