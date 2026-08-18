@@ -291,6 +291,6 @@ function entrerDansLeHall(){
 
         seuil.style.display = "none";
 
-    }, 300);
+    }, 800);
 
 }
