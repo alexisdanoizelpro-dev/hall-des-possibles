@@ -31,6 +31,8 @@ if (!hallOverlay) {
 
     asmep.style.transform = "translate(-50%, -50%)";
 
+   asmep.style.pointerEvents = "none";
+
     hallOverlay.appendChild(asmep);
 
     console.log("🐾 ASMEP veille sur le Hall.");
