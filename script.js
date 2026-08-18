@@ -285,6 +285,8 @@ seuil.addEventListener("click", entrerDansLeHall);
 
 function entrerDansLeHall(){
 
+   alert("Le Seuil s'ouvre");
+
     seuil.style.display = "none";
 
 }
