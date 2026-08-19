@@ -165,10 +165,45 @@ retour.addEventListener("click", () => {
 
     const bouton = document.createElement("button");
 
-    bouton.id = "ouvrir-registre";
+bouton.id = "ouvrir-registre";
 
-    bouton.textContent = "Soumettre mon idée";
+bouton.textContent = "Soumettre mon idée";
 
-    registre.appendChild(bouton);
+bouton.addEventListener("click", terminerRegistre);
+
+registre.appendChild(bouton);
+
+function terminerRegistre(){
+
+    const registre = document.getElementById("registre-seuil");
+
+    registre.innerHTML = "";
+
+    const titre = document.createElement("h2");
+
+    titre.textContent = "Votre idée existe à présent.";
+
+    registre.appendChild(titre);
+
+    const texte = document.createElement("p");
+
+    texte.textContent =
+    "Votre idée a rejoint le Registre.\n\nL'Atelier en prendra connaissance avec toute l'attention qu'elle mérite.";
+
+    registre.appendChild(texte);
+
+    const fermer = document.createElement("button");
+
+    fermer.id = "ouvrir-registre";
+
+    fermer.textContent = "Revenir dans le Hall";
+
+    fermer.addEventListener("click", () => {
+
+        document.getElementById("fenetre-seuil").remove();
+
+    });
+
+    registre.appendChild(fermer);
 
 }
