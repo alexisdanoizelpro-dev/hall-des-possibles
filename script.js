@@ -338,9 +338,11 @@ fond.appendChild(livre);
 
 function pageTrace(){
 
-    const livre = document.getElementById("livre-or");
+    const imageLivre = document.getElementById("livre-image");
 
-    livre.src = "livre-or-page-vierge.webp";
+imageLivre.src = "livre-or-page-vierge.webp";
+
+const livre = document.getElementById("livre-or");
 
     const trace = document.getElementById("livre-trace");
 
