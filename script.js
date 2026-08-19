@@ -266,6 +266,58 @@ retour.addEventListener("click", () => {
 
 }
 
+function ouvrirLivreOr() {
+
+    // Empêche plusieurs ouvertures
+    if (document.getElementById("livre-fond")) {
+        return;
+    }
+
+    // Fond assombri
+    const fond = document.createElement("div");
+    fond.id = "livre-fond";
+
+    // Conteneur du Livre
+    const livre = document.createElement("div");
+    livre.id = "livre-or";
+
+    // Image du Livre
+    const image = document.createElement("img");
+    image.id = "livre-image";
+    image.src = "livre-or-premier-artisan.webp";
+    image.alt = "Livre d'Or";
+
+    livre.appendChild(image);
+
+    // Bouton Retour
+    const retour = document.createElement("button");
+    retour.id = "livre-retour";
+    retour.textContent = "J'ai encore besoin de réfléchir.";
+
+    retour.addEventListener("click", () => {
+        fond.remove();
+    });
+
+    // Bouton Trace
+    const trace = document.createElement("button");
+    trace.id = "livre-trace";
+    trace.textContent = "Laisser ma Trace";
+
+    trace.addEventListener("click", () => {
+
+        // Couche 2
+
+    });
+
+    livre.appendChild(retour);
+    livre.appendChild(trace);
+
+    fond.appendChild(livre);
+
+    document.body.appendChild(fond);
+
+}
+
 /* ==========================================================
    PIERRE N°11
    FRANCHIR LE SEUIL
