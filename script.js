@@ -320,15 +320,73 @@ function ouvrirLivreOr(){
 
     trace.textContent = "Laisser ma Trace";
 
-    trace.addEventListener("click", () => {
-
-        console.log("➡️ Couche 2");
-
-    });
+    trace.addEventListener("click", pageTrace);
 
     fond.appendChild(trace);
 
     document.body.appendChild(fond);
+
+}
+
+function pageTrace(){
+
+    const livre = document.getElementById("livre-or");
+
+    livre.src = "livre-or-page-vierge.webp";
+
+    const trace = document.getElementById("livre-trace");
+
+    trace.remove();
+
+    const retour = document.querySelector("#livre-fond .retour-hall");
+
+    retour.textContent = "J'ai encore besoin de réfléchir.";
+
+    // -------------------------
+    // Nom
+    // -------------------------
+
+    const nom = document.createElement("input");
+
+    nom.id = "trace-nom";
+
+    nom.type = "text";
+
+    nom.placeholder = "Votre nom (facultatif)";
+
+    // -------------------------
+    // Message
+    // -------------------------
+
+    const message = document.createElement("textarea");
+
+    message.id = "trace-message";
+
+    message.placeholder = "Votre Trace...";
+
+    // -------------------------
+    // Bouton
+    // -------------------------
+
+    const valider = document.createElement("button");
+
+    valider.id = "valider-trace";
+
+    valider.textContent = "Laisser ma Trace";
+
+    valider.addEventListener("click", () => {
+
+        console.log("➡️ Couche 3");
+
+    });
+
+    const fond = document.getElementById("livre-fond");
+
+    fond.appendChild(nom);
+
+    fond.appendChild(message);
+
+    fond.appendChild(valider);
 
 }
 
