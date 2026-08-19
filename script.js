@@ -266,12 +266,6 @@ retour.addEventListener("click", () => {
 
 }
 
-    fond.appendChild(livre);
-
-    document.body.appendChild(fond);
-
-}
-
 /* ==========================================================
    PIERRE N°11
    FRANCHIR LE SEUIL
