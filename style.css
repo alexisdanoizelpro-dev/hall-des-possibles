@@ -271,16 +271,13 @@ align-items:center;
 #livre-fond{
 
     position:fixed;
-
     inset:0;
 
-    background:rgba(0,0,0,.75);
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
+
+    background:rgba(0,0,0,.75);
 
     z-index:9999;
 
@@ -288,11 +285,27 @@ align-items:center;
 
 #livre-or{
 
+    position:relative;
+
     width:min(92vw,900px);
 
-    max-height:90vh;
+}
 
-    object-fit:contain;
+#livre-image{
+
+    display:block;
+
+    width:100%;
+
+}
+
+#livre-retour{
+
+    position:absolute;
+
+    left:18%;
+
+    bottom:8%;
 
 }
 
@@ -300,95 +313,8 @@ align-items:center;
 
     position:absolute;
 
-    bottom:8%;
-
     right:18%;
 
-}
-
-#livre-fond .retour-hall{
-
-    position:absolute;
-
     bottom:8%;
-
-    left:18%;
-
-}
-
-#trace-nom{
-
-    position:absolute;
-
-    top:33%;
-
-    left:33%;
-
-    width:17%;
-
-    background:transparent;
-
-    border:none;
-
-    outline:none;
-
-    color:#3c2415;
-
-    font-size:1rem;
-
-    font-family:"Georgia",serif;
-
-    z-index:10001;
-
-}
-
-#trace-message{
-
-    position:absolute;
-
-    top:40%;
-
-    left:30%;
-
-    width:40%;
-
-    height:24%;
-
-    resize:none;
-
-    background:transparent;
-
-    border:none;
-
-    outline:none;
-
-    color:#3c2415;
-
-    font-size:1rem;
-
-    line-height:1.6;
-
-    font-family:"Georgia",serif;
-
-    overflow:hidden;
-
-    z-index:10001;
-
-}
-
-#trace-message::placeholder,
-#trace-nom::placeholder{
-
-    color:rgba(60,36,21,.45);
-
-}
-
-#valider-trace{
-
-    position:absolute;
-
-    right:19%;
-
-    bottom:9%;
 
 }
