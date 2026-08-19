@@ -173,6 +173,8 @@ bouton.addEventListener("click", terminerRegistre);
 
 registre.appendChild(bouton);
 
+}
+
 function terminerRegistre(){
 
     const registre = document.getElementById("registre-seuil");
