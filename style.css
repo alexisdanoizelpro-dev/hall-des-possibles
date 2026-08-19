@@ -318,3 +318,74 @@ align-items:center;
     bottom:8%;
 
 }
+
+#trace-nom{
+
+    position:absolute;
+
+    top:23%;
+
+    left:13%;
+
+    width:22%;
+
+    background:transparent;
+
+    border:none;
+
+    outline:none;
+
+    color:#3d2b1f;
+
+    font-family:Georgia,serif;
+
+    font-size:1rem;
+
+}
+
+#trace-message{
+
+    position:absolute;
+
+    top:18%;
+
+    left:54%;
+
+    width:31%;
+
+    height:52%;
+
+    background:transparent;
+
+    border:none;
+
+    outline:none;
+
+    resize:none;
+
+    color:#3d2b1f;
+
+    line-height:1.6;
+
+    font-family:Georgia,serif;
+
+    font-size:1rem;
+
+}
+
+#trace-nom::placeholder,
+#trace-message::placeholder{
+
+    color:rgba(61,43,31,.45);
+
+}
+
+#valider-trace{
+
+    position:absolute;
+
+    right:18%;
+
+    bottom:8%;
+
+}
