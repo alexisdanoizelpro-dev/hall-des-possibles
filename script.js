@@ -307,9 +307,19 @@ function ouvrirLivreOr() {
 
     document.getElementById("livre-image").src = "livre-or-page-vierge.png";
 
-    retour.style.display = "none";
+    retour.textContent = "J'ai encore besoin de réfléchir.";
 
-    trace.style.display = "none";
+    retour.style.display = "block";
+
+    trace.textContent = "Laisser ma Trace";
+
+    trace.style.display = "block";
+
+    trace.onclick = () => {
+
+        // Couche 4
+
+    };
 
 });
 
