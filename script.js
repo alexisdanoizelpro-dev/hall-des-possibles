@@ -305,9 +305,13 @@ function ouvrirLivreOr() {
 
     trace.addEventListener("click", () => {
 
-        // Couche 2
+    document.getElementById("livre-image").src = "livre-or-page-vierge.webp";
 
-    });
+    retour.style.display = "none";
+
+    trace.style.display = "none";
+
+});
 
     livre.appendChild(retour);
     livre.appendChild(trace);
