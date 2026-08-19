@@ -267,6 +267,72 @@ retour.addEventListener("click", () => {
 }
 
 /* ==========================================================
+   PIERRE N°12
+   LE LIVRE D'OR
+   COUCHE 1
+   ========================================================== */
+
+function ouvrirLivreOr(){
+
+    if(document.getElementById("livre-fond")){
+        return;
+    }
+
+    // Fond assombri
+
+    const fond = document.createElement("div");
+
+    fond.id = "livre-fond";
+
+    // Le Livre
+
+    const livre = document.createElement("img");
+
+    livre.id = "livre-or";
+
+    livre.src = "livre-or-premier-artisan.webp";
+
+    livre.alt = "Livre d'Or";
+
+    fond.appendChild(livre);
+
+    // Bouton retour
+
+    const retour = document.createElement("button");
+
+    retour.className = "retour-hall";
+
+    retour.textContent = "J'ai encore besoin de réfléchir.";
+
+    retour.addEventListener("click", () => {
+
+        fond.remove();
+
+    });
+
+    fond.appendChild(retour);
+
+    // Bouton Trace
+
+    const trace = document.createElement("button");
+
+    trace.id = "livre-trace";
+
+    trace.textContent = "Laisser ma Trace";
+
+    trace.addEventListener("click", () => {
+
+        console.log("➡️ Couche 2");
+
+    });
+
+    fond.appendChild(trace);
+
+    document.body.appendChild(fond);
+
+}
+
+/* ==========================================================
    PIERRE N°11
    FRANCHIR LE SEUIL
    ========================================================== */
