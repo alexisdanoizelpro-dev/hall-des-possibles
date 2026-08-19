@@ -266,6 +266,46 @@ retour.addEventListener("click", () => {
 
 }
 
+function ouvrirLivreOr(){
+
+    // Le livre est déjà ouvert
+    if(document.getElementById("livre-fond")){
+        return;
+    }
+
+    // ==========================
+    // Fond
+    // ==========================
+
+    const fond = document.createElement("div");
+    fond.id = "livre-fond";
+
+    // ==========================
+    // Livre
+    // ==========================
+
+    const livre = document.createElement("div");
+    livre.id = "livre-or";
+
+    const image = document.createElement("img");
+    image.id = "livre-image";
+    image.src = "livre-or-premier-artisan.webp";
+    image.alt = "Livre d'Or";
+
+    livre.appendChild(image);
+
+    // ==========================
+    // Interface de la première page
+    // ==========================
+
+    creerPremierePage(livre, fond);
+
+    fond.appendChild(livre);
+
+    document.body.appendChild(fond);
+
+}
+
 function pageTrace(){
 
     const imageLivre = document.getElementById("livre-image");
