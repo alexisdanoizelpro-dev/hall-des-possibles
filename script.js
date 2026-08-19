@@ -298,30 +298,47 @@ function ouvrirLivreOr() {
         fond.remove();
     });
 
-    // Bouton Trace
-    const trace = document.createElement("button");
-    trace.id = "livre-trace";
-    trace.textContent = "Laisser ma Trace";
-
-    trace.addEventListener("click", () => {
-
-    document.getElementById("livre-image").src = "livre-or-page-vierge.png";
-
-    retour.textContent = "J'ai encore besoin de réfléchir.";
-
-    retour.style.display = "block";
-
-    trace.textContent = "Laisser ma Trace";
-
-    trace.style.display = "block";
-
     trace.onclick = () => {
 
-        // Couche 4
+    trace.style.display = "none";
+
+    // Nom
+
+    const nom = document.createElement("input");
+
+    nom.id = "trace-nom";
+
+    nom.placeholder = "Nom (facultatif)";
+
+    // Message
+
+    const message = document.createElement("textarea");
+
+    message.id = "trace-message";
+
+    message.placeholder = "Laissez ici votre Trace...";
+
+    // Nouveau bouton
+
+    const valider = document.createElement("button");
+
+    valider.id = "valider-trace";
+
+    valider.textContent = "Ta Trace est prête";
+
+    valider.onclick = () => {
+
+        // Couche 5
 
     };
 
-});
+    livre.appendChild(nom);
+
+    livre.appendChild(message);
+
+    livre.appendChild(valider);
+
+};
 
     livre.appendChild(retour);
     livre.appendChild(trace);
