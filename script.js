@@ -284,18 +284,26 @@ function ouvrirLivreOr(){
 
     fond.id = "livre-fond";
 
-    // Le Livre
+   // Conteneur du Livre
 
-    const livre = document.createElement("img");
+const livre = document.createElement("div");
 
-    livre.id = "livre-or";
+livre.id = "livre-or";
 
-    livre.src = "livre-or-premier-artisan.webp";
+// Image du Livre
 
-    livre.alt = "Livre d'Or";
+const imageLivre = document.createElement("img");
 
-    fond.appendChild(livre);
+imageLivre.id = "livre-image";
 
+imageLivre.src = "livre-or-premier-artisan.webp";
+
+imageLivre.alt = "Livre d'Or";
+
+livre.appendChild(imageLivre);
+
+fond.appendChild(livre);
+    
     // Bouton retour
 
     const retour = document.createElement("button");
