@@ -320,11 +320,25 @@ align-items:center;
 
     position:absolute;
 
-    top:34%;
+    top:33%;
 
-    left:29%;
+    left:33%;
 
-    width:18%;
+    width:17%;
+
+    background:transparent;
+
+    border:none;
+
+    outline:none;
+
+    color:#3c2415;
+
+    font-size:1rem;
+
+    font-family:"Georgia",serif;
+
+    z-index:10001;
 
 }
 
@@ -332,15 +346,40 @@ align-items:center;
 
     position:absolute;
 
-    top:42%;
+    top:40%;
 
-    left:29%;
+    left:30%;
 
-    width:42%;
+    width:40%;
 
-    height:28%;
+    height:24%;
 
     resize:none;
+
+    background:transparent;
+
+    border:none;
+
+    outline:none;
+
+    color:#3c2415;
+
+    font-size:1rem;
+
+    line-height:1.6;
+
+    font-family:"Georgia",serif;
+
+    overflow:hidden;
+
+    z-index:10001;
+
+}
+
+#trace-message::placeholder,
+#trace-nom::placeholder{
+
+    color:rgba(60,36,21,.45);
 
 }
 
@@ -348,8 +387,8 @@ align-items:center;
 
     position:absolute;
 
-    bottom:8%;
+    right:19%;
 
-    right:18%;
+    bottom:9%;
 
 }
