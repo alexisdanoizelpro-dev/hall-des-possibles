@@ -305,7 +305,7 @@ function ouvrirLivreOr() {
 
     trace.addEventListener("click", () => {
 
-    document.getElementById("livre-image").src = "livre-or-page-vierge.webp";
+    document.getElementById("livre-image").src = "livre-or-page-vierge.png";
 
     retour.style.display = "none";
 
