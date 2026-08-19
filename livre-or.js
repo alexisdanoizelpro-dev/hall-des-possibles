@@ -67,7 +67,7 @@ function fermerLivre(){
 
 function afficherPageTrace(){
 
-    imageLivre.src = "livre-or-page-vierge.webp";
+    imageLivre.src = "livre-or-page-vierge.png";
 
     const boutons = livre.querySelectorAll("button");
 
