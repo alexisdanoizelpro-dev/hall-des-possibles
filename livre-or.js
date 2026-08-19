@@ -3,11 +3,11 @@
 /* ==========================================================
    LIVRE D'OR
    COUCHE 1
-   OUVERTURE
    ========================================================== */
 
 let fondLivre = null;
 let livre = null;
+let imageLivre = null;
 
 function ouvrirLivreOr(){
 
@@ -21,11 +21,28 @@ function ouvrirLivreOr(){
     livre = document.createElement("div");
     livre.id = "livre-or";
 
+    imageLivre = document.createElement("img");
+    imageLivre.id = "livre-image";
+    imageLivre.src = "livre-or-premier-artisan.webp";
+
+    livre.appendChild(imageLivre);
+
+    const retour = document.createElement("button");
+    retour.id = "livre-retour";
+    retour.textContent = "J'ai encore besoin de réfléchir.";
+    retour.addEventListener("click", fermerLivre);
+
+    const trace = document.createElement("button");
+    trace.id = "livre-trace";
+    trace.textContent = "Laisser ma Trace";
+    trace.addEventListener("click", afficherPageTrace);
+
+    livre.appendChild(retour);
+    livre.appendChild(trace);
+
     fondLivre.appendChild(livre);
 
     document.body.appendChild(fondLivre);
-
-    fondLivre.addEventListener("click", fermerLivre);
 
 }
 
@@ -39,5 +56,6 @@ function fermerLivre(){
 
     fondLivre = null;
     livre = null;
+    imageLivre = null;
 
 }
