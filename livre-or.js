@@ -59,3 +59,31 @@ function fermerLivre(){
     imageLivre = null;
 
 }
+
+/* ==========================================================
+   COUCHE 2
+   PAGE VIERGE
+   ========================================================== */
+
+function afficherPageTrace(){
+
+    imageLivre.src = "livre-or-page-vierge.webp";
+
+    const boutons = livre.querySelectorAll("button");
+
+    boutons.forEach(bouton => bouton.remove());
+
+    const retour = document.createElement("button");
+    retour.id = "livre-retour";
+    retour.textContent = "J'ai encore besoin de réfléchir.";
+    retour.addEventListener("click", fermerLivre);
+
+    const trace = document.createElement("button");
+    trace.id = "livre-trace";
+    trace.textContent = "Laisser ma Trace";
+    trace.addEventListener("click", afficherTraceGravee);
+
+    livre.appendChild(retour);
+    livre.appendChild(trace);
+
+}
