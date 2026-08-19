@@ -315,3 +315,41 @@ align-items:center;
     left:18%;
 
 }
+
+#trace-nom{
+
+    position:absolute;
+
+    top:34%;
+
+    left:29%;
+
+    width:18%;
+
+}
+
+#trace-message{
+
+    position:absolute;
+
+    top:42%;
+
+    left:29%;
+
+    width:42%;
+
+    height:28%;
+
+    resize:none;
+
+}
+
+#valider-trace{
+
+    position:absolute;
+
+    bottom:8%;
+
+    right:18%;
+
+}
