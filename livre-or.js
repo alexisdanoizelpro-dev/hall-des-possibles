@@ -85,7 +85,7 @@ function afficherPageTrace(){
 
     nettoyerLivre();
 
-    livreImage.src = "livre-or-page-vierge.webp";
+    livreImage.src = "livre-or-laissez-votre-trace.png";
 
     champNom = document.createElement("input");
     champNom.id = "trace-nom";
@@ -123,7 +123,7 @@ function afficherTraceGravee(){
 
     nettoyerLivre();
 
-    livreImage.src = "livre-or-trace-gravee.webp";
+    livreImage.src = "livre-or-page-vierge.webp";
 
 }
 
