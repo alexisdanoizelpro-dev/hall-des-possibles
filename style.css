@@ -441,3 +441,65 @@ align-items:center;
     text-align:right;
 
 }
+
+/* ==========================================================
+   ZONES DE CLIC DU LIVRE D'OR
+   ========================================================== */
+
+#zone-retour,
+#zone-trace,
+#zone-valider,
+#zone-fermer{
+
+    position:absolute;
+
+    background:transparent;
+    border:none;
+    cursor:pointer;
+
+}
+
+
+/* ---------- PAGE 1 ---------- */
+
+#zone-retour{
+
+    top:6%;
+    right:8%;
+
+    width:28%;
+    height:12%;
+
+}
+
+#zone-trace{
+
+    bottom:8%;
+    right:8%;
+
+    width:28%;
+    height:12%;
+
+}
+
+
+/* ---------- PAGE 2 ---------- */
+
+#zone-valider{
+
+    bottom:8%;
+    right:8%;
+
+    width:28%;
+    height:12%;
+
+}
+
+
+/* ---------- PAGE 3 ---------- */
+
+#zone-fermer{
+
+    inset:0;
+
+}
