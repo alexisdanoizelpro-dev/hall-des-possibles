@@ -1,4 +1,49 @@
 /* ==========================================================
+   LIVRE D'OR
+   LE HALL DES POSSIBLES
+   ========================================================== */
+
+let livreFond = null;
+let livre = null;
+let livreImage = null;
+
+let boutonRetour = null;
+let boutonAction = null;
+
+let champNom = null;
+let champMessage = null;
+
+
+/* ==========================================================
+   OUVERTURE
+   ========================================================== */
+
+function ouvrirLivreOr(){
+
+    if(livreFond){
+        return;
+    }
+
+    livreFond = document.createElement("div");
+    livreFond.id = "livre-fond";
+
+    livre = document.createElement("div");
+    livre.id = "livre";
+
+    livreImage = document.createElement("img");
+    livreImage.id = "livre-image";
+
+    livre.appendChild(livreImage);
+
+    livreFond.appendChild(livre);
+
+    document.body.appendChild(livreFond);
+
+    afficherPremierArtisan();
+
+}
+
+/* ==========================================================
    PAGE 1
    LE PREMIER ARTISAN
    ========================================================== */
@@ -22,6 +67,7 @@ function afficherPremierArtisan(){
 
 }
 
+
 /* ==========================================================
    PAGE 2
    LAISSEZ VOTRE TRACE
@@ -42,6 +88,9 @@ function afficherPageTrace(){
     champMessage.id = "trace-message";
     champMessage.placeholder = "";
 
+    livre.appendChild(champNom);
+    livre.appendChild(champMessage);
+
     boutonRetour = document.createElement("button");
     boutonRetour.id = "zone-retour";
     boutonRetour.onclick = afficherPremierArtisan;
@@ -49,9 +98,6 @@ function afficherPageTrace(){
     boutonAction = document.createElement("button");
     boutonAction.id = "zone-valider";
     boutonAction.onclick = afficherTraceGravee;
-
-    livre.appendChild(champNom);
-    livre.appendChild(champMessage);
 
     livre.appendChild(boutonRetour);
     livre.appendChild(boutonAction);
@@ -76,6 +122,7 @@ function afficherTraceGravee(){
     livre.appendChild(boutonAction);
 
 }
+
 
 /* ==========================================================
    FERMETURE
@@ -118,12 +165,6 @@ function nettoyerLivre(){
 
 }
 
-
-function ouvrirLivreOr(){
-
-    afficherPremierArtisan();
-
-}
 
 /* ==========================================================
    FIN
