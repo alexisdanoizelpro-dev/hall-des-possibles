@@ -299,3 +299,24 @@ align-items:center;
 
 }
 
+/* ==========================================================
+   PLUME
+   ========================================================== */
+
+#zone-plume{
+
+    position:absolute;
+
+    right:7.5%;
+    bottom:7%;
+
+    width:8%;
+    height:16%;
+
+    background:transparent;
+
+    border:none;
+
+    cursor:pointer;
+
+}
