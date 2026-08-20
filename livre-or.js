@@ -13,7 +13,6 @@ let boutonAction = null;
 let champNom = null;
 let champMessage = null;
 
-
 /* ==========================================================
    OUVERTURE
    ========================================================== */
@@ -27,8 +26,16 @@ function ouvrirLivreOr(){
     livreFond = document.createElement("div");
     livreFond.id = "livre-fond";
 
+    livreFond.onclick = fermerLivre;
+
     livre = document.createElement("div");
     livre.id = "livre";
+
+    livre.onclick = function(e){
+
+        e.stopPropagation();
+
+    };
 
     livreImage = document.createElement("img");
     livreImage.id = "livre-image";
@@ -54,19 +61,20 @@ function afficherPremierArtisan(){
 
     livreImage.src = "livre-or-premier-artisan.webp";
 
-    boutonRetour = document.createElement("button");
-    boutonRetour.id = "zone-retour";
-    boutonRetour.onclick = fermerLivre;
-
     boutonAction = document.createElement("button");
-    boutonAction.id = "zone-trace";
-    boutonAction.onclick = afficherPageTrace;
+    boutonAction.id = "zone-plume";
 
-    livre.appendChild(boutonRetour);
+    boutonAction.onclick = function(e){
+
+        e.stopPropagation();
+
+        afficherPageTrace();
+
+    };
+
     livre.appendChild(boutonAction);
 
 }
-
 
 /* ==========================================================
    PAGE 2
@@ -91,15 +99,17 @@ function afficherPageTrace(){
     livre.appendChild(champNom);
     livre.appendChild(champMessage);
 
-    boutonRetour = document.createElement("button");
-    boutonRetour.id = "zone-retour";
-    boutonRetour.onclick = afficherPremierArtisan;
-
     boutonAction = document.createElement("button");
-    boutonAction.id = "zone-valider";
-    boutonAction.onclick = afficherTraceGravee;
+    boutonAction.id = "zone-plume";
 
-    livre.appendChild(boutonRetour);
+    boutonAction.onclick = function(e){
+
+        e.stopPropagation();
+
+        afficherTraceGravee();
+
+    };
+
     livre.appendChild(boutonAction);
 
 }
@@ -115,14 +125,7 @@ function afficherTraceGravee(){
 
     livreImage.src = "livre-or-trace-gravee.webp";
 
-    boutonAction = document.createElement("button");
-    boutonAction.id = "zone-fermer";
-    boutonAction.onclick = fermerLivre;
-
-    livre.appendChild(boutonAction);
-
 }
-
 
 /* ==========================================================
    FERMETURE
@@ -140,14 +143,12 @@ function fermerLivre(){
     livre = null;
     livreImage = null;
 
-    boutonRetour = null;
     boutonAction = null;
 
     champNom = null;
     champMessage = null;
 
 }
-
 
 /* ==========================================================
    OUTIL
