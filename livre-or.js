@@ -119,6 +119,12 @@ function nettoyerLivre(){
 }
 
 
+function ouvrirLivreOr(){
+
+    afficherPremierArtisan();
+
+}
+
 /* ==========================================================
    FIN
    ========================================================== */
