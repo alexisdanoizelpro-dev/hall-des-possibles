@@ -406,7 +406,7 @@ align-items:center;
     color:#3a2a1a;
 
     font-family: "Cormorant Garamond", serif;
-    font-size:24px;
+    font-size:18px;
 
     cursor:default;
 
@@ -426,14 +426,14 @@ align-items:center;
 
 #livre-retour{
 
-    top:8%;
-    left:8%;
+    top:10%;
+    left:4%;
 
 }
 
 #livre-action{
 
-    top:8%;
-    right:8%;
+    top:10%;
+    right:4%;
 
 }
