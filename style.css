@@ -389,3 +389,37 @@ align-items:center;
     bottom:8%;
 
 }
+
+/* ==========================================================
+   LIVRE D'OR
+   BOUTONS
+   ========================================================== */
+
+#livre-retour,
+#livre-action{
+
+    position:absolute;
+
+    background:transparent;
+    border:none;
+
+    color:#3a2a1a;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size:24px;
+
+    cursor:default;
+
+    transition:0.25s;
+
+    padding:0;
+
+}
+
+#livre-retour:hover,
+#livre-action:hover{
+
+    color:#000;
+    transform:scale(1.03);
+
+}
