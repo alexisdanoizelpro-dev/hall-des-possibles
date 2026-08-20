@@ -423,3 +423,17 @@ align-items:center;
     transform:scale(1.03);
 
 }
+
+#livre-retour{
+
+    top:8%;
+    left:8%;
+
+}
+
+#livre-action{
+
+    top:8%;
+    right:8%;
+
+}
