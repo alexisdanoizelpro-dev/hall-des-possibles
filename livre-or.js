@@ -126,7 +126,7 @@ function afficherPageTrace(){
     champNom = document.createElement("input");
     champNom.id = "trace-nom";
     champNom.type = "text";
-    champNom.placeholder = "Votre prénom";
+    champNom.placeholder = "Prénom";
 
     champMessage = document.createElement("textarea");
     champMessage.id = "trace-message";
