@@ -300,18 +300,20 @@ align-items:center;
 }
 
 /* ==========================================================
-   PLUME
+   PAGE DROITE
    ========================================================== */
 
 #zone-plume{
 
     position:absolute;
 
-    right:7.5%;
-    bottom:7%;
+    top:0;
 
-    width:8%;
-    height:16%;
+    right:0;
+
+    width:50%;
+
+    height:100%;
 
     background:transparent;
 
