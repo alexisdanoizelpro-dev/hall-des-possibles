@@ -1,48 +1,81 @@
-"use strict";
-
 /* ==========================================================
-   LIVRE D'OR
+   PAGE 1
+   LE PREMIER ARTISAN
    ========================================================== */
 
-let livreFond = null;
-let livre = null;
-let livreImage = null;
+function afficherPremierArtisan(){
 
-let boutonRetour = null;
-let boutonAction = null;
+    nettoyerLivre();
 
-let champNom = null;
-let champMessage = null;
+    livreImage.src = "livre-or-premier-artisan.webp";
 
+    boutonRetour = document.createElement("button");
+    boutonRetour.id = "zone-retour";
+    boutonRetour.onclick = fermerLivre;
 
-/* ==========================================================
-   OUVERTURE
-   ========================================================== */
+    boutonAction = document.createElement("button");
+    boutonAction.id = "zone-trace";
+    boutonAction.onclick = afficherPageTrace;
 
-function ouvrirLivreOr(){
-
-    if(livreFond){
-        return;
-    }
-
-    livreFond = document.createElement("div");
-    livreFond.id = "livre-fond";
-
-    livre = document.createElement("div");
-    livre.id = "livre-or";
-
-    livreImage = document.createElement("img");
-    livreImage.id = "livre-image";
-
-    livre.appendChild(livreImage);
-
-    document.body.appendChild(livreFond);
-    livreFond.appendChild(livre);
-
-    afficherPremierArtisan();
+    livre.appendChild(boutonRetour);
+    livre.appendChild(boutonAction);
 
 }
 
+/* ==========================================================
+   PAGE 2
+   LAISSEZ VOTRE TRACE
+   ========================================================== */
+
+function afficherPageTrace(){
+
+    nettoyerLivre();
+
+    livreImage.src = "livre-or-page-vierge.webp";
+
+    champNom = document.createElement("input");
+    champNom.id = "trace-nom";
+    champNom.type = "text";
+    champNom.placeholder = "Prénom";
+
+    champMessage = document.createElement("textarea");
+    champMessage.id = "trace-message";
+    champMessage.placeholder = "";
+
+    boutonRetour = document.createElement("button");
+    boutonRetour.id = "zone-retour";
+    boutonRetour.onclick = afficherPremierArtisan;
+
+    boutonAction = document.createElement("button");
+    boutonAction.id = "zone-valider";
+    boutonAction.onclick = afficherTraceGravee;
+
+    livre.appendChild(champNom);
+    livre.appendChild(champMessage);
+
+    livre.appendChild(boutonRetour);
+    livre.appendChild(boutonAction);
+
+}
+
+/* ==========================================================
+   PAGE 3
+   TRACE GRAVÉE
+   ========================================================== */
+
+function afficherTraceGravee(){
+
+    nettoyerLivre();
+
+    livreImage.src = "livre-or-trace-gravee.webp";
+
+    boutonAction = document.createElement("button");
+    boutonAction.id = "zone-fermer";
+    boutonAction.onclick = fermerLivre;
+
+    livre.appendChild(boutonAction);
+
+}
 
 /* ==========================================================
    FERMETURE
@@ -82,91 +115,6 @@ function nettoyerLivre(){
     }
 
     livre.appendChild(livreImage);
-
-}
-
-/* ==========================================================
-   PAGE 1
-   LE PREMIER ARTISAN
-   ========================================================== */
-
-function afficherPremierArtisan(){
-
-    nettoyerLivre();
-
-    livreImage.src = "livre-or-premier-artisan.webp";
-
-    boutonRetour = document.createElement("button");
-    boutonRetour.id = "livre-retour";
-    boutonRetour.textContent = "J'ai encore besoin de réfléchir.";
-    boutonRetour.onclick = fermerLivre;
-
-    boutonAction = document.createElement("button");
-    boutonAction.id = "livre-action";
-    boutonAction.textContent = "Laisser ma Trace";
-    boutonAction.onclick = afficherPageTrace;
-
-    livre.appendChild(boutonRetour);
-    livre.appendChild(boutonAction);
-
-}
-
-
-/* ==========================================================
-   PAGE 2
-   PAGE VIERGE
-   ========================================================== */
-
-function afficherPageTrace(){
-
-    nettoyerLivre();
-
-    livreImage.src = "livre-or-page-vierge.webp";
-
-    champNom = document.createElement("input");
-    champNom.id = "trace-nom";
-    champNom.type = "text";
-    champNom.placeholder = "Prénom";
-
-    champMessage = document.createElement("textarea");
-    champMessage.id = "trace-message";
-    champMessage.placeholder = "Votre Trace";
-
-    boutonRetour = document.createElement("button");
-    boutonRetour.id = "livre-retour";
-    boutonRetour.textContent = "J'ai encore besoin de réfléchir.";
-    boutonRetour.onclick = fermerLivre;
-
-    boutonAction = document.createElement("button");
-    boutonAction.id = "livre-action";
-    boutonAction.textContent = "Laisser ma Trace";
-    boutonAction.onclick = afficherTraceGravee;
-
-    livre.appendChild(champNom);
-    livre.appendChild(champMessage);
-
-    livre.appendChild(boutonRetour);
-    livre.appendChild(boutonAction);
-
-}
-
-/* ==========================================================
-   PAGE 3
-   TRACE GRAVÉE
-   ========================================================== */
-
-function afficherTraceGravee(){
-
-    nettoyerLivre();
-
-    livreImage.src = "livre-or-trace-gravee.webp";
-
-    boutonAction = document.createElement("button");
-    boutonAction.id = "livre-action";
-    boutonAction.textContent = "Revenir dans le Hall";
-    boutonAction.onclick = fermerLivre;
-
-    livre.appendChild(boutonAction);
 
 }
 
