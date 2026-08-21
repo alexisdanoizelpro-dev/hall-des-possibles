@@ -287,7 +287,13 @@ align-items:center;
 
     position:relative;
 
-    width:min(92vw,900px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    width:min(82vw,820px);
+
+    max-height:82vh;
 
 }
 
