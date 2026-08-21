@@ -387,3 +387,23 @@ align-items:center;
     background:transparent;
 
 }
+
+#reflexion-du-seuil {
+    position: absolute;
+    left: 50%;
+    top: 18%;
+    transform: translateX(-50%);
+
+    z-index: 9999;
+
+    color: white;
+    background: rgba(0, 0, 0, 0.85);
+
+    padding: 14px 20px;
+    border-radius: 8px;
+
+    font-size: 20px;
+    text-align: center;
+
+    max-width: 70%;
+}
