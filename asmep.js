@@ -19,6 +19,10 @@ const ASMEP = {
 
    occupe : false,
 
+   sprite : null,
+
+element : null,
+
     objets : {
 
         panier : "panier",
@@ -35,6 +39,49 @@ const ASMEP = {
    
 };
 
+/* ==========================================================
+   APPARITION D'ASMEP
+   ========================================================== */
+
+function creerASMEP(){
+
+    ASMEP.element = document.createElement("img");
+
+    ASMEP.element.id = "asmep";
+
+    ASMEP.element.src = "asmep-dort.webp";
+
+    document.body.appendChild(ASMEP.element);
+
+    mettreAJourPosition();
+
+}
+
+function mettreAJourPosition(){
+
+    switch(ASMEP.position){
+
+        case "panier":
+
+            ASMEP.element.style.left = "72%";
+            ASMEP.element.style.top = "63%";
+            break;
+
+        case "canape":
+
+            ASMEP.element.style.left = "86%";
+            ASMEP.element.style.top = "56%";
+            break;
+
+        case "gamelle":
+
+            ASMEP.element.style.left = "77%";
+            ASMEP.element.style.top = "72%";
+            break;
+
+    }
+
+}
 
 /* ==========================================================
    LIEUX AUTORISÉS
@@ -340,21 +387,26 @@ function deplacerASMEP(destination){
 
 function marcherVersDestination(){
 
-    /* ------------------------------------------------------
-       Cette fonction sera complétée plus tard.
+    /* ---------------------------------------------
+       Temps de trajet.
+       Entre 20 et 80 secondes.
+    ---------------------------------------------- */
 
-       Pour le moment,
-       elle simule simplement l'arrivée.
-       ------------------------------------------------------ */
+    const duree = 20000 + Math.random() * 60000;
 
-    terminerDeplacement();
+    setTimeout(function(){
+
+        terminerDeplacement();
+
+    }, duree);
 
 }
-
 
 function terminerDeplacement(){
 
     ASMEP.position = ASMEP.destination;
+
+   mettreAJourPosition();
 
     ASMEP.destination = null;
 
