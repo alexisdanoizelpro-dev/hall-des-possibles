@@ -123,7 +123,32 @@ function afficherTraceGravee(){
 
     nettoyerLivre();
 
-    livreImage.src = "livre-or-page-vierge.webp";
+    livreImage.src = "livre-or-page-vierge.png";
+
+const remerciement = document.createElement("div");
+
+remerciement.id = "trace-remerciement";
+
+remerciement.innerHTML = `
+Merci d'avoir confié une part de vous au Seuil.<br><br>
+Elle sera conservée avec tout le soin qu'elle mérite.
+`;
+
+livre.appendChild(remerciement);
+
+   const zoneFermer = document.createElement("div");
+
+zoneFermer.id = "zone-fermer-livre";
+
+zoneFermer.onclick = function(e){
+
+    e.stopPropagation();
+
+    fermerLivre();
+
+};
+
+livre.appendChild(zoneFermer);
 
 }
 
