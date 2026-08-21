@@ -94,7 +94,7 @@ function afficherPageTrace(){
 
     champMessage = document.createElement("textarea");
     champMessage.id = "trace-message";
-    champMessage.placeholder = "";
+    champMessage.placeholder = "Le Seuil vous lit...";
 
     livre.appendChild(champNom);
     livre.appendChild(champMessage);
