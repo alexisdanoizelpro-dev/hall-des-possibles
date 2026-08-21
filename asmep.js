@@ -17,6 +17,8 @@ const ASMEP = {
 
     activite : "dormir",
 
+   occupe : false,
+
     objets : {
 
         panier : "panier",
@@ -29,6 +31,8 @@ const ASMEP = {
 
     }
 
+    memoire : []
+   
 };
 
 
@@ -126,47 +130,91 @@ function propositionDuSeuil(){
 
 function propositionHall(){
 
-    const tirage = Math.random();
+    const propositions = [
 
-    if(tirage < 0.40){
+        "dormir",
+        "corde",
+        "rever",
+        "position",
+        "boire",
+        "jardin",
+        "canape"
 
-        continuerADormir();
+    ];
 
-    }
+    const disponibles = propositions.filter(function(proposition){
 
-    else if(tirage < 0.50){
+        return !propositionRecente(proposition);
 
-        jouerAvecLaCorde();
+    });
 
-    }
+    if(disponibles.length === 0){
 
-    else if(tirage < 0.60){
+        ASMEP.memoire = [];
 
-        rever();
-
-    }
-
-    else if(tirage < 0.70){
-
-        changerDePosition();
-
-    }
-
-    else if(tirage < 0.80){
-
-        allerBoire();
+        return propositionHall();
 
     }
 
-    else if(tirage < 0.90){
+    const proposition = disponibles[
+        Math.floor(Math.random()*disponibles.length)
+    ];
 
-        allerAuJardin();
+    memoriserProposition(proposition);
 
-    }
+    proposerAASMEP(proposition);
 
-    else{
+}
 
-        monterSurLeCanape();
+/* ==========================================================
+   LE SEUIL PROPOSE
+   ========================================================== */
+
+function ASMEP.decider(proposition){
+
+    switch(proposition){
+
+        case "dormir":
+
+            continuerADormir();
+
+            break;
+
+        case "corde":
+
+            jouerAvecLaCorde();
+
+            break;
+
+        case "rever":
+
+            rever();
+
+            break;
+
+        case "position":
+
+            changerDePosition();
+
+            break;
+
+        case "boire":
+
+            allerBoire();
+
+            break;
+
+        case "jardin":
+
+            allerAuJardin();
+
+            break;
+
+        case "canape":
+
+            monterSurLeCanape();
+
+            break;
 
     }
 
@@ -226,3 +274,58 @@ function monterSurLeCanape(){
 
 }
 
+/* ==========================================================
+   MÉMOIRE DU SEUIL
+   ========================================================== */
+
+function memoriserProposition(proposition){
+
+    ASMEP.memoire.push(proposition);
+
+    if(ASMEP.memoire.length > 2){
+
+        ASMEP.memoire.shift();
+
+    }
+
+}
+
+function propositionRecente(proposition){
+
+    return ASMEP.memoire.includes(proposition);
+
+}
+
+/* ==========================================================
+   ASMEP DÉCIDE
+   ========================================================== */
+
+ASMEP.decider = function(proposition){
+
+    /* ------------------------------------------------------
+       Si ASMEP est déjà occupé,
+       il continue naturellement ce qu'il fait.
+       ------------------------------------------------------ */
+
+    if(ASMEP.occupe){
+
+        return;
+
+    }
+
+    /* ------------------------------------------------------
+       Le chien est libre d'accepter...
+       ou non.
+       ------------------------------------------------------ */
+
+    const accepte = Math.random() < 0.80;
+
+    if(!accepte){
+
+        return;
+
+    }
+
+    proposerAASMEP(proposition);
+
+};
