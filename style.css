@@ -370,3 +370,42 @@ align-items:center;
     color:#3b2b1d;
 
 }
+
+/* ==========================================================
+   PAGE FINALE DU LIVRE D'OR
+   ========================================================== */
+
+#trace-remerciement{
+
+    position:absolute;
+
+    top:28%;
+    left:10%;
+
+    width:34%;
+
+    font-family:Georgia, serif;
+    font-size:1.2vw;
+    line-height:1.8;
+
+    color:#3b2b1d;
+
+    text-align:center;
+
+}
+
+#zone-fermer-livre{
+
+    position:absolute;
+
+    top:0;
+    right:0;
+
+    width:50%;
+    height:100%;
+
+    cursor:pointer;
+
+    background:transparent;
+
+}
