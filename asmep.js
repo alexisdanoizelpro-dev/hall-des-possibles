@@ -250,27 +250,19 @@ function changerDePosition(){
 
 function allerBoire(){
 
-    ASMEP.activite = "boire";
-
-    ASMEP.position = "gamelle";
+    deplacerASMEP("gamelle");
 
 }
 
 function allerAuJardin(){
 
-    ASMEP.activite = "marcher";
-
-    ASMEP.lieu = "jardin";
-
-    ASMEP.position = "allee";
+    deplacerASMEP("jardin");
 
 }
 
 function monterSurLeCanape(){
 
-    ASMEP.activite = "marcher";
-
-    ASMEP.position = "canape";
+    deplacerASMEP("canape");
 
 }
 
@@ -329,3 +321,45 @@ ASMEP.decider = function(proposition){
     proposerAASMEP(proposition);
 
 };
+
+/* ==========================================================
+   DÉPLACEMENT D'ASMEP
+   ========================================================== */
+
+function deplacerASMEP(destination){
+
+    ASMEP.occupe = true;
+
+    ASMEP.destination = destination;
+
+    ASMEP.activite = "marcher";
+
+    marcherVersDestination();
+
+}
+
+function marcherVersDestination(){
+
+    /* ------------------------------------------------------
+       Cette fonction sera complétée plus tard.
+
+       Pour le moment,
+       elle simule simplement l'arrivée.
+       ------------------------------------------------------ */
+
+    terminerDeplacement();
+
+}
+
+
+function terminerDeplacement(){
+
+    ASMEP.position = ASMEP.destination;
+
+    ASMEP.destination = null;
+
+    ASMEP.activite = "repos";
+
+    ASMEP.occupe = false;
+
+}
