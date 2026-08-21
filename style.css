@@ -189,34 +189,6 @@ align-items:center;
 
 }
 
-#livre-or{
-
-    width:min(82vw,820px);
-
-    max-height:82vh;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-}
-
-#livre-or img{
-
-    width:100%;
-
-    height:auto;
-
-    display:block;
-
-    border-radius:6px;
-
-    box-shadow:0 0 40px rgba(0,0,0,.60);
-
-}
-
 .retour-hall{
 
     background:none;
