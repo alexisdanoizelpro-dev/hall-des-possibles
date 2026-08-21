@@ -191,9 +191,9 @@ align-items:center;
 
 #livre-or{
 
-    width:min(92vw,900px);
+    width:min(82vw,820px);
 
-    max-height:90vh;
+    max-height:82vh;
 
     display:flex;
 
