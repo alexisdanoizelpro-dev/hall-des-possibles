@@ -123,7 +123,7 @@ function afficherTraceGravee(){
 
     nettoyerLivre();
 
-    livreImage.src = "livre-or-page-vierge.png";
+    livreImage.src = "livre-or-page-vierge.webp";
 
 const remerciement = document.createElement("div");
 
