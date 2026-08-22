@@ -273,43 +273,131 @@ function ASMEP.decider(proposition){
 
 function continuerADormir(){
 
-    changerPosture("dormir");
+    commencerActivite("dormir");
 
 }
 
 function jouerAvecLaCorde(){
 
-    changerPosture("jouer");
+    commencerActivite("jouer");
 
 }
 
 function rever(){
 
-    changerPosture("rever");
+    commencerActuvite("rever");
 
 }
 
 function changerDePosition(){
 
-    changerPosture("changer-position");
+    commencerActivite("changer-position");
 
 }
 
 function allerBoire(){
 
-    changerPosture("gamelle");
+    commencerActivite("gamelle");
 
 }
 
 function allerAuJardin(){
 
-    changerPosture("jardin");
+    commencerActivite("jardin");
 
 }
 
 function monterSurLeCanape(){
 
-    changerPosture("canape");
+    commencerActivite("canape");
+
+}
+
+/* ==========================================================
+   ACTIVITÉS D'ASMEP
+   ========================================================== */
+
+function commencerActivite(activite){
+
+    switch(activite){
+
+        case "dormir":
+
+            changerPosture("dormir");
+            break;
+
+        case "jouer":
+
+            changerPosture("jouer");
+            break;
+
+        case "rever":
+
+            changerPosture("rever");
+            break;
+
+        case "boire":
+
+            changerPosture("boire");
+            break;
+
+        case "canape":
+
+            changerPosture("canape");
+            break;
+
+        case "changer-position":
+
+            changerPosture("changer-position");
+            break;
+
+    }
+
+setTimeout(function(){
+
+    ASMEP.occupe = false;
+
+}, dureeActivite(activite));
+
+  }
+
+   /* ==========================================================
+   DURÉE DES ACTIVITÉS
+   ========================================================== */
+
+function dureeActivite(activite){
+
+    switch(activite){
+
+        case "dormir":
+
+            return 180000;
+
+        case "jouer":
+
+            return 90000;
+
+        case "rever":
+
+            return 60000;
+
+        case "boire":
+
+            return 30000;
+
+        case "canape":
+
+            return 180000;
+
+        case "changer-position":
+
+            return 15000;
+
+        default:
+
+            return 60000;
+
+    }
 
 }
 
