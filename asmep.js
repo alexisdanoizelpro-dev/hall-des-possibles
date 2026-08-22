@@ -273,43 +273,43 @@ function ASMEP.decider(proposition){
 
 function continuerADormir(){
 
-    ASMEP.activite = "dormir";
+    changerPosture("dormir");
 
 }
 
 function jouerAvecLaCorde(){
 
-    ASMEP.activite = "jouer";
+    changerPosture("jouer");
 
 }
 
 function rever(){
 
-    ASMEP.activite = "rever";
+    changerPosture("rever");
 
 }
 
 function changerDePosition(){
 
-    ASMEP.activite = "changer-position";
+    changerPosture("changer-position");
 
 }
 
 function allerBoire(){
 
-    deplacerASMEP("gamelle");
+    changerPosture("gamelle");
 
 }
 
 function allerAuJardin(){
 
-    deplacerASMEP("jardin");
+    changerPosture("jardin");
 
 }
 
 function monterSurLeCanape(){
 
-    deplacerASMEP("canape");
+    changerPosture("canape");
 
 }
 
@@ -413,5 +413,55 @@ function terminerDeplacement(){
     ASMEP.activite = "repos";
 
     ASMEP.occupe = false;
+
+}
+
+/* ==========================================================
+   POSTURES D'ASMEP
+   ========================================================== */
+
+function changerPosture(posture){
+
+    ASMEP.activite = posture;
+
+    if(!ASMEP.element){
+
+        return;
+
+    }
+
+    switch(posture){
+
+        case "dormir":
+
+            ASMEP.element.src = "asmep-dort.webp";
+            break;
+
+        case "rever":
+
+            ASMEP.element.src = "asmep-reve.webp";
+            break;
+
+        case "jouer":
+
+            ASMEP.element.src = "asmep-joue.webp";
+            break;
+
+        case "boire":
+
+            ASMEP.element.src = "asmep-boit.webp";
+            break;
+
+        case "canape":
+
+            ASMEP.element.src = "asmep-canape.webp";
+            break;
+
+        case "changer-position":
+
+            ASMEP.element.src = "asmep-position.webp";
+            break;
+
+    }
 
 }
