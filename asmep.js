@@ -217,7 +217,7 @@ function propositionHall(){
    LE SEUIL PROPOSE
    ========================================================== */
 
-function ASMEP.decider(proposition){
+function proposerAASMEP(proposition){
 
     switch(proposition){
 
@@ -285,7 +285,7 @@ function jouerAvecLaCorde(){
 
 function rever(){
 
-    commencerActuvite("rever");
+    commencerActivite("rever");
 
 }
 
@@ -297,7 +297,7 @@ function changerDePosition(){
 
 function allerBoire(){
 
-    commencerActivite("gamelle");
+    commencerActivite("boire");
 
 }
 
