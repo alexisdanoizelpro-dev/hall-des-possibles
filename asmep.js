@@ -33,7 +33,7 @@ element : null,
 
         gamelle : "gamelle"
 
-    }
+    },
 
     memoire : []
    
@@ -209,7 +209,7 @@ function propositionHall(){
 
     memoriserProposition(proposition);
 
-    proposerAASMEP(proposition);
+    ASMEP.decider(proposition);
 
 }
 
