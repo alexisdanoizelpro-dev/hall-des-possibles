@@ -1,0 +1,463 @@
+/* ==========================================================
+   LE HALL DES POSSIBLES
+   VERSION FONDATRICE - V1.0.0
+   ========================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#000;
+    font-family:Georgia, serif;
+}
+
+#hall{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    background:#000;
+}
+
+#hall-scene{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+#hall-image{
+
+    display:block;
+
+    max-width:100%;
+
+    max-height:100%;
+
+    object-fit:contain;
+
+    user-select:none;
+
+    -webkit-user-drag:none;
+
+    pointer-events:none;
+
+}
+
+#hall-overlay{
+
+    position:absolute;
+
+    width:100%;
+
+    height:100%;
+
+    pointer-events:none;
+
+}
+
+.hall-element{
+    position:absolute;
+    pointer-events:auto;
+}
+
+#asmep{
+
+    position:absolute;
+
+    user-select:none;
+
+    -webkit-user-drag:none;
+}
+
+#fenetre-seuil{
+
+    position:fixed;
+
+    inset:0;
+
+   display:flex;
+justify-content:center;
+align-items:center;
+
+    background:rgba(0,0,0,.70);
+
+    z-index:1000;
+
+}
+
+#registre-seuil{
+
+    width:min(92vw,760px);
+
+    height:min(80vh,700px);
+
+    margin:auto;
+
+    padding:40px;
+
+    overflow-y:auto;
+
+    background:#efe5c8;
+
+    border:10px solid #5d4125;
+
+    border-radius:6px;
+
+    box-shadow:0 0 40px rgba(0,0,0,.60);
+
+}
+
+#registre-seuil h2{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+    color:#4b321c;
+
+}
+
+#registre-seuil p{
+
+    line-height:1.8;
+
+    text-align:justify;
+
+    color:#2d2116;
+
+}
+
+#ouvrir-registre{
+
+    display:block;
+
+    margin:40px auto 0;
+
+    padding:14px 28px;
+
+    border:none;
+
+    border-radius:4px;
+
+    background:#6a4929;
+
+    color:#f6eed8;
+
+    font-size:16px;
+
+    cursor:pointer;
+}
+
+#ouvrir-registre:hover{
+
+    background:#81552f;
+}
+
+#registre-seuil textarea{
+
+    width:100%;
+
+    margin-top:15px;
+
+    padding:15px;
+
+    font-size:16px;
+
+    font-family:Georgia, serif;
+
+    border:1px solid #8b6a48;
+
+    background:#faf4e7;
+
+    resize:vertical;
+
+    box-sizing:border-box;
+
+}
+
+.retour-hall{
+
+    background:none;
+
+    border:none;
+
+    color:#6a4929;
+
+    font-size:15px;
+
+    font-style:italic;
+
+    cursor:pointer;
+
+    margin-bottom:20px;
+
+    padding:0;
+
+}
+
+.retour-hall:hover{
+
+    text-decoration:underline;
+
+}
+
+#seuil{
+
+    position:fixed;
+
+    inset:0;
+
+    background-image:url("porte-seuil-allée.png");
+
+    background-repeat:no-repeat;
+
+    background-position:center;
+
+    background-size:contain;
+
+    background-color:#000;
+
+    z-index:5000;
+
+}
+
+/* ==========================================================
+   PIERRE N°12
+   LIVRE D'OR
+   ========================================================== */
+
+#livre-fond{
+
+    position:fixed;
+    inset:0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(0,0,0,.75);
+
+    z-index:9999;
+
+}
+
+#livre{
+
+    position:relative;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    width:min(82vw,820px);
+
+    max-height:82vh;
+
+}
+
+#livre-image{
+
+    display:block;
+
+    width:100%;
+
+}
+
+/* ==========================================================
+   PAGE DROITE
+   ========================================================== */
+
+#zone-plume{
+
+    position:absolute;
+
+    top:0;
+
+    right:0;
+
+    width:50%;
+
+    height:100%;
+
+    background:transparent;
+
+    border:none;
+
+    cursor:pointer;
+
+}
+
+/* ==========================================================
+   CHAMPS DU LIVRE D'OR
+   ========================================================== */
+
+#trace-nom{
+
+    position:absolute;
+
+    top:17%;
+    left:12%;
+
+    width:30%;
+
+    border:none;
+    outline:none;
+
+    background:transparent;
+
+    font-family:Georgia, serif;
+    font-size:20px;
+    color:#3b2b1d;
+
+}
+
+#trace-message{
+
+    position:absolute;
+
+    top:28%;
+    left:12%;
+
+    width:33%;
+    height:46%;
+
+    resize:none;
+
+    border:none;
+    outline:none;
+
+    background:transparent;
+
+    font-family:Georgia, serif;
+    font-size:18px;
+    line-height:1.6;
+    color:#3b2b1d;
+
+}
+
+/* ==========================================================
+   PAGE FINALE DU LIVRE D'OR
+   ========================================================== */
+
+#trace-remerciement{
+
+    position:absolute;
+
+    top:24%;
+    left:10%;
+
+    width:34%;
+
+    font-family:Georgia, serif;
+    font-size:1vw;
+    line-height:1.8;
+
+    color:#5a4a39;
+
+    text-align:center;
+
+}
+
+#zone-fermer-livre{
+
+    position:absolute;
+
+    top:0;
+    right:0;
+
+    width:50%;
+    height:100%;
+
+    cursor:pointer;
+
+    background:transparent;
+
+}
+
+#reflexion-du-seuil {
+    position: absolute;
+    left: 50%;
+    top: 18%;
+    transform: translateX(-50%);
+
+    z-index: 9999;
+
+    color: white;
+    background: rgba(0, 0, 0, 0.85);
+
+    padding: 14px 20px;
+    border-radius: 8px;
+
+    font-size: 20px;
+    text-align: center;
+
+    max-width: 70%;
+}
+
+/* ==========================================================
+   ENQUÊTE DU MOMENT
+   ========================================================== */
+#enveloppe-enquete{position:absolute;transform:translate(-50%,-50%) rotate(-2deg);aspect-ratio:1.48/1;padding:0;border:0;background:transparent;cursor:pointer;z-index:120;filter:drop-shadow(0 5px 5px rgba(0,0,0,.55));transition:transform .2s ease;}
+#enveloppe-enquete:hover{transform:translate(-50%,-52%) rotate(-2deg);}
+.enveloppe-corps{position:absolute;inset:0;display:block;overflow:hidden;border:1px solid rgba(90,82,68,.55);border-radius:2px;background:linear-gradient(145deg,#fffef8,#e8e5dc);box-shadow:inset 0 0 12px rgba(75,65,45,.13);}
+.enveloppe-corps::before,.enveloppe-corps::after{content:"";position:absolute;bottom:-36%;width:72%;height:90%;background:#f1eee5;border-top:1px solid rgba(90,82,68,.22);}
+.enveloppe-corps::before{left:-23%;transform:rotate(35deg)} .enveloppe-corps::after{right:-23%;transform:rotate(-35deg)}
+.enveloppe-rabat{position:absolute;left:7%;right:7%;top:-35%;height:82%;background:#f7f4eb;border:1px solid rgba(90,82,68,.25);transform:rotate(45deg);}
+.enveloppe-logo{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);z-index:4;width:34%;height:auto;mix-blend-mode:multiply;}
+.enveloppe-sceau{display:none;position:absolute;left:50%;top:49%;transform:translate(-50%,-50%);z-index:7;width:30%;aspect-ratio:1;align-items:center;justify-content:center;border-radius:50%;background:radial-gradient(circle at 38% 32%,#a84c3e,#6e211d 72%);border:2px solid #5b1917;box-shadow:0 2px 5px rgba(0,0,0,.45);color:#d9a18e;font-size:clamp(7px,.72vw,14px);font-weight:bold;}
+#enveloppe-enquete.est-classee .enveloppe-logo{display:none} #enveloppe-enquete.est-classee .enveloppe-sceau{display:flex} #enveloppe-enquete.est-classee{cursor:default} #enveloppe-enquete.vient-detre-classee .enveloppe-sceau{animation:poser-sceau .5s ease-out both}
+@keyframes poser-sceau{0%{transform:translate(-50%,-50%) scale(1.8);opacity:0}70%{transform:translate(-50%,-50%) scale(.92);opacity:1}100%{transform:translate(-50%,-50%) scale(1);opacity:1}}
+
+#enquete-fond{position:fixed;inset:0;display:flex;justify-content:center;align-items:center;padding:5vh 4vw;background:rgba(0,0,0,.78);z-index:12000;perspective:1200px;}
+#enquete-scene-enveloppe{position:absolute;width:min(62vw,440px);aspect-ratio:1.48/1;z-index:3;transform-style:preserve-3d;pointer-events:none;}
+.enveloppe-grand-format{position:absolute;inset:0;transform-style:preserve-3d;}
+.face{position:absolute;inset:0;backface-visibility:hidden;border:1px solid #b8b3a7;border-radius:4px;background:linear-gradient(145deg,#fffef9,#e9e6dd);box-shadow:0 18px 45px rgba(0,0,0,.5);overflow:hidden;}
+.face-dos{transform:rotateY(180deg);overflow:visible;}
+.logo-grand-format{position:absolute;width:31%;height:auto;left:50%;top:50%;transform:translate(-50%,-50%);mix-blend-mode:multiply;}
+.poche-grand-format{position:absolute;inset:0;overflow:hidden;background:linear-gradient(145deg,#fffef9,#e9e6dd);clip-path:polygon(0 30%,50% 66%,100% 30%,100% 100%,0 100%);z-index:3;}
+.rabat-grand-format{position:absolute;left:0;right:0;top:0;height:62%;background:#f6f3ea;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top center;z-index:4;backface-visibility:visible;}
+#enquete-feuille{position:relative;z-index:2;width:min(90vw,720px);max-height:86vh;overflow:auto;padding:clamp(30px,5vw,58px);background:#e9d8ad;color:#382817;border:1px solid #9a7647;box-shadow:0 20px 70px rgba(0,0,0,.65),inset 0 0 50px rgba(99,64,28,.12);opacity:0;transform:translateY(16%) scale(.56);}
+#enquete-feuille::after{content:"";pointer-events:none;position:absolute;inset:0;opacity:.16;background:repeating-linear-gradient(0deg,transparent 0 5px,rgba(78,48,19,.06) 6px)}
+#enquete-fermer{position:absolute;right:18px;top:12px;z-index:2;border:0;background:none;color:#725431;font:30px Georgia,serif;cursor:pointer}
+#enquete-categorie{position:relative;z-index:1;margin-bottom:10px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#765b39}
+#enquete-titre{position:relative;z-index:1;margin:0 0 32px;font-size:clamp(22px,4vw,34px);font-weight:normal;color:#3b2918}
+#enquete-contenu{position:relative;z-index:1;min-height:150px;white-space:pre-wrap;font-size:clamp(16px,2.2vw,20px);line-height:1.8}
+#enquete-formulaire{position:relative;z-index:1;margin-top:34px} #enquete-formulaire label{display:block;margin-bottom:8px;font-size:14px;font-style:italic;color:#6d5131}
+#enquete-proposition{width:100%;padding:10px 4px;border:0;border-bottom:1px solid #745432;outline:none;background:transparent;color:#332313;font:18px Georgia,serif}
+#enquete-confier,#enquete-choix button{border:0;background:none;color:#604321;font:italic 16px Georgia,serif;cursor:pointer} #enquete-confier{display:block;margin:26px auto 0} #enquete-choix{position:relative;z-index:1;margin-top:42px;text-align:center} #enquete-choix button{display:block;margin:18px auto} #enquete-confier:hover,#enquete-choix button:hover{text-decoration:underline}
+
+/* Ouverture complète : 1,8 seconde. */
+.anime-ouverture #enquete-scene-enveloppe{animation:scene-entree 1.8s ease both}
+.anime-ouverture .enveloppe-grand-format{animation:retourner-enveloppe 1.8s ease both}
+.anime-ouverture .rabat-grand-format{animation:ouvrir-rabat 1.8s ease both}
+.anime-ouverture #enquete-feuille{animation:sortir-feuille 1.8s ease both}
+@keyframes scene-entree{0%{transform:scale(.34);opacity:0}12%{transform:scale(.72);opacity:1}72%{opacity:1}100%{transform:scale(1);opacity:0}}
+@keyframes retourner-enveloppe{0%,18%{transform:rotateY(0)}45%,100%{transform:rotateY(180deg)}}
+@keyframes ouvrir-rabat{0%,48%{transform:rotateX(0)}70%,100%{transform:rotateX(178deg);z-index:1}}
+@keyframes sortir-feuille{0%,58%{opacity:0;transform:translateY(16%) scale(.56)}66%{opacity:1}100%{opacity:1;transform:translateY(0) scale(1)}}
+
+/* Fermeture sans classement : même geste en sens inverse, 1,8 seconde. */
+.anime-fermeture #enquete-scene-enveloppe,.anime-classement #enquete-scene-enveloppe{animation:scene-sortie 1.8s ease both}
+.anime-fermeture .enveloppe-grand-format,.anime-classement .enveloppe-grand-format{animation:retourner-enveloppe-fermeture 1.8s ease both}
+.anime-fermeture .rabat-grand-format,.anime-classement .rabat-grand-format{animation:fermer-rabat 1.8s ease both}
+.anime-fermeture #enquete-feuille,.anime-classement #enquete-feuille{animation:rentrer-feuille 1.8s ease both}
+@keyframes rentrer-feuille{0%{opacity:1;transform:translateY(0) scale(1)}38%{opacity:1;transform:translateY(16%) scale(.56)}46%,100%{opacity:0;transform:translateY(16%) scale(.56)}}
+@keyframes fermer-rabat{0%,38%{transform:rotateX(178deg);z-index:1}62%,100%{transform:rotateX(0);z-index:4}}
+@keyframes retourner-enveloppe-fermeture{0%,58%{transform:rotateY(180deg)}82%,100%{transform:rotateY(0)}}
+@keyframes scene-sortie{0%{transform:scale(1);opacity:0}20%{opacity:1}82%{transform:scale(.72);opacity:1}100%{transform:scale(.34);opacity:0}}
+
+@media(max-width:700px){#enveloppe-enquete{width:12%}#enquete-feuille{padding:34px 26px}#enquete-contenu{min-height:120px}#enquete-scene-enveloppe{width:min(78vw,420px)}}
