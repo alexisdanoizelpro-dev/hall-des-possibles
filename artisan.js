@@ -43,11 +43,11 @@ const ARTISAN = {
         categorie: "ENQUÊTE",
         titre: "Une affaire attend votre regard",
 
-        contenu: "Ceci est le contenu de la première Enquête du Moment. Remplacez simplement ce texte dans artisan.js lorsque l'affaire sera prête.",
+        contenu: "Un pas en avant, ou un pas en arrière, il sera toujours le premier. Même si il ne mène pas la danse, il rend la fuite impossible, qui est-ce ?",
 
         // Plusieurs réponses peuvent être acceptées.
         // Majuscules, accents et espaces superflus sont ignorés.
-        reponsesAcceptees: ["seuil"],
+        reponsesAcceptees: ["le A" "A" "a" "la lettre A" "le a" "la lettre a"],
 
         // Position de l'enveloppe dans le Hall.
         // À ajuster facilement si nécessaire.
