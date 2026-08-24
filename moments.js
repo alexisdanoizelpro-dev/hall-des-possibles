@@ -45,10 +45,9 @@ hallOverlay.appendChild(reflexion);
     const imageRect = hallImage.getBoundingClientRect();
     const overlayRect = hallOverlay.getBoundingClientRect();
 
-    /*
-       Position exprimée DANS L'IMAGE DU HALL,
-       et non dans l'écran.
-    */
+    if (imageRect.width === 0 || imageRect.height === 0) {
+        return;
+    }
 
     const x = 0.52;
     const y = 0.36;
@@ -60,9 +59,29 @@ hallOverlay.appendChild(reflexion);
         (imageRect.top - overlayRect.top + imageRect.height * y) + "px";
 }
 
-placerPapierReflexion();
 
-window.addEventListener("resize", placerPapierReflexion);
+/* Attendre que l'image du Hall soit réellement prête */
+
+const hallImage = document.getElementById("hall-image");
+
+if (hallImage.complete && hallImage.naturalWidth > 0) {
+
+    requestAnimationFrame(placerPapierReflexion);
+
+} else {
+
+    hallImage.addEventListener("load", () => {
+        requestAnimationFrame(placerPapierReflexion);
+    });
+
+}
+
+
+/* Recalculer si la taille de l'écran change */
+
+window.addEventListener("resize", () => {
+    requestAnimationFrame(placerPapierReflexion);
+});
 
 papierReflexion.addEventListener("click", () => {
     reflexion.hidden = !reflexion.hidden;
