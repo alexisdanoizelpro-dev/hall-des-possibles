@@ -50,8 +50,8 @@ hallOverlay.appendChild(reflexion);
        et non dans l'écran.
     */
 
-    const x = 0.67;
-    const y = 0.31;
+    const x = 0.52;
+    const y = 0.36;
 
     papierReflexion.style.left =
         (imageRect.left - overlayRect.left + imageRect.width * x) + "px";
