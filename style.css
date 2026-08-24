@@ -413,10 +413,10 @@ align-items:center;
    ========================================================== */
 #enveloppe-enquete{position:absolute;transform:translate(-50%,-50%) rotate(-2deg);aspect-ratio:1.48/1;padding:0;border:0;background:transparent;cursor:pointer;z-index:120;filter:drop-shadow(0 5px 5px rgba(0,0,0,.55));transition:transform .2s ease;}
 #enveloppe-enquete:hover{transform:translate(-50%,-52%) rotate(-2deg);}
-.enveloppe-corps{position:absolute;inset:0;display:block;overflow:hidden;border:1px solid rgba(90,82,68,.55);border-radius:2px;background:linear-gradient(145deg,#fffef8,#e8e5dc);box-shadow:inset 0 0 12px rgba(75,65,45,.13);}
-.enveloppe-corps::before,.enveloppe-corps::after{content:"";position:absolute;bottom:-36%;width:72%;height:90%;background:#f1eee5;border-top:1px solid rgba(90,82,68,.22);}
+.enveloppe-corps{position:absolute;inset:0;display:block;overflow:hidden;border:1px solid rgba(90,82,68,.55);border-radius:2px; background:linear-gradient(145deg,#eee4cc,#d8c9a8);box-shadow:inset 0 0 12px rgba(75,65,45,.13);}
+.enveloppe-corps::before,.enveloppe-corps::after{content:"";position:absolute;bottom:-36%;width:72%;height:90%;background:#e3d6b9;border-top:1px solid rgba(90,82,68,.22);}
 .enveloppe-corps::before{left:-23%;transform:rotate(35deg)} .enveloppe-corps::after{right:-23%;transform:rotate(-35deg)}
-.enveloppe-rabat{position:absolute;left:7%;right:7%;top:-35%;height:82%;background:#f7f4eb;border:1px solid rgba(90,82,68,.25);transform:rotate(45deg);}
+.enveloppe-rabat{position:absolute;left:7%;right:7%;top:-35%;height:82%;background:#e9ddc2;border:1px solid rgba(90,82,68,.25);transform:rotate(45deg);}
 .enveloppe-logo{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);z-index:4;width:34%;height:auto;mix-blend-mode:multiply;}
 .enveloppe-sceau{display:none;position:absolute;left:50%;top:49%;transform:translate(-50%,-50%);z-index:7;width:30%;aspect-ratio:1;align-items:center;justify-content:center;border-radius:50%;background:radial-gradient(circle at 38% 32%,#a84c3e,#6e211d 72%);border:2px solid #5b1917;box-shadow:0 2px 5px rgba(0,0,0,.45);color:#d9a18e;font-size:clamp(7px,.72vw,14px);font-weight:bold;}
 #enveloppe-enquete.est-classee .enveloppe-logo{display:none} #enveloppe-enquete.est-classee .enveloppe-sceau{display:flex} #enveloppe-enquete.est-classee{cursor:default} #enveloppe-enquete.vient-detre-classee .enveloppe-sceau{animation:poser-sceau .5s ease-out both}
@@ -425,11 +425,11 @@ align-items:center;
 #enquete-fond{position:fixed;inset:0;display:flex;justify-content:center;align-items:center;padding:5vh 4vw;background:rgba(0,0,0,.78);z-index:12000;perspective:1200px;}
 #enquete-scene-enveloppe{position:absolute;width:min(62vw,440px);aspect-ratio:1.48/1;z-index:3;transform-style:preserve-3d;pointer-events:none;}
 .enveloppe-grand-format{position:absolute;inset:0;transform-style:preserve-3d;}
-.face{position:absolute;inset:0;backface-visibility:hidden;border:1px solid #b8b3a7;border-radius:4px;background:linear-gradient(145deg,#fffef9,#e9e6dd);box-shadow:0 18px 45px rgba(0,0,0,.5);overflow:hidden;}
+.face{position:absolute;inset:0;backface-visibility:hidden;border:1px solid #b8b3a7;border-radius:4px;background:linear-gradient(145deg,#eee4cc,#d8c9a8);box-shadow:0 18px 45px rgba(0,0,0,.5);overflow:hidden;}
 .face-dos{transform:rotateY(180deg);overflow:visible;}
 .logo-grand-format{position:absolute;width:31%;height:auto;left:50%;top:50%;transform:translate(-50%,-50%);mix-blend-mode:multiply;}
-.poche-grand-format{position:absolute;inset:0;overflow:hidden;background:linear-gradient(145deg,#fffef9,#e9e6dd);clip-path:polygon(0 30%,50% 66%,100% 30%,100% 100%,0 100%);z-index:3;}
-.rabat-grand-format{position:absolute;left:0;right:0;top:0;height:62%;background:#f6f3ea;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top center;z-index:4;backface-visibility:visible;}
+.poche-grand-format{position:absolute;inset:0;overflow:hidden;background:linear-gradient(145deg,#eee4cc,#d8c9a8);clip-path:polygon(0 30%,50% 66%,100% 30%,100% 100%,0 100%);z-index:3;}
+.rabat-grand-format{position:absolute;left:0;right:0;top:0;height:62%;background:#e9ddc2;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top center;z-index:4;backface-visibility:visible;}
 #enquete-feuille{position:relative;z-index:2;width:min(90vw,720px);max-height:86vh;overflow:auto;padding:clamp(30px,5vw,58px);background:#e9d8ad;color:#382817;border:1px solid #9a7647;box-shadow:0 20px 70px rgba(0,0,0,.65),inset 0 0 50px rgba(99,64,28,.12);opacity:0;transform:translateY(16%) scale(.56);}
 #enquete-feuille::after{content:"";pointer-events:none;position:absolute;inset:0;opacity:.16;background:repeating-linear-gradient(0deg,transparent 0 5px,rgba(78,48,19,.06) 6px)}
 #enquete-fermer{position:absolute;right:18px;top:12px;z-index:2;border:0;background:none;color:#725431;font:30px Georgia,serif;cursor:pointer}
@@ -465,23 +465,34 @@ align-items:center;
 #papier-reflexion {
     position: absolute;
 
-    left: 83%;
-    top: 37%;
+    /* Haut gauche de la bibliothèque, près des deux cadres */
+    left: 61.5%;
+    top: 27%;
 
-    width: 80px;
-height: 80px;
-
-background: red;
-z-index: 9999;
+    width: 18px;
+    height: 27px;
 
     padding: 0;
-    border: none;
+    border: 1px solid rgba(90, 63, 35, 0.38);
 
-    background: #d8c8a3;
+    background:
+        linear-gradient(
+            145deg,
+            #d8c18e 0%,
+            #cbb27a 55%,
+            #b99a62 100%
+        );
 
-    transform: rotate(5deg);
+    box-shadow:
+        0 2px 3px rgba(0, 0, 0, 0.5),
+        inset 0 0 5px rgba(91, 58, 24, 0.2);
+
+    transform: rotate(-7deg);
 
     cursor: pointer;
+    z-index: 120;
 
-    z-index: 20;
+    pointer-events: auto;
+
+    opacity: 0.92;
 }
