@@ -21,11 +21,35 @@ function installerReflexionDuSeuil() {
     const hallOverlay = document.getElementById("hall-overlay");
     if (!hallOverlay) return;
 
-    const reflexion = document.createElement("div");
-    reflexion.id = "reflexion-du-seuil";
-    reflexion.textContent = ARTISAN.reflexion.texte;
-    hallOverlay.appendChild(reflexion);
-}
+    const papierReflexion = document.createElement("button");
+
+papierReflexion.id = "papier-reflexion";
+papierReflexion.type = "button";
+papierReflexion.setAttribute("aria-label", "Découvrir une Réflexion du Seuil");
+
+const reflexion = document.createElement("div");
+
+reflexion.id = "reflexion-du-seuil";
+reflexion.textContent = ARTISAN.reflexion.texte;
+reflexion.hidden = true;
+
+hallOverlay.appendChild(papierReflexion);
+hallOverlay.appendChild(reflexion);
+
+papierReflexion.addEventListener("click", () => {
+    reflexion.hidden = !reflexion.hidden;
+});
+
+document.addEventListener("click", (event) => {
+
+    if (
+        !papierReflexion.contains(event.target) &&
+        !reflexion.contains(event.target)
+    ) {
+        reflexion.hidden = true;
+    }
+
+});
 
 /* =========================================
    ENQUÊTE DU MOMENT
