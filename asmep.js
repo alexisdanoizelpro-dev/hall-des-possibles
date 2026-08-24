@@ -122,18 +122,43 @@ function initialiserASMEP(){
 
 }
 
-
 /* ==========================================================
    RESPIRATION
    ========================================================== */
 
 function respiration(){
 
-    // Animation permanente.
-    // Elle sera créée plus tard.
+    if(!ASMEP.element){
+
+        return;
+
+    }
+
+    let inspiration = true;
+
+    setInterval(function(){
+
+        if(!ASMEP.element){
+
+            return;
+
+        }
+
+        if(inspiration){
+
+            ASMEP.element.style.transform = "translateY(-2px)";
+
+        }else{
+
+            ASMEP.element.style.transform = "translateY(0px)";
+
+        }
+
+        inspiration = !inspiration;
+
+    },2500);
 
 }
-
 
 /* ==========================================================
    OREILLES
@@ -551,5 +576,49 @@ function changerPosture(posture){
             break;
 
     }
+
+}
+
+/* ==========================================================
+   MOUVEMENT DES OREILLES
+   ========================================================== */
+
+function oreilles(){
+
+    if(!ASMEP.element){
+
+        return;
+
+    }
+
+    setInterval(function(){
+
+        if(!ASMEP.element){
+
+            return;
+
+        }
+
+        /* Une chance sur trois de réagir */
+
+        if(Math.random() > 0.33){
+
+            return;
+
+        }
+
+        ASMEP.element.classList.add("asmep-ecoute");
+
+        setTimeout(function(){
+
+            if(ASMEP.element){
+
+                ASMEP.element.classList.remove("asmep-ecoute");
+
+            }
+
+        },600);
+
+    },30000);
 
 }
