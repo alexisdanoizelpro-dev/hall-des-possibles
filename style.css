@@ -461,3 +461,24 @@ align-items:center;
 @keyframes scene-sortie{0%{transform:scale(1);opacity:0}20%{opacity:1}82%{transform:scale(.72);opacity:1}100%{transform:scale(.34);opacity:0}}
 
 @media(max-width:700px){#enveloppe-enquete{width:12%}#enquete-feuille{padding:34px 26px}#enquete-contenu{min-height:120px}#enquete-scene-enveloppe{width:min(78vw,420px)}}
+
+#papier-reflexion {
+    position: absolute;
+
+    left: 83%;
+    top: 37%;
+
+    width: 18px;
+    height: 28px;
+
+    padding: 0;
+    border: none;
+
+    background: #d8c8a3;
+
+    transform: rotate(5deg);
+
+    cursor: pointer;
+
+    z-index: 20;
+}
