@@ -36,6 +36,34 @@ reflexion.hidden = true;
 hallOverlay.appendChild(papierReflexion);
 hallOverlay.appendChild(reflexion);
 
+   function placerPapierReflexion() {
+
+    const hallImage = document.getElementById("hall-image");
+
+    if (!hallImage) return;
+
+    const imageRect = hallImage.getBoundingClientRect();
+    const overlayRect = hallOverlay.getBoundingClientRect();
+
+    /*
+       Position exprimée DANS L'IMAGE DU HALL,
+       et non dans l'écran.
+    */
+
+    const x = 0.67;
+    const y = 0.31;
+
+    papierReflexion.style.left =
+        (imageRect.left - overlayRect.left + imageRect.width * x) + "px";
+
+    papierReflexion.style.top =
+        (imageRect.top - overlayRect.top + imageRect.height * y) + "px";
+}
+
+placerPapierReflexion();
+
+window.addEventListener("resize", placerPapierReflexion);
+
 papierReflexion.addEventListener("click", () => {
     reflexion.hidden = !reflexion.hidden;
 });
