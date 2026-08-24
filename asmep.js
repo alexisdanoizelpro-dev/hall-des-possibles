@@ -120,6 +120,8 @@ function initialiserASMEP(){
 
     setInterval(propositionDuSeuil,240000);
 
+   clignerDesYeux();
+
 }
 
 /* ==========================================================
@@ -620,5 +622,49 @@ function oreilles(){
         },600);
 
     },30000);
+
+}
+
+/* ==========================================================
+   CLIGNEMENT DES YEUX
+   ========================================================== */
+
+function clignerDesYeux(){
+
+    if(!ASMEP.element){
+
+        return;
+
+    }
+
+    setInterval(function(){
+
+        if(!ASMEP.element){
+
+            return;
+
+        }
+
+        /* Une chance sur deux de cligner */
+
+        if(Math.random() > 0.50){
+
+            return;
+
+        }
+
+        ASMEP.element.classList.add("asmep-cligne");
+
+        setTimeout(function(){
+
+            if(ASMEP.element){
+
+                ASMEP.element.classList.remove("asmep-cligne");
+
+            }
+
+        },200);
+
+    },45000);
 
 }
