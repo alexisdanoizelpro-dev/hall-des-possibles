@@ -49,8 +49,8 @@ hallOverlay.appendChild(reflexion);
         return;
     }
 
-    const x = 0.52;
-    const y = 0.36;
+    const x = 0.63;
+    const y = 0.32;
 
     papierReflexion.style.left =
         (imageRect.left - overlayRect.left + imageRect.width * x) + "px";
