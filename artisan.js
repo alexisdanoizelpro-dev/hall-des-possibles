@@ -53,7 +53,7 @@ const ARTISAN = {
         // x / y : de 0 à 1. La position reste donc stable sur PC et téléphone.
         position: {
             x: 0.405,
-            y: 0.390,
+            y: 0.375,
             largeur: 0.046
         }
     }
