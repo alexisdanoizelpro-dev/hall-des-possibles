@@ -47,7 +47,7 @@ const ARTISAN = {
 
         // Plusieurs réponses peuvent être acceptées.
         // Majuscules, accents et espaces superflus sont ignorés.
-        reponsesAcceptees: ["le A" "A" "a" "la lettre A" "le a" "la lettre a"],
+        reponsesAcceptees: ["le A" , "A" , "a" , "la lettre A" , "le a" , "la lettre a"],
 
         // Position de l'enveloppe dans le Hall.
         // À ajuster facilement si nécessaire.
