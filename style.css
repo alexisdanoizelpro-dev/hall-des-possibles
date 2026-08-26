@@ -442,7 +442,8 @@ align-items:center;
     border-radius:1px;
     background:
         linear-gradient(155deg,rgba(255,246,219,.30),transparent 34%),
-        linear-gradient(145deg,#b9a27c 0%,#a88e66 54%,#927650 100%);
+        .enveloppe-corps {
+    linear-gradient(145deg,#66523d 0%,#554230 54%,#443324 100%);
     box-shadow:
         inset 0 0 9px rgba(76,45,17,.18),
         inset 0 1px rgba(255,244,211,.32),
@@ -457,7 +458,7 @@ align-items:center;
     bottom:-36%;
     width:72%;
     height:90%;
-    background:linear-gradient(160deg,#ae956e,#927650);
+    background:linear-gradient(160deg,#5d4935,#443326);
     border-top:1px solid rgba(93,61,28,.18);
 }
 .enveloppe-corps::before{left:-23%;transform:rotate(35deg)}
@@ -469,7 +470,7 @@ align-items:center;
     right:7%;
     top:-35%;
     height:82%;
-    background:linear-gradient(145deg,#bda781,#987b55);
+    background: linear-gradient(145deg,#6b5740,#4b3828);
     border:1px solid rgba(90,59,28,.18);
     transform:rotate(45deg);
 }
