@@ -694,3 +694,35 @@ align-items:center;
     transform: translate(-50%, -52%) rotate(-5deg) scale(1.03) !important;
     filter: drop-shadow(3px 5px 4px rgba(0, 0, 0, 0.65));
 }
+
+/* ==========================================================
+   RESPIRATION D'ASMEP
+   ========================================================== */
+
+.asmep-respire{
+
+    animation: respirationASMEP 4s ease-in-out infinite;
+
+}
+
+@keyframes respirationASMEP{
+
+    0%{
+
+        transform:translateY(0px);
+
+    }
+
+    50%{
+
+        transform:translateY(-2px);
+
+    }
+
+    100%{
+
+        transform:translateY(0px);
+
+    }
+
+}
