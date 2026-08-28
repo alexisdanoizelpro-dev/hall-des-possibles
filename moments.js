@@ -10,6 +10,7 @@
    ========================================= */
 
 function installerReflexionDuSeuil() {
+
     if (
         typeof ARTISAN === "undefined" ||
         !ARTISAN.reflexion ||
@@ -21,83 +22,163 @@ function installerReflexionDuSeuil() {
     const hallOverlay = document.getElementById("hall-overlay");
     if (!hallOverlay) return;
 
+
+    /* =========================================
+       PETIT PAPIER DANS LA BIBLIOTHÈQUE
+       ========================================= */
+
     const papierReflexion = document.createElement("button");
 
-papierReflexion.id = "papier-reflexion";
-papierReflexion.type = "button";
-papierReflexion.setAttribute("aria-label", "Découvrir une Réflexion du Seuil");
+    papierReflexion.id = "papier-reflexion";
+    papierReflexion.type = "button";
+    papierReflexion.setAttribute(
+        "aria-label",
+        "Découvrir une Réflexion du Seuil"
+    );
 
-const reflexion = document.createElement("div");
 
-reflexion.id = "reflexion-du-seuil";
-reflexion.textContent = ARTISAN.reflexion.texte;
-reflexion.hidden = true;
+    /* =========================================
+       BILLET DE LA RÉFLEXION
+       ========================================= */
 
-hallOverlay.appendChild(papierReflexion);
-hallOverlay.appendChild(reflexion);
+    const reflexion = document.createElement("section");
 
-   function placerPapierReflexion() {
+    reflexion.id = "reflexion-du-seuil";
+    reflexion.setAttribute("role", "dialog");
+    reflexion.setAttribute("aria-modal", "false");
+    reflexion.setAttribute("aria-label", "Réflexion");
+
+    reflexion.innerHTML = `
+        <button
+            id="reflexion-fermer"
+            type="button"
+            aria-label="Refermer la Réflexion"
+        >×</button>
+
+        <div class="reflexion-filigrane" aria-hidden="true"></div>
+
+        <p class="reflexion-texte"></p>
+    `;
+
+    reflexion.querySelector(".reflexion-texte").textContent =
+        ARTISAN.reflexion.texte;
+
+    reflexion.hidden = true;
+
+    hallOverlay.appendChild(papierReflexion);
+    hallOverlay.appendChild(reflexion);
+
+
+    /* =========================================
+       POSITION DU PETIT PAPIER
+       ========================================= */
+
+    function placerPapierReflexion() {
+
+        const hallImage = document.getElementById("hall-image");
+
+        if (!hallImage) return;
+
+        const imageRect = hallImage.getBoundingClientRect();
+        const overlayRect = hallOverlay.getBoundingClientRect();
+
+        if (imageRect.width === 0 || imageRect.height === 0) {
+            return;
+        }
+
+        /*
+           POSITION VALIDÉE.
+           NE PLUS TOUCHER.
+        */
+
+        const x = 0.795;
+        const y = 0.17;
+
+        papierReflexion.style.left =
+            (
+                imageRect.left -
+                overlayRect.left +
+                imageRect.width * x
+            ) + "px";
+
+        papierReflexion.style.top =
+            (
+                imageRect.top -
+                overlayRect.top +
+                imageRect.height * y
+            ) + "px";
+    }
+
+
+    /* Attendre que l'image du Hall soit prête */
 
     const hallImage = document.getElementById("hall-image");
 
-    if (!hallImage) return;
+    if (hallImage.complete && hallImage.naturalWidth > 0) {
 
-    const imageRect = hallImage.getBoundingClientRect();
-    const overlayRect = hallOverlay.getBoundingClientRect();
+        requestAnimationFrame(placerPapierReflexion);
 
-    if (imageRect.width === 0 || imageRect.height === 0) {
-        return;
+    } else {
+
+        hallImage.addEventListener(
+            "load",
+            () => {
+                requestAnimationFrame(placerPapierReflexion);
+            },
+            { once: true }
+        );
     }
 
-    const x = 0.63;
-    const y = 0.32;
 
-    papierReflexion.style.left =
-        (imageRect.left - overlayRect.left + imageRect.width * x) + "px";
+    /* Recalculer uniquement si l'écran change de taille */
 
-    papierReflexion.style.top =
-        (imageRect.top - overlayRect.top + imageRect.height * y) + "px";
-}
-
-
-/* Attendre que l'image du Hall soit réellement prête */
-
-const hallImage = document.getElementById("hall-image");
-
-if (hallImage.complete && hallImage.naturalWidth > 0) {
-
-    requestAnimationFrame(placerPapierReflexion);
-
-} else {
-
-    hallImage.addEventListener("load", () => {
+    window.addEventListener("resize", () => {
         requestAnimationFrame(placerPapierReflexion);
     });
 
-}
 
+    /* =========================================
+       OUVERTURE / FERMETURE DU BILLET
+       ========================================= */
 
-/* Recalculer si la taille de l'écran change */
+    function ouvrirReflexion() {
+        reflexion.hidden = false;
+    }
 
-window.addEventListener("resize", () => {
-    requestAnimationFrame(placerPapierReflexion);
-});
-
-papierReflexion.addEventListener("click", () => {
-    reflexion.hidden = !reflexion.hidden;
-});
-
-document.addEventListener("click", (event) => {
-
-    if (
-        !papierReflexion.contains(event.target) &&
-        !reflexion.contains(event.target)
-    ) {
+    function fermerReflexion() {
         reflexion.hidden = true;
     }
 
-});
 
+    papierReflexion.addEventListener("click", (event) => {
+        event.stopPropagation();
+        ouvrirReflexion();
+    });
+
+
+    reflexion
+        .querySelector("#reflexion-fermer")
+        .addEventListener("click", (event) => {
+
+            event.stopPropagation();
+            fermerReflexion();
+        });
+
+
+    /*
+       Un clic ailleurs dans le Hall
+       referme simplement le billet.
+    */
+
+    document.addEventListener("click", (event) => {
+
+        if (
+            !papierReflexion.contains(event.target) &&
+            !reflexion.contains(event.target)
+        ) {
+            fermerReflexion();
+        }
+    });
 }
 
 /* =========================================
