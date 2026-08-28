@@ -92,6 +92,30 @@ zoneLivre.addEventListener("click", () => {
 });
 
 /* ==========================================================
+   INFORMATIONS LÉGALES
+   "LES PAGES JAUNES"
+   ========================================================== */
+
+const pagesJaunes = document.createElement("img");
+
+pagesJaunes.id = "pages-jaunes";
+pagesJaunes.src = "informations.png";
+pagesJaunes.alt = "Informations légales";
+pagesJaunes.className = "hall-element";
+
+pagesJaunes.style.left = "70%";
+pagesJaunes.style.top = "64%";
+pagesJaunes.style.width = "7%";
+pagesJaunes.style.transform = "translate(-50%, -50%) rotate(-5deg)";
+pagesJaunes.style.cursor = "pointer";
+
+hallOverlay.appendChild(pagesJaunes);
+
+pagesJaunes.addEventListener("click", () => {
+    window.location.href = "informations-legales.html";
+});
+
+/* ==========================================================
    PIERRE N°11
    FRANCHIR LE SEUIL
    ========================================================== */
