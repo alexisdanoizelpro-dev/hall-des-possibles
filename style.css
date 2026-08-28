@@ -641,13 +641,12 @@ align-items:center;
 
 @media(max-width:700px){#enquete-feuille{padding:34px 26px}#enquete-contenu{min-height:120px}#enquete-scene-enveloppe{width:min(78vw,420px)}}
 
+
 #papier-reflexion {
     position: absolute;
 
-    /* Haut gauche de la bibliothèque, près des deux cadres */
-
-    width: 18px;
-    height: 27px;
+    width: 9px;
+    height: 14px;
 
     padding: 0;
     border: 1px solid rgba(90, 63, 35, 0.38);
@@ -655,16 +654,17 @@ align-items:center;
     background:
         linear-gradient(
             145deg,
-            #d8c18e 0%,
-            #cbb27a 55%,
-            #b99a62 100%
+            #9b8058 0%,
+            #846943 55%,
+            #6f5435 100%
         );
 
     box-shadow:
         0 2px 3px rgba(0, 0, 0, 0.5),
         inset 0 0 5px rgba(91, 58, 24, 0.2);
 
-    transform: rotate(-7deg);
+    transform: rotate(-3deg) scaleX(0.18);
+    transform-origin: center bottom;
 
     cursor: pointer;
     z-index: 120;
