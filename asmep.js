@@ -47,6 +47,8 @@ function creerASMEP(){
 
     ASMEP.element = document.createElement("img");
 
+   ASMEP.element.classList.add("asmep-respire");
+
     ASMEP.element.id = "asmep";
 
     ASMEP.element.src = "asmep-dort.webp";
