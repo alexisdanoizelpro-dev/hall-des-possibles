@@ -554,7 +554,7 @@ align-items:center;
         0 2px 3px rgba(0, 0, 0, 0.5),
         inset 0 0 5px rgba(91, 58, 24, 0.2);
 
-    transform: rotate(-7deg);
+    transform: rotate(90deg);
 
     cursor: pointer;
     z-index: 120;
