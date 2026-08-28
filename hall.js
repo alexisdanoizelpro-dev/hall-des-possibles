@@ -103,8 +103,8 @@ pagesJaunes.src = "informations.png";
 pagesJaunes.alt = "Informations légales";
 pagesJaunes.className = "hall-element";
 
-pagesJaunes.style.left = "70%";
-pagesJaunes.style.top = "64%";
+pagesJaunes.style.left = "82%";
+pagesJaunes.style.top = "58%";
 pagesJaunes.style.width = "7%";
 pagesJaunes.style.transform = "translate(-50%, -50%) rotate(-5deg)";
 pagesJaunes.style.cursor = "pointer";
