@@ -76,6 +76,8 @@ body{
 
 #asmep{
 
+   display: none;
+
     position:absolute;
 
     user-select:none;
