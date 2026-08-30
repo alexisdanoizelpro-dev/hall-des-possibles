@@ -1,0 +1,103 @@
+"use strict";
+
+/* =========================================
+   LE COURRIER DU SEUIL
+   =========================================
+
+   Ce fichier est le facteur du Seuil.
+
+   Les autres éléments du Hall lui confient
+   simplement un courrier. Lui seul sait
+   comment l'envoyer.
+
+   IMPORTANT :
+   Remplacer VOTRE_ID_FORMSPREE par l'identifiant
+   fourni par Formspree.
+   Exemple :
+   https://formspree.io/f/abcdefgh
+
+   ========================================= */
+
+window.COURRIER = {
+
+    endpoint: "https://formspree.io/f/VOTRE_ID_FORMSPREE",
+
+    async envoyer(type, donnees = {}) {
+
+        if (
+            !this.endpoint ||
+            this.endpoint.includes("VOTRE_ID_FORMSPREE")
+        ) {
+            console.warn(
+                "Le Courrier du Seuil n'est pas encore relié à une adresse."
+            );
+
+            return false;
+        }
+
+        const courrier = new FormData();
+
+        courrier.append("origine", type);
+
+        courrier.append(
+            "date",
+            new Date().toLocaleString("fr-FR")
+        );
+
+        Object.entries(donnees).forEach(([cle, valeur]) => {
+
+            if (valeur === undefined || valeur === null) {
+                return;
+            }
+
+            if (Array.isArray(valeur)) {
+
+                courrier.append(
+                    cle,
+                    valeur.join(", ")
+                );
+
+            } else {
+
+                courrier.append(
+                    cle,
+                    String(valeur)
+                );
+            }
+        });
+
+        try {
+
+            const reponse = await fetch(
+                this.endpoint,
+                {
+                    method: "POST",
+
+                    body: courrier,
+
+                    headers: {
+                        "Accept": "application/json"
+                    }
+                }
+            );
+
+            if (!reponse.ok) {
+
+                throw new Error(
+                    "Le courrier n'a pas pu être remis."
+                );
+            }
+
+            return true;
+
+        } catch (erreur) {
+
+            console.error(
+                "Le facteur du Seuil s'est perdu :",
+                erreur
+            );
+
+            return false;
+        }
+    }
+};
