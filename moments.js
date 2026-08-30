@@ -336,10 +336,21 @@ function ouvrirEnquete(enveloppeHall) {
         <h2 id="enquete-titre"></h2>
         <div id="enquete-contenu"></div>
         <form id="enquete-formulaire">
-            <label for="enquete-proposition">Votre proposition</label>
-            <input id="enquete-proposition" type="text" autocomplete="off">
-            <button id="enquete-confier" type="submit">Confier ma proposition au Seuil</button>
-        </form>
+    <label for="enquete-visiteur">Comment devons-nous vous appeler ?</label>
+    <input
+        id="enquete-visiteur"
+        type="text"
+        autocomplete="nickname"
+        placeholder="Nom ou pseudonyme"
+    >
+
+    <label for="enquete-proposition">Votre proposition</label>
+    <input id="enquete-proposition" type="text" autocomplete="off">
+
+    <button id="enquete-confier" type="submit">
+        Confier ma proposition au Seuil
+    </button>
+</form>
         <div id="enquete-choix" hidden>
             <button id="enquete-reessayer" type="button">Oser une autre proposition</button>
             <button id="enquete-reflechir" type="button">Réfléchir encore</button>
