@@ -415,7 +415,7 @@ let tentative = Number(
         champ.focus();
     });
 
-    formulaire.addEventListener("submit", function(e) {
+formulaire.addEventListener("submit", function(e) {
     e.preventDefault();
 
     const proposition = champ.value.trim();
@@ -449,13 +449,84 @@ let tentative = Number(
         });
     }
 
-    if (acceptee) {
-        classerAffaire();
-        refermer(true);
-    } else {
-        formulaire.hidden = true;
-        choix.hidden = false;
+    const bouton = feuille.querySelector("#enquete-confier");
+
+    champ.readOnly = true;
+
+    if (visiteur) {
+        visiteur.readOnly = true;
     }
+
+    if (bouton) {
+        bouton.disabled = true;
+        bouton.textContent =
+            "Le Seuil examine votre proposition…";
+    }
+
+    /*
+       Le Seuil prend le même temps,
+       que la proposition soit juste ou non.
+    */
+    setTimeout(function() {
+
+        if (acceptee) {
+
+            classerAffaire();
+            refermer(true);
+
+        } else {
+
+            const silence = document.createElement("div");
+
+            silence.textContent =
+                "Le Seuil demeure silencieux…";
+
+            silence.style.opacity = "0";
+            silence.style.transition =
+                "opacity 0.45s ease";
+            silence.style.textAlign = "center";
+            silence.style.marginTop = "18px";
+            silence.style.fontStyle = "italic";
+
+            formulaire.insertAdjacentElement(
+                "afterend",
+                silence
+            );
+
+            formulaire.hidden = true;
+
+            requestAnimationFrame(function() {
+                silence.style.opacity = "1";
+            });
+
+            /*
+               Petit instant supplémentaire :
+               le Visiteur comprend que
+               l'affaire n'est pas encore résolue.
+            */
+            setTimeout(function() {
+
+                silence.style.opacity = "0";
+
+                setTimeout(function() {
+
+                    silence.remove();
+
+                    choix.hidden = false;
+                    choix.style.opacity = "0";
+                    choix.style.transition =
+                        "opacity 0.5s ease";
+
+                    requestAnimationFrame(function() {
+                        choix.style.opacity = "1";
+                    });
+
+                }, 450);
+
+            }, 700);
+        }
+
+    }, 1800);
 });
 
     setTimeout(function() { champ.focus(); }, 1900);
