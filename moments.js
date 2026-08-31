@@ -442,7 +442,7 @@ formulaire.addEventListener("submit", function(e) {
             tentative: tentative,
             enquete_id: ARTISAN.enqueteDuMoment.identifiant,
             proposition: proposition,
-            resultat: acceptee
+            resultats: acceptee
                 ? "acceptee"
                 : "autre_proposition",
             action: null
