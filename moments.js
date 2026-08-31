@@ -408,13 +408,25 @@ let tentative = Number(
     feuille.querySelector("#enquete-fermer").addEventListener("click", function(){ refermer(false); });
     feuille.querySelector("#enquete-reflechir").addEventListener("click", function(){ refermer(false); });
 
-    feuille.querySelector("#enquete-reessayer").addEventListener("click", function() {
-        choix.hidden = true;
-        formulaire.hidden = false;
-        champ.value = "";
-        champ.focus();
-    });
+feuille.querySelector("#enquete-reessayer").addEventListener("click", function() {
+    choix.hidden = true;
+    formulaire.hidden = false;
 
+    champ.value = "";
+    champ.readOnly = false;
+
+    if (visiteur) {
+        visiteur.readOnly = false;
+    }
+
+    if (bouton) {
+        bouton.disabled = false;
+        bouton.textContent = "Confier ma proposition au Seuil";
+    }
+
+    champ.focus();
+});
+   
 formulaire.addEventListener("submit", function(e) {
     e.preventDefault();
 
