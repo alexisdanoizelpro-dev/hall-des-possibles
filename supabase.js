@@ -21,7 +21,6 @@ window.SUPABASE_SEUIL = {
 
                     headers: {
                         "apikey": this.key,
-                        "Authorization": "Bearer " + this.key,
                         "Content-Type": "application/json",
                         "Prefer": "return=minimal"
                     },
