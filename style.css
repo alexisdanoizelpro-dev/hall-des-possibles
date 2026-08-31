@@ -738,9 +738,9 @@ align-items:center;
 
     /* Informations : posées sur la table basse */
     #pages-jaunes {
-        left: 46.5% !important;
-        top: 70.2% !important;
-        transform: translate(-50%, -50%) rotate(-5deg) !important;
+        left: 68% !important;
+        top: 77% !important;
+        transform: rotate(-5deg) !important;
     }
 
     /* Réflexion : même zone, mais réellement visible et cliquable */
