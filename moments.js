@@ -370,7 +370,7 @@ function ouvrirEnquete(enveloppeHall) {
     const formulaire = feuille.querySelector("#enquete-formulaire");
     const choix = feuille.querySelector("#enquete-choix");
     const visiteur = feuille.querySelector("#enquete-visiteur");
-    const bouton = feuille.querySelector("#enquete-confier"#);
+    const bouton = feuille.querySelector("#enquete-confier");
 
 let sessionId = sessionStorage.getItem("seuil-enquete-session");
 
