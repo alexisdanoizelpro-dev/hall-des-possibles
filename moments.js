@@ -369,6 +369,21 @@ function ouvrirEnquete(enveloppeHall) {
     const champ = feuille.querySelector("#enquete-proposition");
     const formulaire = feuille.querySelector("#enquete-formulaire");
     const choix = feuille.querySelector("#enquete-choix");
+    const visiteur = feuille.querySelector("#enquete-visiteur");
+
+let sessionId = sessionStorage.getItem("seuil-enquete-session");
+
+if (!sessionId) {
+    sessionId = crypto.randomUUID
+        ? crypto.randomUUID()
+        : "session-" + Date.now() + "-" + Math.random().toString(36).slice(2);
+
+    sessionStorage.setItem("seuil-enquete-session", sessionId);
+}
+
+let tentative = Number(
+    sessionStorage.getItem("seuil-enquete-tentative") || "0"
+);
     let fermetureEnCours = false;
 
     function terminerFermeture(classee) {
@@ -401,17 +416,47 @@ function ouvrirEnquete(enveloppeHall) {
     });
 
     formulaire.addEventListener("submit", function(e) {
-        e.preventDefault();
-        if (!champ.value.trim()) return;
+    e.preventDefault();
 
-        if (reponseEstAcceptee(champ.value)) {
-            classerAffaire();
-            refermer(true);
-        } else {
-            formulaire.hidden = true;
-            choix.hidden = false;
-        }
-    });
+    const proposition = champ.value.trim();
+    if (!proposition) return;
+
+    const nomVisiteur =
+        visiteur && visiteur.value.trim()
+            ? visiteur.value.trim()
+            : "Visiteur anonyme";
+
+    tentative += 1;
+
+    sessionStorage.setItem(
+        "seuil-enquete-tentative",
+        String(tentative)
+    );
+
+    const acceptee = reponseEstAcceptee(proposition);
+
+    if (window.SUPABASE_SEUIL) {
+        SUPABASE_SEUIL.enregistrerReponseEnquete({
+            visiteur: nomVisiteur,
+            session_id: sessionId,
+            tentative: tentative,
+            enquete_id: ARTISAN.enqueteDuMoment.identifiant,
+            proposition: proposition,
+            resultat: acceptee
+                ? "acceptee"
+                : "autre_proposition",
+            action: null
+        });
+    }
+
+    if (acceptee) {
+        classerAffaire();
+        refermer(true);
+    } else {
+        formulaire.hidden = true;
+        choix.hidden = false;
+    }
+});
 
     setTimeout(function() { champ.focus(); }, 1900);
 }
