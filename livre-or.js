@@ -102,13 +102,31 @@ function afficherPageTrace(){
     boutonAction = document.createElement("button");
     boutonAction.id = "zone-plume";
 
-    boutonAction.onclick = function(e){
+    boutonAction.onclick = async function(e){
 
-        e.stopPropagation();
+    e.stopPropagation();
 
+    const visiteur = champNom.value.trim();
+    const message = champMessage.value.trim();
+
+    if (!visiteur || !message) {
+        return;
+    }
+
+    boutonAction.disabled = true;
+
+    const enregistre = await window.SUPABASE_SEUIL.enregistrerTraceLivreOr({
+        visiteur: visiteur,
+        message: message
+    });
+
+    if (enregistre) {
         afficherTraceGravee();
+    } else {
+        boutonAction.disabled = false;
+    }
 
-    };
+};
 
     livre.appendChild(boutonAction);
 
