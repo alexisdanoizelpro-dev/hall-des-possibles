@@ -126,41 +126,77 @@ function creerQuestion(question){
 
 }
 
-const champ = document.createElement("textarea");
+function ouvrirDernierePage(){
 
-champ.rows = 6;
+    const registre = document.getElementById("registre-seuil");
 
-champ.placeholder =
-"Vous pouvez me parler ici de tout ce qui ne doit pas apparaître...";
+    registre.innerHTML = "";
 
-registre.appendChild(champ);
+    const retour = document.createElement("button");
 
-const bouton = document.createElement("button");
+    retour.className = "retour-hall";
 
-bouton.id = "ouvrir-registre";
+    retour.textContent = "J'ai encore besoin de temps.";
 
-bouton.textContent = "Soumettre mon idée";
+    retour.addEventListener("click", () => {
 
-bouton.addEventListener("click", async () => {
+        document.getElementById("fenetre-seuil").remove();
 
-    donneesRegistre["À laisser à l'extérieur"] = champ.value;
+    });
 
-    if (!window.COURRIER) {
-        console.error("Le Facteur du Seuil est introuvable.");
-        return;
-    }
+    registre.appendChild(retour);
 
-    const envoye = await window.COURRIER.envoyer(
-        "idee",
-        donneesRegistre
-    );
+    const titre = document.createElement("h2");
 
-    if (envoye) {
-        terminerRegistre();
-    }
-});
+    titre.textContent = "Juste... Avant de partir";
 
-registre.appendChild(bouton);
+    registre.appendChild(titre);
+
+    const texte = document.createElement("p");
+
+    texte.textContent =
+    "Une dernière chose. Y a-t-il quelque chose que je dois laisser à l'extérieur de votre expérience ?";
+
+    registre.appendChild(texte);
+
+    const champ = document.createElement("textarea");
+
+    champ.rows = 6;
+
+    champ.placeholder =
+    "Vous pouvez me parler ici de tout ce qui ne doit pas apparaître...";
+
+    registre.appendChild(champ);
+
+    const bouton = document.createElement("button");
+
+    bouton.id = "ouvrir-registre";
+
+    bouton.textContent = "Soumettre mon idée";
+
+    bouton.addEventListener("click", async () => {
+
+        donneesRegistre["À laisser à l'extérieur"] = champ.value;
+
+        if (!window.COURRIER) {
+            console.error("Le Facteur du Seuil est introuvable.");
+            return;
+        }
+
+        const envoye = await window.COURRIER.envoyer(
+            "idee",
+            donneesRegistre
+        );
+
+        if (envoye) {
+            terminerRegistre();
+        }
+
+    });
+
+    registre.appendChild(bouton);
+
+}
 
 function terminerRegistre(){
 
