@@ -72,7 +72,8 @@ window.COURRIER = {
                     body: courrier,
 
                     headers: {
-    "Accept": "application/json"
+    "Accept": "application/json",
+    "apikey": "sb_publishable_FzPGtY8LNGzT2M5hcK9lBA_EkMlVYaL"
 }
                 }
             );
