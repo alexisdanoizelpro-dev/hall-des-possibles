@@ -1,3 +1,4 @@
+const donneesRegistre = {};
 function ouvrirPupitre(){
 
     if(document.getElementById("fenetre-seuil")){
@@ -113,6 +114,10 @@ function creerQuestion(question){
 
     champ.rows = 5;
 
+    champ.addEventListener("input", () => {
+        donneesRegistre[question] = champ.value;
+    });
+
     bloc.appendChild(texte);
 
     bloc.appendChild(champ);
@@ -121,59 +126,41 @@ function creerQuestion(question){
 
 }
 
-function ouvrirDernierePage(){
+const champ = document.createElement("textarea");
 
-    const registre = document.getElementById("registre-seuil");
+champ.rows = 6;
 
-    registre.innerHTML = "";
+champ.placeholder =
+"Vous pouvez me parler ici de tout ce qui ne doit pas apparaître...";
 
-   const retour = document.createElement("button");
+registre.appendChild(champ);
 
-retour.className = "retour-hall";
-
-retour.textContent = "J'ai encore besoin de temps.";
-
-retour.addEventListener("click", () => {
-
-    document.getElementById("fenetre-seuil").remove();
-
-});
-
-   registre.appendChild(retour);
-
-    const titre = document.createElement("h2");
-
-    titre.textContent = "Juste... Avant de partir";
-
-    registre.appendChild(titre);
-
-    const texte = document.createElement("p");
-
-    texte.textContent =
-    "Une dernière chose. Y a-t-il quelque chose que je dois laisser à l'extérieur de votre expérience ?";
-
-    registre.appendChild(texte);
-
-    const champ = document.createElement("textarea");
-
-    champ.rows = 6;
-
-    champ.placeholder =
-    "Vous pouvez me parler ici de tout ce qui ne doit pas apparaître...";
-
-    registre.appendChild(champ);
-
-    const bouton = document.createElement("button");
+const bouton = document.createElement("button");
 
 bouton.id = "ouvrir-registre";
 
 bouton.textContent = "Soumettre mon idée";
 
-bouton.addEventListener("click", terminerRegistre);
+bouton.addEventListener("click", async () => {
+
+    donneesRegistre["À laisser à l'extérieur"] = champ.value;
+
+    if (!window.COURRIER) {
+        console.error("Le Facteur du Seuil est introuvable.");
+        return;
+    }
+
+    const envoye = await window.COURRIER.envoyer(
+        "idee",
+        donneesRegistre
+    );
+
+    if (envoye) {
+        terminerRegistre();
+    }
+});
 
 registre.appendChild(bouton);
-
-}
 
 function terminerRegistre(){
 
