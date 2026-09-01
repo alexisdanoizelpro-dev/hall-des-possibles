@@ -11,23 +11,19 @@
    comment l'envoyer.
 
    IMPORTANT :
-   Remplacer VOTRE_ID_FORMSPREE par l'identifiant
-   fourni par Formspree.
-   Exemple :
-   https://formspree.io/f/abcdefgh
+Le Facteur doit être relié à une fonction sécurisée.
+Aucun mot de passe, aucune clé privée et aucun secret
+ne doit être inscrit dans ce fichier.
 
    ========================================= */
 
 window.COURRIER = {
 
-    endpoint: "https://formspree.io/f/VOTRE_ID_FORMSPREE",
+    endpoint: "",
 
     async envoyer(type, donnees = {}) {
 
-        if (
-            !this.endpoint ||
-            this.endpoint.includes("VOTRE_ID_FORMSPREE")
-        ) {
+        if (!this.endpoint) {
             console.warn(
                 "Le Courrier du Seuil n'est pas encore relié à une adresse."
             );
