@@ -50,10 +50,10 @@ zonePupitre.id = "zone-pupitre";
 zonePupitre.className = "hall-element";
 
 zonePupitre.style.position = "absolute";
-zonePupitre.style.left = "8%";
-zonePupitre.style.top = "53%";
-zonePupitre.style.width = "16%";
-zonePupitre.style.height = "28%";
+zonePupitre.style.left = "21%";
+zonePupitre.style.top = "49%";
+zonePupitre.style.width = "13%";
+zonePupitre.style.height = "10%";
 
 zonePupitre.style.cursor = "pointer";
 
