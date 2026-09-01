@@ -19,7 +19,7 @@ ne doit être inscrit dans ce fichier.
 
 window.COURRIER = {
 
-    endpoint: endpoint: "https://zkemqqvnuwqkeasuujkl.supabase.co/functions/v1/facteur-du-seuil",
+    endpoint: "https://zkemqqvnuwqkeasuujkl.supabase.co/functions/v1/facteur-du-seuil",
 
     async envoyer(type, donnees = {}) {
 
