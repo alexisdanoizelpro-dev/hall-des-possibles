@@ -47,5 +47,44 @@ window.SUPABASE_SEUIL = {
 
             return false;
         }
+    },
+
+   async enregistrerTraceLivreOr(donnees) {
+
+    try {
+
+        const reponse = await fetch(
+            this.url + "/rest/v1/livre-or",
+            {
+                method: "POST",
+
+                headers: {
+                    "apikey": this.key,
+                    "Content-Type": "application/json",
+                    "Prefer": "return=minimal"
+                },
+
+                body: JSON.stringify(donnees)
+            }
+        );
+
+        if (!reponse.ok) {
+            throw new Error(
+                "Supabase a refusé la trace : " +
+                reponse.status
+            );
+        }
+
+        return true;
+
+    } catch (erreur) {
+
+        console.error(
+            "Le Livre d'Or n'a pas reçu la trace :",
+            erreur
+        );
+
+        return false;
     }
+}
 };
