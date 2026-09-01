@@ -72,13 +72,13 @@ zoneLivre.className = "hall-element";
 
 zoneLivre.style.position = "absolute";
 
-zoneLivre.style.left = "46%";
+zoneLivre.style.left = "49%";
 
-zoneLivre.style.top = "54%";
+zoneLivre.style.top = "55%";
 
-zoneLivre.style.width = "22%";
+zoneLivre.style.width = "12%";
 
-zoneLivre.style.height = "9%";
+zoneLivre.style.height = "16%";
 
 zoneLivre.style.cursor = "pointer";
 
