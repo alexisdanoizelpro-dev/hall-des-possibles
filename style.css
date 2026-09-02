@@ -792,3 +792,27 @@ align-items:center;
         height: 100%;
     }
 }
+
+/* ==========================================================
+   EXPÉRIENCE MOBILE DU HALL
+   Étape 2 : regarder autour de soi
+   ========================================================== */
+
+@media (max-width: 700px) {
+
+    #hall {
+        touch-action: none;
+    }
+
+    #hall-scene {
+        --hall-pan-x: 0px;
+
+        transform:
+            translate(
+                calc(-50% + var(--hall-pan-x)),
+                -50%
+            );
+
+        will-change: transform;
+    }
+}
