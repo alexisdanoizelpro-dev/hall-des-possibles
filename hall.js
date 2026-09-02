@@ -135,3 +135,163 @@ function entrerDansLeHall(){
     }, 1600);
 
 }
+
+/* ==========================================================
+   EXPÉRIENCE MOBILE DU HALL
+   Regarder autour de soi
+   ========================================================== */
+
+const hallScene = document.getElementById("hall-scene");
+const hall = document.getElementById("hall");
+
+const hallMobile = window.matchMedia("(max-width: 700px)");
+
+let hallPanX = 0;
+let hallPanDepart = 0;
+let hallDoigtDepartX = 0;
+
+let hallGlissement = false;
+let hallAReellementBouge = false;
+
+
+/* Limite le déplacement aux bords réels de la scène */
+function limiteHallMobile() {
+
+    if (!hallScene) return 0;
+
+    const largeurScene =
+        hallScene.getBoundingClientRect().width;
+
+    const largeurEcran =
+        window.innerWidth;
+
+    return Math.max(
+        0,
+        (largeurScene - largeurEcran) / 2
+    );
+}
+
+
+/* Applique le déplacement */
+function placerHallMobile() {
+
+    if (!hallScene) return;
+
+    const limite = limiteHallMobile();
+
+    hallPanX = Math.max(
+        -limite,
+        Math.min(limite, hallPanX)
+    );
+
+    hallScene.style.setProperty(
+        "--hall-pan-x",
+        hallPanX + "px"
+    );
+}
+
+
+/* Le doigt se pose */
+hall.addEventListener("pointerdown", (event) => {
+
+    if (!hallMobile.matches) return;
+
+    hallGlissement = true;
+    hallAReellementBouge = false;
+
+    hallDoigtDepartX = event.clientX;
+    hallPanDepart = hallPanX;
+
+});
+
+
+/* Le doigt regarde à gauche ou à droite */
+hall.addEventListener("pointermove", (event) => {
+
+    if (!hallMobile.matches) return;
+    if (!hallGlissement) return;
+
+    const mouvement =
+        event.clientX - hallDoigtDepartX;
+
+    /*
+       Petite tolérance :
+       un simple tap reste un clic normal.
+    */
+    if (Math.abs(mouvement) > 7) {
+        hallAReellementBouge = true;
+    }
+
+    if (!hallAReellementBouge) return;
+
+    hallPanX =
+        hallPanDepart + mouvement;
+
+    placerHallMobile();
+
+    event.preventDefault();
+
+});
+
+
+/* Le doigt se relève */
+function terminerGlissementHall() {
+
+    if (!hallMobile.matches) return;
+
+    hallGlissement = false;
+
+}
+
+hall.addEventListener(
+    "pointerup",
+    terminerGlissementHall
+);
+
+hall.addEventListener(
+    "pointercancel",
+    terminerGlissementHall
+);
+
+
+/*
+   Si le visiteur a réellement fait glisser la pièce,
+   on empêche ce geste de déclencher accidentellement
+   l'objet situé sous son doigt.
+*/
+hall.addEventListener(
+    "click",
+    (event) => {
+
+        if (!hallMobile.matches) return;
+        if (!hallAReellementBouge) return;
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        hallAReellementBouge = false;
+
+    },
+    true
+);
+
+
+/* Sécurité si le téléphone change d'orientation */
+window.addEventListener("resize", () => {
+
+    if (!hallMobile.matches) {
+
+        hallPanX = 0;
+
+        if (hallScene) {
+            hallScene.style.removeProperty(
+                "--hall-pan-x"
+            );
+        }
+
+        return;
+    }
+
+    placerHallMobile();
+
+});
