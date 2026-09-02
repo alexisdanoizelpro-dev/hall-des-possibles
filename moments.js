@@ -73,42 +73,40 @@ function installerReflexionDuSeuil() {
        POSITION DU PETIT PAPIER
        ========================================= */
 
-    function placerPapierReflexion() {
+function placerPapierReflexion() {
 
-        const hallImage = document.getElementById("hall-image");
+    const hallImage = document.getElementById("hall-image");
 
-        if (!hallImage) return;
+    if (!hallImage) return;
 
-        const imageRect = hallImage.getBoundingClientRect();
-        const overlayRect = hallOverlay.getBoundingClientRect();
+    /*
+       On utilise désormais les dimensions INTERNES de l'image.
+       Elles ne sont pas faussées par le zoom mobile du Hall.
+    */
 
-        if (imageRect.width === 0 || imageRect.height === 0) {
-            return;
-        }
+    const imageLeft = hallImage.offsetLeft;
+    const imageTop = hallImage.offsetTop;
+    const imageWidth = hallImage.offsetWidth;
+    const imageHeight = hallImage.offsetHeight;
 
-        /*
-           POSITION VALIDÉE.
-           NE PLUS TOUCHER.
-        */
-
-        const x = 0.795;
-        const y = 0.17;
-
-        papierReflexion.style.left =
-            (
-                imageRect.left -
-                overlayRect.left +
-                imageRect.width * x
-            ) + "px";
-
-        papierReflexion.style.top =
-            (
-                imageRect.top -
-                overlayRect.top +
-                imageRect.height * y
-            ) + "px";
+    if (imageWidth === 0 || imageHeight === 0) {
+        return;
     }
 
+    /*
+       POSITION VALIDÉE.
+       NE PLUS TOUCHER.
+    */
+
+    const x = 0.795;
+    const y = 0.17;
+
+    papierReflexion.style.left =
+        (imageLeft + imageWidth * x) + "px";
+
+    papierReflexion.style.top =
+        (imageTop + imageHeight * y) + "px";
+}
 
     /* Attendre que l'image du Hall soit prête */
 
@@ -253,28 +251,46 @@ function installerEnqueteDuMoment() {
     const position = ARTISAN.enqueteDuMoment.position || {};
 
     function placerEnveloppe() {
-        const hallImage = document.getElementById("hall-image");
-        if (!hallImage) return;
 
-        const imageRect = hallImage.getBoundingClientRect();
-        const overlayRect = hallOverlay.getBoundingClientRect();
+    const hallImage = document.getElementById("hall-image");
+    if (!hallImage) return;
 
-        if (imageRect.width === 0 || imageRect.height === 0) return;
+    /*
+       Même principe que pour la Réflexion :
+       dimensions internes, indépendantes du zoom mobile.
+    */
 
-        const x = typeof position.x === "number" ? position.x : 0.69;
-        const y = typeof position.y === "number" ? position.y : 0.485;
-        const largeur = typeof position.largeur === "number" ? position.largeur : 0.052;
+    const imageLeft = hallImage.offsetLeft;
+    const imageTop = hallImage.offsetTop;
+    const imageWidth = hallImage.offsetWidth;
+    const imageHeight = hallImage.offsetHeight;
 
-        enveloppe.style.left =
-            (imageRect.left - overlayRect.left + imageRect.width * x) + "px";
+    if (imageWidth === 0 || imageHeight === 0) return;
 
-        enveloppe.style.top =
-            (imageRect.top - overlayRect.top + imageRect.height * y) + "px";
+    const x =
+        typeof position.x === "number"
+            ? position.x
+            : 0.69;
 
-        enveloppe.style.width = (imageRect.width * largeur) + "px";
-    }
+    const y =
+        typeof position.y === "number"
+            ? position.y
+            : 0.485;
 
-    enveloppe.innerHTML = enveloppeMarkup(affaireEstClassee());
+    const largeur =
+        typeof position.largeur === "number"
+            ? position.largeur
+            : 0.052;
+
+    enveloppe.style.left =
+        (imageLeft + imageWidth * x) + "px";
+
+    enveloppe.style.top =
+        (imageTop + imageHeight * y) + "px";
+
+    enveloppe.style.width =
+        (imageWidth * largeur) + "px";
+}
 
     if (affaireEstClassee()) {
         enveloppe.classList.add("est-classee");
