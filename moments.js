@@ -66,7 +66,7 @@ function installerReflexionDuSeuil() {
     reflexion.hidden = true;
 
     hallOverlay.appendChild(papierReflexion);
-    hallOverlay.appendChild(reflexion);
+    document.body.appendChild(reflexion);
 
 
     /* =========================================
