@@ -292,7 +292,21 @@ function installerEnqueteDuMoment() {
         (imageWidth * largeur) + "px";
 }
 
-    if (affaireEstClassee()) {
+   const enqueteClassee = affaireEstClassee();
+
+enveloppe.innerHTML = `
+    <span class="enveloppe-corps" aria-hidden="true">
+        <span class="enveloppe-rabat"></span>
+        <img
+            class="enveloppe-logo"
+            src="logo-atelier-du-seuil.png"
+            alt=""
+        >
+        <span class="enveloppe-sceau">AS</span>
+    </span>
+`;
+
+    if (enqueteClassee) {
         enveloppe.classList.add("est-classee");
         enveloppe.setAttribute("aria-label", "Affaire classée");
     } else {
