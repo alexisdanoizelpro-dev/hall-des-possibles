@@ -59,6 +59,40 @@ zonePupitre.style.cursor = "pointer";
 
 hallOverlay.appendChild(zonePupitre);
 
+function placerPupitreMobile() {
+
+    if (!window.matchMedia("(max-width: 700px)").matches) {
+        return;
+    }
+
+    const hallImage = document.getElementById("hall-image");
+    if (!hallImage) return;
+
+    const imageLeft = hallImage.offsetLeft;
+    const imageTop = hallImage.offsetTop;
+    const imageWidth = hallImage.offsetWidth;
+    const imageHeight = hallImage.offsetHeight;
+
+    zonePupitre.style.left =
+        (imageLeft + imageWidth * 0.065) + "px";
+
+    zonePupitre.style.top =
+        (imageTop + imageHeight * 0.455) + "px";
+
+    zonePupitre.style.width =
+        (imageWidth * 0.175) + "px";
+
+    zonePupitre.style.height =
+        (imageHeight * 0.20) + "px";
+}
+
+requestAnimationFrame(placerPupitreMobile);
+
+window.addEventListener(
+    "resize",
+    placerPupitreMobile
+);
+
 zonePupitre.addEventListener("click", ouvrirPupitre);
 
 /* ==========================================================
@@ -84,6 +118,39 @@ zoneLivre.style.cursor = "pointer";
 
 hallOverlay.appendChild(zoneLivre);
 
+function placerLivreMobile() {
+
+    if (!window.matchMedia("(max-width: 700px)").matches) {
+        return;
+    }
+
+    const hallImage = document.getElementById("hall-image");
+    if (!hallImage) return;
+
+    const imageLeft = hallImage.offsetLeft;
+    const imageTop = hallImage.offsetTop;
+    const imageWidth = hallImage.offsetWidth;
+    const imageHeight = hallImage.offsetHeight;
+
+    zoneLivre.style.left =
+        (imageLeft + imageWidth * 0.48) + "px";
+
+    zoneLivre.style.top =
+        (imageTop + imageHeight * 0.57) + "px";
+
+    zoneLivre.style.width =
+        (imageWidth * 0.255) + "px";
+
+    zoneLivre.style.height =
+        (imageHeight * 0.24) + "px";
+}
+
+requestAnimationFrame(placerLivreMobile);
+
+window.addEventListener(
+    "resize",
+    placerLivreMobile
+);
 
 zoneLivre.addEventListener("click", () => {
 
