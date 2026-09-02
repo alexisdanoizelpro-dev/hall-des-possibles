@@ -776,3 +776,22 @@ align-items:center;
         will-change: transform;
     }
 }
+
+/* ==========================================================
+   ENQUÊTE DU MOMENT — VISIBILITÉ MOBILE
+   ========================================================== */
+
+@media (max-width: 700px) {
+
+    #enveloppe-enquete {
+        transform:
+            translate(-50%, -50%)
+            rotate(-6deg)
+            skewX(-2deg)
+            scale(1.25);
+
+        filter:
+            brightness(1.22)
+            drop-shadow(3px 4px 3px rgba(0,0,0,.68));
+    }
+}
