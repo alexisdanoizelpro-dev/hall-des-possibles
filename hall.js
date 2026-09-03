@@ -59,7 +59,7 @@ hallOverlay.appendChild(panneauBureau);
 
 /* Position sur PC */
 panneauBureau.style.left = "32%";
-panneauBureau.style.top = "24%";
+panneauBureau.style.top = "13%";
 
 
 /* Position sur téléphone :
