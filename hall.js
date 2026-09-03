@@ -39,6 +39,70 @@ if (!hallOverlay) {
 }
 
 /* ==========================================================
+   ACCÈS AU BUREAU
+   L'ESCALIER
+   ========================================================== */
+
+const panneauBureau = document.createElement("button");
+
+panneauBureau.id = "panneau-bureau";
+panneauBureau.className = "hall-element";
+
+panneauBureau.type = "button";
+panneauBureau.innerHTML = `
+    <span class="panneau-bureau-titre">BUREAU</span>
+    <span class="panneau-bureau-indication">↑</span>
+`;
+
+hallOverlay.appendChild(panneauBureau);
+
+
+/* Position sur PC */
+panneauBureau.style.left = "31%";
+panneauBureau.style.top = "29%";
+
+
+/* Position sur téléphone :
+   calculée à partir de l'image réelle du Hall */
+function placerPanneauBureauMobile() {
+
+    if (!window.matchMedia("(max-width: 700px)").matches) {
+        return;
+    }
+
+    const hallImage = document.getElementById("hall-image");
+    if (!hallImage) return;
+
+    const imageLeft = hallImage.offsetLeft;
+    const imageTop = hallImage.offsetTop;
+    const imageWidth = hallImage.offsetWidth;
+    const imageHeight = hallImage.offsetHeight;
+
+    panneauBureau.style.left =
+        (imageLeft + imageWidth * 0.31) + "px";
+
+    panneauBureau.style.top =
+        (imageTop + imageHeight * 0.29) + "px";
+}
+
+requestAnimationFrame(placerPanneauBureauMobile);
+
+window.addEventListener(
+    "resize",
+    placerPanneauBureauMobile
+);
+
+
+/* Monter au Bureau */
+panneauBureau.addEventListener("click", () => {
+
+    if (typeof ouvrirBureau === "function") {
+        ouvrirBureau();
+    }
+
+});
+
+/* ==========================================================
    PIERRE N°3
    LE PUPITRE
    ========================================================== */
