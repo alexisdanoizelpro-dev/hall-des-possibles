@@ -857,19 +857,28 @@ align-items:center;
     line-height: 1;
 }
 
-
-/* Téléphone */
 @media (max-width: 700px) {
 
     #panneau-bureau {
-        padding: 5px 8px;
+        padding: 2px 4px;
+
+        transform:
+            translate(-50%, -50%)
+            rotate(-1.5deg)
+            scale(0.45);
+    }
+
+    #panneau-bureau:hover {
+        filter: brightness(1.12);
     }
 
     .panneau-bureau-titre {
         font-size: 8px;
+        letter-spacing: 0.10em;
     }
 
     .panneau-bureau-indication {
-        font-size: 8px;
+        margin-top: 1px;
+        font-size: 7px;
     }
 }
