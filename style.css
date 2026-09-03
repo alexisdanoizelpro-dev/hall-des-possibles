@@ -803,16 +803,24 @@ align-items:center;
 #panneau-bureau {
     position: absolute;
 
-    transform: translate(-50%, -50%) rotate(-2deg);
+    transform:
+        translate(-50%, -50%)
+        rotate(-1.5deg);
 
-    padding: 7px 12px;
+    padding: 8px 15px 7px;
 
-    border: 1px solid rgba(187, 151, 91, 0.65);
-    border-radius: 2px;
+    border: 1px solid #725632;
+    border-radius: 1px;
 
-    background: rgba(17, 15, 12, 0.92);
+    background:
+        linear-gradient(
+            145deg,
+            #29231b,
+            #17130f 65%,
+            #0e0c09
+        );
 
-    color: #d6b173;
+    color: #c5a36a;
 
     font-family: Georgia, serif;
 
@@ -821,21 +829,14 @@ align-items:center;
     z-index: 160;
 
     box-shadow:
-        0 3px 7px rgba(0, 0, 0, 0.55),
-        inset 0 0 8px rgba(184, 143, 76, 0.06);
+        2px 4px 6px rgba(0,0,0,.65),
+        inset 0 0 8px rgba(185,145,79,.08);
 
-    transition:
-        transform 0.18s ease,
-        background 0.18s ease;
+    transition: filter .18s ease;
 }
 
 #panneau-bureau:hover {
-    transform:
-        translate(-50%, -50%)
-        rotate(-2deg)
-        scale(1.04);
-
-    background: rgba(25, 21, 16, 0.96);
+    filter: brightness(1.12);
 }
 
 .panneau-bureau-titre {
