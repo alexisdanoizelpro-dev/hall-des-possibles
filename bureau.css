@@ -43,7 +43,8 @@
 
 #bureau-overlay {
     position: absolute;
-
+    inset: 0;
+   
     width: 100%;
     height: 100%;
 
@@ -81,24 +82,20 @@
    ========================================================== */
 
 /* Zone du dossier présent sur bureau.png */
+
 #dossier-pratique {
     position: absolute;
 
-    left: 68%;
-    top: 47%;
-
-    width: 14%;
-    height: 19%;
-
-    border: 0;
     padding: 0;
+    border: 0;
 
     background: transparent;
 
     cursor: pointer;
     pointer-events: auto;
-}
 
+    z-index: 20;
+}
 
 /* Feuille */
 #feuille-pratique {
