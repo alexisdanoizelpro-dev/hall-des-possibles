@@ -75,3 +75,219 @@
     cursor: pointer;
     pointer-events: auto;
 }
+
+/* ==========================================================
+   INFORMATIONS PRATIQUES
+   ========================================================== */
+
+/* Zone du dossier présent sur bureau.png */
+#dossier-pratique {
+    position: absolute;
+
+    left: 68%;
+    top: 47%;
+
+    width: 14%;
+    height: 19%;
+
+    border: 0;
+    padding: 0;
+
+    background: transparent;
+
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+
+/* Feuille */
+#feuille-pratique {
+    position: fixed;
+
+    left: 50%;
+    top: 50%;
+
+    width: min(560px, 82vw);
+    min-height: 430px;
+    max-height: 78vh;
+
+    transform: translate(-50%, -50%);
+
+    box-sizing: border-box;
+
+    padding: 58px 48px 42px;
+
+    overflow-y: auto;
+
+    background:
+        linear-gradient(
+            105deg,
+            #e7dcc2 0%,
+            #f0e6cf 48%,
+            #e2d5b9 100%
+        );
+
+    color: #2d251b;
+
+    border: 1px solid #8f7a58;
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.72),
+        inset 0 0 35px rgba(100, 72, 35, 0.10);
+
+    font-family: Georgia, serif;
+
+    z-index: 5000;
+}
+
+#feuille-pratique[hidden] {
+    display: none;
+}
+
+
+/* Titre */
+#feuille-pratique h2 {
+    margin: 0 0 32px;
+
+    text-align: center;
+
+    font-size: 25px;
+    font-weight: normal;
+
+    letter-spacing: 0.04em;
+}
+
+
+/* Croix */
+.fermer-feuille-pratique {
+    position: absolute;
+
+    top: 13px;
+    right: 17px;
+
+    border: 0;
+    padding: 3px 7px;
+
+    background: transparent;
+
+    color: #382d20;
+
+    font-family: Georgia, serif;
+    font-size: 25px;
+
+    cursor: pointer;
+}
+
+
+/* Retour */
+.retour-sommaire-pratique {
+    position: absolute;
+
+    top: 18px;
+    left: 20px;
+
+    border: 0;
+    padding: 0;
+
+    background: transparent;
+
+    color: #594832;
+
+    font-family: Georgia, serif;
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+.retour-sommaire-pratique:hover {
+    text-decoration: underline;
+}
+
+
+/* Sommaire */
+.sommaire-pratique {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.sommaire-pratique button {
+    padding: 11px 5px;
+
+    border: 0;
+    border-bottom: 1px solid rgba(77, 59, 37, 0.25);
+
+    background: transparent;
+
+    color: #33291d;
+
+    text-align: left;
+
+    font-family: Georgia, serif;
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+.sommaire-pratique button:hover {
+    padding-left: 10px;
+}
+
+
+/* Contenu */
+.contenu-pratique {
+    font-size: 16px;
+    line-height: 1.65;
+}
+
+.contenu-pratique p {
+    margin: 0 0 18px;
+}
+
+.phrase-seuil {
+    margin-bottom: 28px !important;
+
+    text-align: center;
+
+    font-style: italic;
+    font-size: 18px;
+}
+
+
+/* Téléphone */
+@media (max-width: 700px) {
+
+    #feuille-pratique {
+        width: 88vw;
+        min-height: 0;
+        max-height: 72vh;
+
+        padding: 52px 25px 30px;
+    }
+
+    #feuille-pratique h2 {
+        margin-bottom: 25px;
+
+        font-size: 20px;
+    }
+
+    .sommaire-pratique button {
+        font-size: 14px;
+    }
+
+    .contenu-pratique {
+        font-size: 14px;
+        line-height: 1.55;
+    }
+
+    .phrase-seuil {
+        font-size: 16px;
+    }
+
+    .retour-sommaire-pratique {
+        left: 15px;
+
+        font-size: 11px;
+    }
+}
