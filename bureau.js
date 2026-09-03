@@ -188,7 +188,7 @@ if (bureauOverlay) {
                 </p>
 
                 <p>
-                    <strong>[ADRESSE MAIL PROFESSIONNELLE]</strong>
+                    <strong>[bonjour.atelier.du.seuil@outlook.com]</strong>
                 </p>
 
                 <p>
