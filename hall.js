@@ -79,10 +79,10 @@ function placerPanneauBureauMobile() {
     const imageHeight = hallImage.offsetHeight;
 
     panneauBureau.style.left =
-        (imageLeft + imageWidth * 0.31) + "px";
+        (imageLeft + imageWidth * 0.38) + "px";
 
     panneauBureau.style.top =
-        (imageTop + imageHeight * 0.29) + "px";
+        (imageTop + imageHeight * 0.20) + "px";
 }
 
 requestAnimationFrame(placerPanneauBureauMobile);
