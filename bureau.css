@@ -49,3 +49,29 @@
 
     pointer-events: none;
 }
+
+/* ==========================================================
+   SORTIE DU BUREAU
+   ========================================================== */
+
+#bureau-overlay {
+    pointer-events: none;
+}
+
+#sortie-bureau {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 22%;
+    height: 100%;
+
+    padding: 0;
+    border: 0;
+
+    background: transparent;
+
+    cursor: pointer;
+    pointer-events: auto;
+}
