@@ -58,7 +58,7 @@ hallOverlay.appendChild(panneauBureau);
 
 
 /* Position sur PC */
-panneauBureau.style.left = "32%";
+panneauBureau.style.left = "42%";
 panneauBureau.style.top = "17%";
 
 
