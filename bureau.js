@@ -64,6 +64,42 @@ if (bureauOverlay) {
 
     bureauOverlay.appendChild(dossierPratique);
 
+   const bureauImage = document.getElementById("bureau-image");
+
+function placerDossierPratique() {
+
+    if (!bureauImage) return;
+
+    const imageLeft = bureauImage.offsetLeft;
+    const imageTop = bureauImage.offsetTop;
+    const imageWidth = bureauImage.offsetWidth;
+    const imageHeight = bureauImage.offsetHeight;
+
+    dossierPratique.style.left =
+        (imageLeft + imageWidth * 0.69) + "px";
+
+    dossierPratique.style.top =
+        (imageTop + imageHeight * 0.45) + "px";
+
+    dossierPratique.style.width =
+        (imageWidth * 0.10) + "px";
+
+    dossierPratique.style.height =
+        (imageHeight * 0.14) + "px";
+}
+
+requestAnimationFrame(placerDossierPratique);
+
+bureauImage.addEventListener(
+    "load",
+    placerDossierPratique
+);
+
+window.addEventListener(
+    "resize",
+    placerDossierPratique
+);
+
 
     /* Feuille */
     const feuillePratique = document.createElement("div");
