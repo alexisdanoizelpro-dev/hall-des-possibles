@@ -807,7 +807,7 @@ align-items:center;
         translate(-50%, -50%)
         rotate(-1.5deg);
 
-    padding: 8px 15px 7px;
+    padding: 4px 8px 4px;
 
     border: 1px solid #725632;
     border-radius: 1px;
@@ -842,9 +842,9 @@ align-items:center;
 .panneau-bureau-titre {
     display: block;
 
-    font-size: clamp(10px, 0.9vw, 15px);
+    font-size: clamp(7px, 0.6vw, 10px);
 
-    letter-spacing: 0.12em;
+    letter-spacing: 0.10em;
 }
 
 .panneau-bureau-indication {
@@ -852,7 +852,7 @@ align-items:center;
 
     margin-top: 2px;
 
-    font-size: clamp(10px, 0.8vw, 14px);
+    font-size: clamp(7px, 0.55vw, 9px);
 
     line-height: 1;
 }
