@@ -457,8 +457,8 @@ feuille.querySelector("#enquete-reessayer").addEventListener("click", function()
 
     champ.focus();
 });
-   
-formulaire.addEventListener("submit", function(e) {
+
+   formulaire.addEventListener("submit", async function(e) {
     e.preventDefault();
 
     const proposition = champ.value.trim();
@@ -469,30 +469,14 @@ formulaire.addEventListener("submit", function(e) {
             ? visiteur.value.trim()
             : "Visiteur anonyme";
 
-    tentative += 1;
-
-    sessionStorage.setItem(
-        "seuil-enquete-tentative",
-        String(tentative)
-    );
-
+    const tentativeSuivante = tentative + 1;
     const acceptee = reponseEstAcceptee(proposition);
 
-    if (window.SUPABASE_SEUIL) {
-        SUPABASE_SEUIL.enregistrerReponseEnquete({
-            visiteur: nomVisiteur,
-            session_id: sessionId,
-            tentative: tentative,
-            enquete_id: ARTISAN.enqueteDuMoment.identifiant,
-            proposition: proposition,
-            resultats: acceptee
-                ? "acceptee"
-                : "autre_proposition",
-            action: null
-        });
-    }
-
-    const bouton = feuille.querySelector("#enquete-confier");
+    /*
+       On bloque temporairement le formulaire
+       pendant que le Seuil tente de conserver
+       la proposition.
+    */
 
     champ.readOnly = true;
 
@@ -503,6 +487,95 @@ formulaire.addEventListener("submit", function(e) {
     if (bouton) {
         bouton.disabled = true;
         bouton.textContent =
+            "Le Seuil conserve votre proposition…";
+    }
+
+    /*
+       Retirer un éventuel ancien message d'erreur.
+    */
+
+    const ancienMessage =
+        feuille.querySelector("#enquete-erreur-envoi");
+
+    if (ancienMessage) {
+        ancienMessage.remove();
+    }
+
+    /*
+       Le Hall attend désormais réellement
+       la réponse de Supabase.
+    */
+
+    let enregistrementReussi = false;
+
+    if (window.SUPABASE_SEUIL) {
+
+        enregistrementReussi =
+            await SUPABASE_SEUIL.enregistrerReponseEnquete({
+                visiteur: nomVisiteur,
+                session_id: sessionId,
+                tentative: tentativeSuivante,
+                enquete_id: ARTISAN.enqueteDuMoment.identifiant,
+                proposition: proposition,
+                resultats: acceptee
+                    ? "acceptee"
+                    : "autre_proposition",
+                action: null
+            });
+    }
+
+    /*
+       Si Supabase n'a pas reçu la proposition,
+       l'Enquête ne continue pas comme si
+       tout s'était bien passé.
+    */
+
+    if (!enregistrementReussi) {
+
+        const erreurEnvoi = document.createElement("div");
+
+        erreurEnvoi.id = "enquete-erreur-envoi";
+        erreurEnvoi.textContent =
+            "Le Seuil n’a pas pu conserver votre proposition. Réessayez dans un instant.";
+
+        erreurEnvoi.style.textAlign = "center";
+        erreurEnvoi.style.marginTop = "18px";
+        erreurEnvoi.style.fontStyle = "italic";
+
+        formulaire.insertAdjacentElement(
+            "afterend",
+            erreurEnvoi
+        );
+
+        champ.readOnly = false;
+
+        if (visiteur) {
+            visiteur.readOnly = false;
+        }
+
+        if (bouton) {
+            bouton.disabled = false;
+            bouton.textContent =
+                "Confier ma proposition au Seuil";
+        }
+
+        return;
+    }
+
+    /*
+       La proposition est réellement enregistrée :
+       seulement maintenant, on compte la tentative.
+    */
+
+    tentative = tentativeSuivante;
+
+    sessionStorage.setItem(
+        "seuil-enquete-tentative",
+        String(tentative)
+    );
+
+    if (bouton) {
+        bouton.textContent =
             "Le Seuil examine votre proposition…";
     }
 
@@ -510,6 +583,7 @@ formulaire.addEventListener("submit", function(e) {
        Le Seuil prend le même temps,
        que la proposition soit juste ou non.
     */
+
     setTimeout(function() {
 
         if (acceptee) {
@@ -547,6 +621,7 @@ formulaire.addEventListener("submit", function(e) {
                le Visiteur comprend que
                l'affaire n'est pas encore résolue.
             */
+
             setTimeout(function() {
 
                 silence.style.opacity = "0";
