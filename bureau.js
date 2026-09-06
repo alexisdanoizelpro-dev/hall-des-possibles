@@ -137,6 +137,7 @@ if (bureauOverlay) {
                 <p>
                     Chaque projet étant différent,
                     il n'existe pas de tarif unique.
+                    Mais votre budget sera écouté et respecté.
                 </p>
 
                 <p>
