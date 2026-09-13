@@ -20,7 +20,7 @@ const ARTISAN = {
 
     reflexion: {
         active: true,
-        texte: "La vie avance en silence. Si tu veux vivre, alors fais du bruit..."
+        texte: "Vis ta vie, quoique tu fasses, les gens parleront alors vis, tout simplement."
     },
 
     /* -------------------------------------
