@@ -139,9 +139,7 @@ function ouvrirDernierePage(){
     retour.textContent = "J'ai encore besoin de temps.";
 
     retour.addEventListener("click", () => {
-
         document.getElementById("fenetre-seuil").remove();
-
     });
 
     registre.appendChild(retour);
@@ -168,6 +166,33 @@ function ouvrirDernierePage(){
 
     registre.appendChild(champ);
 
+
+    // Adresse e-mail
+    const texteMail = document.createElement("p");
+
+    texteMail.textContent =
+    "À quelle adresse puis-je revenir vers vous si votre idée demande quelques précisions ?";
+
+    registre.appendChild(texteMail);
+
+    const champMail = document.createElement("input");
+
+    champMail.type = "email";
+    champMail.placeholder = "Votre adresse e-mail";
+    champMail.required = true;
+
+    registre.appendChild(champMail);
+
+    const erreurMail = document.createElement("p");
+
+    erreurMail.style.display = "none";
+
+    erreurMail.textContent =
+    "Une adresse e-mail valide est nécessaire pour que l'Artisan puisse revenir vers vous.";
+
+    registre.appendChild(erreurMail);
+
+
     const bouton = document.createElement("button");
 
     bouton.id = "ouvrir-registre";
@@ -176,7 +201,18 @@ function ouvrirDernierePage(){
 
     bouton.addEventListener("click", async () => {
 
+        const email = champMail.value.trim();
+
+        if (!email || !champMail.checkValidity()) {
+            erreurMail.style.display = "block";
+            champMail.focus();
+            return;
+        }
+
+        erreurMail.style.display = "none";
+
         donneesRegistre["À laisser à l'extérieur"] = champ.value;
+        donneesRegistre["Adresse e-mail"] = email;
 
         if (!window.COURRIER) {
             console.error("Le Facteur du Seuil est introuvable.");
@@ -198,6 +234,7 @@ function ouvrirDernierePage(){
 
 }
 
+
 function terminerRegistre(){
 
     const registre = document.getElementById("registre-seuil");
@@ -206,14 +243,17 @@ function terminerRegistre(){
 
     const titre = document.createElement("h2");
 
-    titre.textContent = "Votre idée existe à présent.";
+    titre.textContent = "Votre idée a franchi le Seuil.";
 
     registre.appendChild(titre);
 
     const texte = document.createElement("p");
 
     texte.textContent =
-    "Votre idée a rejoint le Registre.\n\nL'Atelier en prendra connaissance avec toute l'attention qu'elle mérite.";
+    "L’Artisan en prendra connaissance et reviendra vers vous si certains éléments méritent d’être précisés.\n\n" +
+    "Il n’est pas nécessaire de transmettre davantage d’informations, de photographies ou de documents pour le moment.\n\n" +
+    "Si un élément supplémentaire devient utile à la création, l’Artisan vous le demandera directement.\n\n" +
+    "L’essentiel est suffisant.";
 
     registre.appendChild(texte);
 
@@ -224,9 +264,7 @@ function terminerRegistre(){
     fermer.textContent = "Revenir dans le Hall";
 
     fermer.addEventListener("click", () => {
-
         document.getElementById("fenetre-seuil").remove();
-
     });
 
     registre.appendChild(fermer);
