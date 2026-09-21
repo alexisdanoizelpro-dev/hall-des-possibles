@@ -127,6 +127,9 @@ if (bureauOverlay) {
                     Il n'existe donc pas de formule standard à choisir :
                     le contenu est construit en fonction de la demande,
                     des personnes concernées et des contraintes indiquées.
+  Selon l'idée confiée, un projet peut prendre la forme d'énigmes personnalisées,
+  d'une chasse au trésor, d'un jeu de piste, d'un escape game, d'une enquête
+  ou encore d'un jeu imaginé entièrement sur mesure.
                 </p>
             `
         },
