@@ -111,7 +111,9 @@ if (bureauOverlay) {
 
                 <p>
                     Chaque projet est étudié selon ce qu'il cherche
-                    à faire vivre.
+                    à faire vivre. Un projet peut ainsi accompagner un anniversaire, un mariage, une soirée entre amis,
+une fête de famille, un événement professionnel ou simplement l'envie de partager
+un moment différent.
                 </p>
             `
         },
@@ -129,7 +131,10 @@ if (bureauOverlay) {
                     des personnes concernées et des contraintes indiquées.
   Selon l'idée confiée, un projet peut prendre la forme d'énigmes personnalisées,
   d'une chasse au trésor, d'un jeu de piste, d'un escape game, d'une enquête
-  ou encore d'un jeu imaginé entièrement sur mesure.
+  ou encore d'un jeu imaginé entièrement sur mesure. L'expérience peut être pensée pour le lieu où elle se déroulera :
+à domicile, dans un jardin, une salle, une entreprise
+ou tout autre espace adapté au projet. Le contenu, la difficulté et la durée peuvent également être adaptés aux participants,
+qu'il s'agisse d'enfants, d'adultes ou d'un groupe réunissant plusieurs générations.
                 </p>
             `
         },
