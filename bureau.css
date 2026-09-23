@@ -147,6 +147,33 @@
     display: none;
 }
 
+/* Coin corné — quelque chose se cache derrière la feuille */
+#feuille-pratique::after {
+    content: "";
+
+    position: absolute;
+    right: -1px;
+    bottom: -1px;
+
+    width: 42px;
+    height: 42px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #c8b894 0%,
+            #dfd2b5 48%,
+            #8f7a58 50%,
+            #f0e6cf 53%,
+            #e7dcc2 100%
+        );
+
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+
+    filter: drop-shadow(-3px -3px 3px rgba(70, 50, 25, 0.20));
+
+    pointer-events: none;
+}
 
 /* Titre */
 #feuille-pratique h2 {
