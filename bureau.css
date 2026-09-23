@@ -244,11 +244,12 @@
 
 .grille-feuillets > div {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    min-height: 82px;
-    padding: 10px;
+    min-height: 110px;
+    padding: 8px;
 
     box-sizing: border-box;
 
@@ -256,9 +257,22 @@
     border-bottom: 1px solid rgba(89, 74, 53, 0.45);
 
     text-align: center;
+}
 
-    font-size: 15px;
-    line-height: 1.25;
+.case-feuillet img {
+    display: block;
+
+    width: 72px;
+    height: 72px;
+
+    object-fit: contain;
+
+    margin-bottom: 5px;
+}
+
+.case-feuillet span {
+    font-size: 12px;
+    line-height: 1.15;
 }
 
 #feuille-feuillets[hidden] {
