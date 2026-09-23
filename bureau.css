@@ -152,8 +152,8 @@
     content: "";
 
     position: absolute;
-    right: -1px;
-    bottom: -1px;
+    left: -1px;
+    top: -1px;
 
     width: 42px;
     height: 42px;
@@ -168,9 +168,9 @@
             #e7dcc2 100%
         );
 
-    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 0 100%);
 
-    filter: drop-shadow(-3px -3px 3px rgba(70, 50, 25, 0.20));
+    filter: drop-shadow(3px 3px 3px rgba(70, 50, 25, 0.20));
 
     pointer-events: none;
 }
