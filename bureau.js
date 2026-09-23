@@ -72,6 +72,37 @@ if (bureauOverlay) {
 
     bureau.appendChild(feuillePratique);
 
+   /* Feuille des Feuillets du Seuil */
+const feuilleFeuillets = document.createElement("div");
+
+feuilleFeuillets.id = "feuille-feuillets";
+feuilleFeuillets.hidden = true;
+
+feuilleFeuillets.innerHTML = `
+    <button
+        class="fermer-feuille-feuillets"
+        type="button"
+        aria-label="Fermer"
+    >×</button>
+
+    <h2>Feuillets du Seuil</h2>
+`;
+
+bureau.appendChild(feuilleFeuillets);
+
+
+/* Fermer les Feuillets et revenir au Bureau */
+const fermerFeuilleFeuillets =
+    feuilleFeuillets.querySelector(".fermer-feuille-feuillets");
+
+fermerFeuilleFeuillets.addEventListener("click", () => {
+
+    feuilleFeuillets.hidden = true;
+
+    feuillePratique.classList.remove("feuille-pratique-soulevee");
+    feuillePratique.hidden = true;
+});
+
 /* Zone cliquable du coin corné */
 const coinFeuillets = document.createElement("button");
 
