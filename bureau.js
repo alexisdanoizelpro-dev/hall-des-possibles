@@ -72,6 +72,33 @@ if (bureauOverlay) {
 
     bureau.appendChild(feuillePratique);
 
+   /* Feuille cachée sous les Informations pratiques */
+const feuilleFeuillets = document.createElement("div");
+
+feuilleFeuillets.id = "feuille-feuillets";
+feuilleFeuillets.hidden = true;
+
+feuilleFeuillets.innerHTML = `
+    <h2>Feuillets du Seuil</h2>
+`;
+
+bureau.appendChild(feuilleFeuillets);
+
+
+/* Le coin corné permet de découvrir les Feuillets */
+feuillePratique.addEventListener("click", (event) => {
+
+    const rect = feuillePratique.getBoundingClientRect();
+
+    const dansCoinCorne =
+        event.clientX <= rect.left + 55 &&
+        event.clientY <= rect.top + 55;
+
+    if (!dansCoinCorne) return;
+
+    feuilleFeuillets.hidden = false;
+    feuillePratique.classList.add("feuille-pratique-soulevee");
+});
 
     const pagesPratiques = {
 
