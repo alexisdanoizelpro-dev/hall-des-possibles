@@ -232,6 +232,35 @@
     z-index: 4999;
 }
 
+.grille-feuillets {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    margin-top: 38px;
+
+    border-top: 1px solid rgba(89, 74, 53, 0.45);
+    border-left: 1px solid rgba(89, 74, 53, 0.45);
+}
+
+.grille-feuillets > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 82px;
+    padding: 10px;
+
+    box-sizing: border-box;
+
+    border-right: 1px solid rgba(89, 74, 53, 0.45);
+    border-bottom: 1px solid rgba(89, 74, 53, 0.45);
+
+    text-align: center;
+
+    font-size: 15px;
+    line-height: 1.25;
+}
+
 #feuille-feuillets[hidden] {
     display: none;
 }
