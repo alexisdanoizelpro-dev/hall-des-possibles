@@ -88,19 +88,53 @@ feuilleFeuillets.innerHTML = `
     <h2>Feuillets du Seuil</h2>
 
     <div class="grille-feuillets">
-        <div>Surprendre quelqu’un</div>
-        <div>En Famille</div>
-        <div>Jeux de soirée</div>
 
-        <div>Anniversaire</div>
-        <div>Chasse au Trésor</div>
-        <div>Mariage</div>
-
-        <div>Enfants</div>
-        <div>Enquête</div>
-        <div>Entreprise</div>
+    <div class="case-feuillet">
+        <img src="feuillet-surprendre.png" alt="">
+        <span>Surprendre quelqu’un</span>
     </div>
-`;
+
+    <div class="case-feuillet">
+        <img src="feuillet-famille.png" alt="">
+        <span>En Famille</span>
+    </div>
+
+    <div class="case-feuillet">
+        <img src="feuillet-soirée.png" alt="">
+        <span>Jeux de soirée</span>
+    </div>
+
+    <div class="case-feuillet">
+        <img src="feuillet-anniversaire.png" alt="">
+        <span>Anniversaire</span>
+    </div>
+
+    <div class="case-feuillet">
+        <img src="feuillet-chasse_tresor.png" alt="">
+        <span>Chasse au Trésor</span>
+    </div>
+
+    <div class="case-feuillet">
+        <img src="feuillet-mariage.png" alt="">
+        <span>Mariage</span>
+    </div>
+
+    <div class="case-feuillet">
+        <img src="feuillet-enfants.png" alt="">
+        <span>Enfants</span>
+    </div>
+
+    <div class="case-feuillet">
+        <img src="feuillet-enquete.png" alt="">
+        <span>Enquête</span>
+    </div>
+
+    <div class="case-feuillet">
+        <img src="feuillet-entreprise.png" alt="">
+        <span>Entreprise</span>
+    </div>
+
+</div>
    
 bureau.appendChild(feuilleFeuillets);
 
