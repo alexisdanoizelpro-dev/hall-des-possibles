@@ -175,6 +175,22 @@
     pointer-events: none;
 }
 
+#coin-feuillets {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 55px;
+    height: 55px;
+
+    padding: 0;
+    border: 0;
+    background: transparent;
+
+    cursor: pointer;
+    z-index: 10;
+}
+
 /* ==========================================================
    FEUILLETS DU SEUIL
    ========================================================== */
