@@ -72,34 +72,25 @@ if (bureauOverlay) {
 
     bureau.appendChild(feuillePratique);
 
-   /* Feuille cachée sous les Informations pratiques */
-const feuilleFeuillets = document.createElement("div");
+/* Zone cliquable du coin corné */
+const coinFeuillets = document.createElement("button");
 
-feuilleFeuillets.id = "feuille-feuillets";
-feuilleFeuillets.hidden = true;
+coinFeuillets.id = "coin-feuillets";
+coinFeuillets.type = "button";
+coinFeuillets.setAttribute(
+    "aria-label",
+    "Découvrir les Feuillets du Seuil"
+);
 
-feuilleFeuillets.innerHTML = `
-    <h2>Feuillets du Seuil</h2>
-`;
+feuillePratique.appendChild(coinFeuillets);
 
-bureau.appendChild(feuilleFeuillets);
-
-
-/* Le coin corné permet de découvrir les Feuillets */
-feuillePratique.addEventListener("click", (event) => {
-
-    const rect = feuillePratique.getBoundingClientRect();
-
-    const dansCoinCorne =
-        event.clientX <= rect.left + 55 &&
-        event.clientY <= rect.top + 55;
-
-    if (!dansCoinCorne) return;
+coinFeuillets.addEventListener("click", (event) => {
+    event.stopPropagation();
 
     feuilleFeuillets.hidden = false;
     feuillePratique.classList.add("feuille-pratique-soulevee");
 });
-
+   
     const pagesPratiques = {
 
         confier: {
