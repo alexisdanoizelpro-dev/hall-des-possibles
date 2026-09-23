@@ -102,25 +102,6 @@ fermerFeuilleFeuillets.addEventListener("click", () => {
     feuillePratique.classList.remove("feuille-pratique-soulevee");
     feuillePratique.hidden = true;
 });
-
-/* Zone cliquable du coin corné */
-const coinFeuillets = document.createElement("button");
-
-coinFeuillets.id = "coin-feuillets";
-coinFeuillets.type = "button";
-coinFeuillets.setAttribute(
-    "aria-label",
-    "Découvrir les Feuillets du Seuil"
-);
-
-feuillePratique.appendChild(coinFeuillets);
-
-coinFeuillets.addEventListener("click", (event) => {
-    event.stopPropagation();
-
-    feuilleFeuillets.hidden = false;
-    feuillePratique.classList.add("feuille-pratique-soulevee");
-});
    
     const pagesPratiques = {
 
@@ -263,13 +244,19 @@ qu'il s'agisse d'enfants, d'adultes ou d'un groupe réunissant plusieurs génér
     function afficherSommairePratique() {
 
         feuillePratique.innerHTML = `
-            <button
-                class="fermer-feuille-pratique"
-                type="button"
-                aria-label="Fermer"
-            >×</button>
+    <button
+        id="coin-feuillets"
+        type="button"
+        aria-label="Découvrir les Feuillets du Seuil"
+    ></button>
 
-            <h2>Informations pratiques</h2>
+    <button
+        class="fermer-feuille-pratique"
+        type="button"
+        aria-label="Fermer"
+    >×</button>
+
+    <h2>Informations pratiques</h2>
 
             <div class="sommaire-pratique">
 
@@ -302,7 +289,18 @@ qu'il s'agisse d'enfants, d'adultes ou d'un groupe réunissant plusieurs génér
 
         brancherFeuillePratique();
     }
+   
+const coinFeuillets =
+    feuillePratique.querySelector("#coin-feuillets");
 
+if (coinFeuillets) {
+    coinFeuillets.addEventListener("click", (event) => {
+        event.stopPropagation();
+
+        feuilleFeuillets.hidden = false;
+        feuillePratique.classList.add("feuille-pratique-soulevee");
+    });
+}
 
     function afficherPagePratique(nomPage) {
 
