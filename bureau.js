@@ -135,6 +135,7 @@ feuilleFeuillets.innerHTML = `
     </div>
 
 </div>
+`;
    
 bureau.appendChild(feuilleFeuillets);
 
