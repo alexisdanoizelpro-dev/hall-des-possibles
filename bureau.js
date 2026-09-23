@@ -289,18 +289,6 @@ qu'il s'agisse d'enfants, d'adultes ou d'un groupe réunissant plusieurs génér
 
         brancherFeuillePratique();
     }
-   
-const coinFeuillets =
-    feuillePratique.querySelector("#coin-feuillets");
-
-if (coinFeuillets) {
-    coinFeuillets.addEventListener("click", (event) => {
-        event.stopPropagation();
-
-        feuilleFeuillets.hidden = false;
-        feuillePratique.classList.add("feuille-pratique-soulevee");
-    });
-}
 
     function afficherPagePratique(nomPage) {
 
@@ -333,6 +321,18 @@ if (coinFeuillets) {
 
 
     function brancherFeuillePratique() {
+
+       const coinFeuillets =
+    feuillePratique.querySelector("#coin-feuillets");
+
+if (coinFeuillets) {
+    coinFeuillets.addEventListener("click", (event) => {
+        event.stopPropagation();
+
+        feuilleFeuillets.hidden = false;
+        feuillePratique.classList.add("feuille-pratique-soulevee");
+    });
+}
 
         const fermer =
             feuillePratique.querySelector(
