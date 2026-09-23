@@ -175,6 +175,97 @@
     pointer-events: none;
 }
 
+/* ==========================================================
+   FEUILLETS DU SEUIL
+   ========================================================== */
+
+#feuille-feuillets {
+    position: fixed;
+
+    left: 50%;
+    top: 50%;
+
+    width: min(560px, 82vw);
+    min-height: 430px;
+    max-height: 78vh;
+
+    transform: translate(-50%, -50%);
+
+    box-sizing: border-box;
+
+    padding: 58px 48px 42px;
+
+    background:
+        linear-gradient(
+            105deg,
+            #ded1b4 0%,
+            #eadfc6 48%,
+            #d8c9a9 100%
+        );
+
+    color: #2d251b;
+
+    border: 1px solid #806c4d;
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.72),
+        inset 0 0 35px rgba(100, 72, 35, 0.12);
+
+    font-family: Georgia, serif;
+
+    z-index: 4999;
+}
+
+#feuille-feuillets[hidden] {
+    display: none;
+}
+
+#feuille-feuillets h2 {
+    margin: 0;
+
+    text-align: center;
+
+    font-size: 25px;
+    font-weight: normal;
+
+    letter-spacing: 0.04em;
+}
+
+
+/* Informations pratiques se soulève */
+#feuille-pratique {
+    transition:
+        transform 650ms ease,
+        opacity 500ms ease;
+}
+
+#feuille-pratique.feuille-pratique-soulevee {
+    transform:
+        translate(-50%, -50%)
+        translate(-72%, -8%)
+        rotate(-7deg);
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* Téléphone */
+@media (max-width: 700px) {
+
+    #feuille-feuillets {
+        width: 88vw;
+        min-height: 0;
+        height: 72vh;
+
+        padding: 52px 25px 30px;
+    }
+
+    #feuille-feuillets h2 {
+        font-size: 20px;
+    }
+}
+
 /* Titre */
 #feuille-pratique h2 {
     margin: 0 0 32px;
