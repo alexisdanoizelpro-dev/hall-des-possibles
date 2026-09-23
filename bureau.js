@@ -86,8 +86,22 @@ feuilleFeuillets.innerHTML = `
     >×</button>
 
     <h2>Feuillets du Seuil</h2>
-`;
 
+    <div class="grille-feuillets">
+        <div>Surprendre quelqu’un</div>
+        <div>En Famille</div>
+        <div>Jeux de soirée</div>
+
+        <div>Anniversaire</div>
+        <div>Chasse au Trésor</div>
+        <div>Mariage</div>
+
+        <div>Enfants</div>
+        <div>Enquête</div>
+        <div>Entreprise</div>
+    </div>
+`;
+   
 bureau.appendChild(feuilleFeuillets);
 
 
