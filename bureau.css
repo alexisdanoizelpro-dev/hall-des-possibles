@@ -242,7 +242,7 @@
     border-left: 1px solid rgba(89, 74, 53, 0.45);
 }
 
-.grille-feuillets > .case-feuilet {
+.grille-feuillets > .case-feuillet {
     display: flex;
     flex-direction: column;
     align-items: center;
