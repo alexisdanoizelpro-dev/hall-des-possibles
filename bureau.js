@@ -85,56 +85,75 @@ feuilleFeuillets.innerHTML = `
         aria-label="Fermer"
     >×</button>
 
-    <h2>Feuillets du Seuil</h2>
+    <div id="sommaire-feuillets">
+        <h2>Feuillets du Seuil</h2>
 
-    <div class="grille-feuillets">
+        <div class="grille-feuillets">
 
-    <div class="case-feuillet">
-        <img src="feuillet-surprendre.png" alt="">
-        <span>Surprendre quelqu’un</span>
+            <button class="case-feuillet" type="button" data-feuillet="surprendre">
+                <img src="feuillet-surprendre.png" alt="">
+                <span>Surprendre quelqu’un</span>
+            </button>
+
+            <button class="case-feuillet" type="button" data-feuillet="famille">
+                <img src="feuillet-famille.png" alt="">
+                <span>En Famille</span>
+            </button>
+
+            <button class="case-feuillet" type="button" data-feuillet="soiree">
+                <img src="feuillet-soirée.png" alt="">
+                <span>Jeux de soirée</span>
+            </button>
+
+            <button class="case-feuillet" type="button" data-feuillet="anniversaire">
+                <img src="feuillet-anniversaire.png" alt="">
+                <span>Anniversaire</span>
+            </button>
+
+            <button class="case-feuillet" type="button" data-feuillet="chasse">
+                <img src="feuillet-chasse_tresor.png" alt="">
+                <span>Chasse au Trésor</span>
+            </button>
+
+            <button class="case-feuillet" type="button" data-feuillet="mariage">
+                <img src="feuillet-mariage.png" alt="">
+                <span>Mariage</span>
+            </button>
+
+            <button class="case-feuillet" type="button" data-feuillet="enfants">
+                <img src="feuillet-enfants.png" alt="">
+                <span>Enfants</span>
+            </button>
+
+            <button class="case-feuillet" type="button" data-feuillet="enquete">
+                <img src="feuillet-enquete.png" alt="">
+                <span>Enquête</span>
+            </button>
+
+            <button class="case-feuillet" type="button" data-feuillet="entreprise">
+                <img src="feuillet-entreprise.png" alt="">
+                <span>Entreprise</span>
+            </button>
+
+        </div>
+
+        <div class="note-feuillets">
+            <p>
+                <strong>
+                    Une date marque parfois l'aboutissement d'une expérience,
+                    pas son commencement.
+                </strong>
+            </p>
+
+            <p>
+                Un indice, un message, un objet ou une réflexion peut apparaître
+                bien avant le jour prévu. Ce qui semble anodin aujourd'hui peut
+                prendre tout son sens une fois les participants réunis.
+            </p>
+        </div>
     </div>
 
-    <div class="case-feuillet">
-        <img src="feuillet-famille.png" alt="">
-        <span>En Famille</span>
-    </div>
-
-    <div class="case-feuillet">
-        <img src="feuillet-soirée.png" alt="">
-        <span>Jeux de soirée</span>
-    </div>
-
-    <div class="case-feuillet">
-        <img src="feuillet-anniversaire.png" alt="">
-        <span>Anniversaire</span>
-    </div>
-
-    <div class="case-feuillet">
-        <img src="feuillet-chasse_tresor.png" alt="">
-        <span>Chasse au Trésor</span>
-    </div>
-
-    <div class="case-feuillet">
-        <img src="feuillet-mariage.png" alt="">
-        <span>Mariage</span>
-    </div>
-
-    <div class="case-feuillet">
-        <img src="feuillet-enfants.png" alt="">
-        <span>Enfants</span>
-    </div>
-
-    <div class="case-feuillet">
-        <img src="feuillet-enquete.png" alt="">
-        <span>Enquête</span>
-    </div>
-
-    <div class="case-feuillet">
-        <img src="feuillet-entreprise.png" alt="">
-        <span>Entreprise</span>
-    </div>
-
-</div>
+    <div id="contenu-feuillet" hidden></div>
 `;
    
 bureau.appendChild(feuilleFeuillets);
