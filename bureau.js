@@ -158,6 +158,307 @@ feuilleFeuillets.innerHTML = `
    
 bureau.appendChild(feuilleFeuillets);
 
+   /* Contenu des Feuillets */
+const pagesFeuillets = {
+
+    anniversaire: {
+        titre: "Anniversaire",
+        contenu: `
+            <p>
+                <strong>Un anniversaire ressemble d'abord à la personne que l'on célèbre.</strong>
+            </p>
+
+            <p>
+                Son âge, ce qu'elle aime — ou préfère éviter — et quelques détails
+                qui lui ressemblent permettent à l'Artisan d'imaginer une expérience
+                qui lui appartient vraiment.
+            </p>
+
+            <p>
+                Le lieu, les personnes présentes et le temps que vous souhaitez lui
+                consacrer aideront ensuite à lui donner sa juste place dans la journée :
+                une courte surprise, un moment à part entière, ou quelque chose qui
+                accompagnera la fête plus longtemps.
+            </p>
+
+            <p>
+                Vous n'avez pas besoin d'avoir déjà toutes les réponses.<br>
+                <strong>Le Registre des Idées est là pour recueillir ce que vous savez déjà.</strong>
+            </p>
+        `
+    },
+
+    chasse: {
+        titre: "Chasse au Trésor",
+        contenu: `
+            <p>
+                <strong>Une chasse au trésor commence bien avant de trouver le premier indice.</strong>
+            </p>
+
+            <p>
+                La date prévue permet d'abord à l'Artisan de savoir jusqu'où l'aventure
+                peut aller. Le nombre de participants, le thème que vous imaginez et le
+                temps que vous souhaitez lui consacrer lui permettront ensuite d'en
+                construire le rythme et l'ampleur.
+            </p>
+
+            <p>
+                Le thème ne vient pas simplement décorer l'expérience : il peut guider
+                son histoire, ses énigmes et la manière dont les participants
+                progresseront jusqu'au trésor.
+            </p>
+
+            <p>
+                Quelques informations suffisent pour commencer.<br>
+                <strong>Le Registre des Idées est là pour recueillir celles que vous avez déjà.</strong>
+            </p>
+        `
+    },
+
+    famille: {
+        titre: "En Famille",
+        contenu: `
+            <p>
+                <strong>Une famille n'a pas besoin de tous aimer les mêmes choses pour partager la même aventure.</strong>
+            </p>
+
+            <p>
+                Quelques détails sur les personnes qui la vivront — leurs âges, leurs
+                goûts, ce qu'elles aiment faire ensemble ou ce qui les distingue —
+                permettent à l'Artisan d'imaginer une expérience dans laquelle chacun
+                peut trouver sa place.
+            </p>
+
+            <p>
+                Une différence d'âge, une passion que personne d'autre ne partage ou
+                une aptitude particulière peuvent même devenir une partie du jeu :
+                parfois, l'aventure avance justement parce que chacun apporte quelque
+                chose que les autres n'ont pas.
+            </p>
+
+            <p>
+                Il suffit de raconter un peu votre famille.<br>
+                <strong>Le Registre des Idées accueillera le reste.</strong>
+            </p>
+        `
+    },
+
+    enfants: {
+        titre: "Enfants",
+        contenu: `
+            <p>
+                <strong>Les enfants n'ont pas besoin que l'on fasse l'aventure à leur place.</strong>
+            </p>
+
+            <p>
+                Leur âge, ce qu'ils aiment et quelques mots sur ce qu'ils savent déjà
+                faire seuls permettent à l'Artisan d'imaginer une expérience réellement
+                faite pour eux.
+            </p>
+
+            <p>
+                Le nombre d'enfants, les liens qui les unissent et l'espace disponible
+                aideront ensuite à construire une aventure qu'ils pourront vivre
+                ensemble, chercher, essayer et faire avancer sans avoir besoin d'un
+                adulte pour poursuivre.
+            </p>
+
+            <p>
+                Quelques repères suffisent pour commencer.<br>
+                <strong>Le Registre des Idées est là pour recueillir ceux que vous connaissez déjà.</strong>
+            </p>
+        `
+    },
+
+    enquete: {
+        titre: "Enquête",
+        contenu: `
+            <p>
+                <strong>Une enquête commence par quelque chose qui mérite d'être découvert.</strong>
+            </p>
+
+            <p>
+                Son contexte, les personnes qui mèneront les recherches et le degré
+                d'immersion souhaité permettent à l'Artisan de construire une affaire
+                à leur mesure : quelques indices à relier, une véritable investigation,
+                ou une histoire capable de les entraîner bien plus loin.
+            </p>
+
+            <p>
+                Elle peut rester dans un même lieu ou inviter les enquêteurs à se
+                déplacer. Elle peut également naître d'une histoire entièrement
+                imaginée ou s'appuyer sur des éléments réels —
+                <strong>sans jamais confondre les deux.</strong>
+            </p>
+
+            <p>
+                Quelques premières pistes suffisent.<br>
+                <strong>Le Registre des Idées permettra de les confier à l'Artisan.</strong>
+            </p>
+        `
+    },
+
+    entreprise: {
+        titre: "Entreprise",
+        contenu: `
+            <p>
+                <strong>Réunir des personnes ne suffit pas toujours à créer un moment ensemble.</strong>
+            </p>
+
+            <p>
+                Pour commencer, l'Artisan a surtout besoin de comprendre
+                <strong>pourquoi vous souhaitez les réunir</strong> : créer du lien,
+                partager un moment, célébrer quelque chose, apprendre à mieux se
+                connaître… ou simplement sortir du cadre habituel.
+            </p>
+
+            <p>
+                Le lieu prévu donnera ensuite les limites — et parfois les possibilités —
+                dans lesquelles l'expérience pourra prendre forme.
+            </p>
+
+            <p>
+                Deux informations peuvent déjà suffire pour commencer.<br>
+                <strong>Le Registre des Idées permettra de confier les vôtres à l'Artisan.</strong>
+            </p>
+        `
+    },
+
+    soiree: {
+        titre: "Jeux de soirée",
+        contenu: `
+            <p>
+                <strong>Une soirée peut accueillir un jeu… ou devenir elle-même le terrain de jeu.</strong>
+            </p>
+
+            <p>
+                L'occasion, les personnes réunies et l'ambiance que vous imaginez
+                permettent à l'Artisan de comprendre le moment que vous souhaitez
+                partager. Quelques indications sur les jeux que vous aimez — ou ceux
+                que vous préférez éviter — peuvent ensuite lui donner une première direction.
+            </p>
+
+            <p>
+                Un thème peut habiller l'expérience, mais celle-ci peut aussi se glisser
+                dans la soirée autrement : comme un moment bien défini ou comme un fil
+                rouge qui revient au fil des heures.
+            </p>
+
+            <p>
+                Il suffit de raconter un peu la soirée que vous imaginez.<br>
+                <strong>Le Registre des Idées permettra à l'Artisan d'en découvrir le reste.</strong>
+            </p>
+        `
+    },
+
+    mariage: {
+        titre: "Mariage",
+        contenu: `
+            <p>
+                <strong>Un mariage raconte déjà une histoire. L'expérience peut simplement trouver sa place à l'intérieur.</strong>
+            </p>
+
+            <p>
+                Quelques mots sur le couple, les personnes qui seront présentes et
+                surtout <strong>ce que vous aimeriez leur faire vivre</strong> permettent
+                à l'Artisan de comprendre l'esprit du moment.
+            </p>
+
+            <p>
+                Le lieu et le déroulement de la journée aideront ensuite à imaginer la
+                juste place de l'expérience : un moment particulier, une animation
+                discrète ou même un fil rouge qui accompagne les invités et crée des
+                rencontres au fil des heures.
+            </p>
+
+            <p>
+                Vous n'avez pas besoin d'avoir déjà imaginé comment tout cela fonctionnera.<br>
+                <strong>Le Registre des Idées est là pour confier à l'Artisan ce que vous souhaitez faire naître.</strong>
+            </p>
+        `
+    },
+
+    surprendre: {
+        titre: "Surprendre quelqu'un",
+        contenu: `
+            <p>
+                <strong>Une surprise ne commence pas forcément au moment où elle est découverte.</strong>
+            </p>
+
+            <p>
+                Quelques mots sur la personne que vous souhaitez surprendre, ce qui
+                vous lie et les souvenirs ou petites histoires que vous partagez peuvent
+                offrir à l'Artisan la matière nécessaire pour imaginer quelque chose
+                qui n'appartient qu'à vous.
+            </p>
+
+            <p>
+                Reste surtout à comprendre pourquoi vous souhaitez la surprendre :
+                faire rire, émouvoir, annoncer quelque chose, célébrer un moment…
+                Cette intention peut donner naissance à une simple attention comme à
+                une expérience qui se construit discrètement pendant plusieurs jours.
+            </p>
+
+            <p>
+                Vous n'avez pas besoin de savoir encore quelle forme prendra la surprise.<br>
+                <strong>Le Registre des Idées est justement là pour confier à l'Artisan ce que vous aimeriez provoquer.</strong>
+            </p>
+        `
+    }
+};
+
+   const sommaireFeuillets =
+    feuilleFeuillets.querySelector("#sommaire-feuillets");
+
+const contenuFeuillet =
+    feuilleFeuillets.querySelector("#contenu-feuillet");
+
+
+function afficherFeuillet(nomFeuillet) {
+
+    const page = pagesFeuillets[nomFeuillet];
+    if (!page) return;
+
+    sommaireFeuillets.hidden = true;
+
+    contenuFeuillet.innerHTML = `
+        <button
+            class="retour-feuillets"
+            type="button"
+        >
+            ← Retour aux Feuillets
+        </button>
+
+        <h2>${page.titre}</h2>
+
+        <div class="texte-feuillet">
+            ${page.contenu}
+        </div>
+    `;
+
+    contenuFeuillet.hidden = false;
+
+    contenuFeuillet
+        .querySelector(".retour-feuillets")
+        .addEventListener("click", () => {
+
+            contenuFeuillet.hidden = true;
+            contenuFeuillet.innerHTML = "";
+
+            sommaireFeuillets.hidden = false;
+        });
+}
+
+
+feuilleFeuillets
+    .querySelectorAll(".case-feuillet")
+    .forEach((caseFeuillet) => {
+
+        caseFeuillet.addEventListener("click", () => {
+            afficherFeuillet(caseFeuillet.dataset.feuillet);
+        });
+
+    });
 
 /* Fermer les Feuillets et revenir au Bureau */
 const fermerFeuilleFeuillets =
