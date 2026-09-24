@@ -242,7 +242,7 @@
     border-left: 1px solid rgba(89, 74, 53, 0.45);
 }
 
-.grille-feuillets > div {
+.grille-feuillets > .case-feuilet {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -252,11 +252,16 @@
     padding: 8px;
 
     box-sizing: border-box;
-
+   
+    border: 0;
     border-right: 1px solid rgba(89, 74, 53, 0.45);
     border-bottom: 1px solid rgba(89, 74, 53, 0.45);
 
     text-align: center;
+       background: transparent;
+    color: inherit;
+    font-family: Georgia, serif;
+    cursor: pointer;
 }
 
 .case-feuillet img {
@@ -273,6 +278,28 @@
 .case-feuillet span {
     font-size: 12px;
     line-height: 1.15;
+}
+   
+   .note-feuillets {
+    margin-top: 18px;
+
+    font-size: 12px;
+    line-height: 1.45;
+
+    color: #594a35;
+}
+
+.note-feuillets p {
+    margin: 0 0 8px;
+}
+
+.note-feuillets p:last-child {
+    margin-bottom: 0;
+}
+
+.note-feuillets strong {
+    font-weight: normal;
+    font-style: italic;
 }
 
 #feuille-feuillets[hidden] {
