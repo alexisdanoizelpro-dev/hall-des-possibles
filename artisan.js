@@ -39,15 +39,22 @@ const ARTISAN = {
     enqueteDuMoment: {
         active: true,
 
-        identifiant: "enquete-002",
+        identifiant: "enquete-003",
         categorie: "Analyse",
         titre: "Une affaire attend votre regard",
 
-        contenu: "Sachant que Mr Plot habite dans un phare et que Mr Flan habite au dessus d'une boulangerie, où vit Mr Hanté ?",
+        contenu: "Je ne fais de tort à personne
+Mais je disparais au coucher du jour
+La lune peut me créer
+Mais elle n'aura pas le privilège de me contrôler
+Je serai toujours à tes côtés
+Même si la nuit, tu ne me vois pas
+On pense que je suis le mauvais côté des gens
+Mais je ne révèle rien d'autre que la vérité"
 
         // Plusieurs réponses peuvent être acceptées.
         // Majuscules, accents et espaces superflus sont ignorés.
-        reponsesAcceptees: ["le cimetière", "un cimetière", "cimetière", "sous le cimetière", "sous un cimetière"],
+        reponsesAcceptees: ["ombre"],
 
         // Position de l'enveloppe SUR L'IMAGE du Hall.
         // x / y : de 0 à 1. La position reste donc stable sur PC et téléphone.
