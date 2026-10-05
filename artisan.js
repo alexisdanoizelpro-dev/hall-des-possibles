@@ -43,14 +43,7 @@ const ARTISAN = {
         categorie: "Analyse",
         titre: "Une affaire attend votre regard",
 
-        contenu: "Je ne fais de tort à personne
-Mais je disparais au coucher du jour
-La lune peut me créer
-Mais elle n'aura pas le privilège de me contrôler
-Je serai toujours à tes côtés
-Même si la nuit, tu ne me vois pas
-On pense que je suis le mauvais côté des gens
-Mais je ne révèle rien d'autre que la vérité"
+        contenu: "Je ne fais de tort à personne, mais je disparais au coucher du jour. La lune peut me créer, mais elle n'aura pas le privilège de me contrôler. Je serai toujours à tes côtés, même si la nuit, tu ne me vois pas. On pense que je suis le mauvais côté des gens, mais je ne révèle rien d'autre que la vérité"
 
         // Plusieurs réponses peuvent être acceptées.
         // Majuscules, accents et espaces superflus sont ignorés.
