@@ -54,7 +54,7 @@ Mais je ne révèle rien d'autre que la vérité"
 
         // Plusieurs réponses peuvent être acceptées.
         // Majuscules, accents et espaces superflus sont ignorés.
-        reponsesAcceptees: ["ombre"],
+        reponsesAcceptees: ["ombre", "l'ombre", "mon ombre", "une ombre"],
 
         // Position de l'enveloppe SUR L'IMAGE du Hall.
         // x / y : de 0 à 1. La position reste donc stable sur PC et téléphone.
