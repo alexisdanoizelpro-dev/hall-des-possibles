@@ -206,12 +206,13 @@ function classerAffaire() {
 }
 
 function normaliserReponse(texte) {
-    return String(texte || "")
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .trim()
-        .replace(/\s+/g, " ")
-        .toLowerCase();
+  return String(texte || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[’‘‛`´]/g, "'")
+    .trim()
+    .replace(/\s+/g, " ")
+    .toLowerCase();
 }
 
 function reponseEstAcceptee(proposition) {
